@@ -59,11 +59,11 @@ const hints = [
     },
     {
         step: 3,
-        text: '錠は外れたのに開きません...何か別の方法があるのでは？<br>固定観念にとらわれていませんか？<br>宝箱を<span class="highlight">違う方向から</span>アプローチしてみては？'
+        text: 'ダイヤル錠の暗号は解けましたか？<br>でも...それだけで宝箱は開くのでしょうか？<br><span class="highlight">固定観念にとらわれないで</span>考えてみましょう。'
     },
     {
         step: 4,
-        text: '宝箱を<span class="highlight">上に</span>ドラッグ（持ち上げて）みてください！<br>底が抜けているかもしれません。'
+        text: '宝箱を<span class="highlight">違う方向から</span>アプローチしてみては？<br>上に持ち上げてみると...何か起こるかもしれません。'
     }
 ];
 
@@ -73,14 +73,17 @@ const elements = {
     dialUpButtons: document.querySelectorAll('.dial-up'),
     dialDownButtons: document.querySelectorAll('.dial-down'),
     dialValues: document.querySelectorAll('.dial-value'),
-    dialLock: document.getElementById('dialLock'),
+    dialModal: document.getElementById('dialModal'),
+    dialOpenButton: document.getElementById('dialOpenButton'),
+    dialFeedback: document.getElementById('dialFeedback'),
+    closeDialModal: document.getElementById('closeDialModal'),
+    lockIcon: document.getElementById('lockIcon'),
 
     // 宝箱関連
     treasureBox: document.getElementById('treasureBox'),
     treasureBoxContainer: document.getElementById('treasureBoxContainer'),
     boxBottom: document.getElementById('boxBottom'),
     paper: document.getElementById('paper'),
-    dragHint: document.getElementById('dragHint'),
 
     // オブジェクト関連
     objectItems: document.querySelectorAll('.object-item'),
@@ -126,47 +129,36 @@ function updateTimer() {
 
 setInterval(updateTimer, 1000);
 
+// ===== ダイヤル錠モーダル =====
+elements.lockIcon.addEventListener('click', (e) => {
+    e.stopPropagation(); // 宝箱のドラッグを防ぐ
+    showDialModal();
+});
+
+function showDialModal() {
+    elements.dialModal.classList.remove('hidden');
+    elements.dialModal.classList.add('modal-show');
+}
+
+function closeDialModal() {
+    elements.dialModal.classList.remove('modal-show');
+    setTimeout(() => {
+        elements.dialModal.classList.add('hidden');
+    }, 300);
+}
+
+elements.closeDialModal.addEventListener('click', closeDialModal);
+elements.dialModal.addEventListener('click', (e) => {
+    if (e.target === elements.dialModal) {
+        closeDialModal();
+    }
+});
+
 // ===== ダイヤル錠機能 =====
 function rotateDial(index, direction) {
     // 0-9の範囲で循環
     gameState.dialValues[index] = (gameState.dialValues[index] + direction + 10) % 10;
     elements.dialValues[index].textContent = gameState.dialValues[index];
-
-    // 正解チェック
-    checkDialAnswer();
-}
-
-function checkDialAnswer() {
-    if (gameState.isLockUnlocked) return;
-
-    // 配列の比較
-    const isCorrect = gameState.dialValues.every((val, idx) => val === gameState.correctDial[idx]);
-
-    if (isCorrect) {
-        unlockDial();
-    }
-}
-
-function unlockDial() {
-    gameState.isLockUnlocked = true;
-
-    // 錠が外れるアニメーション
-    elements.dialLock.classList.add('unlocked');
-
-    setTimeout(() => {
-        elements.dialLock.style.display = 'none';
-
-        // 宝箱をドラッグ可能にする
-        elements.treasureBox.classList.add('draggable');
-
-        // ドラッグヒント表示
-        elements.dragHint.classList.remove('hidden');
-
-        // ヒントステップを3に更新（錠解除後のヒント）
-        if (gameState.currentHintStep < 2) {
-            gameState.currentHintStep = 2;
-        }
-    }, 800);
 }
 
 // ダイヤルボタンのイベントリスナー
@@ -183,6 +175,38 @@ elements.dialDownButtons.forEach((button) => {
         rotateDial(dialIndex, -1);
     });
 });
+
+// OPENボタン
+elements.dialOpenButton.addEventListener('click', () => {
+    checkDialAnswer();
+});
+
+function checkDialAnswer() {
+    // 配列の比較
+    const isCorrect = gameState.dialValues.every((val, idx) => val === gameState.correctDial[idx]);
+
+    if (isCorrect) {
+        // 正解だが、宝箱は開かない（ミスリード）
+        gameState.isLockUnlocked = true;
+        elements.dialFeedback.textContent = '✅ 錠が開きました！...でも宝箱が開きません。何か他に方法があるのでは？';
+        elements.dialFeedback.classList.remove('feedback-wrong');
+        elements.dialFeedback.classList.add('feedback-correct');
+
+        // 錠アイコンを変更（開いた状態）
+        setTimeout(() => {
+            elements.lockIcon.innerHTML = `
+                <div class="text-3xl">🔓</div>
+            `;
+            elements.lockIcon.classList.remove('hover:scale-110');
+            closeDialModal();
+        }, 2000);
+    } else {
+        // 不正解
+        elements.dialFeedback.textContent = '❌ 番号が違うようです...';
+        elements.dialFeedback.classList.add('feedback-wrong');
+        elements.dialFeedback.classList.remove('feedback-correct');
+    }
+}
 
 // ===== オブジェクト調査機能 =====
 elements.objectItems.forEach((item) => {
@@ -240,7 +264,10 @@ document.addEventListener('touchmove', dragTouch);
 document.addEventListener('touchend', endDrag);
 
 function startDrag(e) {
-    if (!gameState.isLockUnlocked || gameState.isBottomDropped) return;
+    // 錠アイコンをクリックした場合はドラッグしない
+    if (e.target.closest('#lockIcon')) return;
+
+    if (gameState.isBottomDropped) return;
 
     isDragging = true;
     startY = e.clientY;
@@ -248,7 +275,10 @@ function startDrag(e) {
 }
 
 function startDragTouch(e) {
-    if (!gameState.isLockUnlocked || gameState.isBottomDropped) return;
+    // 錠アイコンをタップした場合はドラッグしない
+    if (e.target.closest('#lockIcon')) return;
+
+    if (gameState.isBottomDropped) return;
 
     isDragging = true;
     startY = e.touches[0].clientY;
@@ -300,9 +330,6 @@ function dropBottom() {
 
     gameState.isBottomDropped = true;
     isDragging = false;
-
-    // ドラッグヒントを非表示
-    elements.dragHint.classList.add('hidden');
 
     // 宝箱が持ち上がる
     elements.treasureBox.classList.add('lifting');
@@ -476,3 +503,4 @@ function updateHintDisplay() {
 // ===== 初期化 =====
 console.log('🎮 逆転の宝箱 - ゲーム開始！');
 console.log('💡 ヒント: 部屋の中を調べて、ダイヤル錠の暗号を解こう！');
+console.log('💡 でも...それだけで本当に開くのかな？');

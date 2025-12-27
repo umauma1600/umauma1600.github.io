@@ -1,17 +1,7 @@
 /* ===== カスタムスタイル ===== */
 
-/* 宝箱のドラッグ可能状態 */
-.treasure-box.draggable {
-    cursor: grab;
-    transition: transform 0.1s ease-out;
-}
-
-.treasure-box.draggable:active {
-    cursor: grabbing;
-}
-
+/* 宝箱のドラッグ状態 */
 .treasure-box.dragging {
-    cursor: grabbing;
     transform: scale(1.05);
 }
 

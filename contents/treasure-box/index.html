@@ -150,60 +150,35 @@
                         <div id="treasureBoxContainer" class="relative">
 
                             <!-- 宝箱本体 -->
-                            <div id="treasureBox" class="treasure-box relative">
+                            <div id="treasureBox" class="treasure-box relative cursor-grab active:cursor-grabbing">
                                 <!-- 宝箱のビジュアル -->
-                                <div class="box-body w-64 h-48 md:w-80 md:h-56 bg-gradient-to-br from-amber-800 to-amber-900 rounded-lg shadow-2xl relative border-4 border-amber-950">
-                                    <!-- 木目模様 -->
-                                    <div class="absolute inset-0 opacity-20 rounded-lg" style="background-image: repeating-linear-gradient(90deg, transparent, transparent 10px, rgba(0,0,0,0.1) 10px, rgba(0,0,0,0.1) 20px);"></div>
+                                <div class="box-body w-80 h-60 md:w-96 md:h-72 bg-gradient-to-br from-amber-800 via-amber-700 to-amber-900 rounded-lg shadow-2xl relative border-4 border-amber-950 overflow-hidden">
+                                    <!-- 木目テクスチャ -->
+                                    <div class="absolute inset-0 opacity-30" style="background-image: repeating-linear-gradient(90deg, transparent, transparent 8px, rgba(0,0,0,0.15) 8px, rgba(0,0,0,0.15) 16px), repeating-linear-gradient(0deg, transparent, transparent 120px, rgba(0,0,0,0.1) 120px, rgba(0,0,0,0.1) 122px);"></div>
 
-                                    <!-- 金具装飾 -->
-                                    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-20 h-16 border-4 border-yellow-600 rounded"></div>
+                                    <!-- フタの境界線 -->
+                                    <div class="absolute top-0 left-0 right-0 h-2 bg-gradient-to-b from-amber-950 to-transparent"></div>
 
-                                    <!-- フタの線 -->
-                                    <div class="absolute top-0 left-0 right-0 h-1 bg-amber-950"></div>
-                                </div>
+                                    <!-- 前面の金具装飾 -->
+                                    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-24 h-20 border-4 border-yellow-600 rounded bg-gradient-to-br from-yellow-700 to-yellow-800 shadow-inner"></div>
 
-                                <!-- ダイヤル錠 -->
-                                <div id="dialLock" class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10">
-                                    <div class="bg-gray-800 p-4 rounded-lg shadow-xl">
-                                        <div class="flex gap-2">
-                                            <!-- ダイヤル1 -->
-                                            <div class="dial-container">
-                                                <button class="dial-up w-10 h-6 bg-gray-600 hover:bg-gray-500 rounded-t text-white text-xs" data-dial="0">▲</button>
-                                                <div class="dial-display w-10 h-12 bg-white flex items-center justify-center font-mono text-2xl font-bold border-2 border-gray-700">
-                                                    <span class="dial-value">0</span>
-                                                </div>
-                                                <button class="dial-down w-10 h-6 bg-gray-600 hover:bg-gray-500 rounded-b text-white text-xs" data-dial="0">▼</button>
-                                            </div>
-
-                                            <!-- ダイヤル2 -->
-                                            <div class="dial-container">
-                                                <button class="dial-up w-10 h-6 bg-gray-600 hover:bg-gray-500 rounded-t text-white text-xs" data-dial="1">▲</button>
-                                                <div class="dial-display w-10 h-12 bg-white flex items-center justify-center font-mono text-2xl font-bold border-2 border-gray-700">
-                                                    <span class="dial-value">0</span>
-                                                </div>
-                                                <button class="dial-down w-10 h-6 bg-gray-600 hover:bg-gray-500 rounded-b text-white text-xs" data-dial="1">▼</button>
-                                            </div>
-
-                                            <!-- ダイヤル3 -->
-                                            <div class="dial-container">
-                                                <button class="dial-up w-10 h-6 bg-gray-600 hover:bg-gray-500 rounded-t text-white text-xs" data-dial="2">▲</button>
-                                                <div class="dial-display w-10 h-12 bg-white flex items-center justify-center font-mono text-2xl font-bold border-2 border-gray-700">
-                                                    <span class="dial-value">0</span>
-                                                </div>
-                                                <button class="dial-down w-10 h-6 bg-gray-600 hover:bg-gray-500 rounded-b text-white text-xs" data-dial="2">▼</button>
-                                            </div>
-
-                                            <!-- ダイヤル4 -->
-                                            <div class="dial-container">
-                                                <button class="dial-up w-10 h-6 bg-gray-600 hover:bg-gray-500 rounded-t text-white text-xs" data-dial="3">▲</button>
-                                                <div class="dial-display w-10 h-12 bg-white flex items-center justify-center font-mono text-2xl font-bold border-2 border-gray-700">
-                                                    <span class="dial-value">0</span>
-                                                </div>
-                                                <button class="dial-down w-10 h-6 bg-gray-600 hover:bg-gray-500 rounded-b text-white text-xs" data-dial="3">▼</button>
-                                            </div>
+                                    <!-- 錠前 -->
+                                    <div id="lockIcon" class="absolute top-1/2 left-1/2 -translate-x-1/2 translate-y-2 w-12 h-16 cursor-pointer hover:scale-110 transition-transform z-20">
+                                        <!-- 錠のU字部分 -->
+                                        <div class="absolute top-0 left-1/2 -translate-x-1/2 w-7 h-7 border-4 border-gray-700 rounded-t-full bg-gradient-to-b from-gray-600 to-gray-700"></div>
+                                        <!-- 錠の本体 -->
+                                        <div class="absolute bottom-0 left-1/2 -translate-x-1/2 w-12 h-10 bg-gradient-to-br from-gray-600 via-gray-700 to-gray-800 rounded shadow-lg">
+                                            <!-- 鍵穴 -->
+                                            <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-2 h-2 bg-gray-900 rounded-full"></div>
+                                            <div class="absolute top-1/2 left-1/2 -translate-x-1/2 translate-y-0 w-1 h-3 bg-gray-900"></div>
                                         </div>
                                     </div>
+
+                                    <!-- 角の装飾 -->
+                                    <div class="absolute top-2 left-2 w-4 h-4 border-t-2 border-l-2 border-yellow-600"></div>
+                                    <div class="absolute top-2 right-2 w-4 h-4 border-t-2 border-r-2 border-yellow-600"></div>
+                                    <div class="absolute bottom-2 left-2 w-4 h-4 border-b-2 border-l-2 border-yellow-600"></div>
+                                    <div class="absolute bottom-2 right-2 w-4 h-4 border-b-2 border-r-2 border-yellow-600"></div>
                                 </div>
 
                                 <!-- 底抜け部分 -->
@@ -220,11 +195,6 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-
-                            <!-- ドラッグヒント（錠解除後に表示） -->
-                            <div id="dragHint" class="hidden absolute -bottom-16 left-1/2 -translate-x-1/2 text-center text-sm text-accent animate-pulse">
-                                ↑ 宝箱を上にドラッグしてみよう ↑
                             </div>
                         </div>
                     </div>
@@ -266,6 +236,63 @@
                 <button id="closeModal" class="text-text/40 hover:text-text text-2xl leading-none">&times;</button>
             </div>
             <div id="modalContent" class="text-text leading-relaxed"></div>
+        </div>
+    </div>
+
+    <!-- ダイヤル錠モーダル -->
+    <div id="dialModal" class="hidden fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+        <div class="bg-white rounded-2xl max-w-md w-full p-6 shadow-2xl">
+            <div class="flex justify-between items-start mb-4">
+                <h3 class="text-2xl font-heading font-bold text-primary">🔒 ダイヤル錠</h3>
+                <button id="closeDialModal" class="text-text/40 hover:text-text text-2xl leading-none">&times;</button>
+            </div>
+            <p class="text-sm text-text/80 mb-4">4桁の番号を合わせて、OPENボタンを押してください。</p>
+
+            <!-- ダイヤル -->
+            <div class="bg-gray-800 p-6 rounded-lg shadow-xl mb-4">
+                <div class="flex gap-3 justify-center">
+                    <!-- ダイヤル1 -->
+                    <div class="dial-container">
+                        <button class="dial-up w-12 h-8 bg-gray-600 hover:bg-gray-500 rounded-t text-white text-xs font-bold" data-dial="0">▲</button>
+                        <div class="dial-display w-12 h-16 bg-white flex items-center justify-center font-mono text-3xl font-bold border-2 border-gray-700">
+                            <span class="dial-value">0</span>
+                        </div>
+                        <button class="dial-down w-12 h-8 bg-gray-600 hover:bg-gray-500 rounded-b text-white text-xs font-bold" data-dial="0">▼</button>
+                    </div>
+
+                    <!-- ダイヤル2 -->
+                    <div class="dial-container">
+                        <button class="dial-up w-12 h-8 bg-gray-600 hover:bg-gray-500 rounded-t text-white text-xs font-bold" data-dial="1">▲</button>
+                        <div class="dial-display w-12 h-16 bg-white flex items-center justify-center font-mono text-3xl font-bold border-2 border-gray-700">
+                            <span class="dial-value">0</span>
+                        </div>
+                        <button class="dial-down w-12 h-8 bg-gray-600 hover:bg-gray-500 rounded-b text-white text-xs font-bold" data-dial="1">▼</button>
+                    </div>
+
+                    <!-- ダイヤル3 -->
+                    <div class="dial-container">
+                        <button class="dial-up w-12 h-8 bg-gray-600 hover:bg-gray-500 rounded-t text-white text-xs font-bold" data-dial="2">▲</button>
+                        <div class="dial-display w-12 h-16 bg-white flex items-center justify-center font-mono text-3xl font-bold border-2 border-gray-700">
+                            <span class="dial-value">0</span>
+                        </div>
+                        <button class="dial-down w-12 h-8 bg-gray-600 hover:bg-gray-500 rounded-b text-white text-xs font-bold" data-dial="2">▼</button>
+                    </div>
+
+                    <!-- ダイヤル4 -->
+                    <div class="dial-container">
+                        <button class="dial-up w-12 h-8 bg-gray-600 hover:bg-gray-500 rounded-t text-white text-xs font-bold" data-dial="3">▲</button>
+                        <div class="dial-display w-12 h-16 bg-white flex items-center justify-center font-mono text-3xl font-bold border-2 border-gray-700">
+                            <span class="dial-value">0</span>
+                        </div>
+                        <button class="dial-down w-12 h-8 bg-gray-600 hover:bg-gray-500 rounded-b text-white text-xs font-bold" data-dial="3">▼</button>
+                    </div>
+                </div>
+            </div>
+
+            <button id="dialOpenButton" class="w-full px-6 py-3 bg-accent text-white rounded-lg hover:bg-accent/90 transition-colors font-bold text-lg">
+                OPEN
+            </button>
+            <div id="dialFeedback" class="mt-3 text-sm text-center"></div>
         </div>
     </div>
 
