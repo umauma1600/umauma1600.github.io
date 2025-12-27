@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>逆転の宝箱 | やまーたの謎解きアトリエ</title>
+    <meta name="description" content="4桁のダイヤル錠がかかった宝箱...固定観念を逆転させる謎解きゲーム">
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Tailwind Config -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'heading': ['Space Grotesk', 'sans-serif'],
+                        'body': ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        primary: '#3d2f23',
+                        accent: '#c69c6d',
+                        text: '#4a5568',
+                        bg: '#faf8f5',
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-bg font-body text-text min-h-screen">
+
+    <!-- ナビゲーション -->
+    <nav class="fixed top-0 left-0 right-0 bg-white/80 backdrop-blur-md shadow-sm z-40">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <a href="../../index.html" class="text-primary font-heading font-semibold text-lg hover:text-accent transition-colors">
+                    ← 謎解き一覧に戻る
+                </a>
+                <div class="text-sm text-text/60">
+                    プレイ時間: <span id="timer" class="font-mono">00:00</span>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- メインコンテンツ -->
+    <main class="pt-24 pb-12 px-4">
+        <!-- タイトルセクション -->
+        <div class="max-w-4xl mx-auto text-center mb-8">
+            <h1 class="text-4xl md:text-5xl font-heading font-bold text-primary mb-4">
+                逆転の宝箱
+            </h1>
+            <p class="text-lg text-text/80 mb-2">
+                常識にとらわれていませんか？
+            </p>
+            <p class="text-sm text-text/60">
+                難易度: ★☆☆☆☆ (初心者向け) | 想定プレイ時間: 10分
+            </p>
+        </div>
+
+        <!-- ストーリー -->
+        <div class="max-w-2xl mx-auto mb-12 p-6 bg-white rounded-lg shadow-sm">
+            <h2 class="text-xl font-heading font-semibold text-primary mb-3">Story</h2>
+            <div class="text-sm leading-relaxed space-y-2">
+                <p>あなたは古い部屋で不思議な宝箱を見つけた。</p>
+                <p>宝箱には4桁のダイヤル錠がかかっている。</p>
+                <p>部屋を調べて、ダイヤル錠の暗号を解き明かそう。</p>
+                <p class="pt-2 border-t border-accent/20 text-accent font-medium">
+                    宝箱を開けて、中にある紙に書かれたキーワードを入力してクリアを目指せ！
+                </p>
+            </div>
+        </div>
+
+        <!-- ゲームエリア -->
+        <div class="max-w-6xl mx-auto">
+            <div class="grid md:grid-cols-3 gap-8">
+
+                <!-- 左サイド: 調べられるオブジェクト -->
+                <div class="space-y-4">
+                    <h3 class="text-lg font-heading font-semibold text-primary mb-4">部屋を調べる</h3>
+
+                    <!-- オブジェクト1: 絵画 -->
+                    <div class="object-item bg-white p-4 rounded-lg shadow-sm hover:shadow-md transition-all cursor-pointer border-2 border-transparent hover:border-accent/30" data-object="painting">
+                        <div class="flex items-center gap-3">
+                            <div class="w-12 h-12 bg-accent/10 rounded-lg flex items-center justify-center text-2xl">
+                                🖼️
+                            </div>
+                            <div>
+                                <div class="font-medium text-primary">壁の絵画</div>
+                                <div class="text-xs text-text/60">クリックして調べる</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- オブジェクト2: 時計 -->
+                    <div class="object-item bg-white p-4 rounded-lg shadow-sm hover:shadow-md transition-all cursor-pointer border-2 border-transparent hover:border-accent/30" data-object="clock">
+                        <div class="flex items-center gap-3">
+                            <div class="w-12 h-12 bg-accent/10 rounded-lg flex items-center justify-center text-2xl">
+                                🕐
+                            </div>
+                            <div>
+                                <div class="font-medium text-primary">古い時計</div>
+                                <div class="text-xs text-text/60">クリックして調べる</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- オブジェクト3: 本 -->
+                    <div class="object-item bg-white p-4 rounded-lg shadow-sm hover:shadow-md transition-all cursor-pointer border-2 border-transparent hover:border-accent/30" data-object="book">
+                        <div class="flex items-center gap-3">
+                            <div class="w-12 h-12 bg-accent/10 rounded-lg flex items-center justify-center text-2xl">
+                                📖
+                            </div>
+                            <div>
+                                <div class="font-medium text-primary">古びた本</div>
+                                <div class="text-xs text-text/60">クリックして調べる</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- オブジェクト4: 窓 -->
+                    <div class="object-item bg-white p-4 rounded-lg shadow-sm hover:shadow-md transition-all cursor-pointer border-2 border-transparent hover:border-accent/30" data-object="window">
+                        <div class="flex items-center gap-3">
+                            <div class="w-12 h-12 bg-accent/10 rounded-lg flex items-center justify-center text-2xl">
+                                🪟
+                            </div>
+                            <div>
+                                <div class="font-medium text-primary">窓の外</div>
+                                <div class="text-xs text-text/60">クリックして調べる</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 中央: 宝箱エリア -->
+                <div class="md:col-span-2">
+                    <div class="relative bg-gradient-to-b from-accent/5 to-transparent p-8 rounded-2xl min-h-[500px] flex items-center justify-center">
+
+                        <!-- 宝箱コンテナ -->
+                        <div id="treasureBoxContainer" class="relative">
+
+                            <!-- 宝箱本体 -->
+                            <div id="treasureBox" class="treasure-box relative">
+                                <!-- 宝箱のビジュアル -->
+                                <div class="box-body w-64 h-48 md:w-80 md:h-56 bg-gradient-to-br from-amber-800 to-amber-900 rounded-lg shadow-2xl relative border-4 border-amber-950">
+                                    <!-- 木目模様 -->
+                                    <div class="absolute inset-0 opacity-20 rounded-lg" style="background-image: repeating-linear-gradient(90deg, transparent, transparent 10px, rgba(0,0,0,0.1) 10px, rgba(0,0,0,0.1) 20px);"></div>
+
+                                    <!-- 金具装飾 -->
+                                    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-20 h-16 border-4 border-yellow-600 rounded"></div>
+
+                                    <!-- フタの線 -->
+                                    <div class="absolute top-0 left-0 right-0 h-1 bg-amber-950"></div>
+                                </div>
+
+                                <!-- ダイヤル錠 -->
+                                <div id="dialLock" class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10">
+                                    <div class="bg-gray-800 p-4 rounded-lg shadow-xl">
+                                        <div class="flex gap-2">
+                                            <!-- ダイヤル1 -->
+                                            <div class="dial-container">
+                                                <button class="dial-up w-10 h-6 bg-gray-600 hover:bg-gray-500 rounded-t text-white text-xs" data-dial="0">▲</button>
+                                                <div class="dial-display w-10 h-12 bg-white flex items-center justify-center font-mono text-2xl font-bold border-2 border-gray-700">
+                                                    <span class="dial-value">0</span>
+                                                </div>
+                                                <button class="dial-down w-10 h-6 bg-gray-600 hover:bg-gray-500 rounded-b text-white text-xs" data-dial="0">▼</button>
+                                            </div>
+
+                                            <!-- ダイヤル2 -->
+                                            <div class="dial-container">
+                                                <button class="dial-up w-10 h-6 bg-gray-600 hover:bg-gray-500 rounded-t text-white text-xs" data-dial="1">▲</button>
+                                                <div class="dial-display w-10 h-12 bg-white flex items-center justify-center font-mono text-2xl font-bold border-2 border-gray-700">
+                                                    <span class="dial-value">0</span>
+                                                </div>
+                                                <button class="dial-down w-10 h-6 bg-gray-600 hover:bg-gray-500 rounded-b text-white text-xs" data-dial="1">▼</button>
+                                            </div>
+
+                                            <!-- ダイヤル3 -->
+                                            <div class="dial-container">
+                                                <button class="dial-up w-10 h-6 bg-gray-600 hover:bg-gray-500 rounded-t text-white text-xs" data-dial="2">▲</button>
+                                                <div class="dial-display w-10 h-12 bg-white flex items-center justify-center font-mono text-2xl font-bold border-2 border-gray-700">
+                                                    <span class="dial-value">0</span>
+                                                </div>
+                                                <button class="dial-down w-10 h-6 bg-gray-600 hover:bg-gray-500 rounded-b text-white text-xs" data-dial="2">▼</button>
+                                            </div>
+
+                                            <!-- ダイヤル4 -->
+                                            <div class="dial-container">
+                                                <button class="dial-up w-10 h-6 bg-gray-600 hover:bg-gray-500 rounded-t text-white text-xs" data-dial="3">▲</button>
+                                                <div class="dial-display w-10 h-12 bg-white flex items-center justify-center font-mono text-2xl font-bold border-2 border-gray-700">
+                                                    <span class="dial-value">0</span>
+                                                </div>
+                                                <button class="dial-down w-10 h-6 bg-gray-600 hover:bg-gray-500 rounded-b text-white text-xs" data-dial="3">▼</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- 底抜け部分 -->
+                                <div id="boxBottom" class="absolute bottom-0 left-0 right-0 h-4 bg-amber-900 rounded-b-lg border-t-2 border-amber-950"></div>
+                            </div>
+
+                            <!-- 落ちる紙 -->
+                            <div id="paper" class="hidden absolute top-full left-1/2 -translate-x-1/2 mt-4">
+                                <div class="w-48 h-64 bg-amber-50 shadow-xl rounded-sm border border-amber-200 flex items-center justify-center p-6 transform rotate-3">
+                                    <div class="text-center">
+                                        <div class="text-xs text-text/60 mb-2">正解のキーワード</div>
+                                        <div class="text-lg font-heading font-semibold text-primary leading-tight">
+                                            逆転の発想
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- ドラッグヒント（錠解除後に表示） -->
+                            <div id="dragHint" class="hidden absolute -bottom-16 left-1/2 -translate-x-1/2 text-center text-sm text-accent animate-pulse">
+                                ↑ 宝箱を上にドラッグしてみよう ↑
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- キーワード入力欄 -->
+                    <div class="mt-8 bg-white p-6 rounded-lg shadow-sm">
+                        <h3 class="text-lg font-heading font-semibold text-primary mb-3">最終解答</h3>
+                        <div class="flex gap-2">
+                            <input
+                                type="text"
+                                id="keywordInput"
+                                placeholder="ひらがな または 漢字で入力"
+                                class="flex-1 px-4 py-2 border-2 border-gray-300 rounded-lg focus:border-accent focus:outline-none"
+                            >
+                            <button
+                                id="submitButton"
+                                class="px-6 py-2 bg-accent text-white rounded-lg hover:bg-accent/90 transition-colors font-medium"
+                            >
+                                答えを確認
+                            </button>
+                        </div>
+                        <div id="answerFeedback" class="mt-2 text-sm"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- ヒントボタン -->
+    <button id="hintButton" class="fixed bottom-8 right-8 w-14 h-14 bg-accent text-white rounded-full shadow-lg hover:scale-110 transition-transform flex items-center justify-center text-2xl z-50">
+        💡
+    </button>
+
+    <!-- オブジェクト情報モーダル -->
+    <div id="objectModal" class="hidden fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+        <div class="bg-white rounded-2xl max-w-md w-full p-6 shadow-2xl transform scale-95 transition-transform">
+            <div class="flex justify-between items-start mb-4">
+                <h3 id="modalTitle" class="text-2xl font-heading font-bold text-primary"></h3>
+                <button id="closeModal" class="text-text/40 hover:text-text text-2xl leading-none">&times;</button>
+            </div>
+            <div id="modalContent" class="text-text leading-relaxed"></div>
+        </div>
+    </div>
+
+    <!-- ヒントモーダル -->
+    <div id="hintModal" class="hidden fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+        <div class="bg-white rounded-2xl max-w-md w-full p-6 shadow-2xl">
+            <div class="flex justify-between items-start mb-4">
+                <h3 class="text-2xl font-heading font-bold text-primary">💡 ヒント</h3>
+                <button id="closeHintModal" class="text-text/40 hover:text-text text-2xl leading-none">&times;</button>
+            </div>
+            <div id="hintContent" class="text-text leading-relaxed mb-4"></div>
+            <div class="flex gap-2 justify-end">
+                <button id="prevHint" class="px-4 py-2 bg-gray-200 text-text rounded-lg hover:bg-gray-300 transition-colors">← 前のヒント</button>
+                <button id="nextHint" class="px-4 py-2 bg-accent text-white rounded-lg hover:bg-accent/90 transition-colors">次のヒント →</button>
+            </div>
+            <div class="mt-2 text-center text-xs text-text/60">
+                ヒント <span id="hintStep">1</span> / 4
+            </div>
+        </div>
+    </div>
+
+    <!-- クリアモーダル -->
+    <div id="clearModal" class="hidden fixed inset-0 bg-black/70 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+        <div class="bg-white rounded-2xl max-w-lg w-full p-8 shadow-2xl text-center relative overflow-hidden">
+            <!-- 紙吹雪エリア -->
+            <div id="confettiContainer" class="absolute inset-0 pointer-events-none"></div>
+
+            <div class="relative z-10">
+                <div class="text-6xl mb-4">🎉</div>
+                <h2 class="text-3xl font-heading font-bold text-primary mb-4">おめでとうございます！</h2>
+                <p class="text-lg text-text mb-6">「逆転の宝箱」をクリアしました！</p>
+
+                <div class="bg-accent/10 rounded-lg p-4 mb-6">
+                    <div class="text-sm text-text/60 mb-1">クリアタイム</div>
+                    <div class="text-2xl font-mono font-bold text-primary" id="clearTime">00:00</div>
+                </div>
+
+                <div class="space-y-3">
+                    <button id="shareButton" class="w-full px-6 py-3 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors font-medium flex items-center justify-center gap-2">
+                        <span>𝕏</span>
+                        <span>クリアを X でシェア</span>
+                    </button>
+                    <a href="../../index.html" class="block w-full px-6 py-3 bg-accent text-white rounded-lg hover:bg-accent/90 transition-colors font-medium">
+                        謎解き一覧に戻る
+                    </a>
+                    <button id="retryButton" class="w-full px-6 py-3 bg-gray-200 text-text rounded-lg hover:bg-gray-300 transition-colors font-medium">
+                        もう一度挑戦
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="script.js"></script>
+</body>
+</html>

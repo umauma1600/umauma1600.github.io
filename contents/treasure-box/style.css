@@ -1,0 +1,272 @@
+/* ===== カスタムスタイル ===== */
+
+/* 宝箱のドラッグ可能状態 */
+.treasure-box.draggable {
+    cursor: grab;
+    transition: transform 0.1s ease-out;
+}
+
+.treasure-box.draggable:active {
+    cursor: grabbing;
+}
+
+.treasure-box.dragging {
+    cursor: grabbing;
+    transform: scale(1.05);
+}
+
+/* 宝箱が持ち上がるアニメーション */
+.treasure-box.lifting {
+    animation: liftUp 1s ease-out forwards;
+}
+
+@keyframes liftUp {
+    0% {
+        transform: translateY(0);
+    }
+    100% {
+        transform: translateY(-200px);
+        opacity: 0.5;
+    }
+}
+
+/* 底が抜けるアニメーション */
+.box-bottom.dropping {
+    animation: dropBottom 0.5s ease-out forwards;
+}
+
+@keyframes dropBottom {
+    0% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(20px);
+        opacity: 0;
+    }
+}
+
+/* ダイヤル錠が外れるアニメーション */
+.dial-lock.unlocked {
+    animation: unlockAnimation 0.8s ease-out forwards;
+}
+
+@keyframes unlockAnimation {
+    0% {
+        transform: translate(-50%, -50%) scale(1) rotate(0deg);
+    }
+    50% {
+        transform: translate(-50%, -50%) scale(1.1) rotate(5deg);
+    }
+    100% {
+        transform: translate(-50%, -50%) translateX(100px) rotate(15deg);
+        opacity: 0;
+    }
+}
+
+/* 紙が落ちるアニメーション */
+.paper.falling {
+    animation: paperFall 1.5s ease-out forwards;
+}
+
+@keyframes paperFall {
+    0% {
+        transform: translateX(-50%) translateY(-100px) rotate(0deg);
+        opacity: 0;
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        transform: translateX(-50%) translateY(0) rotate(3deg);
+        opacity: 1;
+    }
+}
+
+/* モーダルのフェードイン */
+.modal-show {
+    display: flex !important;
+    animation: modalFadeIn 0.3s ease-out;
+}
+
+@keyframes modalFadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.modal-show > div {
+    animation: modalSlideUp 0.3s ease-out;
+}
+
+@keyframes modalSlideUp {
+    from {
+        transform: scale(0.9) translateY(20px);
+    }
+    to {
+        transform: scale(1) translateY(0);
+    }
+}
+
+/* オブジェクトが調べ済みの状態 */
+.object-item.examined {
+    border-color: #c69c6d;
+    background-color: #fef3e8;
+}
+
+.object-item.examined::after {
+    content: '✓';
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    width: 24px;
+    height: 24px;
+    background-color: #c69c6d;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.object-item {
+    position: relative;
+}
+
+/* 紙吹雪のスタイル */
+.confetti {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background-color: #f0f;
+    animation: confettiFall 3s linear infinite;
+}
+
+@keyframes confettiFall {
+    0% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(500px) rotate(720deg);
+        opacity: 0;
+    }
+}
+
+/* ヒントボタンのパルスアニメーション */
+#hintButton {
+    animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0%, 100% {
+        box-shadow: 0 0 0 0 rgba(198, 156, 109, 0.7);
+    }
+    50% {
+        box-shadow: 0 0 0 10px rgba(198, 156, 109, 0);
+    }
+}
+
+/* ドラッグヒントの点滅 */
+#dragHint {
+    animation: blink 1.5s ease-in-out infinite;
+}
+
+@keyframes blink {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.3;
+    }
+}
+
+/* スムーススクロール */
+html {
+    scroll-behavior: smooth;
+}
+
+/* カスタムスクロールバー */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #faf8f5;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #c69c6d;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #b08a5d;
+}
+
+/* レスポンシブ調整 */
+@media (max-width: 768px) {
+    .treasure-box {
+        transform: scale(0.85);
+    }
+
+    #treasureBoxContainer {
+        transform: scale(0.9);
+    }
+
+    #hintButton {
+        width: 56px;
+        height: 56px;
+        bottom: 20px;
+        right: 20px;
+    }
+}
+
+/* タッチデバイス用の調整 */
+@media (hover: none) and (pointer: coarse) {
+    .object-item:hover {
+        transform: none;
+    }
+
+    .object-item:active {
+        transform: scale(0.98);
+        background-color: #fef3e8;
+    }
+}
+
+/* アンサーフィードバックのスタイル */
+.feedback-wrong {
+    color: #ef4444;
+    font-weight: 500;
+}
+
+.feedback-correct {
+    color: #22c55e;
+    font-weight: 500;
+}
+
+/* ボタンの無効化状態 */
+button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* モーダル内のテキスト整形 */
+#modalContent p {
+    margin-bottom: 0.75rem;
+}
+
+#modalContent p:last-child {
+    margin-bottom: 0;
+}
+
+/* 強調テキスト */
+.highlight {
+    background: linear-gradient(transparent 60%, #c69c6d40 60%);
+    font-weight: 500;
+}
