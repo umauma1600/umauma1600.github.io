@@ -3,172 +3,413 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="謎解きやマーダーミステリーで遊べるサイト - umauma1600の製作コンテンツ">
-    <title>うまうまの謎解き＆マダミスワールド</title>
+    <meta name="description" content="謎解きやマーダーミステリーで遊べるサイト - やまーたの謎解きアトリエ">
+    <title>やまーたの謎解きアトリエ</title>
 
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
 
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
     <!-- カスタムスタイル -->
     <style>
-        /* グラデーション背景のアニメーション */
-        @keyframes gradient {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
+        :root {
+            --color-primary: #3d2f23;
+            --color-accent: #c69c6d;
+            --color-text: #4a5568;
+            --color-bg: #faf8f5;
+            --sidebar-width: 280px;
         }
 
-        .gradient-bg {
-            background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
-            background-size: 400% 400%;
-            animation: gradient 15s ease infinite;
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
 
-        /* カードのホバーエフェクト */
-        .card-hover {
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--color-bg);
+            color: var(--color-text);
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Space Grotesk', sans-serif;
+        }
+
+        /* サイドバー（デスクトップ） */
+        .sidebar {
+            position: fixed;
+            left: 0;
+            top: 0;
+            height: 100vh;
+            width: var(--sidebar-width);
+            background: linear-gradient(180deg, #f5f0e8 0%, #ebe5d9 100%);
+            color: var(--color-primary);
+            padding: 2rem;
+            z-index: 100;
+            overflow-y: auto;
+            border-right: 1px solid rgba(198, 156, 109, 0.2);
+        }
+
+        .sidebar-logo {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.75rem;
+            font-weight: 700;
+            margin-bottom: 3rem;
+            color: var(--color-primary);
+            letter-spacing: -0.02em;
+        }
+
+        .sidebar-nav a {
+            display: block;
+            padding: 0.875rem 1.25rem;
+            margin-bottom: 0.5rem;
+            color: var(--color-text);
+            text-decoration: none;
+            border-radius: 0.5rem;
+            transition: all 0.2s ease;
+            font-weight: 500;
+        }
+
+        .sidebar-nav a:hover,
+        .sidebar-nav a.active {
+            background: rgba(198, 156, 109, 0.25);
+            color: var(--color-primary);
+            transform: translateX(4px);
+        }
+
+        /* メインコンテンツエリア */
+        .main-content {
+            margin-left: var(--sidebar-width);
+            min-height: 100vh;
+        }
+
+        /* モバイルメニュー */
+        .mobile-header {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: white;
+            border-bottom: 1px solid #e2e8f0;
+            padding: 1rem 1.5rem;
+            z-index: 200;
+        }
+
+        .hamburger {
+            width: 28px;
+            height: 20px;
+            position: relative;
+            cursor: pointer;
+        }
+
+        .hamburger span {
+            display: block;
+            position: absolute;
+            height: 2px;
+            width: 100%;
+            background: var(--color-primary);
+            border-radius: 2px;
+            opacity: 1;
+            left: 0;
+            transition: 0.25s ease-in-out;
+        }
+
+        .hamburger span:nth-child(1) { top: 0px; }
+        .hamburger span:nth-child(2) { top: 9px; }
+        .hamburger span:nth-child(3) { top: 18px; }
+
+        .hamburger.active span:nth-child(1) {
+            top: 9px;
+            transform: rotate(135deg);
+        }
+
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+            left: -60px;
+        }
+
+        .hamburger.active span:nth-child(3) {
+            top: 9px;
+            transform: rotate(-135deg);
+        }
+
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            left: -100%;
+            width: 280px;
+            height: 100vh;
+            background: linear-gradient(180deg, #f5f0e8 0%, #ebe5d9 100%);
+            transition: left 0.3s ease;
+            z-index: 150;
+            overflow-y: auto;
+            padding: 5rem 2rem 2rem;
+        }
+
+        .mobile-menu.active {
+            left: 0;
+        }
+
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            opacity: 0;
+            visibility: hidden;
             transition: all 0.3s ease;
+            z-index: 140;
         }
 
-        .card-hover:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+        .overlay.active {
+            opacity: 1;
+            visibility: visible;
         }
 
-        /* タイトルのアニメーション */
-        @keyframes float {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-20px); }
+        /* ヒーローセクション */
+        .hero {
+            min-height: 70vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            background-image: url('main-image.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
         }
 
-        .float-animation {
-            animation: float 3s ease-in-out infinite;
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(250, 248, 245, 0.3) 0%, rgba(235, 225, 210, 0.4) 50%, rgba(220, 200, 180, 0.35) 100%);
         }
 
-        /* 謎解きっぽい装飾 */
-        .mystery-icon {
-            filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.1));
+        .hero-content {
+            position: relative;
+            z-index: 10;
+        }
+
+        /* カード */
+        .content-card {
+            background: white;
+            border-radius: 1rem;
+            padding: 2rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+            border: 1px solid #e2e8f0;
+        }
+
+        .content-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            background: #fef3c7;
+            color: #92400e;
+            border-radius: 9999px;
+            font-size: 0.875rem;
+            font-weight: 600;
+        }
+
+        .btn-primary {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: var(--color-accent);
+            color: white;
+            text-decoration: none;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-primary:hover {
+            background: #a77d4f;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 16px rgba(198, 156, 109, 0.3);
+        }
+
+        /* レスポンシブ */
+        @media (max-width: 768px) {
+            .sidebar {
+                display: none;
+            }
+
+            .mobile-header {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+            }
+
+            .main-content {
+                margin-left: 0;
+                padding-top: 70px;
+            }
+
+            .hero {
+                min-height: 50vh;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .hero {
+                min-height: 40vh;
+            }
         }
     </style>
 </head>
-<body class="min-h-screen gradient-bg">
+<body>
 
-    <!-- ヘッダー -->
-    <header class="bg-white/90 backdrop-blur-sm shadow-lg sticky top-0 z-50">
-        <div class="container mx-auto px-4 py-4">
-            <nav class="flex items-center justify-between">
-                <h1 class="text-2xl md:text-3xl font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
-                    🔍 うまうまワールド
-                </h1>
-                <a href="contact/" class="bg-gradient-to-r from-purple-500 to-pink-500 text-white px-6 py-2 rounded-full hover:from-purple-600 hover:to-pink-600 transition-all shadow-md hover:shadow-lg">
-                    お問い合わせ
-                </a>
-            </nav>
+    <!-- サイドバー（デスクトップ） -->
+    <aside class="sidebar">
+        <div class="sidebar-logo">やまーたの<br>謎解きアトリエ</div>
+        <nav class="sidebar-nav">
+            <a href="#home" class="active">ホーム</a>
+            <a href="#contents">コンテンツ</a>
+            <a href="contact/">お問い合わせ</a>
+        </nav>
+    </aside>
+
+    <!-- モバイルヘッダー -->
+    <header class="mobile-header">
+        <div class="sidebar-logo" style="font-size: 1.25rem; margin: 0; color: var(--color-primary);">やまーたの謎解きアトリエ</div>
+        <div class="hamburger" id="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
         </div>
     </header>
 
+    <!-- モバイルメニュー -->
+    <nav class="mobile-menu" id="mobileMenu">
+        <div class="sidebar-nav">
+            <a href="#home" class="active">ホーム</a>
+            <a href="#contents">コンテンツ</a>
+            <a href="contact/">お問い合わせ</a>
+        </div>
+    </nav>
+
+    <!-- オーバーレイ -->
+    <div class="overlay" id="overlay"></div>
+
     <!-- メインコンテンツ -->
-    <main class="container mx-auto px-4 py-12 md:py-20">
+    <main class="main-content">
 
         <!-- ヒーローセクション -->
-        <section class="text-center mb-16 md:mb-24">
-            <div class="float-animation inline-block mb-6">
-                <span class="text-6xl md:text-8xl mystery-icon">🎭</span>
+        <section class="hero" id="home">
+            <div class="hero-content w-full px-6 md:px-12 lg:px-20">
+                <div class="max-w-4xl mx-auto text-center">
+                    <h1 class="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight" style="color: var(--color-primary); text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.8), -1px -1px 2px rgba(255, 255, 255, 0.6);">
+                        やまーたの<br>
+                        謎解きアトリエ
+                    </h1>
+                    <p class="text-lg md:text-2xl mb-8 leading-relaxed" style="color: var(--color-text); text-shadow: 1px 1px 3px rgba(255, 255, 255, 0.9);">
+                        ひとりでゆっくり謎を解いたり、<br>
+                        みんなでマダミスを楽しんだり。<br>
+                        気ままに遊べるコンテンツをつくっています。
+                    </p>
+                    <a href="#contents" class="btn-primary inline-block shadow-xl">
+                        コンテンツを見る
+                    </a>
+                </div>
             </div>
-            <h2 class="text-4xl md:text-6xl font-bold text-white mb-6 drop-shadow-lg">
-                ようこそ、謎の世界へ
-            </h2>
-            <p class="text-lg md:text-xl text-white/90 max-w-2xl mx-auto drop-shadow-md">
-                謎解きやマーダーミステリーで遊べるサイトです。<br>
-                頭を使って、楽しい時間を過ごしましょう！
-            </p>
         </section>
 
-        <!-- コンテンツ一覧 -->
-        <section class="mb-16">
-            <h3 class="text-3xl md:text-4xl font-bold text-white text-center mb-12 drop-shadow-lg">
-                📚 コンテンツ一覧
-            </h3>
+        <!-- コンテンツセクション -->
+        <section class="px-6 md:px-12 lg:px-20 py-16 md:py-24" id="contents">
+            <div class="max-w-6xl mx-auto">
+                <div class="mb-12">
+                    <h2 class="text-3xl md:text-4xl font-bold mb-4" style="color: var(--color-primary);">
+                        コンテンツ
+                    </h2>
+                    <p class="text-lg text-gray-600">
+                        現在準備中のコンテンツです。順次公開していきます。
+                    </p>
+                </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
-
-                <!-- 謎解きカード -->
-                <div class="bg-white rounded-3xl shadow-2xl p-8 card-hover">
-                    <div class="text-center mb-6">
-                        <span class="text-6xl mb-4 inline-block">🧩</span>
-                        <h4 class="text-2xl md:text-3xl font-bold bg-gradient-to-r from-blue-600 to-cyan-600 bg-clip-text text-transparent mb-2">
-                            謎解き
-                        </h4>
-                        <p class="text-gray-600">インタラクティブに遊べる謎解き</p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
+                    <!-- 謎解きカード -->
+                    <div class="content-card">
+                        <div class="mb-4">
+                            <span class="badge">Coming Soon</span>
+                        </div>
+                        <h3 class="text-2xl font-bold mb-3" style="color: var(--color-primary);">謎解き</h3>
+                        <p class="text-gray-600 mb-6 leading-relaxed">
+                            ブラウザ上でインタラクティブに楽しめる謎解きコンテンツ。<br>
+                            スマホ・タブレット・PCすべてに対応。
+                        </p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-3 py-1 bg-blue-100 text-blue-700 rounded text-sm font-medium">インタラクティブ</span>
+                            <span class="px-3 py-1 bg-green-100 text-green-700 rounded text-sm font-medium">モバイル対応</span>
+                        </div>
                     </div>
 
-                    <!-- 謎解きコンテンツはまだないため、Coming Soonを表示 -->
-                    <div class="space-y-4">
-                        <div class="bg-gradient-to-r from-blue-50 to-cyan-50 rounded-xl p-6 text-center">
-                            <p class="text-lg font-semibold text-blue-800 mb-2">🚧 準備中 🚧</p>
-                            <p class="text-sm text-gray-600">近日公開予定！お楽しみに！</p>
+                    <!-- マダミスカード -->
+                    <div class="content-card">
+                        <div class="mb-4">
+                            <span class="badge">Coming Soon</span>
+                        </div>
+                        <h3 class="text-2xl font-bold mb-3" style="color: var(--color-primary);">マーダーミステリー</h3>
+                        <p class="text-gray-600 mb-6 leading-relaxed">
+                            ダウンロードして遊べるマダミスシナリオ。<br>
+                            PDF形式で提供予定。
+                        </p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-3 py-1 bg-purple-100 text-purple-700 rounded text-sm font-medium">PDF配布</span>
+                            <span class="px-3 py-1 bg-pink-100 text-pink-700 rounded text-sm font-medium">オフライン可</span>
                         </div>
                     </div>
                 </div>
-
-                <!-- マダミスカード -->
-                <div class="bg-white rounded-3xl shadow-2xl p-8 card-hover">
-                    <div class="text-center mb-6">
-                        <span class="text-6xl mb-4 inline-block">🕵️</span>
-                        <h4 class="text-2xl md:text-3xl font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent mb-2">
-                            マーダーミステリー
-                        </h4>
-                        <p class="text-gray-600">ダウンロードして遊べるマダミス</p>
-                    </div>
-
-                    <!-- マダミスコンテンツはまだないため、Coming Soonを表示 -->
-                    <div class="space-y-4">
-                        <div class="bg-gradient-to-r from-purple-50 to-pink-50 rounded-xl p-6 text-center">
-                            <p class="text-lg font-semibold text-purple-800 mb-2">🚧 準備中 🚧</p>
-                            <p class="text-sm text-gray-600">近日公開予定！お楽しみに！</p>
-                        </div>
-                    </div>
-                </div>
-
             </div>
         </section>
 
-        <!-- お知らせセクション -->
-        <section class="max-w-3xl mx-auto">
-            <div class="bg-white/90 backdrop-blur-sm rounded-3xl shadow-2xl p-8 md:p-12">
-                <h3 class="text-2xl md:text-3xl font-bold text-center mb-6 bg-gradient-to-r from-orange-600 to-red-600 bg-clip-text text-transparent">
-                    📢 お知らせ
-                </h3>
-                <div class="space-y-4 text-gray-700">
-                    <div class="border-l-4 border-orange-500 pl-4 py-2">
-                        <p class="font-semibold text-lg">サイトオープン！</p>
-                        <p class="text-sm text-gray-600">謎解き＆マダミスのコンテンツを順次公開していきます。</p>
+        <!-- フッター -->
+        <footer class="px-6 md:px-12 lg:px-20 py-12" style="background: linear-gradient(135deg, #e8e0d5 0%, #d4cbb8 100%);">
+            <div class="max-w-6xl mx-auto">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+                    <div>
+                        <div class="text-2xl font-bold mb-4" style="color: var(--color-primary);">やまーたの謎解きアトリエ</div>
+                        <p style="color: var(--color-text);">
+                            謎解き・マーダーミステリーのデジタルコンテンツ
+                        </p>
                     </div>
-                    <div class="border-l-4 border-blue-500 pl-4 py-2">
-                        <p class="font-semibold text-lg">モバイル対応</p>
-                        <p class="text-sm text-gray-600">スマホ・タブレットからも快適に遊べます！</p>
-                    </div>
-                    <div class="border-l-4 border-green-500 pl-4 py-2">
-                        <p class="font-semibold text-lg">更新は不定期</p>
-                        <p class="text-sm text-gray-600">やる気が出たら更新します😊</p>
+                    <div>
+                        <h4 class="font-semibold mb-4" style="color: var(--color-primary);">リンク</h4>
+                        <ul class="space-y-2" style="color: var(--color-text);">
+                            <li><a href="#home" class="transition" style="color: var(--color-text);" onmouseover="this.style.color='var(--color-accent)'" onmouseout="this.style.color='var(--color-text)'">ホーム</a></li>
+                            <li><a href="#contents" class="transition" style="color: var(--color-text);" onmouseover="this.style.color='var(--color-accent)'" onmouseout="this.style.color='var(--color-text)'">コンテンツ</a></li>
+                            <li><a href="contact/" class="transition" style="color: var(--color-text);" onmouseover="this.style.color='var(--color-accent)'" onmouseout="this.style.color='var(--color-text)'">お問い合わせ</a></li>
+                        </ul>
                     </div>
                 </div>
+                <div class="pt-8 text-center text-sm" style="border-top: 1px solid rgba(198, 156, 109, 0.3); color: var(--color-text);">
+                    <p class="mb-2">コンテンツ製作: umauma1600</p>
+                    <p class="mb-4">サイト製作: Claude AI (Anthropic)</p>
+                    <p>© 2025 やまーたの謎解きアトリエ. All rights reserved.</p>
+                </div>
             </div>
-        </section>
+        </footer>
 
     </main>
 
-    <!-- フッター -->
-    <footer class="bg-gray-900/80 backdrop-blur-sm text-white py-8 mt-20">
-        <div class="container mx-auto px-4 text-center">
-            <p class="mb-2">🎨 コンテンツ製作: umauma1600</p>
-            <p class="mb-4">🤖 サイト製作: Claude AI (Anthropic)</p>
-            <p class="text-sm text-gray-400">
-                © 2025 umauma1600. All rights reserved.
-            </p>
-        </div>
-    </footer>
-
-    <!-- JavaScriptファイルの読み込み（今後追加予定） -->
+    <!-- JavaScriptファイルの読み込み -->
     <script src="js/main.js"></script>
 
 </body>
