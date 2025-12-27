@@ -102,10 +102,10 @@ umauma1600.github.io/
 
 ### カラーパレット
 ```css
---color-primary: #2d1b0d (ダークブラウン - メインテキスト)
---color-accent: #f59e0b (アンバーオレンジ - アクセント)
---color-text: #2d3748 (グレー - ボディテキスト)
---color-bg: #fffbeb (クリームイエロー - 背景)
+--color-primary: #3d2f23 (ウォームブラウン - メインテキスト)
+--color-accent: #c69c6d (ゴールデンベージュ - アクセント)
+--color-text: #4a5568 (グレー - ボディテキスト)
+--color-bg: #faf8f5 (アイボリー - 背景)
 ```
 
 ### タイポグラフィ
