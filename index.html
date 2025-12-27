@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="謎解きやマーダーミステリーで遊べるサイト - umauma1600の製作コンテンツ">
+    <title>うまうまの謎解き＆マダミスワールド</title>
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- カスタムスタイル -->
+    <style>
+        /* グラデーション背景のアニメーション */
+        @keyframes gradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .gradient-bg {
+            background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+            background-size: 400% 400%;
+            animation: gradient 15s ease infinite;
+        }
+
+        /* カードのホバーエフェクト */
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+
+        .card-hover:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        /* タイトルのアニメーション */
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .float-animation {
+            animation: float 3s ease-in-out infinite;
+        }
+
+        /* 謎解きっぽい装飾 */
+        .mystery-icon {
+            filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.1));
+        }
+    </style>
+</head>
+<body class="min-h-screen gradient-bg">
+
+    <!-- ヘッダー -->
+    <header class="bg-white/90 backdrop-blur-sm shadow-lg sticky top-0 z-50">
+        <div class="container mx-auto px-4 py-4">
+            <nav class="flex items-center justify-between">
+                <h1 class="text-2xl md:text-3xl font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
+                    🔍 うまうまワールド
+                </h1>
+                <a href="contact/" class="bg-gradient-to-r from-purple-500 to-pink-500 text-white px-6 py-2 rounded-full hover:from-purple-600 hover:to-pink-600 transition-all shadow-md hover:shadow-lg">
+                    お問い合わせ
+                </a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- メインコンテンツ -->
+    <main class="container mx-auto px-4 py-12 md:py-20">
+
+        <!-- ヒーローセクション -->
+        <section class="text-center mb-16 md:mb-24">
+            <div class="float-animation inline-block mb-6">
+                <span class="text-6xl md:text-8xl mystery-icon">🎭</span>
+            </div>
+            <h2 class="text-4xl md:text-6xl font-bold text-white mb-6 drop-shadow-lg">
+                ようこそ、謎の世界へ
+            </h2>
+            <p class="text-lg md:text-xl text-white/90 max-w-2xl mx-auto drop-shadow-md">
+                謎解きやマーダーミステリーで遊べるサイトです。<br>
+                頭を使って、楽しい時間を過ごしましょう！
+            </p>
+        </section>
+
+        <!-- コンテンツ一覧 -->
+        <section class="mb-16">
+            <h3 class="text-3xl md:text-4xl font-bold text-white text-center mb-12 drop-shadow-lg">
+                📚 コンテンツ一覧
+            </h3>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+
+                <!-- 謎解きカード -->
+                <div class="bg-white rounded-3xl shadow-2xl p-8 card-hover">
+                    <div class="text-center mb-6">
+                        <span class="text-6xl mb-4 inline-block">🧩</span>
+                        <h4 class="text-2xl md:text-3xl font-bold bg-gradient-to-r from-blue-600 to-cyan-600 bg-clip-text text-transparent mb-2">
+                            謎解き
+                        </h4>
+                        <p class="text-gray-600">インタラクティブに遊べる謎解き</p>
+                    </div>
+
+                    <!-- 謎解きコンテンツはまだないため、Coming Soonを表示 -->
+                    <div class="space-y-4">
+                        <div class="bg-gradient-to-r from-blue-50 to-cyan-50 rounded-xl p-6 text-center">
+                            <p class="text-lg font-semibold text-blue-800 mb-2">🚧 準備中 🚧</p>
+                            <p class="text-sm text-gray-600">近日公開予定！お楽しみに！</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- マダミスカード -->
+                <div class="bg-white rounded-3xl shadow-2xl p-8 card-hover">
+                    <div class="text-center mb-6">
+                        <span class="text-6xl mb-4 inline-block">🕵️</span>
+                        <h4 class="text-2xl md:text-3xl font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent mb-2">
+                            マーダーミステリー
+                        </h4>
+                        <p class="text-gray-600">ダウンロードして遊べるマダミス</p>
+                    </div>
+
+                    <!-- マダミスコンテンツはまだないため、Coming Soonを表示 -->
+                    <div class="space-y-4">
+                        <div class="bg-gradient-to-r from-purple-50 to-pink-50 rounded-xl p-6 text-center">
+                            <p class="text-lg font-semibold text-purple-800 mb-2">🚧 準備中 🚧</p>
+                            <p class="text-sm text-gray-600">近日公開予定！お楽しみに！</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- お知らせセクション -->
+        <section class="max-w-3xl mx-auto">
+            <div class="bg-white/90 backdrop-blur-sm rounded-3xl shadow-2xl p-8 md:p-12">
+                <h3 class="text-2xl md:text-3xl font-bold text-center mb-6 bg-gradient-to-r from-orange-600 to-red-600 bg-clip-text text-transparent">
+                    📢 お知らせ
+                </h3>
+                <div class="space-y-4 text-gray-700">
+                    <div class="border-l-4 border-orange-500 pl-4 py-2">
+                        <p class="font-semibold text-lg">サイトオープン！</p>
+                        <p class="text-sm text-gray-600">謎解き＆マダミスのコンテンツを順次公開していきます。</p>
+                    </div>
+                    <div class="border-l-4 border-blue-500 pl-4 py-2">
+                        <p class="font-semibold text-lg">モバイル対応</p>
+                        <p class="text-sm text-gray-600">スマホ・タブレットからも快適に遊べます！</p>
+                    </div>
+                    <div class="border-l-4 border-green-500 pl-4 py-2">
+                        <p class="font-semibold text-lg">更新は不定期</p>
+                        <p class="text-sm text-gray-600">やる気が出たら更新します😊</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- フッター -->
+    <footer class="bg-gray-900/80 backdrop-blur-sm text-white py-8 mt-20">
+        <div class="container mx-auto px-4 text-center">
+            <p class="mb-2">🎨 コンテンツ製作: umauma1600</p>
+            <p class="mb-4">🤖 サイト製作: Claude AI (Anthropic)</p>
+            <p class="text-sm text-gray-400">
+                © 2025 umauma1600. All rights reserved.
+            </p>
+        </div>
+    </footer>
+
+    <!-- JavaScriptファイルの読み込み（今後追加予定） -->
+    <script src="js/main.js"></script>
+
+</body>
+</html>
