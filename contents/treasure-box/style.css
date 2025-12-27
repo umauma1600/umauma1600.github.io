@@ -20,38 +20,13 @@
     }
 }
 
-/* 底が抜けるアニメーション */
-.box-bottom.dropping {
-    animation: dropBottom 0.5s ease-out forwards;
+/* 宝箱画像のスタイル */
+.treasure-box-image {
+    transition: filter 0.3s ease;
 }
 
-@keyframes dropBottom {
-    0% {
-        transform: translateY(0);
-        opacity: 1;
-    }
-    100% {
-        transform: translateY(20px);
-        opacity: 0;
-    }
-}
-
-/* ダイヤル錠が外れるアニメーション */
-.dial-lock.unlocked {
-    animation: unlockAnimation 0.8s ease-out forwards;
-}
-
-@keyframes unlockAnimation {
-    0% {
-        transform: translate(-50%, -50%) scale(1) rotate(0deg);
-    }
-    50% {
-        transform: translate(-50%, -50%) scale(1.1) rotate(5deg);
-    }
-    100% {
-        transform: translate(-50%, -50%) translateX(100px) rotate(15deg);
-        opacity: 0;
-    }
+.treasure-box.lifting .treasure-box-image {
+    filter: brightness(0.7);
 }
 
 /* 紙が落ちるアニメーション */

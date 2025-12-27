@@ -82,7 +82,6 @@ const elements = {
     // 宝箱関連
     treasureBox: document.getElementById('treasureBox'),
     treasureBoxContainer: document.getElementById('treasureBoxContainer'),
-    boxBottom: document.getElementById('boxBottom'),
     paper: document.getElementById('paper'),
 
     // オブジェクト関連
@@ -333,9 +332,6 @@ function dropBottom() {
 
     // 宝箱が持ち上がる
     elements.treasureBox.classList.add('lifting');
-
-    // 底が抜ける
-    elements.boxBottom.classList.add('dropping');
 
     // 紙が落ちる
     setTimeout(() => {
