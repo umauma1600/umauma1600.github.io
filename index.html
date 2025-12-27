@@ -175,12 +175,15 @@
 
         /* ヒーローセクション */
         .hero {
-            background: linear-gradient(135deg, #f59e0b 0%, #f97316 50%, #fb923c 100%);
             min-height: 70vh;
             display: flex;
             align-items: center;
             position: relative;
             overflow: hidden;
+            background-image: url('main-image.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
         }
 
         .hero::before {
@@ -190,8 +193,7 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="1" fill="white" opacity="0.1"/></svg>');
-            opacity: 0.3;
+            background: linear-gradient(135deg, rgba(245, 158, 11, 0.85) 0%, rgba(249, 115, 22, 0.85) 50%, rgba(251, 146, 60, 0.75) 100%);
         }
 
         .hero-content {
@@ -312,28 +314,19 @@
         <!-- ヒーローセクション -->
         <section class="hero" id="home">
             <div class="hero-content w-full px-6 md:px-12 lg:px-20">
-                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center max-w-7xl mx-auto">
-                    <!-- テキストコンテンツ -->
-                    <div>
-                        <h1 class="text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight">
-                            やまーたの<br>
-                            謎解きアトリエ
-                        </h1>
-                        <p class="text-lg md:text-xl text-white/90 mb-8 leading-relaxed">
-                            ひとりでゆっくり謎を解いたり、<br class="md:hidden">
-                            みんなでマダミスを楽しんだり。<br>
-                            気ままに遊べるコンテンツをつくっています。
-                        </p>
-                        <a href="#contents" class="btn-primary">
-                            コンテンツを見る
-                        </a>
-                    </div>
-                    <!-- メインビジュアル画像 -->
-                    <div class="relative">
-                        <img src="main-image.png"
-                             alt="やまーたの謎解きアトリエ メインビジュアル"
-                             class="w-full h-auto rounded-2xl shadow-2xl transform hover:scale-105 transition-transform duration-300">
-                    </div>
+                <div class="max-w-4xl mx-auto text-center">
+                    <h1 class="text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight drop-shadow-lg">
+                        やまーたの<br>
+                        謎解きアトリエ
+                    </h1>
+                    <p class="text-lg md:text-2xl text-white mb-8 leading-relaxed drop-shadow-md">
+                        ひとりでゆっくり謎を解いたり、<br>
+                        みんなでマダミスを楽しんだり。<br>
+                        気ままに遊べるコンテンツをつくっています。
+                    </p>
+                    <a href="#contents" class="btn-primary inline-block shadow-xl">
+                        コンテンツを見る
+                    </a>
                 </div>
             </div>
         </section>
