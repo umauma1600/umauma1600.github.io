@@ -194,7 +194,7 @@ function checkDialAnswer() {
         // 錠アイコンを変更（開いた状態）
         setTimeout(() => {
             elements.lockIcon.innerHTML = `
-                <div class="text-3xl">🔓</div>
+                <div class="text-5xl">🔓</div>
             `;
             elements.lockIcon.classList.remove('hover:scale-110');
             closeDialModal();
