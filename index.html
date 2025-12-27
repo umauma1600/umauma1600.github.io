@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="謎解きやマーダーミステリーで遊べるサイト - やまーたの製作コンテンツ">
-    <title>やまーた | 謎解き＆マダミス</title>
+    <meta name="description" content="謎解きやマーダーミステリーで遊べるサイト - やまーたの謎解きアトリエ">
+    <title>やまーたの謎解きアトリエ</title>
 
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -17,10 +17,10 @@
     <!-- カスタムスタイル -->
     <style>
         :root {
-            --color-primary: #1a1a2e;
-            --color-accent: #ff6b35;
+            --color-primary: #2d1b0d;
+            --color-accent: #f59e0b;
             --color-text: #2d3748;
-            --color-bg: #f7f9fc;
+            --color-bg: #fffbeb;
             --sidebar-width: 280px;
         }
 
@@ -76,7 +76,7 @@
 
         .sidebar-nav a:hover,
         .sidebar-nav a.active {
-            background: rgba(255, 107, 53, 0.15);
+            background: rgba(245, 158, 11, 0.15);
             color: var(--color-accent);
             transform: translateX(4px);
         }
@@ -175,7 +175,7 @@
 
         /* ヒーローセクション */
         .hero {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #f59e0b 0%, #f97316 50%, #fb923c 100%);
             min-height: 70vh;
             display: flex;
             align-items: center;
@@ -238,9 +238,9 @@
         }
 
         .btn-primary:hover {
-            background: #e85d2a;
+            background: #d97706;
             transform: translateY(-2px);
-            box-shadow: 0 8px 16px rgba(255, 107, 53, 0.3);
+            box-shadow: 0 8px 16px rgba(245, 158, 11, 0.3);
         }
 
         /* レスポンシブ */
@@ -276,18 +276,17 @@
 
     <!-- サイドバー（デスクトップ） -->
     <aside class="sidebar">
-        <div class="sidebar-logo">やまーた</div>
+        <div class="sidebar-logo">やまーたの<br>謎解きアトリエ</div>
         <nav class="sidebar-nav">
             <a href="#home" class="active">ホーム</a>
             <a href="#contents">コンテンツ</a>
-            <a href="#about">について</a>
             <a href="contact/">お問い合わせ</a>
         </nav>
     </aside>
 
     <!-- モバイルヘッダー -->
     <header class="mobile-header">
-        <div class="sidebar-logo" style="font-size: 1.5rem; margin: 0; color: var(--color-primary);">やまーた</div>
+        <div class="sidebar-logo" style="font-size: 1.25rem; margin: 0; color: var(--color-primary);">やまーたの謎解きアトリエ</div>
         <div class="hamburger" id="hamburger">
             <span></span>
             <span></span>
@@ -300,7 +299,6 @@
         <div class="sidebar-nav">
             <a href="#home" class="active">ホーム</a>
             <a href="#contents">コンテンツ</a>
-            <a href="#about">について</a>
             <a href="contact/">お問い合わせ</a>
         </div>
     </nav>
@@ -316,13 +314,13 @@
             <div class="hero-content w-full px-6 md:px-12 lg:px-20">
                 <div class="max-w-3xl">
                     <h1 class="text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight">
-                        謎と推理の<br>
-                        デジタル空間
+                        やまーたの<br>
+                        謎解きアトリエ
                     </h1>
                     <p class="text-lg md:text-xl text-white/90 mb-8 leading-relaxed">
-                        ブラウザで楽しむ謎解きから、<br class="md:hidden">
-                        ダウンロードして遊べるマーダーミステリーまで。<br>
-                        新しい体験をお届けします。
+                        ひとりでゆっくり謎を解いたり、<br class="md:hidden">
+                        みんなでマダミスを楽しんだり。<br>
+                        気ままに遊べるコンテンツをつくっています。
                     </p>
                     <a href="#contents" class="btn-primary">
                         コンテンツを見る
@@ -379,52 +377,12 @@
             </div>
         </section>
 
-        <!-- Aboutセクション -->
-        <section class="px-6 md:px-12 lg:px-20 py-16 md:py-24 bg-white" id="about">
-            <div class="max-w-4xl mx-auto">
-                <h2 class="text-3xl md:text-4xl font-bold mb-8" style="color: var(--color-primary);">
-                    このサイトについて
-                </h2>
-
-                <div class="space-y-6 text-gray-600 leading-relaxed">
-                    <p class="text-lg">
-                        「やまーた」は、謎解きやマーダーミステリーなどのコンテンツを公開するサイトです。
-                    </p>
-
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 my-12">
-                        <div class="text-center">
-                            <div class="text-4xl font-bold mb-2" style="color: var(--color-accent);">01</div>
-                            <h4 class="font-semibold mb-2" style="color: var(--color-primary);">インタラクティブ</h4>
-                            <p class="text-sm">ブラウザ上で直接プレイできる謎解きコンテンツ</p>
-                        </div>
-                        <div class="text-center">
-                            <div class="text-4xl font-bold mb-2" style="color: var(--color-accent);">02</div>
-                            <h4 class="font-semibold mb-2" style="color: var(--color-primary);">マルチデバイス</h4>
-                            <p class="text-sm">スマホ・タブレット・PCすべてに対応</p>
-                        </div>
-                        <div class="text-center">
-                            <div class="text-4xl font-bold mb-2" style="color: var(--color-accent);">03</div>
-                            <h4 class="font-semibold mb-2" style="color: var(--color-primary);">無料公開</h4>
-                            <p class="text-sm">すべてのコンテンツを無料で提供</p>
-                        </div>
-                    </div>
-
-                    <div class="bg-gray-50 p-6 rounded-lg border-l-4 border-orange-500">
-                        <h4 class="font-semibold mb-2" style="color: var(--color-primary);">更新について</h4>
-                        <p class="text-sm">
-                            コンテンツの更新は不定期です。新しいコンテンツができ次第、順次公開していきます。
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
         <!-- フッター -->
         <footer class="px-6 md:px-12 lg:px-20 py-12 bg-gray-900 text-white">
             <div class="max-w-6xl mx-auto">
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
                     <div>
-                        <div class="text-2xl font-bold mb-4">やまーた</div>
+                        <div class="text-2xl font-bold mb-4">やまーたの謎解きアトリエ</div>
                         <p class="text-gray-400">
                             謎解き・マーダーミステリーのデジタルコンテンツ
                         </p>
@@ -441,7 +399,7 @@
                 <div class="border-t border-gray-800 pt-8 text-center text-gray-400 text-sm">
                     <p class="mb-2">コンテンツ製作: umauma1600</p>
                     <p class="mb-4">サイト製作: Claude AI (Anthropic)</p>
-                    <p>© 2025 やまーた. All rights reserved.</p>
+                    <p>© 2025 やまーたの謎解きアトリエ. All rights reserved.</p>
                 </div>
             </div>
         </footer>
