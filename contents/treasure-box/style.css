@@ -1,7 +1,59 @@
 /* ===== カスタムスタイル ===== */
 
+/* テーブルのスタイル */
+.table-element {
+    position: absolute;
+    bottom: 80px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1;
+}
+
+.table-top {
+    width: 400px;
+    height: 20px;
+    background: linear-gradient(to bottom, #8b6f47, #6b5335);
+    border-radius: 4px 4px 0 0;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    position: relative;
+}
+
+.table-top::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.2), transparent);
+    border-radius: 4px 4px 0 0;
+}
+
+.table-leg {
+    width: 16px;
+    height: 120px;
+    background: linear-gradient(to right, #6b5335, #8b6f47, #6b5335);
+    position: absolute;
+    top: 20px;
+    box-shadow: 2px 0 4px rgba(0, 0, 0, 0.3);
+}
+
+.table-leg-left {
+    left: 30px;
+}
+
+.table-leg-right {
+    right: 30px;
+}
+
 /* 宝箱の基本スタイル */
 .treasure-box {
+    /* テーブルの上に配置 */
+    position: absolute;
+    bottom: 100px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
     /* スムーズな動きのためのtransition */
     transition: transform 0.1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     /* GPU加速を有効化してパフォーマンス向上 */
@@ -40,13 +92,21 @@
 }
 
 /* 紙が落ちるアニメーション */
-.paper.falling {
+#foldedPaper {
+    position: absolute;
+    bottom: 100px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 5;
+}
+
+.falling {
     animation: paperFall 1.5s ease-out forwards;
 }
 
 @keyframes paperFall {
     0% {
-        transform: translateX(-50%) translateY(-100px) rotate(0deg);
+        transform: translateX(-50%) translateY(-150px) rotate(0deg);
         opacity: 0;
     }
     50% {
@@ -186,8 +246,16 @@ html {
 
 /* レスポンシブ調整 */
 @media (max-width: 768px) {
+    .table-top {
+        width: 300px;
+    }
+
+    .table-element {
+        bottom: 60px;
+    }
+
     .treasure-box {
-        transform: scale(0.85);
+        bottom: 80px;
     }
 
     #treasureBoxContainer {

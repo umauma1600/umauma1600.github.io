@@ -328,8 +328,9 @@ function drag(e) {
     currentY = deltaY;
     currentX = deltaX;
 
+    // 上方向のドラッグのみ許可（下には動かせない）
     if (currentY > 0) {
-        elements.treasureBox.style.transform = `translate(${currentX}px, -${currentY}px) scale(1.02)`;
+        elements.treasureBox.style.transform = `translate(calc(-50% + ${currentX}px), calc(-${currentY}px)) scale(1.02)`;
     }
 
     if (currentY > dropThreshold) {
@@ -364,8 +365,9 @@ function dragTouch(e) {
     currentY = deltaY;
     currentX = deltaX;
 
+    // 上方向のドラッグのみ許可（下には動かせない）
     if (currentY > 0) {
-        elements.treasureBox.style.transform = `translate(${currentX}px, -${currentY}px) scale(1.02)`;
+        elements.treasureBox.style.transform = `translate(calc(-50% + ${currentX}px), calc(-${currentY}px)) scale(1.02)`;
     }
 
     if (currentY > dropThreshold) {
@@ -380,16 +382,19 @@ function endDrag() {
     isDragMode = false;
     elements.treasureBox.classList.remove('dragging');
 
-    // しきい値に達していない場合は元に戻す（滑らかなアニメーション付き）
-    if (currentY < dropThreshold && !gameState.isBottomDropped) {
-        // transitionを一時的に有効化して滑らかに戻す
-        elements.treasureBox.style.transition = 'transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1)';
-        elements.treasureBox.style.transform = 'translate(0, 0) scale(1)';
+    // 底が抜けていない場合は、重力で落下してテーブルに戻る
+    if (!gameState.isBottomDropped) {
+        // 落下時間は高さに応じて変化（高いほど長い）
+        const fallDuration = Math.min(0.6, 0.3 + currentY / 500);
+
+        // 重力をシミュレートしたイージング関数（加速しながら落ちる）
+        elements.treasureBox.style.transition = `transform ${fallDuration}s cubic-bezier(0.55, 0.085, 0.68, 0.53)`;
+        elements.treasureBox.style.transform = 'translate(-50%, 0) scale(1)';
 
         // transitionが終わったら元のスタイルに戻す
         setTimeout(() => {
             elements.treasureBox.style.transition = '';
-        }, 300);
+        }, fallDuration * 1000);
     }
 }
 
@@ -402,10 +407,10 @@ function dropBottom() {
 
     // 宝箱を持ち上げた位置で固定し、横にずらして紙が見えるようにする
     const finalY = currentY;
-    const finalX = 80; // 右に80pxずらす
+    const finalX = currentX + 80; // 現在のX位置から右に80pxずらす
 
     elements.treasureBox.style.transition = 'transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1)';
-    elements.treasureBox.style.transform = `translate(${finalX}px, -${finalY}px) scale(1)`;
+    elements.treasureBox.style.transform = `translate(calc(-50% + ${finalX}px), -${finalY}px) scale(1)`;
     elements.treasureBox.classList.remove('dragging');
 
     // 折りたたまれた紙を表示

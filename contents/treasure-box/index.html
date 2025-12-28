@@ -149,6 +149,13 @@
                         <!-- 宝箱コンテナ -->
                         <div id="treasureBoxContainer" class="relative">
 
+                            <!-- テーブル -->
+                            <div id="table" class="table-element">
+                                <div class="table-top"></div>
+                                <div class="table-leg table-leg-left"></div>
+                                <div class="table-leg table-leg-right"></div>
+                            </div>
+
                             <!-- 宝箱本体 -->
                             <div id="treasureBox" class="treasure-box relative cursor-grab active:cursor-grabbing">
                                 <!-- 宝箱画像 -->
@@ -161,7 +168,7 @@
                             </div>
 
                             <!-- 折りたたまれた紙 -->
-                            <div id="foldedPaper" class="hidden absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-full mt-2 cursor-pointer hover:scale-105 transition-transform z-10">
+                            <div id="foldedPaper" class="hidden cursor-pointer hover:scale-105 transition-transform">
                                 <img src="assets/kami-Photoroom.png" alt="落ちてきた紙" class="w-24 h-auto drop-shadow-lg" draggable="false">
                             </div>
                         </div>
