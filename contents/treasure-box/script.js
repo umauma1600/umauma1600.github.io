@@ -82,7 +82,13 @@ const elements = {
     // 宝箱関連
     treasureBox: document.getElementById('treasureBox'),
     treasureBoxContainer: document.getElementById('treasureBoxContainer'),
-    paper: document.getElementById('paper'),
+    foldedPaper: document.getElementById('foldedPaper'),
+
+    // 紙モーダル関連
+    paperModal: document.getElementById('paperModal'),
+    paperClosed: document.getElementById('paperClosed'),
+    paperOpen: document.getElementById('paperOpen'),
+    closePaperModal: document.getElementById('closePaperModal'),
 
     // オブジェクト関連
     objectItems: document.querySelectorAll('.object-item'),
@@ -187,18 +193,22 @@ function checkDialAnswer() {
     if (isCorrect) {
         // 正解だが、宝箱は開かない（ミスリード）
         gameState.isLockUnlocked = true;
-        elements.dialFeedback.textContent = '✅ 錠が開きました！...でも宝箱が開きません。何か他に方法があるのでは？';
+        elements.dialFeedback.textContent = '✅ 錠が開きました！';
         elements.dialFeedback.classList.remove('feedback-wrong');
         elements.dialFeedback.classList.add('feedback-correct');
 
-        // 錠アイコンを変更（開いた状態）
+        // 錠アイコンをフェードアウト
         setTimeout(() => {
-            elements.lockIcon.innerHTML = `
-                <div class="text-5xl">🔓</div>
-            `;
-            elements.lockIcon.classList.remove('hover:scale-110');
+            elements.lockIcon.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+            elements.lockIcon.style.opacity = '0';
+            elements.lockIcon.style.transform = 'translate(-50%, 50%) scale(0.5)';
+
+            setTimeout(() => {
+                elements.lockIcon.style.display = 'none';
+            }, 500);
+
             closeDialModal();
-        }, 2000);
+        }, 1500);
     } else {
         // 不正解
         elements.dialFeedback.textContent = '❌ 番号が違うようです...';
@@ -330,19 +340,16 @@ function dropBottom() {
     gameState.isBottomDropped = true;
     isDragging = false;
 
-    // 宝箱が持ち上がる
-    elements.treasureBox.classList.add('lifting');
+    // 宝箱を現在のドラッグ位置で固定
+    const finalY = Math.min(currentY, dragThreshold + 50);
+    elements.treasureBox.style.transform = `translateY(-${finalY}px)`;
+    elements.treasureBox.classList.remove('dragging');
 
-    // 紙が落ちる
+    // 折りたたまれた紙を表示
     setTimeout(() => {
-        elements.paper.classList.remove('hidden');
-        elements.paper.classList.add('falling');
-    }, 500);
-
-    // キーワード入力欄にフォーカス
-    setTimeout(() => {
-        elements.keywordInput.focus();
-    }, 2000);
+        elements.foldedPaper.classList.remove('hidden');
+        elements.foldedPaper.classList.add('falling');
+    }, 300);
 }
 
 // ===== キーワード入力・クリア判定 =====
@@ -495,6 +502,37 @@ function updateHintDisplay() {
     elements.prevHint.disabled = gameState.currentHintStep === 0;
     elements.nextHint.disabled = gameState.currentHintStep === hints.length - 1;
 }
+
+// ===== 紙モーダル機能 =====
+elements.foldedPaper.addEventListener('click', () => {
+    elements.paperModal.classList.remove('hidden');
+    elements.paperModal.classList.add('modal-show');
+});
+
+elements.closePaperModal.addEventListener('click', closePaperModal);
+elements.paperModal.addEventListener('click', (e) => {
+    if (e.target === elements.paperModal) {
+        closePaperModal();
+    }
+});
+
+function closePaperModal() {
+    elements.paperModal.classList.remove('modal-show');
+    setTimeout(() => {
+        elements.paperModal.classList.add('hidden');
+    }, 300);
+}
+
+// 紙をクリックして開く
+elements.paperClosed.addEventListener('click', () => {
+    elements.paperClosed.classList.add('hidden');
+    elements.paperOpen.classList.remove('hidden');
+
+    // キーワード入力欄にフォーカス
+    setTimeout(() => {
+        elements.keywordInput.focus();
+    }, 500);
+});
 
 // ===== 初期化 =====
 console.log('🎮 逆転の宝箱 - ゲーム開始！');
