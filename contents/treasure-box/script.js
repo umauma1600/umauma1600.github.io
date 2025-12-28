@@ -264,6 +264,7 @@ let startY = 0;
 let startX = 0;
 let currentY = 0;
 let currentX = 0;
+let boxOffsetX = 0; // 宝箱の累積X位置（中央からのずれ）
 let dragModeThreshold = 30; // 上方向に30px以上でドラッグモード開始
 let dropThreshold = 100; // 100px以上上にドラッグで底が抜ける
 
@@ -325,8 +326,10 @@ function drag(e) {
     currentX = deltaX;
 
     // 上方向のドラッグのみ許可（下には動かせない）
+    // boxOffsetX（前回までの累積X位置）+ currentX（今回のドラッグ量）
     if (currentY > 0) {
-        elements.treasureBox.style.transform = `translate(calc(-50% + ${currentX}px), calc(-${currentY}px)) scale(1.02)`;
+        const totalX = boxOffsetX + currentX;
+        elements.treasureBox.style.transform = `translate(calc(-50% + ${totalX}px), calc(-${currentY}px)) scale(1.02)`;
     }
 
     if (currentY > dropThreshold) {
@@ -362,8 +365,10 @@ function dragTouch(e) {
     currentX = deltaX;
 
     // 上方向のドラッグのみ許可（下には動かせない）
+    // boxOffsetX（前回までの累積X位置）+ currentX（今回のドラッグ量）
     if (currentY > 0) {
-        elements.treasureBox.style.transform = `translate(calc(-50% + ${currentX}px), calc(-${currentY}px)) scale(1.02)`;
+        const totalX = boxOffsetX + currentX;
+        elements.treasureBox.style.transform = `translate(calc(-50% + ${totalX}px), calc(-${currentY}px)) scale(1.02)`;
     }
 
     if (currentY > dropThreshold) {
@@ -378,6 +383,9 @@ function endDrag() {
     isDragMode = false;
     elements.treasureBox.classList.remove('dragging');
 
+    // 累積X位置を更新（前回までの位置 + 今回のドラッグ量）
+    boxOffsetX = boxOffsetX + currentX;
+
     // 手を離したらその位置から真下に落下してテーブルに戻る
     // X位置は保持し、Y方向のみ0に戻る
     // 落下時間は高さに応じて変化（高いほど長い）
@@ -385,8 +393,8 @@ function endDrag() {
 
     // 重力をシミュレートしたイージング関数（加速しながら落ちる）
     elements.treasureBox.style.transition = `transform ${fallDuration}s cubic-bezier(0.55, 0.085, 0.68, 0.53)`;
-    // X位置（currentX）を保持したまま、Y位置のみ0に
-    elements.treasureBox.style.transform = `translate(calc(-50% + ${currentX}px), 0) scale(1)`;
+    // X位置（boxOffsetX）を保持したまま、Y位置のみ0に
+    elements.treasureBox.style.transform = `translate(calc(-50% + ${boxOffsetX}px), 0) scale(1)`;
 
     // transitionが終わったら元のスタイルに戻す
     setTimeout(() => {
