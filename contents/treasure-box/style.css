@@ -2,8 +2,6 @@
 
 /* 宝箱の基本スタイル */
 .treasure-box {
-    /* タッチ操作でページスクロールを防ぐ */
-    touch-action: none;
     /* スムーズな動きのためのtransition */
     transition: transform 0.1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     /* GPU加速を有効化してパフォーマンス向上 */
