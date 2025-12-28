@@ -3,7 +3,7 @@
 /* テーブルのスタイル */
 .table-element {
     position: absolute;
-    bottom: 40px;
+    bottom: 10px;
     left: 50%;
     transform: translateX(-50%);
     z-index: 1;
@@ -50,7 +50,7 @@
 .treasure-box {
     /* テーブルの上に配置 */
     position: absolute;
-    bottom: 60px;
+    bottom: 30px;
     left: 50%;
     transform: translateX(-50%);
     z-index: 10;
@@ -94,7 +94,7 @@
 /* 紙が落ちるアニメーション */
 #foldedPaper {
     position: absolute;
-    bottom: 60px;
+    bottom: 30px;
     left: 50%;
     transform: translateX(-50%);
     z-index: 5;
@@ -251,15 +251,15 @@ html {
     }
 
     .table-element {
-        bottom: 30px;
+        bottom: 10px;
     }
 
     .treasure-box {
-        bottom: 50px;
+        bottom: 30px;
     }
 
     #foldedPaper {
-        bottom: 50px;
+        bottom: 30px;
     }
 
     #treasureBoxContainer {

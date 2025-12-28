@@ -378,13 +378,15 @@ function endDrag() {
     isDragMode = false;
     elements.treasureBox.classList.remove('dragging');
 
-    // 手を離したら重力で落下してテーブルに戻る（底が抜けていても同じ）
+    // 手を離したらその位置から真下に落下してテーブルに戻る
+    // X位置は保持し、Y方向のみ0に戻る
     // 落下時間は高さに応じて変化（高いほど長い）
     const fallDuration = Math.min(0.6, 0.3 + currentY / 500);
 
     // 重力をシミュレートしたイージング関数（加速しながら落ちる）
     elements.treasureBox.style.transition = `transform ${fallDuration}s cubic-bezier(0.55, 0.085, 0.68, 0.53)`;
-    elements.treasureBox.style.transform = 'translate(-50%, 0) scale(1)';
+    // X位置（currentX）を保持したまま、Y位置のみ0に
+    elements.treasureBox.style.transform = `translate(calc(-50% + ${currentX}px), 0) scale(1)`;
 
     // transitionが終わったら元のスタイルに戻す
     setTimeout(() => {
