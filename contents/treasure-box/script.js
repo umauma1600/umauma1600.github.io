@@ -548,7 +548,8 @@ function showPaperStep(step) {
 }
 
 // ステップ1: 閉じた紙をクリック → ステップ2（開きかけ）へ
-elements.paperStep1.addEventListener('click', () => {
+elements.paperStep1.addEventListener('click', (e) => {
+    e.stopPropagation(); // モーダル閉じイベントの伝播を防止
     if (paperCurrentStep === 1) {
         paperCurrentStep = 2;
         showPaperStep(2);
@@ -563,6 +564,28 @@ elements.paperStep1.addEventListener('click', () => {
                 elements.keywordInput.focus();
             }, 500);
         }, 800);
+    }
+});
+
+// ステップ2: 開きかけの紙をクリック（自動遷移中でも手動で進められる）
+elements.paperStep2.addEventListener('click', (e) => {
+    e.stopPropagation(); // モーダル閉じイベントの伝播を防止
+    if (paperCurrentStep === 2) {
+        paperCurrentStep = 3;
+        showPaperStep(3);
+
+        // キーワード入力欄にフォーカス
+        setTimeout(() => {
+            elements.keywordInput.focus();
+        }, 500);
+    }
+});
+
+// ステップ3: 完全に開いた紙をクリック → モーダルを閉じる
+elements.paperStep3.addEventListener('click', (e) => {
+    e.stopPropagation(); // モーダル閉じイベントの伝播を防止
+    if (paperCurrentStep === 3) {
+        closePaperModal();
     }
 });
 
