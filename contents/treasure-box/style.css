@@ -235,3 +235,23 @@ button:disabled {
     background: linear-gradient(transparent 60%, #c69c6d40 60%);
     font-weight: 500;
 }
+
+/* 紙が開くアニメーション */
+.paper-opening-animation {
+    animation: paperOpening 0.8s ease-out forwards;
+}
+
+@keyframes paperOpening {
+    0% {
+        transform: scale(0.8) rotate(-5deg);
+        opacity: 0.5;
+    }
+    50% {
+        transform: scale(1.1) rotate(2deg);
+        opacity: 0.8;
+    }
+    100% {
+        transform: scale(1) rotate(0deg);
+        opacity: 1;
+    }
+}

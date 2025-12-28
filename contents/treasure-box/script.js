@@ -86,8 +86,9 @@ const elements = {
 
     // 紙モーダル関連
     paperModal: document.getElementById('paperModal'),
-    paperClosed: document.getElementById('paperClosed'),
-    paperOpen: document.getElementById('paperOpen'),
+    paperStep1: document.getElementById('paperStep1'),
+    paperStep2: document.getElementById('paperStep2'),
+    paperStep3: document.getElementById('paperStep3'),
     closePaperModal: document.getElementById('closePaperModal'),
 
     // オブジェクト関連
@@ -504,7 +505,12 @@ function updateHintDisplay() {
 }
 
 // ===== 紙モーダル機能 =====
+let paperCurrentStep = 1;
+
+// 落ちた紙をクリックしてモーダル表示
 elements.foldedPaper.addEventListener('click', () => {
+    paperCurrentStep = 1;
+    showPaperStep(1);
     elements.paperModal.classList.remove('hidden');
     elements.paperModal.classList.add('modal-show');
 });
@@ -520,18 +526,44 @@ function closePaperModal() {
     elements.paperModal.classList.remove('modal-show');
     setTimeout(() => {
         elements.paperModal.classList.add('hidden');
+        // モーダルを閉じたときにステップをリセット
+        paperCurrentStep = 1;
+        showPaperStep(1);
     }, 300);
 }
 
-// 紙をクリックして開く
-elements.paperClosed.addEventListener('click', () => {
-    elements.paperClosed.classList.add('hidden');
-    elements.paperOpen.classList.remove('hidden');
+// 紙のステップ表示を管理
+function showPaperStep(step) {
+    elements.paperStep1.classList.add('hidden');
+    elements.paperStep2.classList.add('hidden');
+    elements.paperStep3.classList.add('hidden');
 
-    // キーワード入力欄にフォーカス
-    setTimeout(() => {
-        elements.keywordInput.focus();
-    }, 500);
+    if (step === 1) {
+        elements.paperStep1.classList.remove('hidden');
+    } else if (step === 2) {
+        elements.paperStep2.classList.remove('hidden');
+    } else if (step === 3) {
+        elements.paperStep3.classList.remove('hidden');
+    }
+}
+
+// ステップ1: 閉じた紙をクリック → ステップ2（開きかけ）へ
+elements.paperStep1.addEventListener('click', () => {
+    if (paperCurrentStep === 1) {
+        paperCurrentStep = 2;
+        showPaperStep(2);
+
+        // 0.8秒後にステップ3（完全に開いた状態）へ
+        setTimeout(() => {
+            paperCurrentStep = 3;
+            showPaperStep(3);
+
+            // キーワード入力欄にフォーカス
+            setTimeout(() => {
+                elements.keywordInput.focus();
+            }, 500);
+        }, 800);
+    }
 });
 
 // ===== 初期化 =====
