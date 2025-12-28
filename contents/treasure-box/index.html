@@ -162,7 +162,7 @@
 
                             <!-- 折りたたまれた紙 -->
                             <div id="foldedPaper" class="hidden absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-full mt-2 cursor-pointer hover:scale-105 transition-transform z-10">
-                                <div class="w-20 h-6 bg-amber-100 shadow-md border border-amber-300 rounded-sm"></div>
+                                <img src="assets/kami-Photoroom.png" alt="落ちてきた紙" class="w-24 h-auto drop-shadow-lg" draggable="false">
                             </div>
                         </div>
                     </div>
@@ -272,23 +272,34 @@
                 <button id="closePaperModal" class="text-text/40 hover:text-text text-2xl leading-none">&times;</button>
             </div>
 
-            <!-- 閉じた紙の状態 -->
-            <div id="paperClosed" class="cursor-pointer hover:scale-105 transition-transform">
-                <div class="w-full h-64 bg-amber-50 shadow-xl rounded-sm border border-amber-200 flex items-center justify-center">
-                    <div class="text-center text-text/60">
-                        <div class="text-4xl mb-2">📄</div>
-                        <div class="text-sm">紙をクリックして開く</div>
+            <!-- ステップ1: 閉じた紙の状態 -->
+            <div id="paperStep1" class="cursor-pointer hover:scale-105 transition-transform">
+                <div class="w-full flex items-center justify-center p-6">
+                    <div class="text-center">
+                        <img src="assets/kami-Photoroom.png" alt="折りたたまれた紙" class="max-w-full h-auto mx-auto mb-3" draggable="false">
+                        <div class="text-sm text-text/80">どうやら底が開いていたようだ</div>
+                        <div class="text-xs text-text/60 mt-2">クリックして紙を開く</div>
                     </div>
                 </div>
             </div>
 
-            <!-- 開いた紙の状態 -->
-            <div id="paperOpen" class="hidden">
-                <div class="w-full h-64 bg-amber-50 shadow-xl rounded-sm border border-amber-200 flex items-center justify-center p-6">
-                    <div class="text-center">
-                        <div class="text-xs text-text/60 mb-2">正解のキーワード</div>
-                        <div class="text-2xl font-heading font-semibold text-primary leading-tight">
-                            逆転の発想
+            <!-- ステップ2: 開きかけの状態（エフェクト） -->
+            <div id="paperStep2" class="hidden">
+                <div class="w-full flex items-center justify-center p-6">
+                    <img src="assets/hirakutotyu-Photoroom.png" alt="開きかけの紙" class="max-w-full h-auto mx-auto paper-opening-animation" draggable="false">
+                </div>
+            </div>
+
+            <!-- ステップ3: 完全に開いた状態 -->
+            <div id="paperStep3" class="hidden">
+                <div class="w-full flex items-center justify-center p-6 relative">
+                    <img src="assets/kamikami-Photoroom.png" alt="開いた紙" class="max-w-full h-auto mx-auto" draggable="false">
+                    <div class="absolute inset-0 flex items-center justify-center">
+                        <div class="text-center bg-white/90 px-6 py-4 rounded-lg shadow-lg">
+                            <div class="text-xs text-text/60 mb-2">正解のキーワード</div>
+                            <div class="text-3xl font-heading font-bold text-primary leading-tight">
+                                逆転の発想
+                            </div>
                         </div>
                     </div>
                 </div>
