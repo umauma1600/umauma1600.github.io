@@ -1,8 +1,20 @@
 /* ===== カスタムスタイル ===== */
 
+/* 宝箱の基本スタイル */
+.treasure-box {
+    /* タッチ操作でページスクロールを防ぐ */
+    touch-action: none;
+    /* スムーズな動きのためのtransition */
+    transition: transform 0.1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    /* GPU加速を有効化してパフォーマンス向上 */
+    will-change: transform;
+}
+
 /* 宝箱のドラッグ状態 */
 .treasure-box.dragging {
-    transform: scale(1.05);
+    /* ドラッグ中はtransitionを無効化して即座に反応 */
+    transition: none;
+    transform: scale(1.02);
 }
 
 /* 宝箱が持ち上がるアニメーション */

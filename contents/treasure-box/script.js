@@ -290,6 +290,9 @@ function startDragTouch(e) {
 
     if (gameState.isBottomDropped) return;
 
+    // ページスクロールを防止
+    e.preventDefault();
+
     isDragging = true;
     startY = e.touches[0].clientY;
     elements.treasureBox.classList.add('dragging');
@@ -301,7 +304,7 @@ function drag(e) {
     currentY = startY - e.clientY; // 上方向が正の値
 
     if (currentY > 0) {
-        elements.treasureBox.style.transform = `translateY(-${currentY}px)`;
+        elements.treasureBox.style.transform = `translateY(-${currentY}px) scale(1.02)`;
     }
 
     if (currentY > dragThreshold) {
@@ -312,10 +315,13 @@ function drag(e) {
 function dragTouch(e) {
     if (!isDragging) return;
 
+    // ページスクロールを防止
+    e.preventDefault();
+
     currentY = startY - e.touches[0].clientY;
 
     if (currentY > 0) {
-        elements.treasureBox.style.transform = `translateY(-${currentY}px)`;
+        elements.treasureBox.style.transform = `translateY(-${currentY}px) scale(1.02)`;
     }
 
     if (currentY > dragThreshold) {
@@ -329,9 +335,16 @@ function endDrag() {
     isDragging = false;
     elements.treasureBox.classList.remove('dragging');
 
-    // しきい値に達していない場合は元に戻す
+    // しきい値に達していない場合は元に戻す（滑らかなアニメーション付き）
     if (currentY < dragThreshold) {
-        elements.treasureBox.style.transform = 'translateY(0)';
+        // transitionを一時的に有効化して滑らかに戻す
+        elements.treasureBox.style.transition = 'transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1)';
+        elements.treasureBox.style.transform = 'translateY(0) scale(1)';
+
+        // transitionが終わったら元のスタイルに戻す
+        setTimeout(() => {
+            elements.treasureBox.style.transition = '';
+        }, 300);
     }
 }
 
@@ -341,16 +354,17 @@ function dropBottom() {
     gameState.isBottomDropped = true;
     isDragging = false;
 
-    // 宝箱を現在のドラッグ位置で固定
+    // 宝箱を現在のドラッグ位置で固定（滑らかなアニメーション付き）
     const finalY = Math.min(currentY, dragThreshold + 50);
-    elements.treasureBox.style.transform = `translateY(-${finalY}px)`;
+    elements.treasureBox.style.transition = 'transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1)';
+    elements.treasureBox.style.transform = `translateY(-${finalY}px) scale(1)`;
     elements.treasureBox.classList.remove('dragging');
 
     // 折りたたまれた紙を表示
     setTimeout(() => {
         elements.foldedPaper.classList.remove('hidden');
         elements.foldedPaper.classList.add('falling');
-    }, 300);
+    }, 400);
 }
 
 // ===== キーワード入力・クリア判定 =====
