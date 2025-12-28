@@ -3,18 +3,18 @@
 /* テーブルのスタイル */
 .table-element {
     position: absolute;
-    bottom: 80px;
+    bottom: 40px;
     left: 50%;
     transform: translateX(-50%);
     z-index: 1;
 }
 
 .table-top {
-    width: 400px;
-    height: 20px;
+    width: 280px;
+    height: 16px;
     background: linear-gradient(to bottom, #8b6f47, #6b5335);
-    border-radius: 4px 4px 0 0;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 3px 3px 0 0;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
     position: relative;
 }
 
@@ -24,33 +24,33 @@
     top: 0;
     left: 0;
     right: 0;
-    height: 4px;
+    height: 3px;
     background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.2), transparent);
-    border-radius: 4px 4px 0 0;
+    border-radius: 3px 3px 0 0;
 }
 
 .table-leg {
-    width: 16px;
-    height: 120px;
+    width: 12px;
+    height: 80px;
     background: linear-gradient(to right, #6b5335, #8b6f47, #6b5335);
     position: absolute;
-    top: 20px;
-    box-shadow: 2px 0 4px rgba(0, 0, 0, 0.3);
+    top: 16px;
+    box-shadow: 2px 0 3px rgba(0, 0, 0, 0.3);
 }
 
 .table-leg-left {
-    left: 30px;
+    left: 20px;
 }
 
 .table-leg-right {
-    right: 30px;
+    right: 20px;
 }
 
 /* 宝箱の基本スタイル */
 .treasure-box {
     /* テーブルの上に配置 */
     position: absolute;
-    bottom: 100px;
+    bottom: 60px;
     left: 50%;
     transform: translateX(-50%);
     z-index: 10;
@@ -94,7 +94,7 @@
 /* 紙が落ちるアニメーション */
 #foldedPaper {
     position: absolute;
-    bottom: 100px;
+    bottom: 60px;
     left: 50%;
     transform: translateX(-50%);
     z-index: 5;
@@ -247,15 +247,19 @@ html {
 /* レスポンシブ調整 */
 @media (max-width: 768px) {
     .table-top {
-        width: 300px;
+        width: 220px;
     }
 
     .table-element {
-        bottom: 60px;
+        bottom: 30px;
     }
 
     .treasure-box {
-        bottom: 80px;
+        bottom: 50px;
+    }
+
+    #foldedPaper {
+        bottom: 50px;
     }
 
     #treasureBoxContainer {

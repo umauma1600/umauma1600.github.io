@@ -281,8 +281,6 @@ function startDrag(e) {
     // 錠アイコンをクリックした場合はドラッグしない
     if (e.target.closest('#lockIcon')) return;
 
-    if (gameState.isBottomDropped) return;
-
     isDragging = true;
     isDragMode = false; // 最初はドラッグモードではない
     startY = e.clientY;
@@ -294,8 +292,6 @@ function startDrag(e) {
 function startDragTouch(e) {
     // 錠アイコンをタップした場合はドラッグしない
     if (e.target.closest('#lockIcon')) return;
-
-    if (gameState.isBottomDropped) return;
 
     // 最初はpreventDefaultしない（スクロール可能）
     isDragging = true;
@@ -382,42 +378,34 @@ function endDrag() {
     isDragMode = false;
     elements.treasureBox.classList.remove('dragging');
 
-    // 底が抜けていない場合は、重力で落下してテーブルに戻る
-    if (!gameState.isBottomDropped) {
-        // 落下時間は高さに応じて変化（高いほど長い）
-        const fallDuration = Math.min(0.6, 0.3 + currentY / 500);
+    // 手を離したら重力で落下してテーブルに戻る（底が抜けていても同じ）
+    // 落下時間は高さに応じて変化（高いほど長い）
+    const fallDuration = Math.min(0.6, 0.3 + currentY / 500);
 
-        // 重力をシミュレートしたイージング関数（加速しながら落ちる）
-        elements.treasureBox.style.transition = `transform ${fallDuration}s cubic-bezier(0.55, 0.085, 0.68, 0.53)`;
-        elements.treasureBox.style.transform = 'translate(-50%, 0) scale(1)';
+    // 重力をシミュレートしたイージング関数（加速しながら落ちる）
+    elements.treasureBox.style.transition = `transform ${fallDuration}s cubic-bezier(0.55, 0.085, 0.68, 0.53)`;
+    elements.treasureBox.style.transform = 'translate(-50%, 0) scale(1)';
 
-        // transitionが終わったら元のスタイルに戻す
-        setTimeout(() => {
-            elements.treasureBox.style.transition = '';
-        }, fallDuration * 1000);
-    }
+    // transitionが終わったら元のスタイルに戻す
+    setTimeout(() => {
+        elements.treasureBox.style.transition = '';
+    }, fallDuration * 1000);
 }
 
 function dropBottom() {
     if (gameState.isBottomDropped) return;
 
     gameState.isBottomDropped = true;
-    isDragging = false;
-    isDragMode = false;
 
-    // 宝箱を持ち上げた位置で固定し、横にずらして紙が見えるようにする
-    const finalY = currentY;
-    const finalX = currentX + 80; // 現在のX位置から右に80pxずらす
+    // 底が抜けたことを示すサウンドやエフェクトを追加する場合はここに
 
-    elements.treasureBox.style.transition = 'transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1)';
-    elements.treasureBox.style.transform = `translate(calc(-50% + ${finalX}px), -${finalY}px) scale(1)`;
-    elements.treasureBox.classList.remove('dragging');
-
-    // 折りたたまれた紙を表示
+    // 折りたたまれた紙を表示（位置はテーブルの上に固定）
     setTimeout(() => {
         elements.foldedPaper.classList.remove('hidden');
         elements.foldedPaper.classList.add('falling');
-    }, 500);
+    }, 200);
+
+    // ドラッグは継続可能（宝箱を固定しない）
 }
 
 // ===== キーワード入力・クリア判定 =====
