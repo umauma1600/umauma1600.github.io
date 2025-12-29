@@ -388,6 +388,7 @@ function endDrag() {
 
     isDragging = false;
     isDragMode = false;
+    elements.treasureBox.classList.remove('dragging');
 
     // 累積位置を更新（前回までの位置 + 今回のドラッグ量）
     boxOffsetX = boxOffsetX + currentX;
@@ -398,32 +399,16 @@ function endDrag() {
         boxOffsetY = 0;
     }
 
-    // 宝箱を持ち上げていない場合（Y=0）は落下アニメーション不要
-    if (boxOffsetY === 0) {
-        elements.treasureBox.classList.remove('dragging');
-        elements.treasureBox.style.transform =
-            `translate(calc(-50% + ${boxOffsetX}px), 0) scale(1)`;
-        return;
-    }
-
-    // 落下アニメーションの準備
-    // まずtransitionを無効化してdraggingクラスを削除
-    elements.treasureBox.style.transition = 'none';
-    elements.treasureBox.classList.remove('dragging');
-
+    // 落下アニメーション：X位置を保持したまま真下に落下
     // 高さに応じて落下時間を調整（最大0.6秒）
     const fallDuration = Math.min(0.6, 0.3 + boxOffsetY / 500);
 
-    // 次のフレームで落下アニメーションを開始
-    requestAnimationFrame(() => {
-        // transitionを設定
-        elements.treasureBox.style.transition =
-            `transform ${fallDuration}s cubic-bezier(0.55, 0.085, 0.68, 0.53)`;
+    elements.treasureBox.style.transition =
+        `transform ${fallDuration}s cubic-bezier(0.55, 0.085, 0.68, 0.53)`;
 
-        // X位置を保持したまま、真下に落下（Y=0に戻る）
-        elements.treasureBox.style.transform =
-            `translate(calc(-50% + ${boxOffsetX}px), 0) scale(1)`;
-    });
+    // X位置を保持したまま、真下に落下（Y=0に戻る）
+    elements.treasureBox.style.transform =
+        `translate(calc(-50% + ${boxOffsetX}px), 0) scale(1)`;
 
     // Y位置をリセット（宝箱はテーブルの上に戻った）
     boxOffsetY = 0;
