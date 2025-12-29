@@ -274,7 +274,8 @@ function getDragLimits() {
     const isMobile = window.innerWidth <= 768;
     const tableWidth = isMobile ? 600 : 880; // テーブルの幅
     const boxWidth = isMobile ? 128 : 160;   // 宝箱の幅（w-32 = 128px, w-40 = 160px）
-    const maxOffset = (tableWidth - boxWidth) / 2; // 中央から左右に動ける最大距離
+    // 宝箱の中心がテーブルの端まで動けるように設定（宝箱が少しはみ出す）
+    const maxOffset = tableWidth / 2;
     return { maxOffset };
 }
 
