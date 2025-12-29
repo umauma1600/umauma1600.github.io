@@ -399,8 +399,23 @@ function endDrag() {
         boxOffsetY = 0;
     }
 
-    // 手を離した位置で固定（落下しない）
-    elements.treasureBox.style.transform = `translate(calc(-50% + ${boxOffsetX}px), calc(-${boxOffsetY}px)) scale(1)`;
+    // 落下アニメーションを追加
+    // 高さに応じて落下時間を調整（最大0.6秒）
+    const fallDuration = Math.min(0.6, 0.3 + boxOffsetY / 500);
+    elements.treasureBox.style.transition =
+        `transform ${fallDuration}s cubic-bezier(0.55, 0.085, 0.68, 0.53)`;
+
+    // X位置を保持したまま、真下に落下（Y=0に戻る）
+    elements.treasureBox.style.transform =
+        `translate(calc(-50% + ${boxOffsetX}px), 0) scale(1)`;
+
+    // Y位置をリセット（宝箱はテーブルの上に戻った）
+    boxOffsetY = 0;
+
+    // アニメーション終了後、transitionをクリア
+    setTimeout(() => {
+        elements.treasureBox.style.transition = '';
+    }, fallDuration * 1000);
 }
 
 function showPaper() {
