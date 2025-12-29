@@ -326,10 +326,11 @@ function drag(e) {
     const deltaY = startY - e.clientY; // 上方向が正の値
     const deltaX = e.clientX - startX; // 右方向が正の値
 
-    // ドラッグモードでない場合、上方向のしきい値をチェック
+    // ドラッグモードでない場合、移動量のしきい値をチェック
     if (!isDragMode) {
-        if (deltaY > dragModeThreshold) {
-            // 上方向に30px以上動いたらドラッグモードに
+        const dragDistance = Math.sqrt(deltaX * deltaX + deltaY * deltaY);
+        if (dragDistance > dragModeThreshold) {
+            // 30px以上動いたらドラッグモードに
             isDragMode = true;
             elements.treasureBox.classList.add('dragging');
         } else {
@@ -342,19 +343,21 @@ function drag(e) {
     currentY = deltaY;
     currentX = deltaX;
 
-    // 上方向のドラッグのみ許可（下には動かせない）
-    // boxOffsetX（前回までの累積X位置）+ currentX（今回のドラッグ量）
-    // boxOffsetY（前回までの累積Y位置）+ currentY（今回のドラッグ量）
-    if (currentY > 0) {
-        // X座標をテーブルの範囲内に制限
-        const totalX = clampX(boxOffsetX + currentX);
-        const totalY = boxOffsetY + currentY;
-        elements.treasureBox.style.transform = `translate(calc(-50% + ${totalX}px), calc(-${totalY}px)) scale(1.02)`;
+    // X座標は常に更新（横方向のドラッグを許可）
+    const totalX = clampX(boxOffsetX + currentX);
 
-        // 一定の高さ以上持ち上げたら紙を表示
-        if (totalY > paperShowThreshold && !gameState.isBottomDropped) {
-            showPaper();
-        }
+    // Y座標は上方向のみ許可（下には動かせない）
+    let totalY = boxOffsetY;
+    if (currentY > 0) {
+        totalY = boxOffsetY + currentY;
+    }
+
+    // 宝箱の位置を更新
+    elements.treasureBox.style.transform = `translate(calc(-50% + ${totalX}px), calc(-${totalY}px)) scale(1.02)`;
+
+    // 一定の高さ以上持ち上げたら紙を表示
+    if (totalY > paperShowThreshold && !gameState.isBottomDropped) {
+        showPaper();
     }
 }
 
@@ -364,10 +367,11 @@ function dragTouch(e) {
     const deltaY = startY - e.touches[0].clientY; // 上方向が正の値
     const deltaX = e.touches[0].clientX - startX; // 右方向が正の値
 
-    // ドラッグモードでない場合、上方向のしきい値をチェック
+    // ドラッグモードでない場合、移動量のしきい値をチェック
     if (!isDragMode) {
-        if (deltaY > dragModeThreshold) {
-            // 上方向に30px以上動いたらドラッグモードに
+        const dragDistance = Math.sqrt(deltaX * deltaX + deltaY * deltaY);
+        if (dragDistance > dragModeThreshold) {
+            // 30px以上動いたらドラッグモードに
             isDragMode = true;
             elements.treasureBox.classList.add('dragging');
             // ドラッグモードになったらページスクロールを防止
@@ -385,19 +389,21 @@ function dragTouch(e) {
     currentY = deltaY;
     currentX = deltaX;
 
-    // 上方向のドラッグのみ許可（下には動かせない）
-    // boxOffsetX（前回までの累積X位置）+ currentX（今回のドラッグ量）
-    // boxOffsetY（前回までの累積Y位置）+ currentY（今回のドラッグ量）
-    if (currentY > 0) {
-        // X座標をテーブルの範囲内に制限
-        const totalX = clampX(boxOffsetX + currentX);
-        const totalY = boxOffsetY + currentY;
-        elements.treasureBox.style.transform = `translate(calc(-50% + ${totalX}px), calc(-${totalY}px)) scale(1.02)`;
+    // X座標は常に更新（横方向のドラッグを許可）
+    const totalX = clampX(boxOffsetX + currentX);
 
-        // 一定の高さ以上持ち上げたら紙を表示
-        if (totalY > paperShowThreshold && !gameState.isBottomDropped) {
-            showPaper();
-        }
+    // Y座標は上方向のみ許可（下には動かせない）
+    let totalY = boxOffsetY;
+    if (currentY > 0) {
+        totalY = boxOffsetY + currentY;
+    }
+
+    // 宝箱の位置を更新
+    elements.treasureBox.style.transform = `translate(calc(-50% + ${totalX}px), calc(-${totalY}px)) scale(1.02)`;
+
+    // 一定の高さ以上持ち上げたら紙を表示
+    if (totalY > paperShowThreshold && !gameState.isBottomDropped) {
+        showPaper();
     }
 }
 
