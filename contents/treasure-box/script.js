@@ -407,13 +407,8 @@ function dropBottom() {
 
     gameState.isBottomDropped = true;
 
-    // 底が抜けたことを示すサウンドやエフェクトを追加する場合はここに
-
-    // 折りたたまれた紙を表示（位置はテーブルの上に固定）
-    setTimeout(() => {
-        elements.foldedPaper.classList.remove('hidden');
-        elements.foldedPaper.classList.add('falling');
-    }, 200);
+    // 底が抜けたので紙を即座に表示（落下アニメーションなし）
+    elements.foldedPaper.classList.remove('hidden');
 
     // ドラッグは継続可能（宝箱を固定しない）
 }
