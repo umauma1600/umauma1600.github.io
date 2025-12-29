@@ -83,109 +83,56 @@
 
         <!-- ゲームエリア -->
         <div class="max-w-6xl mx-auto">
-            <div class="grid md:grid-cols-3 gap-8">
-
-                <!-- 左サイド: 調べられるオブジェクト -->
-                <div class="space-y-4">
-                    <h3 class="text-lg font-heading font-semibold text-primary mb-4">部屋を調べる</h3>
-
-                    <!-- オブジェクト1: 絵画 -->
-                    <div class="object-item bg-white p-4 rounded-lg shadow-sm hover:shadow-md transition-all cursor-pointer border-2 border-transparent hover:border-accent/30" data-object="painting">
-                        <div class="flex items-center gap-3">
-                            <div class="w-12 h-12 bg-accent/10 rounded-lg flex items-center justify-center text-2xl">
-                                🖼️
-                            </div>
-                            <div>
-                                <div class="font-medium text-primary">壁の絵画</div>
-                                <div class="text-xs text-text/60">クリックして調べる</div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- オブジェクト2: 時計 -->
-                    <div class="object-item bg-white p-4 rounded-lg shadow-sm hover:shadow-md transition-all cursor-pointer border-2 border-transparent hover:border-accent/30" data-object="clock">
-                        <div class="flex items-center gap-3">
-                            <div class="w-12 h-12 bg-accent/10 rounded-lg flex items-center justify-center text-2xl">
-                                🕐
-                            </div>
-                            <div>
-                                <div class="font-medium text-primary">古い時計</div>
-                                <div class="text-xs text-text/60">クリックして調べる</div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- オブジェクト3: 本 -->
-                    <div class="object-item bg-white p-4 rounded-lg shadow-sm hover:shadow-md transition-all cursor-pointer border-2 border-transparent hover:border-accent/30" data-object="book">
-                        <div class="flex items-center gap-3">
-                            <div class="w-12 h-12 bg-accent/10 rounded-lg flex items-center justify-center text-2xl">
-                                📖
-                            </div>
-                            <div>
-                                <div class="font-medium text-primary">古びた本</div>
-                                <div class="text-xs text-text/60">クリックして調べる</div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- オブジェクト4: 窓 -->
-                    <div class="object-item bg-white p-4 rounded-lg shadow-sm hover:shadow-md transition-all cursor-pointer border-2 border-transparent hover:border-accent/30" data-object="window">
-                        <div class="flex items-center gap-3">
-                            <div class="w-12 h-12 bg-accent/10 rounded-lg flex items-center justify-center text-2xl">
-                                🪟
-                            </div>
-                            <div>
-                                <div class="font-medium text-primary">窓の外</div>
-                                <div class="text-xs text-text/60">クリックして調べる</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- 中央: 宝箱エリア -->
-                <div class="md:col-span-2">
-                    <div class="relative bg-gradient-to-b from-accent/5 to-transparent p-8 rounded-2xl min-h-[500px] flex items-center justify-center">
+            <!-- 宝箱エリア（フルワイド） -->
+            <div>
+                <div class="relative bg-gradient-to-b from-accent/5 to-transparent p-8 rounded-2xl min-h-[700px] flex items-center justify-center">
 
                         <!-- 宝箱コンテナ -->
                         <div id="treasureBoxContainer" class="relative">
 
+                            <!-- テーブル -->
+                            <div id="table" class="table-element">
+                                <div class="table-top"></div>
+                                <div class="table-leg table-leg-left"></div>
+                                <div class="table-leg table-leg-right"></div>
+                            </div>
+
                             <!-- 宝箱本体 -->
                             <div id="treasureBox" class="treasure-box relative cursor-grab active:cursor-grabbing">
                                 <!-- 宝箱画像 -->
-                                <img src="assets/treasure-box2.png" alt="宝箱" class="treasure-box-image w-80 md:w-96 max-w-full h-auto drop-shadow-2xl select-none" draggable="false">
+                                <img src="assets/treasure-box2.png" alt="宝箱" class="treasure-box-image w-32 md:w-40 max-w-full h-auto drop-shadow-2xl select-none" draggable="false">
 
                                 <!-- ダイヤル錠画像（クリックでモーダル表示） -->
-                                <div id="lockIcon" class="absolute top-1/2 left-1/2 -translate-x-1/2 translate-y-1 w-24 md:w-28 cursor-pointer hover:scale-110 transition-transform z-20 select-none" draggable="false">
+                                <div id="lockIcon" class="absolute top-1/2 left-1/2 -translate-x-1/2 translate-y-1 w-12 md:w-14 cursor-pointer hover:scale-110 transition-transform z-20 select-none" draggable="false">
                                     <img src="assets/dial-lock2.png" alt="ダイヤル錠" class="w-full h-auto" draggable="false">
                                 </div>
                             </div>
 
                             <!-- 折りたたまれた紙 -->
-                            <div id="foldedPaper" class="hidden absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-full mt-2 cursor-pointer hover:scale-105 transition-transform z-10">
-                                <img src="assets/kami-Photoroom.png" alt="落ちてきた紙" class="w-24 h-auto drop-shadow-lg" draggable="false">
+                            <div id="foldedPaper" class="hidden cursor-pointer hover:scale-105 transition-transform">
+                                <img src="assets/kami-Photoroom.png" alt="落ちてきた紙" class="w-12 h-auto drop-shadow-lg" draggable="false">
                             </div>
                         </div>
                     </div>
 
-                    <!-- キーワード入力欄 -->
-                    <div class="mt-8 bg-white p-6 rounded-lg shadow-sm">
-                        <h3 class="text-lg font-heading font-semibold text-primary mb-3">最終解答</h3>
-                        <div class="flex gap-2">
-                            <input
-                                type="text"
-                                id="keywordInput"
-                                placeholder="ひらがな または 漢字で入力"
-                                class="flex-1 px-4 py-2 border-2 border-gray-300 rounded-lg focus:border-accent focus:outline-none"
-                            >
-                            <button
-                                id="submitButton"
-                                class="px-6 py-2 bg-accent text-white rounded-lg hover:bg-accent/90 transition-colors font-medium"
-                            >
-                                答えを確認
-                            </button>
-                        </div>
-                        <div id="answerFeedback" class="mt-2 text-sm"></div>
+                <!-- キーワード入力欄 -->
+                <div class="mt-8 bg-white p-6 rounded-lg shadow-sm max-w-2xl mx-auto">
+                    <h3 class="text-lg font-heading font-semibold text-primary mb-3">最終解答</h3>
+                    <div class="flex gap-2">
+                        <input
+                            type="text"
+                            id="keywordInput"
+                            placeholder="ひらがな または 漢字で入力"
+                            class="flex-1 px-4 py-2 border-2 border-gray-300 rounded-lg focus:border-accent focus:outline-none"
+                        >
+                        <button
+                            id="submitButton"
+                            class="px-6 py-2 bg-accent text-white rounded-lg hover:bg-accent/90 transition-colors font-medium"
+                        >
+                            答えを確認
+                        </button>
                     </div>
+                    <div id="answerFeedback" class="mt-2 text-sm"></div>
                 </div>
             </div>
         </div>

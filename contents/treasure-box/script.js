@@ -259,9 +259,15 @@ function closeObjectModal() {
 
 // ===== 宝箱ドラッグ機能 =====
 let isDragging = false;
+let isDragMode = false; // ドラッグモードかどうか
 let startY = 0;
+let startX = 0;
 let currentY = 0;
-let dragThreshold = 100; // 100px以上上にドラッグで底が抜ける
+let currentX = 0;
+let boxOffsetX = 0; // 宝箱の累積X位置（中央からのずれ）
+let boxOffsetY = 0; // 宝箱の累積Y位置（下からの高さ）
+let dragModeThreshold = 30; // 上方向に30px以上でドラッグモード開始
+let paperShowThreshold = 50; // 50px以上持ち上げると紙が見える
 
 // マウスイベント
 elements.treasureBox.addEventListener('mousedown', startDrag);
@@ -277,49 +283,103 @@ function startDrag(e) {
     // 錠アイコンをクリックした場合はドラッグしない
     if (e.target.closest('#lockIcon')) return;
 
-    if (gameState.isBottomDropped) return;
-
     isDragging = true;
+    isDragMode = false; // 最初はドラッグモードではない
     startY = e.clientY;
-    elements.treasureBox.classList.add('dragging');
+    startX = e.clientX;
+    currentY = 0;
+    currentX = 0;
 }
 
 function startDragTouch(e) {
     // 錠アイコンをタップした場合はドラッグしない
     if (e.target.closest('#lockIcon')) return;
 
-    if (gameState.isBottomDropped) return;
-
+    // 最初はpreventDefaultしない（スクロール可能）
     isDragging = true;
+    isDragMode = false;
     startY = e.touches[0].clientY;
-    elements.treasureBox.classList.add('dragging');
+    startX = e.touches[0].clientX;
+    currentY = 0;
+    currentX = 0;
 }
 
 function drag(e) {
     if (!isDragging) return;
 
-    currentY = startY - e.clientY; // 上方向が正の値
+    const deltaY = startY - e.clientY; // 上方向が正の値
+    const deltaX = e.clientX - startX; // 右方向が正の値
 
-    if (currentY > 0) {
-        elements.treasureBox.style.transform = `translateY(-${currentY}px)`;
+    // ドラッグモードでない場合、上方向のしきい値をチェック
+    if (!isDragMode) {
+        if (deltaY > dragModeThreshold) {
+            // 上方向に30px以上動いたらドラッグモードに
+            isDragMode = true;
+            elements.treasureBox.classList.add('dragging');
+        } else {
+            // まだしきい値に達していない場合は何もしない（スクロール可能）
+            return;
+        }
     }
 
-    if (currentY > dragThreshold) {
-        dropBottom();
+    // ドラッグモード：マウス位置に追従
+    currentY = deltaY;
+    currentX = deltaX;
+
+    // 上方向のドラッグのみ許可（下には動かせない）
+    // boxOffsetX（前回までの累積X位置）+ currentX（今回のドラッグ量）
+    // boxOffsetY（前回までの累積Y位置）+ currentY（今回のドラッグ量）
+    if (currentY > 0) {
+        const totalX = boxOffsetX + currentX;
+        const totalY = boxOffsetY + currentY;
+        elements.treasureBox.style.transform = `translate(calc(-50% + ${totalX}px), calc(-${totalY}px)) scale(1.02)`;
+
+        // 一定の高さ以上持ち上げたら紙を表示
+        if (totalY > paperShowThreshold && !gameState.isBottomDropped) {
+            showPaper();
+        }
     }
 }
 
 function dragTouch(e) {
     if (!isDragging) return;
 
-    currentY = startY - e.touches[0].clientY;
+    const deltaY = startY - e.touches[0].clientY; // 上方向が正の値
+    const deltaX = e.touches[0].clientX - startX; // 右方向が正の値
 
-    if (currentY > 0) {
-        elements.treasureBox.style.transform = `translateY(-${currentY}px)`;
+    // ドラッグモードでない場合、上方向のしきい値をチェック
+    if (!isDragMode) {
+        if (deltaY > dragModeThreshold) {
+            // 上方向に30px以上動いたらドラッグモードに
+            isDragMode = true;
+            elements.treasureBox.classList.add('dragging');
+            // ドラッグモードになったらページスクロールを防止
+            e.preventDefault();
+        } else {
+            // まだしきい値に達していない場合は何もしない（スクロール可能）
+            return;
+        }
+    } else {
+        // ドラッグモード中はページスクロールを防止
+        e.preventDefault();
     }
 
-    if (currentY > dragThreshold) {
-        dropBottom();
+    // ドラッグモード：タッチ位置に追従
+    currentY = deltaY;
+    currentX = deltaX;
+
+    // 上方向のドラッグのみ許可（下には動かせない）
+    // boxOffsetX（前回までの累積X位置）+ currentX（今回のドラッグ量）
+    // boxOffsetY（前回までの累積Y位置）+ currentY（今回のドラッグ量）
+    if (currentY > 0) {
+        const totalX = boxOffsetX + currentX;
+        const totalY = boxOffsetY + currentY;
+        elements.treasureBox.style.transform = `translate(calc(-50% + ${totalX}px), calc(-${totalY}px)) scale(1.02)`;
+
+        // 一定の高さ以上持ち上げたら紙を表示
+        if (totalY > paperShowThreshold && !gameState.isBottomDropped) {
+            showPaper();
+        }
     }
 }
 
@@ -327,30 +387,45 @@ function endDrag() {
     if (!isDragging) return;
 
     isDragging = false;
+    isDragMode = false;
     elements.treasureBox.classList.remove('dragging');
 
-    // しきい値に達していない場合は元に戻す
-    if (currentY < dragThreshold) {
-        elements.treasureBox.style.transform = 'translateY(0)';
+    // 累積位置を更新（前回までの位置 + 今回のドラッグ量）
+    boxOffsetX = boxOffsetX + currentX;
+    boxOffsetY = boxOffsetY + currentY;
+
+    // 下には動かせないので、Y位置が負の場合は0にリセット
+    if (boxOffsetY < 0) {
+        boxOffsetY = 0;
     }
+
+    // 落下アニメーション：X位置を保持したまま真下に落下
+    // 高さに応じて落下時間を調整（最大0.6秒）
+    const fallDuration = Math.min(0.6, 0.3 + boxOffsetY / 500);
+
+    elements.treasureBox.style.transition =
+        `transform ${fallDuration}s cubic-bezier(0.55, 0.085, 0.68, 0.53)`;
+
+    // X位置を保持したまま、真下に落下（Y=0に戻る）
+    elements.treasureBox.style.transform =
+        `translate(calc(-50% + ${boxOffsetX}px), 0) scale(1)`;
+
+    // Y位置をリセット（宝箱はテーブルの上に戻った）
+    boxOffsetY = 0;
+
+    // アニメーション終了後、transitionをクリア
+    setTimeout(() => {
+        elements.treasureBox.style.transition = '';
+    }, fallDuration * 1000);
 }
 
-function dropBottom() {
+function showPaper() {
     if (gameState.isBottomDropped) return;
 
     gameState.isBottomDropped = true;
-    isDragging = false;
 
-    // 宝箱を現在のドラッグ位置で固定
-    const finalY = Math.min(currentY, dragThreshold + 50);
-    elements.treasureBox.style.transform = `translateY(-${finalY}px)`;
-    elements.treasureBox.classList.remove('dragging');
-
-    // 折りたたまれた紙を表示
-    setTimeout(() => {
-        elements.foldedPaper.classList.remove('hidden');
-        elements.foldedPaper.classList.add('falling');
-    }, 300);
+    // 宝箱を持ち上げると裏に紙が見える
+    elements.foldedPaper.classList.remove('hidden');
 }
 
 // ===== キーワード入力・クリア判定 =====

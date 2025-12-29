@@ -1,8 +1,70 @@
 /* ===== カスタムスタイル ===== */
 
+/* テーブルのスタイル */
+.table-element {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1;
+}
+
+.table-top {
+    width: 280px;
+    height: 16px;
+    background: linear-gradient(to bottom, #8b6f47, #6b5335);
+    border-radius: 3px 3px 0 0;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+    position: relative;
+}
+
+.table-top::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.2), transparent);
+    border-radius: 3px 3px 0 0;
+}
+
+.table-leg {
+    width: 12px;
+    height: 80px;
+    background: linear-gradient(to right, #6b5335, #8b6f47, #6b5335);
+    position: absolute;
+    top: 16px;
+    box-shadow: 2px 0 3px rgba(0, 0, 0, 0.3);
+}
+
+.table-leg-left {
+    left: 20px;
+}
+
+.table-leg-right {
+    right: 20px;
+}
+
+/* 宝箱の基本スタイル */
+.treasure-box {
+    /* テーブルの上に配置 */
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+    /* スムーズな動きのためのtransition */
+    transition: transform 0.1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    /* GPU加速を有効化してパフォーマンス向上 */
+    will-change: transform;
+}
+
 /* 宝箱のドラッグ状態 */
 .treasure-box.dragging {
-    transform: scale(1.05);
+    /* ドラッグ中はtransitionを無効化して即座に反応 */
+    transition: none;
+    transform: scale(1.02);
 }
 
 /* 宝箱が持ち上がるアニメーション */
@@ -29,23 +91,15 @@
     filter: brightness(0.7);
 }
 
-/* 紙が落ちるアニメーション */
-.paper.falling {
-    animation: paperFall 1.5s ease-out forwards;
-}
-
-@keyframes paperFall {
-    0% {
-        transform: translateX(-50%) translateY(-100px) rotate(0deg);
-        opacity: 0;
-    }
-    50% {
-        opacity: 1;
-    }
-    100% {
-        transform: translateX(-50%) translateY(0) rotate(3deg);
-        opacity: 1;
-    }
+/* 紙のスタイル（固定位置、移動しない） */
+#foldedPaper {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 5;
+    /* 紙は常にテーブルの上の固定位置に表示される */
+    /* 宝箱を動かしても紙は動かない */
 }
 
 /* モーダルのフェードイン */
@@ -176,8 +230,20 @@ html {
 
 /* レスポンシブ調整 */
 @media (max-width: 768px) {
+    .table-top {
+        width: 220px;
+    }
+
+    .table-element {
+        bottom: 0;
+    }
+
     .treasure-box {
-        transform: scale(0.85);
+        bottom: 20px;
+    }
+
+    #foldedPaper {
+        bottom: 20px;
     }
 
     #treasureBoxContainer {
