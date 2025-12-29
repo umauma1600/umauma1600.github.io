@@ -91,31 +91,15 @@
     filter: brightness(0.7);
 }
 
-/* 紙が落ちるアニメーション */
+/* 紙のスタイル（固定位置、移動しない） */
 #foldedPaper {
     position: absolute;
     bottom: 20px;
     left: 50%;
     transform: translateX(-50%);
     z-index: 5;
-}
-
-.falling {
-    animation: paperFall 1.5s ease-out forwards;
-}
-
-@keyframes paperFall {
-    0% {
-        transform: translateX(-50%) translateY(-150px) rotate(0deg);
-        opacity: 0;
-    }
-    50% {
-        opacity: 1;
-    }
-    100% {
-        transform: translateX(-50%) translateY(0) rotate(3deg);
-        opacity: 1;
-    }
+    /* 紙は常にテーブルの上の固定位置に表示される */
+    /* 宝箱を動かしても紙は動かない */
 }
 
 /* モーダルのフェードイン */
