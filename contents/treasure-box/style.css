@@ -10,7 +10,7 @@
 }
 
 .table-top {
-    width: 280px;
+    width: 420px;
     height: 16px;
     background: linear-gradient(to bottom, #8b6f47, #6b5335);
     border-radius: 3px 3px 0 0;
@@ -231,7 +231,7 @@ html {
 /* レスポンシブ調整 */
 @media (max-width: 768px) {
     .table-top {
-        width: 220px;
+        width: 300px;
     }
 
     .table-element {

@@ -269,6 +269,21 @@ let boxOffsetY = 0; // 宝箱の累積Y位置（下からの高さ）
 let dragModeThreshold = 30; // 上方向に30px以上でドラッグモード開始
 let paperShowThreshold = 50; // 50px以上持ち上げると紙が見える
 
+// テーブルと宝箱のサイズ（レスポンシブ対応）
+function getDragLimits() {
+    const isMobile = window.innerWidth <= 768;
+    const tableWidth = isMobile ? 300 : 420; // テーブルの幅
+    const boxWidth = isMobile ? 128 : 160;   // 宝箱の幅（w-32 = 128px, w-40 = 160px）
+    const maxOffset = (tableWidth - boxWidth) / 2; // 中央から左右に動ける最大距離
+    return { maxOffset };
+}
+
+// X座標の範囲制限を適用
+function clampX(x) {
+    const { maxOffset } = getDragLimits();
+    return Math.max(-maxOffset, Math.min(maxOffset, x));
+}
+
 // マウスイベント
 elements.treasureBox.addEventListener('mousedown', startDrag);
 document.addEventListener('mousemove', drag);
@@ -330,7 +345,8 @@ function drag(e) {
     // boxOffsetX（前回までの累積X位置）+ currentX（今回のドラッグ量）
     // boxOffsetY（前回までの累積Y位置）+ currentY（今回のドラッグ量）
     if (currentY > 0) {
-        const totalX = boxOffsetX + currentX;
+        // X座標をテーブルの範囲内に制限
+        const totalX = clampX(boxOffsetX + currentX);
         const totalY = boxOffsetY + currentY;
         elements.treasureBox.style.transform = `translate(calc(-50% + ${totalX}px), calc(-${totalY}px)) scale(1.02)`;
 
@@ -372,7 +388,8 @@ function dragTouch(e) {
     // boxOffsetX（前回までの累積X位置）+ currentX（今回のドラッグ量）
     // boxOffsetY（前回までの累積Y位置）+ currentY（今回のドラッグ量）
     if (currentY > 0) {
-        const totalX = boxOffsetX + currentX;
+        // X座標をテーブルの範囲内に制限
+        const totalX = clampX(boxOffsetX + currentX);
         const totalY = boxOffsetY + currentY;
         elements.treasureBox.style.transform = `translate(calc(-50% + ${totalX}px), calc(-${totalY}px)) scale(1.02)`;
 
@@ -391,7 +408,8 @@ function endDrag() {
     elements.treasureBox.classList.remove('dragging');
 
     // 累積位置を更新（前回までの位置 + 今回のドラッグ量）
-    boxOffsetX = boxOffsetX + currentX;
+    // X座標をテーブルの範囲内に制限
+    boxOffsetX = clampX(boxOffsetX + currentX);
     boxOffsetY = boxOffsetY + currentY;
 
     // 下には動かせないので、Y位置が負の場合は0にリセット
