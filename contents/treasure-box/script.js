@@ -272,8 +272,8 @@ let paperShowThreshold = 50; // 50px以上持ち上げると紙が見える
 // テーブルと宝箱のサイズ（レスポンシブ対応）
 function getDragLimits() {
     const isMobile = window.innerWidth <= 768;
-    const tableWidth = isMobile ? 300 : 420; // テーブルの幅
-    const boxWidth = isMobile ? 128 : 160;   // 宝箱の幅（w-32 = 128px, w-40 = 160px）
+    const tableWidth = isMobile ? 600 : 880; // テーブルの幅
+    const boxWidth = isMobile ? 80 : 96;     // 宝箱の幅（w-20 = 80px, w-24 = 96px）
     const maxOffset = (tableWidth - boxWidth) / 2; // 中央から左右に動ける最大距離
     return { maxOffset };
 }
