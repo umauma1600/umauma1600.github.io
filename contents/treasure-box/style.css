@@ -130,33 +130,6 @@
     }
 }
 
-/* ===== オブジェクト調査関連 ===== */
-.object-item.examined {
-    border-color: #c69c6d;
-    background-color: #fef3e8;
-}
-
-.object-item.examined::after {
-    content: '✓';
-    position: absolute;
-    top: 8px;
-    right: 8px;
-    width: 24px;
-    height: 24px;
-    background-color: #c69c6d;
-    color: white;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 14px;
-    font-weight: bold;
-}
-
-.object-item {
-    position: relative;
-}
-
 /* ===== アニメーション関連 ===== */
 
 /* 紙吹雪のスタイル */
@@ -243,18 +216,6 @@ html {
         height: 56px;
         bottom: 20px;
         right: 20px;
-    }
-}
-
-/* タッチデバイス用の調整 */
-@media (hover: none) and (pointer: coarse) {
-    .object-item:hover {
-        transform: none;
-    }
-
-    .object-item:active {
-        transform: scale(0.98);
-        background-color: #fef3e8;
     }
 }
 

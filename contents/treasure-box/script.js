@@ -32,65 +32,27 @@ const gameState = {
     isBottomDropped: false,
     isCleared: false,
     startTime: Date.now(),
-    examinedObjects: new Set(),
     currentHintStep: 0,
     timerInterval: null,       // タイマーのinterval ID
-};
-
-// ===== オブジェクト情報 =====
-const objectInfo = {
-    painting: {
-        title: '壁の絵画',
-        content: `
-            <p>古びた絵画が壁に掛かっている。</p>
-            <p>16世紀のルネサンス期を思わせる風景画だ。</p>
-            <p class="highlight mt-3">絵画の隅に小さく「16」という数字が書かれている。</p>
-        `
-    },
-    clock: {
-        title: '古い時計',
-        content: `
-            <p>振り子時計が静かに時を刻んでいる。</p>
-            <p>文字盤を見ると、針が止まっているようだ。</p>
-            <p class="highlight mt-3">時計は「4時」を指して止まっている。<br>16時...つまり午後4時だ。</p>
-        `
-    },
-    book: {
-        title: '古びた本',
-        content: `
-            <p>埃をかぶった厚い本が置いてある。</p>
-            <p>ページを開くと、数字に関する記述がある。</p>
-            <p class="highlight mt-3">「完全な数は美しい。最初の完全数は1と6だ。」</p>
-            <p class="text-sm text-text/60 mt-2">※1は単位、6は1+2+3の約数の和</p>
-        `
-    },
-    window: {
-        title: '窓の外',
-        content: `
-            <p>窓から外を眺めると、静かな庭が見える。</p>
-            <p>特に変わったものは見当たらない...</p>
-            <p class="highlight mt-3">でも、窓枠に小さく「00」という落書きがある。</p>
-        `
-    }
 };
 
 // ===== ヒント情報 =====
 const hints = [
     {
         step: 1,
-        text: '部屋の中をよく調べてみましょう。<br>4つのオブジェクトには、それぞれダイヤル錠を解くヒントが隠されています。'
+        text: 'ダイヤル錠の数字は「1600」です。<br>まずはダイヤルを回して錠を開けてみましょう。'
     },
     {
         step: 2,
-        text: '見つけた数字を組み合わせてみましょう。<br>「16」「4時(16時)」「1と6」「00」...<br>4桁の数字が見えてきませんか？'
+        text: '錠は外れたのに開きません...何か別の方法があるのでは？<br><span class="highlight">固定観念にとらわれないで</span>考えてみましょう。'
     },
     {
         step: 3,
-        text: 'ダイヤル錠の暗号は解けましたか？<br>でも...それだけで宝箱は開くのでしょうか？<br><span class="highlight">固定観念にとらわれないで</span>考えてみましょう。'
+        text: '宝箱を<span class="highlight">違う方向から</span>アプローチしてみては？<br>クリックではなく、ドラッグで動かしてみましょう。'
     },
     {
         step: 4,
-        text: '宝箱を<span class="highlight">違う方向から</span>アプローチしてみては？<br>上に持ち上げてみると...何か起こるかもしれません。'
+        text: '宝箱を<span class="highlight">上に持ち上げて</span>みてください！<br>底が抜けて...何か落ちてくるかもしれません。'
     }
 ];
 
@@ -117,13 +79,6 @@ const elements = {
     paperStep2: document.getElementById('paperStep2'),
     paperStep3: document.getElementById('paperStep3'),
     closePaperModal: document.getElementById('closePaperModal'),
-
-    // オブジェクト関連
-    objectItems: document.querySelectorAll('.object-item'),
-    objectModal: document.getElementById('objectModal'),
-    modalTitle: document.getElementById('modalTitle'),
-    modalContent: document.getElementById('modalContent'),
-    closeModal: document.getElementById('closeModal'),
 
     // キーワード入力
     keywordInput: document.getElementById('keywordInput'),
@@ -265,48 +220,6 @@ function checkDialAnswer() {
         elements.dialFeedback.classList.add('feedback-wrong');
         elements.dialFeedback.classList.remove('feedback-correct');
     }
-}
-
-// ===== オブジェクト調査機能 =====
-elements.objectItems.forEach((item) => {
-    item.addEventListener('click', () => {
-        const objectId = item.dataset.object;
-        examineObject(objectId, item);
-    });
-});
-
-function examineObject(objectId, element) {
-    const info = objectInfo[objectId];
-
-    // モーダル表示
-    elements.modalTitle.textContent = info.title;
-    elements.modalContent.innerHTML = info.content;
-    elements.objectModal.classList.remove('hidden');
-    elements.objectModal.classList.add('modal-show');
-
-    // 調べ済みマーク
-    if (!gameState.examinedObjects.has(objectId)) {
-        gameState.examinedObjects.add(objectId);
-        element.classList.add('examined');
-    }
-}
-
-// モーダルを閉じる
-elements.closeModal.addEventListener('click', closeObjectModal);
-elements.objectModal.addEventListener('click', (e) => {
-    if (e.target === elements.objectModal) {
-        closeObjectModal();
-    }
-});
-
-/**
- * オブジェクトモーダルを閉じる
- */
-function closeObjectModal() {
-    elements.objectModal.classList.remove('modal-show');
-    setTimeout(() => {
-        elements.objectModal.classList.add('hidden');
-    }, CONSTANTS.MODAL_FADE_DELAY);
 }
 
 // ===== 宝箱ドラッグ機能 =====
@@ -749,5 +662,5 @@ elements.paperStep3.addEventListener('click', (e) => {
 
 // ===== 初期化 =====
 console.log('🎮 逆転の宝箱 - ゲーム開始！');
-console.log('💡 ヒント: 部屋の中を調べて、ダイヤル錠の暗号を解こう！');
+console.log('💡 ヒント: ダイヤル錠を開けて宝箱の中身を取り出そう！');
 console.log('💡 でも...それだけで本当に開くのかな？');
