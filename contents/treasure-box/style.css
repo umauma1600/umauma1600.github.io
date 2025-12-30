@@ -9,41 +9,11 @@
     z-index: 1;
 }
 
-.table-top {
-    width: 880px;
-    height: 16px;
-    background: linear-gradient(to bottom, #8b6f47, #6b5335);
-    border-radius: 3px 3px 0 0;
-    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
-    position: relative;
-}
-
-.table-top::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 3px;
-    background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.2), transparent);
-    border-radius: 3px 3px 0 0;
-}
-
-.table-leg {
-    width: 12px;
-    height: 80px;
-    background: linear-gradient(to right, #6b5335, #8b6f47, #6b5335);
-    position: absolute;
-    top: 16px;
-    box-shadow: 2px 0 3px rgba(0, 0, 0, 0.3);
-}
-
-.table-leg-left {
-    left: 20px;
-}
-
-.table-leg-right {
-    right: 20px;
+.table-image {
+    width: 1350px;
+    height: auto;
+    display: block;
+    margin: 0 auto;
 }
 
 /* ===== 宝箱関連 ===== */
@@ -191,8 +161,9 @@ html {
 
 /* ===== レスポンシブ対応 ===== */
 @media (max-width: 768px) {
-    .table-top {
-        width: 600px;
+    .table-image {
+        width: 500px;
+        max-width: 85%;
     }
 
     .table-element {
