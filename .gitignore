@@ -1,0 +1,12 @@
+# Node.js
+node_modules/
+package-lock.json
+
+# テスト・開発用ファイル
+test-*.js
+screenshot-*.png
+final-*.png
+
+# OS
+.DS_Store
+Thumbs.db
