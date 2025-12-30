@@ -9,6 +9,8 @@ test-*.js
 *-structure.js
 position-*.js
 position-*.png
+verify-*.js
+verify-*.png
 screenshot-*.png
 final-*.png
 debug-*.png
