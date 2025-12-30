@@ -1,6 +1,6 @@
 /* ===== カスタムスタイル ===== */
 
-/* テーブルのスタイル */
+/* ===== テーブル関連 ===== */
 .table-element {
     position: absolute;
     bottom: 0;
@@ -46,7 +46,7 @@
     right: 20px;
 }
 
-/* 宝箱の基本スタイル */
+/* ===== 宝箱関連 ===== */
 .treasure-box {
     /* テーブルの上に配置 */
     position: absolute;
@@ -102,7 +102,7 @@
     /* 宝箱を動かしても紙は動かない */
 }
 
-/* モーダルのフェードイン */
+/* ===== モーダル関連 ===== */
 .modal-show {
     display: flex !important;
     animation: modalFadeIn 0.3s ease-out;
@@ -130,32 +130,7 @@
     }
 }
 
-/* オブジェクトが調べ済みの状態 */
-.object-item.examined {
-    border-color: #c69c6d;
-    background-color: #fef3e8;
-}
-
-.object-item.examined::after {
-    content: '✓';
-    position: absolute;
-    top: 8px;
-    right: 8px;
-    width: 24px;
-    height: 24px;
-    background-color: #c69c6d;
-    color: white;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 14px;
-    font-weight: bold;
-}
-
-.object-item {
-    position: relative;
-}
+/* ===== アニメーション関連 ===== */
 
 /* 紙吹雪のスタイル */
 .confetti {
@@ -191,20 +166,6 @@
     }
 }
 
-/* ドラッグヒントの点滅 */
-#dragHint {
-    animation: blink 1.5s ease-in-out infinite;
-}
-
-@keyframes blink {
-    0%, 100% {
-        opacity: 1;
-    }
-    50% {
-        opacity: 0.3;
-    }
-}
-
 /* スムーススクロール */
 html {
     scroll-behavior: smooth;
@@ -228,7 +189,7 @@ html {
     background: #b08a5d;
 }
 
-/* レスポンシブ調整 */
+/* ===== レスポンシブ対応 ===== */
 @media (max-width: 768px) {
     .table-top {
         width: 600px;
@@ -258,19 +219,7 @@ html {
     }
 }
 
-/* タッチデバイス用の調整 */
-@media (hover: none) and (pointer: coarse) {
-    .object-item:hover {
-        transform: none;
-    }
-
-    .object-item:active {
-        transform: scale(0.98);
-        background-color: #fef3e8;
-    }
-}
-
-/* アンサーフィードバックのスタイル */
+/* ===== UI フィードバック関連 ===== */
 .feedback-wrong {
     color: #ef4444;
     font-weight: 500;
@@ -279,6 +228,23 @@ html {
 .feedback-correct {
     color: #22c55e;
     font-weight: 500;
+}
+
+/* 入力欄シェイクアニメーション（不正解時） */
+.animate-shake {
+    animation: shake 0.5s ease-in-out;
+}
+
+@keyframes shake {
+    0%, 100% {
+        transform: translateX(0);
+    }
+    10%, 30%, 50%, 70%, 90% {
+        transform: translateX(-8px);
+    }
+    20%, 40%, 60%, 80% {
+        transform: translateX(8px);
+    }
 }
 
 /* ボタンの無効化状態 */
