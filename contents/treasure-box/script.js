@@ -27,13 +27,13 @@ const CONSTANTS = {
 // ===== ゲーム状態管理 =====
 const gameState = {
     dialValues: [0, 0, 0, 0],
-    correctDial: [1, 6, 0, 0], // 正解: 1600
+    correctDial: [1, 6, 0, 0],     // 正解: 1600
     isLockUnlocked: false,
     isBottomDropped: false,
     isCleared: false,
     startTime: Date.now(),
     currentHintStep: 0,
-    timerInterval: null,       // タイマーのinterval ID
+    timerInterval: null,           // タイマーのinterval ID
 };
 
 // ===== ヒント情報 =====
@@ -62,10 +62,8 @@ const elements = {
     dialUpButtons: document.querySelectorAll('.dial-up'),
     dialDownButtons: document.querySelectorAll('.dial-down'),
     dialValues: document.querySelectorAll('.dial-value'),
-    dialModal: document.getElementById('dialModal'),
     dialOpenButton: document.getElementById('dialOpenButton'),
     dialFeedback: document.getElementById('dialFeedback'),
-    closeDialModal: document.getElementById('closeDialModal'),
     lockIcon: document.getElementById('lockIcon'),
 
     // 宝箱関連
@@ -74,11 +72,9 @@ const elements = {
     foldedPaper: document.getElementById('foldedPaper'),
 
     // 紙モーダル関連
-    paperModal: document.getElementById('paperModal'),
     paperStep1: document.getElementById('paperStep1'),
     paperStep2: document.getElementById('paperStep2'),
     paperStep3: document.getElementById('paperStep3'),
-    closePaperModal: document.getElementById('closePaperModal'),
 
     // キーワード入力
     keywordInput: document.getElementById('keywordInput'),
@@ -87,15 +83,12 @@ const elements = {
 
     // ヒント
     hintButton: document.getElementById('hintButton'),
-    hintModal: document.getElementById('hintModal'),
     hintContent: document.getElementById('hintContent'),
     hintStep: document.getElementById('hintStep'),
-    closeHintModal: document.getElementById('closeHintModal'),
     prevHint: document.getElementById('prevHint'),
     nextHint: document.getElementById('nextHint'),
 
     // クリア
-    clearModal: document.getElementById('clearModal'),
     clearTime: document.getElementById('clearTime'),
     shareButton: document.getElementById('shareButton'),
     retryButton: document.getElementById('retryButton'),
@@ -105,13 +98,26 @@ const elements = {
     timer: document.getElementById('timer'),
 };
 
+// ===== モーダル管理 =====
+// Modalクラスのインスタンスを作成
+const modals = {
+    dial: new Modal('dialModal', CONSTANTS.MODAL_FADE_DELAY),
+    hint: new Modal('hintModal', CONSTANTS.MODAL_FADE_DELAY),
+    paper: new Modal('paperModal', CONSTANTS.MODAL_FADE_DELAY),
+    clear: new Modal('clearModal', CONSTANTS.MODAL_FADE_DELAY),
+};
+
+// 閉じるボタンを追加
+modals.dial.addCloseButton('closeDialModal');
+modals.hint.addCloseButton('closeHintModal');
+modals.paper.addCloseButton('closePaperModal');
+
 // ===== タイマー機能 =====
 /**
  * タイマーを更新する
  */
 function updateTimer() {
     if (gameState.isCleared) {
-        // クリア後はタイマーを停止
         if (gameState.timerInterval) {
             clearInterval(gameState.timerInterval);
             gameState.timerInterval = null;
@@ -129,44 +135,23 @@ function updateTimer() {
  * タイマーを開始する
  */
 function startTimer() {
-    updateTimer(); // 即座に表示を更新
+    updateTimer();
     gameState.timerInterval = setInterval(updateTimer, CONSTANTS.TIMER_INTERVAL);
 }
 
-// タイマー開始
-startTimer();
-
 // ===== ダイヤル錠モーダル =====
 elements.lockIcon.addEventListener('click', (e) => {
-    e.stopPropagation(); // 宝箱のドラッグを防ぐ
-    showDialModal();
-});
-
-function showDialModal() {
-    elements.dialModal.classList.remove('hidden');
-    elements.dialModal.classList.add('modal-show');
-}
-
-/**
- * ダイヤル錠モーダルを閉じる
- */
-function closeDialModal() {
-    elements.dialModal.classList.remove('modal-show');
-    setTimeout(() => {
-        elements.dialModal.classList.add('hidden');
-    }, CONSTANTS.MODAL_FADE_DELAY);
-}
-
-elements.closeDialModal.addEventListener('click', closeDialModal);
-elements.dialModal.addEventListener('click', (e) => {
-    if (e.target === elements.dialModal) {
-        closeDialModal();
-    }
+    e.stopPropagation();
+    modals.dial.show();
 });
 
 // ===== ダイヤル錠機能 =====
+/**
+ * ダイヤルを回転させる
+ * @param {number} index - ダイヤルのインデックス (0-3)
+ * @param {number} direction - 回転方向 (1: 上, -1: 下)
+ */
 function rotateDial(index, direction) {
-    // 0-9の範囲で循環
     gameState.dialValues[index] = (gameState.dialValues[index] + direction + 10) % 10;
     elements.dialValues[index].textContent = gameState.dialValues[index];
 }
@@ -187,16 +172,15 @@ elements.dialDownButtons.forEach((button) => {
 });
 
 // OPENボタン
-elements.dialOpenButton.addEventListener('click', () => {
-    checkDialAnswer();
-});
+elements.dialOpenButton.addEventListener('click', checkDialAnswer);
 
+/**
+ * ダイヤル錠の答えを確認する
+ */
 function checkDialAnswer() {
-    // 配列の比較
     const isCorrect = gameState.dialValues.every((val, idx) => val === gameState.correctDial[idx]);
 
     if (isCorrect) {
-        // 正解だが、宝箱は開かない（ミスリード）
         gameState.isLockUnlocked = true;
         elements.dialFeedback.textContent = '✅ 錠が開きました！';
         elements.dialFeedback.classList.remove('feedback-wrong');
@@ -212,10 +196,9 @@ function checkDialAnswer() {
                 elements.lockIcon.style.display = 'none';
             }, 500);
 
-            closeDialModal();
+            modals.dial.close();
         }, 1500);
     } else {
-        // 不正解
         elements.dialFeedback.textContent = '❌ 番号が違うようです...';
         elements.dialFeedback.classList.add('feedback-wrong');
         elements.dialFeedback.classList.remove('feedback-correct');
@@ -223,30 +206,26 @@ function checkDialAnswer() {
 }
 
 // ===== 宝箱ドラッグ機能 =====
-// ドラッグ状態管理
 let isDragging = false;
-let isDragMode = false; // ドラッグモードかどうか（スクロールと区別するため）
-let startY = 0;         // ドラッグ開始時のY座標
-let startX = 0;         // ドラッグ開始時のX座標
-let currentY = 0;       // 現在のドラッグ移動量Y
-let currentX = 0;       // 現在のドラッグ移動量X
-let boxOffsetX = 0;     // 宝箱の累積X位置（中央からのずれ）
-let boxOffsetY = 0;     // 宝箱の累積Y位置（下からの高さ）
+let isDragMode = false;
+let startY = 0;
+let startX = 0;
+let currentY = 0;
+let currentX = 0;
+let boxOffsetX = 0;
+let boxOffsetY = 0;
 
 /**
- * テーブルと宝箱のサイズからドラッグ制限を取得（レスポンシブ対応）
+ * テーブルと宝箱のサイズからドラッグ制限を取得
  * @returns {Object} maxOffset - X方向の最大移動距離
  */
 function getDragLimits() {
-    // テーブル画像の実際の幅を取得
     const tableImage = document.querySelector('.table-image');
     if (!tableImage) {
-        return { maxOffset: 400 }; // フォールバック値
+        return { maxOffset: 400 };
     }
 
     const tableWidth = tableImage.getBoundingClientRect().width;
-    // 宝箱がテーブルの横幅内に収まるように制限
-    // テーブルの半分の幅を最大オフセットとする
     const maxOffset = tableWidth / 2;
     return { maxOffset };
 }
@@ -261,22 +240,19 @@ function clampX(x) {
     return Math.max(-maxOffset, Math.min(maxOffset, x));
 }
 
-// マウスイベント
+// イベントリスナー登録
 elements.treasureBox.addEventListener('mousedown', startDrag);
 document.addEventListener('mousemove', drag);
 document.addEventListener('mouseup', endDrag);
-
-// タッチイベント
 elements.treasureBox.addEventListener('touchstart', startDragTouch);
 document.addEventListener('touchmove', dragTouch);
 document.addEventListener('touchend', endDrag);
 
 function startDrag(e) {
-    // 錠アイコンをクリックした場合はドラッグしない
     if (e.target.closest('#lockIcon')) return;
 
     isDragging = true;
-    isDragMode = false; // 最初はドラッグモードではない
+    isDragMode = false;
     startY = e.clientY;
     startX = e.clientX;
     currentY = 0;
@@ -284,10 +260,8 @@ function startDrag(e) {
 }
 
 function startDragTouch(e) {
-    // 錠アイコンをタップした場合はドラッグしない
     if (e.target.closest('#lockIcon')) return;
 
-    // 最初はpreventDefaultしない（スクロール可能）
     isDragging = true;
     isDragMode = false;
     startY = e.touches[0].clientY;
@@ -300,44 +274,35 @@ function startDragTouch(e) {
  * ドラッグ処理の共通ロジック
  * @param {number} deltaX - X方向の移動量
  * @param {number} deltaY - Y方向の移動量
- * @param {Event} event - イベントオブジェクト（タッチイベントの場合のみpreventDefaultに使用）
+ * @param {Event} event - イベントオブジェクト
  * @param {boolean} isTouch - タッチイベントかどうか
  */
 function handleDragMove(deltaX, deltaY, event, isTouch) {
-    // ドラッグモードでない場合、移動量のしきい値をチェック
+    // ドラッグモードでない場合、しきい値をチェック
     if (!isDragMode) {
         const dragDistance = Math.sqrt(deltaX * deltaX + deltaY * deltaY);
         if (dragDistance > CONSTANTS.DRAG_THRESHOLD) {
-            // しきい値を超えたらドラッグモードに
             isDragMode = true;
             elements.treasureBox.classList.add('dragging');
-            // タッチイベントの場合、ドラッグモードになったらページスクロールを防止
             if (isTouch && event) {
                 event.preventDefault();
             }
         } else {
-            // まだしきい値に達していない場合は何もしない（スクロール可能）
             return;
         }
     } else if (isTouch && event) {
-        // ドラッグモード中はページスクロールを防止
         event.preventDefault();
     }
 
-    // ドラッグモード：位置に追従
     currentY = deltaY;
     currentX = deltaX;
 
-    // X座標は常に更新（横方向のドラッグを許可）
     const totalX = clampX(boxOffsetX + currentX);
-
-    // Y座標は上方向のみ許可（下には動かせない）
     let totalY = boxOffsetY;
     if (currentY > 0) {
         totalY = boxOffsetY + currentY;
     }
 
-    // 宝箱の位置を更新
     elements.treasureBox.style.transform = `translate(calc(-50% + ${totalX}px), calc(-${totalY}px)) scale(1.02)`;
 
     // 一定の高さ以上持ち上げたら紙を表示
@@ -346,33 +311,20 @@ function handleDragMove(deltaX, deltaY, event, isTouch) {
     }
 }
 
-/**
- * マウスドラッグ処理
- */
 function drag(e) {
     if (!isDragging) return;
-
-    const deltaY = startY - e.clientY; // 上方向が正の値
-    const deltaX = e.clientX - startX; // 右方向が正の値
-
+    const deltaY = startY - e.clientY;
+    const deltaX = e.clientX - startX;
     handleDragMove(deltaX, deltaY, null, false);
 }
 
-/**
- * タッチドラッグ処理
- */
 function dragTouch(e) {
     if (!isDragging) return;
-
-    const deltaY = startY - e.touches[0].clientY; // 上方向が正の値
-    const deltaX = e.touches[0].clientX - startX; // 右方向が正の値
-
+    const deltaY = startY - e.touches[0].clientY;
+    const deltaX = e.touches[0].clientX - startX;
     handleDragMove(deltaX, deltaY, e, true);
 }
 
-/**
- * ドラッグ終了処理
- */
 function endDrag() {
     if (!isDragging) return;
 
@@ -380,18 +332,13 @@ function endDrag() {
     isDragMode = false;
     elements.treasureBox.classList.remove('dragging');
 
-    // 累積位置を更新（前回までの位置 + 今回のドラッグ量）
-    // X座標をテーブルの範囲内に制限
     boxOffsetX = clampX(boxOffsetX + currentX);
     boxOffsetY = boxOffsetY + currentY;
 
-    // 下には動かせないので、Y位置が負の場合は0にリセット
     if (boxOffsetY < 0) {
         boxOffsetY = 0;
     }
 
-    // 落下アニメーション：X位置を保持したまま真下に落下
-    // 高さに応じて落下時間を調整
     const fallDuration = Math.min(
         CONSTANTS.FALL_DURATION_MAX,
         CONSTANTS.FALL_DURATION_BASE + boxOffsetY / 500
@@ -399,15 +346,11 @@ function endDrag() {
 
     elements.treasureBox.style.transition =
         `transform ${fallDuration}s cubic-bezier(0.55, 0.085, 0.68, 0.53)`;
-
-    // X位置を保持したまま、真下に落下（Y=0に戻る）
     elements.treasureBox.style.transform =
         `translate(calc(-50% + ${boxOffsetX}px), 0) scale(1)`;
 
-    // Y位置をリセット（宝箱はテーブルの上に戻った）
     boxOffsetY = 0;
 
-    // アニメーション終了後、transitionをクリア
     setTimeout(() => {
         elements.treasureBox.style.transition = '';
     }, fallDuration * 1000);
@@ -415,10 +358,7 @@ function endDrag() {
 
 function showPaper() {
     if (gameState.isBottomDropped) return;
-
     gameState.isBottomDropped = true;
-
-    // 宝箱を持ち上げると裏に紙が見える
     elements.foldedPaper.classList.remove('hidden');
 }
 
@@ -430,10 +370,12 @@ elements.keywordInput.addEventListener('keypress', (e) => {
     }
 });
 
+/**
+ * 入力された答えを確認する
+ */
 function checkAnswer() {
     const input = elements.keywordInput.value.trim();
 
-    // 正解: 「逆転の発想」（ひらがな、漢字、混在すべてOK）
     const correctAnswers = [
         '逆転の発想',
         'ぎゃくてんのはっそう',
@@ -445,16 +387,13 @@ function checkAnswer() {
     );
 
     if (isCorrect) {
-        // クリア！
         elements.answerFeedback.textContent = '';
         elements.answerFeedback.classList.remove('feedback-wrong');
         clearGame();
     } else {
-        // 不正解
         elements.answerFeedback.textContent = '❌ 違うようです...もう一度考えてみましょう。';
         elements.answerFeedback.classList.add('feedback-wrong');
 
-        // 入力欄を振動させる
         elements.keywordInput.classList.add('animate-shake');
         setTimeout(() => {
             elements.keywordInput.classList.remove('animate-shake');
@@ -463,10 +402,12 @@ function checkAnswer() {
 }
 
 // ===== クリア処理 =====
+/**
+ * ゲームクリア処理
+ */
 function clearGame() {
     gameState.isCleared = true;
 
-    // クリアタイムを計算
     const elapsed = Math.floor((Date.now() - gameState.startTime) / 1000);
     const minutes = Math.floor(elapsed / 60);
     const seconds = elapsed % 60;
@@ -474,13 +415,10 @@ function clearGame() {
 
     elements.clearTime.textContent = timeString;
 
-    // 紙吹雪を表示
     createConfetti();
 
-    // クリアモーダルを表示
     setTimeout(() => {
-        elements.clearModal.classList.remove('hidden');
-        elements.clearModal.classList.add('modal-show');
+        modals.clear.show();
     }, 500);
 }
 
@@ -501,7 +439,6 @@ function createConfetti() {
 
             elements.confettiContainer.appendChild(confetti);
 
-            // 一定時間後に削除
             setTimeout(() => {
                 confetti.remove();
             }, CONSTANTS.CONFETTI_DURATION);
@@ -529,12 +466,9 @@ elements.retryButton.addEventListener('click', () => {
 });
 
 // ===== ヒント機能 =====
-elements.hintButton.addEventListener('click', showHintModal);
-elements.closeHintModal.addEventListener('click', closeHintModal);
-elements.hintModal.addEventListener('click', (e) => {
-    if (e.target === elements.hintModal) {
-        closeHintModal();
-    }
+elements.hintButton.addEventListener('click', () => {
+    updateHintDisplay();
+    modals.hint.show();
 });
 
 elements.prevHint.addEventListener('click', () => {
@@ -551,28 +485,14 @@ elements.nextHint.addEventListener('click', () => {
     }
 });
 
-function showHintModal() {
-    updateHintDisplay();
-    elements.hintModal.classList.remove('hidden');
-    elements.hintModal.classList.add('modal-show');
-}
-
 /**
- * ヒントモーダルを閉じる
+ * ヒント表示を更新する
  */
-function closeHintModal() {
-    elements.hintModal.classList.remove('modal-show');
-    setTimeout(() => {
-        elements.hintModal.classList.add('hidden');
-    }, CONSTANTS.MODAL_FADE_DELAY);
-}
-
 function updateHintDisplay() {
     const hint = hints[gameState.currentHintStep];
     elements.hintContent.innerHTML = hint.text;
     elements.hintStep.textContent = gameState.currentHintStep + 1;
 
-    // ボタンの有効/無効
     elements.prevHint.disabled = gameState.currentHintStep === 0;
     elements.nextHint.disabled = gameState.currentHintStep === hints.length - 1;
 }
@@ -584,31 +504,13 @@ let paperCurrentStep = 1;
 elements.foldedPaper.addEventListener('click', () => {
     paperCurrentStep = 1;
     showPaperStep(1);
-    elements.paperModal.classList.remove('hidden');
-    elements.paperModal.classList.add('modal-show');
-});
-
-elements.closePaperModal.addEventListener('click', closePaperModal);
-elements.paperModal.addEventListener('click', (e) => {
-    if (e.target === elements.paperModal) {
-        closePaperModal();
-    }
+    modals.paper.show();
 });
 
 /**
- * 紙モーダルを閉じる
+ * 紙のステップ表示を管理
+ * @param {number} step - 表示するステップ (1-3)
  */
-function closePaperModal() {
-    elements.paperModal.classList.remove('modal-show');
-    setTimeout(() => {
-        elements.paperModal.classList.add('hidden');
-        // モーダルを閉じたときにステップをリセット
-        paperCurrentStep = 1;
-        showPaperStep(1);
-    }, CONSTANTS.MODAL_FADE_DELAY);
-}
-
-// 紙のステップ表示を管理
 function showPaperStep(step) {
     elements.paperStep1.classList.add('hidden');
     elements.paperStep2.classList.add('hidden');
@@ -623,19 +525,17 @@ function showPaperStep(step) {
     }
 }
 
-// ステップ1: 閉じた紙をクリック → ステップ2（開きかけ）へ
+// ステップ1: 閉じた紙をクリック → ステップ2へ
 elements.paperStep1.addEventListener('click', (e) => {
-    e.stopPropagation(); // モーダル閉じイベントの伝播を防止
+    e.stopPropagation();
     if (paperCurrentStep === 1) {
         paperCurrentStep = 2;
         showPaperStep(2);
 
-        // 一定時間後にステップ3（完全に開いた状態）へ
         setTimeout(() => {
             paperCurrentStep = 3;
             showPaperStep(3);
 
-            // キーワード入力欄にフォーカス
             setTimeout(() => {
                 elements.keywordInput.focus();
             }, 500);
@@ -643,14 +543,13 @@ elements.paperStep1.addEventListener('click', (e) => {
     }
 });
 
-// ステップ2: 開きかけの紙をクリック（自動遷移中でも手動で進められる）
+// ステップ2: 開きかけの紙をクリック
 elements.paperStep2.addEventListener('click', (e) => {
-    e.stopPropagation(); // モーダル閉じイベントの伝播を防止
+    e.stopPropagation();
     if (paperCurrentStep === 2) {
         paperCurrentStep = 3;
         showPaperStep(3);
 
-        // キーワード入力欄にフォーカス
         setTimeout(() => {
             elements.keywordInput.focus();
         }, 500);
@@ -659,13 +558,19 @@ elements.paperStep2.addEventListener('click', (e) => {
 
 // ステップ3: 完全に開いた紙をクリック → モーダルを閉じる
 elements.paperStep3.addEventListener('click', (e) => {
-    e.stopPropagation(); // モーダル閉じイベントの伝播を防止
+    e.stopPropagation();
     if (paperCurrentStep === 3) {
-        closePaperModal();
+        modals.paper.close();
+        // モーダルを閉じたときにステップをリセット
+        setTimeout(() => {
+            paperCurrentStep = 1;
+            showPaperStep(1);
+        }, CONSTANTS.MODAL_FADE_DELAY);
     }
 });
 
 // ===== 初期化 =====
+startTimer();
 console.log('🎮 逆転の宝箱 - ゲーム開始！');
 console.log('💡 ヒント: ダイヤル錠を開けて宝箱の中身を取り出そう！');
 console.log('💡 でも...それだけで本当に開くのかな？');
