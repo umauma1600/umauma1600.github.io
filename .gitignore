@@ -1,0 +1,23 @@
+# Node.js
+node_modules/
+package-lock.json
+
+# テスト・開発用ファイル
+test-*.js
+*-test.js
+*-check.js
+*-structure.js
+position-*.js
+position-*.png
+verify-*.js
+verify-*.png
+screenshot-*.png
+final-*.png
+debug-*.png
+viewport-*.png
+new-structure-*.png
+paper-*.png
+
+# OS
+.DS_Store
+Thumbs.db

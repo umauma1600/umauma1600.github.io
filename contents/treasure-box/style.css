@@ -1,59 +1,34 @@
 /* ===== カスタムスタイル ===== */
 
 /* ===== テーブル関連 ===== */
-.table-element {
+.table-area {
     position: absolute;
     bottom: 0;
     left: 50%;
     transform: translateX(-50%);
     z-index: 1;
+    width: 100%;
 }
 
-.table-top {
-    width: 880px;
-    height: 16px;
-    background: linear-gradient(to bottom, #8b6f47, #6b5335);
-    border-radius: 3px 3px 0 0;
-    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
-    position: relative;
+.table-image {
+    width: 70%;
+    max-width: 1550px;
+    height: auto;
+    display: block;
+    margin: 0 auto;
 }
 
-.table-top::before {
-    content: '';
+/* ===== 宝箱コンテナ ===== */
+.treasure-box-container {
     position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 3px;
-    background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.2), transparent);
-    border-radius: 3px 3px 0 0;
-}
-
-.table-leg {
-    width: 12px;
-    height: 80px;
-    background: linear-gradient(to right, #6b5335, #8b6f47, #6b5335);
-    position: absolute;
-    top: 16px;
-    box-shadow: 2px 0 3px rgba(0, 0, 0, 0.3);
-}
-
-.table-leg-left {
-    left: 20px;
-}
-
-.table-leg-right {
-    right: 20px;
+    bottom: 280px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
 }
 
 /* ===== 宝箱関連 ===== */
 .treasure-box {
-    /* テーブルの上に配置 */
-    position: absolute;
-    bottom: 20px;
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 10;
     /* スムーズな動きのためのtransition */
     transition: transform 0.1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     /* GPU加速を有効化してパフォーマンス向上 */
@@ -94,12 +69,13 @@
 /* 紙のスタイル（固定位置、移動しない） */
 #foldedPaper {
     position: absolute;
-    bottom: 20px;
+    bottom: 280px;
     left: 50%;
     transform: translateX(-50%);
-    z-index: 5;
+    z-index: 2;
     /* 紙は常にテーブルの上の固定位置に表示される */
     /* 宝箱を動かしても紙は動かない */
+    /* 宝箱の背面に配置されるため、初期状態では宝箱に隠れる */
 }
 
 /* ===== モーダル関連 ===== */
@@ -191,24 +167,17 @@ html {
 
 /* ===== レスポンシブ対応 ===== */
 @media (max-width: 768px) {
-    .table-top {
-        width: 600px;
-    }
-
-    .table-element {
+    .table-area {
         bottom: 0;
     }
 
-    .treasure-box {
-        bottom: 20px;
+    .treasure-box-container {
+        transform: translateX(-50%) scale(0.9);
+        bottom: 200px;
     }
 
     #foldedPaper {
-        bottom: 20px;
-    }
-
-    #treasureBoxContainer {
-        transform: scale(0.9);
+        bottom: 200px;
     }
 
     #hintButton {

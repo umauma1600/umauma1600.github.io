@@ -238,10 +238,15 @@ let boxOffsetY = 0;     // 宝箱の累積Y位置（下からの高さ）
  * @returns {Object} maxOffset - X方向の最大移動距離
  */
 function getDragLimits() {
-    const isMobile = window.innerWidth <= CONSTANTS.MOBILE_BREAKPOINT;
-    const tableWidth = isMobile ? CONSTANTS.TABLE_WIDTH_MOBILE : CONSTANTS.TABLE_WIDTH_DESKTOP;
-    const boxWidth = isMobile ? CONSTANTS.BOX_WIDTH_MOBILE : CONSTANTS.BOX_WIDTH_DESKTOP;
-    // 宝箱の中心がテーブルの端まで動けるように設定（宝箱が少しはみ出す）
+    // テーブル画像の実際の幅を取得
+    const tableImage = document.querySelector('.table-image');
+    if (!tableImage) {
+        return { maxOffset: 400 }; // フォールバック値
+    }
+
+    const tableWidth = tableImage.getBoundingClientRect().width;
+    // 宝箱がテーブルの横幅内に収まるように制限
+    // テーブルの半分の幅を最大オフセットとする
     const maxOffset = tableWidth / 2;
     return { maxOffset };
 }

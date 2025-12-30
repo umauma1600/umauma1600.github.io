@@ -85,35 +85,32 @@
         <div class="max-w-6xl mx-auto">
             <!-- 宝箱エリア（フルワイド） -->
             <div>
-                <div class="relative bg-gradient-to-b from-accent/5 to-transparent p-8 rounded-2xl min-h-[700px] flex items-center justify-center">
+                <div id="gameArea" class="relative bg-gradient-to-b from-accent/5 to-transparent p-8 rounded-2xl min-h-[700px] flex items-center justify-center">
 
-                        <!-- 宝箱コンテナ -->
-                        <div id="treasureBoxContainer" class="relative">
+                    <!-- テーブルエリア -->
+                    <div id="tableArea" class="table-area">
+                        <img src="assets/table1.png" alt="テーブル" class="table-image" draggable="false">
+                    </div>
 
-                            <!-- テーブル -->
-                            <div id="table" class="table-element">
-                                <div class="table-top"></div>
-                                <div class="table-leg table-leg-left"></div>
-                                <div class="table-leg table-leg-right"></div>
-                            </div>
+                    <!-- 宝箱エリア -->
+                    <div id="treasureBoxContainer" class="treasure-box-container">
+                        <!-- 宝箱本体 -->
+                        <div id="treasureBox" class="treasure-box relative cursor-grab active:cursor-grabbing">
+                            <!-- 宝箱画像 -->
+                            <img src="assets/treasure-box2.png" alt="宝箱" class="treasure-box-image w-32 md:w-40 max-w-full h-auto drop-shadow-2xl select-none" draggable="false">
 
-                            <!-- 宝箱本体 -->
-                            <div id="treasureBox" class="treasure-box relative cursor-grab active:cursor-grabbing">
-                                <!-- 宝箱画像 -->
-                                <img src="assets/treasure-box2.png" alt="宝箱" class="treasure-box-image w-32 md:w-40 max-w-full h-auto drop-shadow-2xl select-none" draggable="false">
-
-                                <!-- ダイヤル錠画像（クリックでモーダル表示） -->
-                                <div id="lockIcon" class="absolute top-1/2 left-1/2 -translate-x-1/2 translate-y-1 w-12 md:w-14 cursor-pointer hover:scale-110 transition-transform z-20 select-none" draggable="false">
-                                    <img src="assets/dial-lock2.png" alt="ダイヤル錠" class="w-full h-auto" draggable="false">
-                                </div>
-                            </div>
-
-                            <!-- 折りたたまれた紙 -->
-                            <div id="foldedPaper" class="hidden cursor-pointer hover:scale-105 transition-transform">
-                                <img src="assets/kami-Photoroom.png" alt="落ちてきた紙" class="w-12 h-auto drop-shadow-lg" draggable="false">
+                            <!-- ダイヤル錠画像（クリックでモーダル表示） -->
+                            <div id="lockIcon" class="absolute top-1/2 left-1/2 -translate-x-1/2 translate-y-1 w-12 md:w-14 cursor-pointer hover:scale-110 transition-transform z-20 select-none" draggable="false">
+                                <img src="assets/dial-lock2.png" alt="ダイヤル錠" class="w-full h-auto" draggable="false">
                             </div>
                         </div>
+
+                        <!-- 折りたたまれた紙 -->
+                        <div id="foldedPaper" class="hidden cursor-pointer hover:scale-105 transition-transform">
+                            <img src="assets/kami-Photoroom.png" alt="落ちてきた紙" class="w-12 h-auto drop-shadow-lg" draggable="false">
+                        </div>
                     </div>
+                </div>
 
                 <!-- キーワード入力欄 -->
                 <div class="mt-8 bg-white p-6 rounded-lg shadow-sm max-w-2xl mx-auto">
