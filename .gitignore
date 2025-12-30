@@ -4,8 +4,12 @@ package-lock.json
 
 # テスト・開発用ファイル
 test-*.js
+*-test.js
+*-check.js
 screenshot-*.png
 final-*.png
+debug-*.png
+viewport-*.png
 
 # OS
 .DS_Store

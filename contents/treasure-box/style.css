@@ -7,10 +7,13 @@
     left: 50%;
     transform: translateX(-50%);
     z-index: 1;
+    width: 100vw;
+    max-width: 100%;
 }
 
 .table-image {
-    width: 1350px;
+    width: 80%;
+    max-width: 1550px;
     height: auto;
     display: block;
     margin: 0 auto;
@@ -161,11 +164,6 @@ html {
 
 /* ===== レスポンシブ対応 ===== */
 @media (max-width: 768px) {
-    .table-image {
-        width: 500px;
-        max-width: 85%;
-    }
-
     .table-element {
         bottom: 0;
     }
