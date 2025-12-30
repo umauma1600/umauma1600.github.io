@@ -16,6 +16,7 @@ final-*.png
 debug-*.png
 viewport-*.png
 new-structure-*.png
+paper-*.png
 
 # OS
 .DS_Store
