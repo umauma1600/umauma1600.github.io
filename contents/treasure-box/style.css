@@ -69,7 +69,7 @@
 /* 紙のスタイル（固定位置、移動しない） */
 #foldedPaper {
     position: absolute;
-    bottom: 280px;
+    bottom: 100px;
     left: 50%;
     transform: translateX(-50%);
     z-index: 5;
@@ -176,7 +176,7 @@ html {
     }
 
     #foldedPaper {
-        bottom: 200px;
+        bottom: 80px;
     }
 
     #hintButton {
