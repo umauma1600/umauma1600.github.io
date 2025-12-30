@@ -69,12 +69,13 @@
 /* 紙のスタイル（固定位置、移動しない） */
 #foldedPaper {
     position: absolute;
-    bottom: 100px;
+    bottom: 280px;
     left: 50%;
     transform: translateX(-50%);
-    z-index: 5;
+    z-index: 2;
     /* 紙は常にテーブルの上の固定位置に表示される */
     /* 宝箱を動かしても紙は動かない */
+    /* 宝箱の背面に配置されるため、初期状態では宝箱に隠れる */
 }
 
 /* ===== モーダル関連 ===== */
@@ -176,7 +177,7 @@ html {
     }
 
     #foldedPaper {
-        bottom: 80px;
+        bottom: 200px;
     }
 
     #hintButton {
