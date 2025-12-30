@@ -6,10 +6,12 @@ package-lock.json
 test-*.js
 *-test.js
 *-check.js
+*-structure.js
 screenshot-*.png
 final-*.png
 debug-*.png
 viewport-*.png
+new-structure-*.png
 
 # OS
 .DS_Store
