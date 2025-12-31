@@ -74,6 +74,7 @@ export default function TreasureBoxPage() {
   const [boxTransform, setBoxTransform] = useState("translate(0, 0)");
   const [isDragging, setIsDragging] = useState(false);
   const [paperPositionX, setPaperPositionX] = useState(0); // 紙が落下した時の宝箱のX位置を記録
+  const paperPositionSetRef = useRef(false); // 紙の位置が設定済みかどうか
   const isDragModeRef = useRef(false);
   const startYRef = useRef(0);
   const startXRef = useRef(0);
@@ -178,8 +179,6 @@ export default function TreasureBoxPage() {
 
       if (totalY > CONSTANTS.PAPER_SHOW_THRESHOLD && !isBottomDropped) {
         setIsBottomDropped(true);
-        // 紙が落下した時の宝箱のX位置を記録
-        setPaperPositionX(totalX);
       }
     },
     [clampX, isBottomDropped],
@@ -202,6 +201,12 @@ export default function TreasureBoxPage() {
       CONSTANTS.FALL_DURATION_MAX,
       CONSTANTS.FALL_DURATION_BASE + boxOffsetYRef.current / 500,
     );
+
+    // 紙が落下した時の宝箱のX位置を記録（ドラッグ終了時に確定、一度だけ）
+    if (isBottomDropped && !paperPositionSetRef.current) {
+      setPaperPositionX(boxOffsetXRef.current);
+      paperPositionSetRef.current = true;
+    }
 
     // 落下アニメーション
     if (treasureBoxRef.current) {
