@@ -179,6 +179,9 @@ export default function TreasureBoxPage() {
 
       if (totalY > CONSTANTS.PAPER_SHOW_THRESHOLD && !isBottomDropped) {
         setIsBottomDropped(true);
+        // 紙が落下した時の宝箱のX位置を即座に固定
+        setPaperPositionX(totalX);
+        paperPositionSetRef.current = true;
       }
     },
     [clampX, isBottomDropped],
@@ -201,12 +204,6 @@ export default function TreasureBoxPage() {
       CONSTANTS.FALL_DURATION_MAX,
       CONSTANTS.FALL_DURATION_BASE + boxOffsetYRef.current / 500,
     );
-
-    // 紙が落下した時の宝箱のX位置を記録（ドラッグ終了時に確定、一度だけ）
-    if (isBottomDropped && !paperPositionSetRef.current) {
-      setPaperPositionX(boxOffsetXRef.current);
-      paperPositionSetRef.current = true;
-    }
 
     // 落下アニメーション
     if (treasureBoxRef.current) {
