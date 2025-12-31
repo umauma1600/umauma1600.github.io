@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 export default function ContentsSection() {
   return (
     <section id="contents" className="px-6 md:px-12 lg:px-20 py-16 md:py-24">
@@ -46,8 +48,8 @@ export default function ContentsSection() {
                 モバイル対応
               </span>
             </div>
-            <a
-              href="/legacy/contents/nazo/"
+            <Link
+              to="/contents/nazo"
               className="inline-block text-center py-4 px-8 rounded-lg font-semibold transition-all duration-300 shadow hover:shadow-lg hover:-translate-y-0.5"
               style={{
                 background: "var(--color-accent)",
@@ -61,7 +63,7 @@ export default function ContentsSection() {
               }}
             >
               謎解き一覧へ
-            </a>
+            </Link>
           </div>
 
           {/* マダミスカード */}

@@ -12,7 +12,7 @@ export default function MobileHeader({ activeSection }: MobileHeaderProps) {
   const navLinks = [
     { href: "/", label: "ホーム", type: "route" },
     { href: "#contents", label: "コンテンツ", type: "hash" },
-    { href: "/puzzles", label: "謎解き", type: "route" },
+    { href: "/contents/nazo", label: "謎解き", type: "route" },
     { href: "/legacy/contact/", label: "お問い合わせ", type: "external" },
   ];
 
