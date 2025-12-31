@@ -73,6 +73,7 @@ export default function TreasureBoxPage() {
   // ドラッグ状態
   const [boxTransform, setBoxTransform] = useState("translate(0, 0)");
   const [isDragging, setIsDragging] = useState(false);
+  const [paperPositionX, setPaperPositionX] = useState(0); // 紙が落下した時の宝箱のX位置を記録
   const isDragModeRef = useRef(false);
   const startYRef = useRef(0);
   const startXRef = useRef(0);
@@ -177,6 +178,8 @@ export default function TreasureBoxPage() {
 
       if (totalY > CONSTANTS.PAPER_SHOW_THRESHOLD && !isBottomDropped) {
         setIsBottomDropped(true);
+        // 紙が落下した時の宝箱のX位置を記録
+        setPaperPositionX(totalX);
       }
     },
     [clampX, isBottomDropped],
@@ -548,6 +551,9 @@ export default function TreasureBoxPage() {
               {isBottomDropped && (
                 <div
                   className="cursor-pointer hover:scale-105 transition-transform"
+                  style={{
+                    transform: `translateX(${paperPositionX}px)`,
+                  }}
                   onClick={() => {
                     setPaperStep(1);
                     setShowPaperModal(true);
