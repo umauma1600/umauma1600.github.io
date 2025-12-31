@@ -1,13 +1,12 @@
+import { Link, useLocation } from "react-router-dom";
+
 export default function Footer() {
+  const location = useLocation();
+
   const handleClick = (
     e: React.MouseEvent<HTMLAnchorElement>,
     href: string,
   ) => {
-    // 外部リンクの場合はデフォルト動作
-    if (href.startsWith("/legacy/")) {
-      return;
-    }
-
     // ハッシュリンクの場合はスムーススクロール
     if (href.startsWith("#")) {
       e.preventDefault();
@@ -48,37 +47,57 @@ export default function Footer() {
             </h4>
             <ul className="space-y-2" style={{ color: "var(--color-text)" }}>
               <li>
-                <a
-                  href="#home"
-                  onClick={(e) => {
-                    handleClick(e, "#home");
-                  }}
-                  className="transition-colors duration-200 hover:text-[#c69c6d]"
-                  style={{ color: "var(--color-text)" }}
-                >
-                  ホーム
-                </a>
+                {location.pathname === "/" ? (
+                  <a
+                    href="#home"
+                    onClick={(e) => {
+                      handleClick(e, "#home");
+                    }}
+                    className="transition-colors duration-200 hover:text-[#c69c6d]"
+                    style={{ color: "var(--color-text)" }}
+                  >
+                    ホーム
+                  </a>
+                ) : (
+                  <Link
+                    to="/"
+                    className="transition-colors duration-200 hover:text-[#c69c6d]"
+                    style={{ color: "var(--color-text)" }}
+                  >
+                    ホーム
+                  </Link>
+                )}
               </li>
               <li>
-                <a
-                  href="#contents"
-                  onClick={(e) => {
-                    handleClick(e, "#contents");
-                  }}
-                  className="transition-colors duration-200 hover:text-[#c69c6d]"
-                  style={{ color: "var(--color-text)" }}
-                >
-                  コンテンツ
-                </a>
+                {location.pathname === "/" ? (
+                  <a
+                    href="#contents"
+                    onClick={(e) => {
+                      handleClick(e, "#contents");
+                    }}
+                    className="transition-colors duration-200 hover:text-[#c69c6d]"
+                    style={{ color: "var(--color-text)" }}
+                  >
+                    コンテンツ
+                  </a>
+                ) : (
+                  <Link
+                    to="/"
+                    className="transition-colors duration-200 hover:text-[#c69c6d]"
+                    style={{ color: "var(--color-text)" }}
+                  >
+                    コンテンツ
+                  </Link>
+                )}
               </li>
               <li>
-                <a
-                  href="/legacy/contents/nazo/"
+                <Link
+                  to="/contents/nazo"
                   className="transition-colors duration-200 hover:text-[#c69c6d]"
                   style={{ color: "var(--color-text)" }}
                 >
                   謎解き
-                </a>
+                </Link>
               </li>
               <li>
                 <a

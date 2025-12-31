@@ -1,17 +1,19 @@
 import { useState, useEffect } from "react";
+import { Link, useLocation } from "react-router-dom";
 
 interface MobileHeaderProps {
   activeSection: string;
 }
 
 export default function MobileHeader({ activeSection }: MobileHeaderProps) {
+  const location = useLocation();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const navLinks = [
-    { href: "#home", label: "ホーム" },
-    { href: "#contents", label: "コンテンツ" },
-    { href: "/legacy/contents/nazo/", label: "謎解き" },
-    { href: "/legacy/contact/", label: "お問い合わせ" },
+    { href: "/", label: "ホーム", type: "route" },
+    { href: "#contents", label: "コンテンツ", type: "hash" },
+    { href: "/contents/nazo", label: "謎解き", type: "route" },
+    { href: "/legacy/contact/", label: "お問い合わせ", type: "external" },
   ];
 
   const toggleMenu = () => {
@@ -25,17 +27,13 @@ export default function MobileHeader({ activeSection }: MobileHeaderProps) {
   const handleClick = (
     e: React.MouseEvent<HTMLAnchorElement>,
     href: string,
+    type: string,
   ) => {
     // メニューを閉じる
     closeMenu();
 
-    // 外部リンクの場合はデフォルト動作
-    if (href.startsWith("/legacy/")) {
-      return;
-    }
-
     // ハッシュリンクの場合はスムーススクロール
-    if (href.startsWith("#")) {
+    if (type === "hash") {
       e.preventDefault();
       const targetId = href.substring(1);
       const targetElement = document.getElementById(targetId);
@@ -49,6 +47,19 @@ export default function MobileHeader({ activeSection }: MobileHeaderProps) {
         });
       }
     }
+  };
+
+  const isActive = (href: string, type: string) => {
+    if (type === "route") {
+      return (
+        location.pathname === href ||
+        activeSection === href ||
+        (href === "/" && activeSection === "#home")
+      );
+    } else if (type === "hash") {
+      return activeSection === href;
+    }
+    return false;
   };
 
   // bodyのスクロールを制御
@@ -80,15 +91,17 @@ export default function MobileHeader({ activeSection }: MobileHeaderProps) {
     <>
       {/* モバイルヘッダー */}
       <header className="md:hidden fixed top-0 left-0 right-0 bg-white border-b border-gray-200 px-6 py-4 z-[200] flex items-center justify-between">
-        <div
-          className="text-xl font-bold"
-          style={{
-            color: "var(--color-primary)",
-            fontFamily: "'Space Grotesk', sans-serif",
-          }}
-        >
-          やまーたの謎解きアトリエ
-        </div>
+        <Link to="/" style={{ textDecoration: "none" }}>
+          <div
+            className="text-xl font-bold"
+            style={{
+              color: "var(--color-primary)",
+              fontFamily: "'Space Grotesk', sans-serif",
+            }}
+          >
+            やまーたの謎解きアトリエ
+          </div>
+        </Link>
         <div
           className={`w-7 h-5 relative cursor-pointer ${isMenuOpen ? "active" : ""}`}
           onClick={toggleMenu}
@@ -123,28 +136,45 @@ export default function MobileHeader({ activeSection }: MobileHeaderProps) {
           background: "linear-gradient(180deg, #f5f0e8 0%, #ebe5d9 100%)",
         }}
       >
-        {navLinks.map((link) => (
-          <a
-            key={link.href}
-            href={link.href}
-            onClick={(e) => {
-              handleClick(e, link.href);
-            }}
-            className={`block py-[14px] px-5 mb-2 rounded-lg font-medium transition-all duration-200 ${
-              activeSection === link.href
-                ? "bg-[rgba(198,156,109,0.25)]"
-                : "hover:bg-[rgba(198,156,109,0.25)]"
-            } hover:translate-x-1`}
-            style={{
-              color:
-                activeSection === link.href
-                  ? "var(--color-primary)"
-                  : "var(--color-text)",
-            }}
-          >
-            {link.label}
-          </a>
-        ))}
+        {navLinks.map((link) => {
+          const active = isActive(link.href, link.type);
+          const className = `block py-[14px] px-5 mb-2 rounded-lg font-medium transition-all duration-200 ${
+            active
+              ? "bg-[rgba(198,156,109,0.25)]"
+              : "hover:bg-[rgba(198,156,109,0.25)]"
+          } hover:translate-x-1`;
+          const style = {
+            color: active ? "var(--color-primary)" : "var(--color-text)",
+          };
+
+          if (link.type === "route") {
+            return (
+              <Link
+                key={link.href}
+                to={link.href}
+                onClick={closeMenu}
+                className={className}
+                style={style}
+              >
+                {link.label}
+              </Link>
+            );
+          } else {
+            return (
+              <a
+                key={link.href}
+                href={link.href}
+                onClick={(e) => {
+                  handleClick(e, link.href, link.type);
+                }}
+                className={className}
+                style={style}
+              >
+                {link.label}
+              </a>
+            );
+          }
+        })}
       </nav>
 
       {/* オーバーレイ */}
