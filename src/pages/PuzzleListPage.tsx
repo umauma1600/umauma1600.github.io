@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import Footer from "../components/Footer";
 
 export default function PuzzleListPage() {
@@ -93,12 +94,9 @@ export default function PuzzleListPage() {
                 </div>
               </div>
               <div className="puzzle-card-footer">
-                <a
-                  href="/legacy/contents/treasure-box/"
-                  className="btn-primary"
-                >
+                <Link to="/contents/treasure-box" className="btn-primary">
                   挑戦する
-                </a>
+                </Link>
               </div>
             </div>
 
