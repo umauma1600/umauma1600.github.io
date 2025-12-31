@@ -10,3 +10,4 @@ echo "🎭 Installing Playwright browsers..."
 npx playwright install --with-deps
 
 echo "✅ Startup complete!"
+exit 0
