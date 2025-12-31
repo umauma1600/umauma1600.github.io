@@ -5,7 +5,6 @@ export default function PuzzleListPage() {
     <>
       {/* ページヘッダー */}
       <section
-        className="px-6 md:px-12 lg:px-20"
         style={{
           padding: "4rem 0 3rem",
           background:
