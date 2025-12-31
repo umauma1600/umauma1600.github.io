@@ -71,7 +71,7 @@ export default function TreasureBoxPage() {
   const [lockFading, setLockFading] = useState(false);
 
   // ドラッグ状態
-  const [boxTransform, setBoxTransform] = useState("translate(-50%, 0)");
+  const [boxTransform, setBoxTransform] = useState("translate(0, 0)");
   const [isDragging, setIsDragging] = useState(false);
   const isDragModeRef = useRef(false);
   const startYRef = useRef(0);
@@ -173,9 +173,7 @@ export default function TreasureBoxPage() {
         totalY = boxOffsetYRef.current + currentYRef.current;
       }
 
-      setBoxTransform(
-        `translate(calc(-50% + ${totalX}px), calc(-${totalY}px)) scale(1.02)`,
-      );
+      setBoxTransform(`translate(${totalX}px, ${-totalY}px) scale(1.02)`);
 
       if (totalY > CONSTANTS.PAPER_SHOW_THRESHOLD && !isBottomDropped) {
         setIsBottomDropped(true);
@@ -206,9 +204,7 @@ export default function TreasureBoxPage() {
     if (treasureBoxRef.current) {
       treasureBoxRef.current.style.transition = `transform ${fallDuration}s cubic-bezier(0.55, 0.085, 0.68, 0.53)`;
     }
-    setBoxTransform(
-      `translate(calc(-50% + ${boxOffsetXRef.current}px), 0) scale(1)`,
-    );
+    setBoxTransform(`translate(${boxOffsetXRef.current}px, 0) scale(1)`);
 
     boxOffsetYRef.current = 0;
 
