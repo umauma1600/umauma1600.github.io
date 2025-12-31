@@ -35,19 +35,23 @@
 ## 🛠️ 技術スタック
 
 ### フロントエンド
-- **HTML5**: セマンティックなマークアップ
-- **Tailwind CSS (CDN)**: ユーティリティファーストのCSSフレームワーク
-- **JavaScript (ES6+)**: インタラクティブな機能実装
-- **Google Fonts**: Space Grotesk（見出し用）、Inter（本文用）
+- **React 19**: UIライブラリ
+- **TypeScript 5.6**: 型安全な開発
+- **Vite 6**: 高速ビルドツール
+- **Tailwind CSS 4**: ユーティリティファーストのCSSフレームワーク（Viteプラグイン経由）
+- **React Router DOM 7**: クライアントサイドルーティング
 
-### ライブラリ
-- **Tailwind CSS**: CDN経由で読み込み（ビルドプロセス不要）
-- **Google Fonts**: CDN経由で読み込み
-- **ドラッグ&ドロップ機能**: 必要に応じて適切なライブラリを使用
+### 開発ツール
+- **ESLint 9**: コード品質チェック（TypeScript対応）
+- **Prettier 3**: コードフォーマッター
+- **Vitest 3**: テストフレームワーク
+- **React Testing Library**: Reactコンポーネントのテスト
+- **Playwright**: E2Eテスト用
 
-### ホスティング
-- **GitHub Pages**: 静的サイトホスティング
-- 自動デプロイ設定
+### ビルド・デプロイ
+- **Vite**: バンドラー（ターゲット: ESNext）
+- **GitHub Actions**: CI/CD（Lint、型チェック、ビルド、デプロイ）
+- **GitHub Pages**: 静的サイトホスティング（dist/ディレクトリをデプロイ）
 
 ---
 
@@ -55,33 +59,53 @@
 
 ```
 umauma1600.github.io/
-├── index.html              # トップページ（コンテンツ一覧）
-├── CLAUDE.md               # このファイル
-├── README.md               # プロジェクト説明（ユーザー向け）
+├── index.html                      # Viteエントリーポイント（本番時は自動生成）
+├── package.json                    # 依存関係とスクリプト
+├── package-lock.json               # 依存関係のロックファイル
+├── CLAUDE.md                       # このファイル
+├── README.md                       # プロジェクト説明（ユーザー向け）
 │
-├── css/
-│   └── custom.css          # カスタムスタイル（Tailwindで対応できない場合のみ）
+├── .github/
+│   └── workflows/
+│       ├── ci.yml                  # CI（Lint、型チェック、ビルド）
+│       └── deploy.yml              # デプロイ（GitHub Pages）
 │
-├── js/
-│   ├── main.js             # 共通JavaScript
-│   └── lib/                # 外部ライブラリ（必要に応じて）
+├── src/                            # Reactアプリケーションのソースコード
+│   ├── main.tsx                    # アプリケーションエントリーポイント
+│   ├── App.tsx                     # ルートコンポーネント
+│   ├── index.css                   # グローバルスタイル（Tailwind CSS）
+│   ├── components/                 # 再利用可能なコンポーネント
+│   ├── pages/                      # ページコンポーネント
+│   ├── hooks/                      # カスタムフック
+│   ├── utils/                      # ユーティリティ関数
+│   └── test/
+│       └── setup.ts                # Vitestセットアップ
 │
-├── assets/
-│   ├── images/             # 画像ファイル
-│   ├── fonts/              # フォントファイル
-│   └── downloads/          # ダウンロードコンテンツ（PDF等）
-│
-├── contents/
-│   ├── nazoXXX/            # 謎解きコンテンツ各種
-│   │   ├── index.html      # プレイページ
-│   │   ├── custom.css      # 専用カスタムスタイル（必要に応じて）
-│   │   └── script.js       # 謎解きロジック
+├── public/                         # 静的ファイル（ビルド時にdist/にコピー）
+│   ├── legacy/                     # 旧サイトのファイル（移行前）
+│   │   ├── index.html              # 旧トップページ
+│   │   ├── contents/               # 旧謎解きコンテンツ
+│   │   ├── css/                    # 旧CSS
+│   │   ├── js/                     # 旧JavaScript
+│   │   ├── contact/                # 旧お問い合わせ
+│   │   └── main-image.png          # 旧画像
 │   │
-│   └── murdermystery/      # マダミスコンテンツ
-│       └── index.html      # ダウンロードページ
+│   └── assets/                     # 新サイトの静的アセット（予定）
+│       ├── images/                 # 画像ファイル
+│       └── downloads/              # ダウンロードコンテンツ（PDF等）
 │
-└── contact/
-    └── index.html          # お問い合わせページ
+├── dist/                           # ビルド出力（.gitignoreに含まれる）
+│   ├── index.html                  # ビルド済みHTML
+│   ├── assets/                     # ビルド済みJS/CSS
+│   └── legacy/                     # 旧サイトファイル（public/からコピー）
+│
+├── tsconfig.json                   # TypeScript設定（ルート）
+├── tsconfig.app.json               # アプリケーション用TypeScript設定
+├── tsconfig.node.json              # Node.js（Vite等）用TypeScript設定
+├── vite.config.ts                  # Vite設定
+├── vitest.config.ts                # Vitest設定
+├── eslint.config.js                # ESLint設定
+└── .gitignore                      # Gitignore
 ```
 
 ---
@@ -143,35 +167,45 @@ umauma1600.github.io/
 - 明確で分かりやすい内容にする
 - 変更内容を簡潔に説明
 
+### CI/CD
+- **CI**: すべてのpushで自動実行（Lint、型チェック、ビルド）
+- **デプロイ**: mainブランチへのpushで自動的にGitHub Pagesへデプロイ
+
 ---
 
 ## 📝 コーディング規約
 
-### HTML
-- セマンティックなタグを使用（`<header>`, `<main>`, `<section>`, `<article>`など）
-- アクセシビリティに配慮（alt属性、aria-label等）
-- コメントで構造を明示
+### TypeScript
+- **厳格な型チェック**: `strict: true` で開発
+- 型推論を活用しつつ、必要に応じて明示的な型定義
+- `any`の使用は避ける
+- ESNext構文を使用（ターゲット: ESNext）
+- 未使用の変数・パラメータは許可しない（`noUnusedLocals`, `noUnusedParameters`）
 
-### CSS
-- **Tailwind CSS**: ユーティリティクラスを使用
-- CDN経由で読み込み（ビルド不要）
-- カスタムCSSが必要な場合は別途CSSファイルを作成
-- レスポンシブブレークポイント（Tailwindのデフォルトを使用）:
+### React
+- **関数コンポーネント**を使用（クラスコンポーネントは使用しない）
+- **React Hooks**を積極的に活用
+- コンポーネントは単一責任の原則に従う
+- Props型は明示的に定義（interfaceまたはtype）
+- セマンティックなHTML要素を使用（アクセシビリティ配慮）
+- ファイル名: PascalCase（例: `MyComponent.tsx`）
+
+### Tailwind CSS
+- **ユーティリティクラス**を使用
+- Viteプラグイン経由で読み込み（`@import 'tailwindcss'`）
+- レスポンシブブレークポイント:
   - sm: 640px~
   - md: 768px~
   - lg: 1024px~
   - xl: 1280px~
+  - 2xl: 1536px~
+- 複雑なスタイルはコンポーネント化を検討
 
-### JavaScript
-- ES6+の文法を使用
-- コメントで処理内容を説明
-- エラーハンドリングを適切に実装
-- パフォーマンスに配慮
-- 主要機能:
-  - ハンバーガーメニューの開閉
-  - スムーススクロール
-  - アクティブリンクの管理
-  - ESCキーでメニューを閉じる
+### コードスタイル
+- **Prettier**で自動フォーマット
+- **ESLint**でコード品質を保証
+- セミコロン、ダブルクォートを使用（Prettier設定）
+- インデント: 2スペース
 
 ---
 
@@ -199,31 +233,49 @@ umauma1600.github.io/
 
 ## 🎮 コンテンツ追加の流れ
 
-### 謎解きコンテンツの追加
-1. `contents/` 内に新しいディレクトリを作成
-2. 必要なHTML, CSS, JSファイルを配置
-3. トップページ（index.html）にリンクを追加
-4. モバイルでの動作確認
+### 謎解きコンテンツの追加（React移行後）
+1. `src/pages/` 内に新しいページコンポーネントを作成
+2. 必要なコンポーネントを `src/components/` に作成
+3. React Routerでルーティングを設定
+4. トップページにリンクを追加
+5. モバイルでの動作確認
+6. テストの作成（必要に応じて）
 
 ### マダミスコンテンツの追加
-1. PDFファイルを `assets/downloads/` に配置
-2. ダウンロードページを作成または更新
-3. トップページにリンクを追加
+1. PDFファイルを `public/assets/downloads/` に配置
+2. ダウンロードページコンポーネントを作成または更新
+3. React Routerでルーティングを設定
+4. トップページにリンクを追加
+
+### レガシーコンテンツ（移行前のHTML/CSS/JS）
+- `public/legacy/` 配下に保存
+- ビルド時に `dist/legacy/` にコピーされ、引き続きアクセス可能
+- 例: `https://umauma1600.github.io/legacy/contents/treasure-box/`
 
 ---
 
 ## 🔄 デプロイ方法
 
-### GitHub Pagesの設定
-- リポジトリ設定から GitHub Pages を有効化
-- ソース: `main` ブランチ
-- 自動デプロイ: プッシュ時に自動的に反映
+### 自動デプロイ（GitHub Actions）
+1. `main` ブランチにプッシュ
+2. GitHub Actionsが自動的に以下を実行：
+   - 依存関係のインストール（`npm ci`）
+   - ビルド（`npm run build`）
+   - `dist/` ディレクトリをGitHub Pagesにデプロイ
+3. 数分後に https://umauma1600.github.io で公開
+
+### 手動デプロイ（必要に応じて）
+- GitHub Actionsの「Deploy to GitHub Pages」ワークフローを手動実行
+- ブランチを指定してデプロイ可能
 
 ### デプロイ前のチェックリスト
-- [ ] モバイル表示の確認
+- [ ] `npm run lint` が成功
+- [ ] `npx tsc -b` が成功
+- [ ] `npm run build` が成功
+- [ ] モバイル表示の確認（`npm run preview`）
 - [ ] すべてのリンクの動作確認
 - [ ] 画像・アセットの読み込み確認
-- [ ] JavaScriptのエラーチェック
+- [ ] レガシーコンテンツ（`/legacy/`）のアクセス確認
 
 ---
 
@@ -258,14 +310,36 @@ umauma1600.github.io/
 
 ## 📊 現在のステータス
 
-### 初期コンテンツ
-- 謎解き: 1つ掲載予定（インタラクティブ形式）
+### React移行プロジェクト（進行中）
+
+**Step 1: 環境構築** ✅ 完了
+- Vite + React + TypeScript環境構築
+- CI/CD設定（Lint、型チェック、ビルド、デプロイ）
+- レガシーファイルをpublic/legacy/に移行
+- 空のReactアプリでデプロイ可能な状態
+
+**Step 2: トップページ移行** 🔄 予定
+- 既存のindex.htmlをReactコンポーネント化
+- デザイン・レイアウトの再現
+- ルーティング設定
+
+**Step 3: 「逆転の宝箱」移行** 🔄 予定
+- 謎解きコンテンツのReactコンポーネント化
+- インタラクティブ機能の実装
+- モバイル対応の強化
+
+### コンテンツ状況
+- **謎解き**:
+  - 「逆転の宝箱」（レガシー版: `/legacy/contents/treasure-box/`）
+  - React版への移行予定
+- **マダミス**: 準備中
 
 ### 更新頻度
 - 不定期（やる気が出たら）
 
 ### 今後の展開
-- コンテンツ数の増加に応じてカテゴリ分けを検討
+- React移行完了後、新規コンテンツの追加
+- コンテンツ数の増加に応じてカテゴリ分け
 - ユーザーフィードバック機能の追加検討
 
 ---
@@ -281,6 +355,6 @@ umauma1600.github.io/
 
 ---
 
-**最終更新日**: 2025-12-27
+**最終更新日**: 2025-12-31（React移行 Step 1完了）
 **作成者**: Claude AI
 **サイト名**: やまーたの謎解きアトリエ
