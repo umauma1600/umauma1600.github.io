@@ -177,14 +177,14 @@ export default function TreasureBoxPage() {
 
       setBoxTransform(`translate(${totalX}px, ${-totalY}px) scale(1.02)`);
 
-      if (totalY > CONSTANTS.PAPER_SHOW_THRESHOLD && !isBottomDropped) {
+      // 紙の位置は ref を使って同期的に制御（state は非同期なので追従してしまう）
+      if (totalY > CONSTANTS.PAPER_SHOW_THRESHOLD && !paperPositionSetRef.current) {
         setIsBottomDropped(true);
-        // 紙が落下した時の宝箱のX位置を即座に固定
         setPaperPositionX(totalX);
         paperPositionSetRef.current = true;
       }
     },
-    [clampX, isBottomDropped],
+    [clampX],
   );
 
   const endDrag = useCallback(() => {
