@@ -158,16 +158,6 @@ umauma1600.github.io/
 - ユーザー（オーナー）にはコーディング知識不要
 - シンプルで保守しやすいコード
 
-### npm scripts
-```bash
-npm run dev          # 開発サーバー起動（localhost:5173）
-npm run build        # 本番ビルド（型チェック + Viteビルド）
-npm run preview      # ビルド結果のプレビュー
-npm run lint         # ESLintでコード品質チェック
-npm run test         # Vitestでテスト実行
-npm run test:coverage # カバレッジ測定
-```
-
 ### ブランチ戦略
 - `main` ブランチ: 本番環境（GitHub Pages公開用）
 - `claude/*` ブランチ: 機能開発・修正用
