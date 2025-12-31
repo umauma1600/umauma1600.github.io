@@ -100,13 +100,13 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
-                <a
-                  href="/legacy/contact/"
+                <Link
+                  to="/contact"
                   className="transition-colors duration-200 hover:text-[#c69c6d]"
                   style={{ color: "var(--color-text)" }}
                 >
                   お問い合わせ
-                </a>
+                </Link>
               </li>
             </ul>
           </div>
