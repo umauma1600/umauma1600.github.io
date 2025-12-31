@@ -53,6 +53,11 @@
 - **GitHub Actions**: CI/CD（Lint、型チェック、ビルド、デプロイ）
 - **GitHub Pages**: 静的サイトホスティング（dist/ディレクトリをデプロイ）
 
+### ルーティング（MPA対応）
+- React Routerを使用しつつ、ビルド時に各ルートに`index.html`をコピー
+- これによりGitHub Pagesで直接URLアクセス・リロードが可能
+- 新しいルートを追加したら`vite.config.ts`の`routes`配列に追加が必要
+
 ---
 
 ## 📁 ディレクトリ構造
@@ -237,16 +242,18 @@ umauma1600.github.io/
 ### 謎解きコンテンツの追加（React移行後）
 1. `src/pages/` 内に新しいページコンポーネントを作成
 2. 必要なコンポーネントを `src/components/` に作成
-3. React Routerでルーティングを設定
-4. トップページにリンクを追加
-5. モバイルでの動作確認
-6. テストの作成（必要に応じて）
+3. `src/App.tsx` でReact Routerのルーティングを設定
+4. **`vite.config.ts` の `routes` 配列に新しいルートを追加**（リロード対応のため必須）
+5. トップページにリンクを追加
+6. モバイルでの動作確認
+7. テストの作成（必要に応じて）
 
 ### マダミスコンテンツの追加
 1. PDFファイルを `public/assets/downloads/` に配置
 2. ダウンロードページコンポーネントを作成または更新
-3. React Routerでルーティングを設定
-4. トップページにリンクを追加
+3. `src/App.tsx` でReact Routerのルーティングを設定
+4. **`vite.config.ts` の `routes` 配列に新しいルートを追加**（リロード対応のため必須）
+5. トップページにリンクを追加
 
 ### レガシーコンテンツ（移行前のHTML/CSS/JS）
 - `public/legacy/` 配下に保存
