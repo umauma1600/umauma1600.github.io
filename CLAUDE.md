@@ -318,37 +318,43 @@ umauma1600.github.io/
 
 ## 📊 現在のステータス
 
-### React移行プロジェクト（進行中）
+### React移行プロジェクト ✅ 完了
 
 **Step 1: 環境構築** ✅ 完了
 - Vite + React + TypeScript環境構築
 - CI/CD設定（Lint、型チェック、ビルド、デプロイ）
 - レガシーファイルをpublic/legacy/に移行
-- 空のReactアプリでデプロイ可能な状態
 
-**Step 2: トップページ移行** 🔄 予定
-- 既存のindex.htmlをReactコンポーネント化
-- デザイン・レイアウトの再現
-- ルーティング設定
+**Step 2: トップページ移行** ✅ 完了
+- HomePage、HeroSection、ContentsSectionコンポーネント
+- Sidebar（デスクトップ）、MobileHeader（モバイル）
+- Footerコンポーネント
+- React Routerによるルーティング設定
 
-**Step 3: 「逆転の宝箱」移行** 🔄 予定
-- 謎解きコンテンツのReactコンポーネント化
-- インタラクティブ機能の実装
-- モバイル対応の強化
+**Step 3: 「逆転の宝箱」移行** ✅ 完了
+- TreasureBoxPage（1137行）完全移行
+- ダイヤル錠、ヒント、紙、クリアモーダル実装
+- タイマー機能、ドラッグ&ドロップ機能
+- Xシェア機能、モバイル対応
+
+**追加実装**
+- PuzzleListPage（謎解き一覧ページ）
+- ContactPage（お問い合わせページ）
+- MPA対応（vite.config.tsでリロード時404対策）
 
 ### コンテンツ状況
 - **謎解き**:
-  - 「逆転の宝箱」（レガシー版: `/legacy/contents/treasure-box/`）
-  - React版への移行予定
+  - 「逆転の宝箱」（React版: `/contents/treasure-box`）✅ 公開中
+  - レガシー版は `/legacy/contents/treasure-box/` でも引き続きアクセス可能
 - **マダミス**: 準備中
 
 ### 更新頻度
 - 不定期（やる気が出たら）
 
 ### 今後の展開
-- React移行完了後、新規コンテンツの追加
+- 新規謎解きコンテンツの追加
+- マダミスコンテンツの公開
 - コンテンツ数の増加に応じてカテゴリ分け
-- ユーザーフィードバック機能の追加検討
 
 ---
 
@@ -363,6 +369,6 @@ umauma1600.github.io/
 
 ---
 
-**最終更新日**: 2025-12-31（React移行 Step 1完了）
+**最終更新日**: 2025-12-31（React移行完了）
 **作成者**: Claude AI
 **サイト名**: やまーたの謎解きアトリエ
