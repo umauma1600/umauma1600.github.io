@@ -183,7 +183,7 @@ export default function TreasureBoxPage() {
   );
 
   const endDrag = useCallback(() => {
-    if (!isDragging) return;
+    if (!isDragModeRef.current) return;
 
     setIsDragging(false);
     isDragModeRef.current = false;
@@ -213,7 +213,7 @@ export default function TreasureBoxPage() {
         treasureBoxRef.current.style.transition = "";
       }
     }, fallDuration * 1000);
-  }, [isDragging, clampX]);
+  }, [clampX]);
 
   // マウスイベント
   const handleMouseDown = (e: React.MouseEvent) => {
