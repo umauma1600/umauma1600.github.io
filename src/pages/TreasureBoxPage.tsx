@@ -47,7 +47,6 @@ export default function TreasureBoxPage() {
   // ゲーム状態
   const [dialValues, setDialValues] = useState([0, 0, 0, 0]);
   const [isBottomDropped, setIsBottomDropped] = useState(false);
-  const [paperOffsetX, setPaperOffsetX] = useState(0);
   const [isCleared, setIsCleared] = useState(false);
   const [startTime] = useState(Date.now());
   const [currentHintStep, setCurrentHintStep] = useState(0);
@@ -178,7 +177,6 @@ export default function TreasureBoxPage() {
 
       if (totalY > CONSTANTS.PAPER_SHOW_THRESHOLD && !isBottomDropped) {
         setIsBottomDropped(true);
-        setPaperOffsetX(totalX);
       }
     },
     [clampX, isBottomDropped],
@@ -550,7 +548,6 @@ export default function TreasureBoxPage() {
               {isBottomDropped && (
                 <div
                   className="cursor-pointer hover:scale-105 transition-transform"
-                  style={{ transform: `translateX(${paperOffsetX}px)` }}
                   onClick={() => {
                     setPaperStep(1);
                     setShowPaperModal(true);
