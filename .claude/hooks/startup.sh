@@ -6,8 +6,8 @@
 echo "📦 Installing npm dependencies..."
 npm install
 
-echo "🎭 Installing Playwright browsers..."
-npx playwright install --with-deps
+echo "🎭 Installing Playwright Firefox browser..."
+npx playwright install firefox
 
 echo "✅ Startup complete!"
 exit 0
