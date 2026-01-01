@@ -504,6 +504,33 @@ export default function TreasureBoxPage() {
               />
             </div>
 
+            {/* テーブル上のオブジェクト - 左: 封筒 */}
+            <div className="table-object-left">
+              <img
+                src="/assets/treasure-box/card1.png"
+                alt="封筒"
+                className="w-16 md:w-20 h-auto"
+                style={{
+                  filter: "drop-shadow(0 10px 15px rgb(0 0 0 / 0.1))",
+                  transform: "rotate(-15deg)",
+                }}
+                draggable={false}
+              />
+            </div>
+
+            {/* テーブル上のオブジェクト - 右: メモ */}
+            <div className="table-object-right">
+              <img
+                src="/assets/treasure-box/memo1.png"
+                alt="メモ"
+                className="w-16 md:w-20 h-auto"
+                style={{
+                  filter: "drop-shadow(0 10px 15px rgb(0 0 0 / 0.1))",
+                }}
+                draggable={false}
+              />
+            </div>
+
             {/* 宝箱コンテナ */}
             <div className="treasure-box-container">
               {/* 宝箱本体 */}
@@ -1005,6 +1032,24 @@ export default function TreasureBoxPage() {
           z-index: 10;
         }
 
+        /* テーブル上のオブジェクト - 左: 封筒 */
+        .table-object-left {
+          position: absolute;
+          bottom: 290px;
+          left: calc(50% - 140px);
+          transform: translateX(-100%);
+          z-index: 9;
+        }
+
+        /* テーブル上のオブジェクト - 右: メモ */
+        .table-object-right {
+          position: absolute;
+          bottom: 285px;
+          right: calc(50% - 140px);
+          transform: translateX(100%);
+          z-index: 9;
+        }
+
         /* 宝箱関連 */
         .treasure-box {
           transition: transform 0.1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
@@ -1128,6 +1173,16 @@ export default function TreasureBoxPage() {
           .treasure-box-container {
             transform: translateX(-50%) scale(0.9);
             bottom: 200px;
+          }
+
+          .table-object-left {
+            bottom: 210px;
+            left: calc(50% - 100px);
+          }
+
+          .table-object-right {
+            bottom: 205px;
+            right: calc(50% - 100px);
           }
 
           .hint-button {
