@@ -178,7 +178,10 @@ export default function TreasureBoxPage() {
       setBoxTransform(`translate(${totalX}px, ${-totalY}px) scale(1.02)`);
 
       // 紙の位置は ref を使って同期的に制御（state は非同期なので追従してしまう）
-      if (totalY > CONSTANTS.PAPER_SHOW_THRESHOLD && !paperPositionSetRef.current) {
+      if (
+        totalY > CONSTANTS.PAPER_SHOW_THRESHOLD &&
+        !paperPositionSetRef.current
+      ) {
         setIsBottomDropped(true);
         setPaperPositionX(totalX);
         paperPositionSetRef.current = true;
