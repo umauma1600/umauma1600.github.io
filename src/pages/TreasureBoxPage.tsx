@@ -57,6 +57,7 @@ export default function TreasureBoxPage() {
   const [showHintModal, setShowHintModal] = useState(false);
   const [showPaperModal, setShowPaperModal] = useState(false);
   const [showClearModal, setShowClearModal] = useState(false);
+  const [showStoryModal, setShowStoryModal] = useState(false);
   const [paperStep, setPaperStep] = useState(1);
 
   // UI状態
@@ -504,8 +505,13 @@ export default function TreasureBoxPage() {
               />
             </div>
 
-            {/* テーブル上のオブジェクト - 左: 封筒 */}
-            <div className="table-object-left">
+            {/* テーブル上のオブジェクト - 左: 封筒（クリックでストーリー表示） */}
+            <div
+              className="table-object-left cursor-pointer hover:scale-110 transition-transform"
+              onClick={() => {
+                setShowStoryModal(true);
+              }}
+            >
               <img
                 src="/assets/treasure-box/card1.png"
                 alt="封筒"
@@ -924,6 +930,150 @@ export default function TreasureBoxPage() {
               style={{ color: "var(--color-text)", opacity: 0.6 }}
             >
               ヒント {currentHintStep + 1} / {hints.length}
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* ストーリーモーダル（挑戦状風） */}
+      {showStoryModal && (
+        <div
+          className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4 modal-show"
+          onClick={(e) => {
+            if (e.target === e.currentTarget) {
+              setShowStoryModal(false);
+            }
+          }}
+        >
+          <div
+            className="bg-amber-50 rounded-lg max-w-md w-full p-8 shadow-2xl relative overflow-hidden"
+            style={{
+              backgroundImage:
+                "linear-gradient(135deg, #fef7e8 0%, #fdf4dc 50%, #f9edd0 100%)",
+              border: "3px double var(--color-accent)",
+            }}
+          >
+            {/* 装飾的な角の飾り */}
+            <div
+              className="absolute top-2 left-2 w-8 h-8 border-t-2 border-l-2"
+              style={{ borderColor: "var(--color-accent)" }}
+            />
+            <div
+              className="absolute top-2 right-2 w-8 h-8 border-t-2 border-r-2"
+              style={{ borderColor: "var(--color-accent)" }}
+            />
+            <div
+              className="absolute bottom-2 left-2 w-8 h-8 border-b-2 border-l-2"
+              style={{ borderColor: "var(--color-accent)" }}
+            />
+            <div
+              className="absolute bottom-2 right-2 w-8 h-8 border-b-2 border-r-2"
+              style={{ borderColor: "var(--color-accent)" }}
+            />
+
+            {/* 閉じるボタン */}
+            <button
+              onClick={() => {
+                setShowStoryModal(false);
+              }}
+              className="absolute top-4 right-4 text-2xl leading-none hover:opacity-70 z-10"
+              style={{ color: "var(--color-primary)", opacity: 0.6 }}
+            >
+              &times;
+            </button>
+
+            {/* タイトル */}
+            <div className="text-center mb-6">
+              <div
+                className="text-sm tracking-widest mb-2"
+                style={{ color: "var(--color-accent)" }}
+              >
+                ── 挑戦状 ──
+              </div>
+              <h3
+                className="text-2xl font-bold"
+                style={{
+                  color: "var(--color-primary)",
+                  fontFamily: "Space Grotesk, sans-serif",
+                }}
+              >
+                謎解きへの招待
+              </h3>
+            </div>
+
+            {/* 本文 */}
+            <div
+              className="space-y-4 text-center leading-relaxed"
+              style={{
+                color: "var(--color-primary)",
+                fontFamily: "serif",
+              }}
+            >
+              <p className="text-sm">親愛なる挑戦者へ</p>
+
+              <p>あなたの元に、古びた宝箱が届きました。</p>
+
+              <p>
+                この宝箱には
+                <span
+                  className="font-bold"
+                  style={{ color: "var(--color-accent)" }}
+                >
+                  4桁のダイヤル錠
+                </span>
+                がかかっています。
+              </p>
+
+              <p>
+                しかし、錠を開けるだけでは
+                <br />
+                宝箱の中身を手にすることはできません。
+              </p>
+
+              <div
+                className="py-4 my-4"
+                style={{
+                  borderTop: "1px dashed var(--color-accent)",
+                  borderBottom: "1px dashed var(--color-accent)",
+                }}
+              >
+                <p
+                  className="font-medium"
+                  style={{ color: "var(--color-accent)" }}
+                >
+                  「常識」にとらわれていては
+                  <br />
+                  真実にたどり着けないでしょう。
+                </p>
+              </div>
+
+              <p className="text-sm" style={{ opacity: 0.8 }}>
+                固定観念を逆転させ、
+                <br />
+                宝箱の中に隠された
+                <span className="font-bold">キーワード</span>
+                を見つけ出してください。
+              </p>
+
+              <p
+                className="text-xs pt-4"
+                style={{ opacity: 0.6, fontStyle: "italic" }}
+              >
+                あなたの健闘を祈ります ──
+              </p>
+            </div>
+
+            {/* 閉じるボタン */}
+            <div className="mt-6 text-center">
+              <button
+                onClick={() => {
+                  setShowStoryModal(false);
+                }}
+                className="px-8 py-2 text-white rounded-full hover:opacity-90 transition-colors font-medium text-sm"
+                style={{ background: "var(--color-accent)" }}
+              >
+                謎解きを始める
+              </button>
             </div>
           </div>
         </div>
