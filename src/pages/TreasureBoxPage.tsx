@@ -456,36 +456,6 @@ export default function TreasureBoxPage() {
           </p>
         </div>
 
-        {/* ストーリー */}
-        <div className="max-w-2xl mx-auto mb-12 p-6 bg-white rounded-lg shadow-sm">
-          <h2
-            className="text-xl font-semibold mb-3"
-            style={{
-              color: "var(--color-primary)",
-              fontFamily: "Space Grotesk, sans-serif",
-            }}
-          >
-            Story
-          </h2>
-          <div
-            className="text-sm leading-relaxed space-y-2"
-            style={{ color: "var(--color-text)" }}
-          >
-            <p>あなたは古い部屋で不思議な宝箱を見つけた。</p>
-            <p>宝箱には4桁のダイヤル錠がかかっている。</p>
-            <p>しかし、錠を外しても宝箱は開かない...</p>
-            <p
-              className="pt-2 font-medium"
-              style={{
-                borderTop: "1px solid rgba(198, 156, 109, 0.2)",
-                color: "var(--color-accent)",
-              }}
-            >
-              固定観念を逆転させて、中にある紙に書かれたキーワードを見つけよう！
-            </p>
-          </div>
-        </div>
-
         {/* ゲームエリア */}
         <div className="max-w-6xl mx-auto">
           <div
