@@ -495,9 +495,9 @@ export default function TreasureBoxPage() {
         </div>
 
         {/* ゲームエリア */}
-        <div className="max-w-6xl mx-auto">
+        <div className="max-w-6xl mx-auto pb-28 md:pb-24">
           <div
-            className="relative p-8 rounded-2xl min-h-[700px] flex items-center justify-center"
+            className="relative p-4 md:p-8 rounded-2xl min-h-[400px] md:min-h-[500px] flex items-center justify-center"
             style={{
               background:
                 "linear-gradient(to bottom, rgba(198, 156, 109, 0.05), transparent)",
@@ -625,61 +625,54 @@ export default function TreasureBoxPage() {
             </div>
           </div>
 
-          {/* キーワード入力欄 */}
-          <div className="mt-8 bg-white p-6 rounded-lg shadow-sm max-w-2xl mx-auto">
-            <h3
-              className="text-lg font-semibold mb-3"
-              style={{
-                color: "var(--color-primary)",
-                fontFamily: "Space Grotesk, sans-serif",
-              }}
-            >
-              最終解答
-            </h3>
-            <div className="flex gap-2">
-              <input
-                ref={keywordInputRef}
-                type="text"
-                value={keywordInput}
-                onChange={(e) => {
-                  setKeywordInput(e.target.value);
-                }}
-                onKeyDown={(e) => {
-                  if (e.key === "Enter") {
-                    checkAnswer();
-                  }
-                }}
-                placeholder="ひらがな または 漢字で入力"
-                className={`flex-1 px-4 py-2 border-2 border-gray-300 rounded-lg focus:outline-none ${isShaking ? "animate-shake" : ""}`}
-                style={{ borderColor: isShaking ? "#ef4444" : undefined }}
-              />
-              <button
-                onClick={checkAnswer}
-                className="px-6 py-2 text-white rounded-lg hover:opacity-90 transition-colors font-medium"
-                style={{ background: "var(--color-accent)" }}
-              >
-                答えを確認
-              </button>
-            </div>
-            {answerFeedback && (
-              <div className="mt-2 text-sm feedback-wrong">
-                {answerFeedback}
-              </div>
-            )}
-          </div>
         </div>
       </main>
 
-      {/* ヒントボタン */}
-      <button
-        onClick={() => {
-          setShowHintModal(true);
-        }}
-        className="fixed bottom-8 right-8 w-14 h-14 text-white rounded-full shadow-lg hover:scale-110 transition-transform flex items-center justify-center text-2xl z-50 hint-button"
-        style={{ background: "var(--color-accent)" }}
-      >
-        💡
-      </button>
+      {/* 固定フッター：解答欄とヒントボタン */}
+      <div className="fixed bottom-0 left-0 right-0 bg-white/95 backdrop-blur-md shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.1)] z-40 px-4 py-3">
+        <div className="max-w-2xl mx-auto flex items-center gap-2 md:gap-3">
+          <div className="flex-1 flex items-center gap-2">
+            <input
+              ref={keywordInputRef}
+              type="text"
+              value={keywordInput}
+              onChange={(e) => {
+                setKeywordInput(e.target.value);
+              }}
+              onKeyDown={(e) => {
+                if (e.key === "Enter") {
+                  checkAnswer();
+                }
+              }}
+              placeholder="最終解答を入力"
+              className={`flex-1 px-3 py-2 text-sm md:text-base border-2 border-gray-300 rounded-lg focus:outline-none focus:border-amber-500 ${isShaking ? "animate-shake" : ""}`}
+              style={{ borderColor: isShaking ? "#ef4444" : undefined }}
+            />
+            <button
+              onClick={checkAnswer}
+              className="px-4 md:px-6 py-2 text-white rounded-lg hover:opacity-90 transition-colors font-medium text-sm md:text-base whitespace-nowrap"
+              style={{ background: "var(--color-accent)" }}
+            >
+              確認
+            </button>
+          </div>
+          {/* ヒントボタン */}
+          <button
+            onClick={() => {
+              setShowHintModal(true);
+            }}
+            className="w-10 h-10 md:w-12 md:h-12 text-white rounded-full shadow-lg hover:scale-110 transition-transform flex items-center justify-center text-xl md:text-2xl hint-button flex-shrink-0"
+            style={{ background: "var(--color-accent)" }}
+          >
+            💡
+          </button>
+        </div>
+        {answerFeedback && (
+          <div className="max-w-2xl mx-auto mt-1 text-sm feedback-wrong text-center">
+            {answerFeedback}
+          </div>
+        )}
+      </div>
 
       {/* ダイヤル錠モーダル */}
       {showDialModal && (
@@ -1292,7 +1285,7 @@ export default function TreasureBoxPage() {
         /* 宝箱コンテナ */
         .treasure-box-container {
           position: absolute;
-          bottom: 280px;
+          bottom: 180px;
           left: 50%;
           transform: translateX(-50%);
           z-index: 10;
@@ -1304,8 +1297,8 @@ export default function TreasureBoxPage() {
         /* テーブル上のオブジェクト - 左: 封筒 */
         .table-object-left {
           position: absolute;
-          bottom: 290px;
-          left: calc(50% - 140px);
+          bottom: 190px;
+          left: calc(50% - 120px);
           transform: translateX(-100%);
           z-index: 9;
         }
@@ -1313,8 +1306,8 @@ export default function TreasureBoxPage() {
         /* テーブル上のオブジェクト - 右: メモ */
         .table-object-right {
           position: absolute;
-          bottom: 285px;
-          right: calc(50% - 140px);
+          bottom: 185px;
+          right: calc(50% - 120px);
           transform: translateX(100%);
           z-index: 9;
         }
@@ -1450,26 +1443,23 @@ export default function TreasureBoxPage() {
             bottom: 0;
           }
 
+          .table-image {
+            width: 90%;
+          }
+
           .treasure-box-container {
-            transform: translateX(-50%) scale(0.9);
-            bottom: 200px;
+            transform: translateX(-50%) scale(0.85);
+            bottom: 140px;
           }
 
           .table-object-left {
-            bottom: 210px;
-            left: calc(50% - 100px);
+            bottom: 150px;
+            left: calc(50% - 80px);
           }
 
           .table-object-right {
-            bottom: 205px;
-            right: calc(50% - 100px);
-          }
-
-          .hint-button {
-            width: 56px;
-            height: 56px;
-            bottom: 20px;
-            right: 20px;
+            bottom: 145px;
+            right: calc(50% - 80px);
           }
         }
       `}</style>
