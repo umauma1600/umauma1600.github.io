@@ -523,7 +523,7 @@ export default function TreasureBoxPage() {
                 <img
                   src="/assets/treasure-box/card1.png"
                   alt="封筒"
-                  className="w-12 md:w-16 h-auto"
+                  className="w-18 md:w-24 h-auto"
                   style={{
                     filter: "drop-shadow(0 10px 15px rgb(0 0 0 / 0.1))",
                     transform: "rotate(-15deg)",
@@ -542,7 +542,7 @@ export default function TreasureBoxPage() {
                 <img
                   src="/assets/treasure-box/memo1.png"
                   alt="メモ"
-                  className="w-12 md:w-16 h-auto"
+                  className="w-18 md:w-24 h-auto"
                   style={{
                     filter: "drop-shadow(0 10px 15px rgb(0 0 0 / 0.1))",
                     transform: "rotate(8deg)",
