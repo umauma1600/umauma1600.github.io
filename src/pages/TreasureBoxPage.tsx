@@ -495,64 +495,64 @@ export default function TreasureBoxPage() {
         </div>
 
         {/* ゲームエリア */}
-        <div className="max-w-6xl mx-auto">
+        <div className="max-w-6xl mx-auto pb-28 md:pb-24">
           <div
-            className="relative p-8 rounded-2xl min-h-[700px] flex items-center justify-center"
+            className="relative p-4 md:p-8 rounded-2xl min-h-[400px] md:min-h-[500px] flex items-center justify-center"
             style={{
               background:
                 "linear-gradient(to bottom, rgba(198, 156, 109, 0.05), transparent)",
             }}
           >
-            {/* テーブルエリア */}
-            <div className="table-area">
+            {/* テーブルエリア - すべてのオブジェクトを含む */}
+            <div className="table-container">
+              {/* テーブル画像 */}
               <img
                 src="/assets/treasure-box/table1.png"
                 alt="テーブル"
                 className="table-image"
                 draggable={false}
               />
-            </div>
 
-            {/* テーブル上のオブジェクト - 左: 封筒（クリックでストーリー表示） */}
-            <div
-              className="table-object-left cursor-pointer hover:scale-110 transition-transform"
-              onClick={() => {
-                setShowStoryModal(true);
-              }}
-            >
-              <img
-                src="/assets/treasure-box/card1.png"
-                alt="封筒"
-                className="w-16 md:w-20 h-auto"
-                style={{
-                  filter: "drop-shadow(0 10px 15px rgb(0 0 0 / 0.1))",
-                  transform: "rotate(-15deg)",
+              {/* テーブル上のオブジェクト - 左: 封筒（クリックでストーリー表示） */}
+              <div
+                className="table-object-left cursor-pointer hover:scale-110 transition-transform"
+                onClick={() => {
+                  setShowStoryModal(true);
                 }}
-                draggable={false}
-              />
-            </div>
+              >
+                <img
+                  src="/assets/treasure-box/card1.png"
+                  alt="封筒"
+                  className="w-12 md:w-16 h-auto"
+                  style={{
+                    filter: "drop-shadow(0 10px 15px rgb(0 0 0 / 0.1))",
+                    transform: "rotate(-15deg)",
+                  }}
+                  draggable={false}
+                />
+              </div>
 
-            {/* テーブル上のオブジェクト - 右: メモ（クリックで手掛かり表示） */}
-            <div
-              className="table-object-right cursor-pointer hover:scale-110 transition-transform"
-              onClick={() => {
-                setShowClueModal(true);
-              }}
-            >
-              <img
-                src="/assets/treasure-box/memo1.png"
-                alt="メモ"
-                className="w-16 md:w-20 h-auto"
-                style={{
-                  filter: "drop-shadow(0 10px 15px rgb(0 0 0 / 0.1))",
-                  transform: "rotate(8deg)",
+              {/* テーブル上のオブジェクト - 右: メモ（クリックで手掛かり表示） */}
+              <div
+                className="table-object-right cursor-pointer hover:scale-110 transition-transform"
+                onClick={() => {
+                  setShowClueModal(true);
                 }}
-                draggable={false}
-              />
-            </div>
+              >
+                <img
+                  src="/assets/treasure-box/memo1.png"
+                  alt="メモ"
+                  className="w-12 md:w-16 h-auto"
+                  style={{
+                    filter: "drop-shadow(0 10px 15px rgb(0 0 0 / 0.1))",
+                    transform: "rotate(8deg)",
+                  }}
+                  draggable={false}
+                />
+              </div>
 
-            {/* 宝箱コンテナ */}
-            <div className="treasure-box-container">
+              {/* 宝箱コンテナ */}
+              <div className="treasure-box-wrapper">
               {/* 宝箱本体 */}
               <div
                 ref={treasureBoxRef}
@@ -602,7 +602,7 @@ export default function TreasureBoxPage() {
               {/* 折りたたまれた紙 */}
               {isBottomDropped && (
                 <div
-                  className="cursor-pointer hover:scale-105 transition-transform"
+                  className="fallen-paper cursor-pointer hover:scale-105 transition-transform"
                   style={{
                     transform: `translateX(${paperPositionX}px)`,
                   }}
@@ -614,7 +614,7 @@ export default function TreasureBoxPage() {
                   <img
                     src="/assets/treasure-box/kami-Photoroom.png"
                     alt="落ちてきた紙"
-                    className="w-12 h-auto"
+                    className="w-10 md:w-12 h-auto"
                     style={{
                       filter: "drop-shadow(0 10px 8px rgb(0 0 0 / 0.04))",
                     }}
@@ -622,64 +622,58 @@ export default function TreasureBoxPage() {
                   />
                 </div>
               )}
+              </div>
             </div>
           </div>
 
-          {/* キーワード入力欄 */}
-          <div className="mt-8 bg-white p-6 rounded-lg shadow-sm max-w-2xl mx-auto">
-            <h3
-              className="text-lg font-semibold mb-3"
-              style={{
-                color: "var(--color-primary)",
-                fontFamily: "Space Grotesk, sans-serif",
-              }}
-            >
-              最終解答
-            </h3>
-            <div className="flex gap-2">
-              <input
-                ref={keywordInputRef}
-                type="text"
-                value={keywordInput}
-                onChange={(e) => {
-                  setKeywordInput(e.target.value);
-                }}
-                onKeyDown={(e) => {
-                  if (e.key === "Enter") {
-                    checkAnswer();
-                  }
-                }}
-                placeholder="ひらがな または 漢字で入力"
-                className={`flex-1 px-4 py-2 border-2 border-gray-300 rounded-lg focus:outline-none ${isShaking ? "animate-shake" : ""}`}
-                style={{ borderColor: isShaking ? "#ef4444" : undefined }}
-              />
-              <button
-                onClick={checkAnswer}
-                className="px-6 py-2 text-white rounded-lg hover:opacity-90 transition-colors font-medium"
-                style={{ background: "var(--color-accent)" }}
-              >
-                答えを確認
-              </button>
-            </div>
-            {answerFeedback && (
-              <div className="mt-2 text-sm feedback-wrong">
-                {answerFeedback}
-              </div>
-            )}
-          </div>
         </div>
       </main>
 
-      {/* ヒントボタン */}
-      <button
-        onClick={() => {
-          setShowHintModal(true);
-        }}
-        className="fixed bottom-8 right-8 w-14 h-14 text-white rounded-full shadow-lg hover:scale-110 transition-transform flex items-center justify-center text-2xl z-50 hint-button"
-        style={{ background: "var(--color-accent)" }}
-      >
-        💡
-      </button>
+      {/* 固定フッター：解答欄とヒントボタン */}
+      <div className="fixed bottom-0 left-0 right-0 bg-white/95 backdrop-blur-md shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.1)] z-40 px-4 py-3">
+        <div className="max-w-2xl mx-auto flex items-center gap-2 md:gap-3">
+          <div className="flex-1 flex items-center gap-2">
+            <input
+              ref={keywordInputRef}
+              type="text"
+              value={keywordInput}
+              onChange={(e) => {
+                setKeywordInput(e.target.value);
+              }}
+              onKeyDown={(e) => {
+                if (e.key === "Enter") {
+                  checkAnswer();
+                }
+              }}
+              placeholder="最終解答を入力"
+              className={`flex-1 px-3 py-2 text-sm md:text-base border-2 border-gray-300 rounded-lg focus:outline-none focus:border-amber-500 ${isShaking ? "animate-shake" : ""}`}
+              style={{ borderColor: isShaking ? "#ef4444" : undefined }}
+            />
+            <button
+              onClick={checkAnswer}
+              className="px-4 md:px-6 py-2 text-white rounded-lg hover:opacity-90 transition-colors font-medium text-sm md:text-base whitespace-nowrap"
+              style={{ background: "var(--color-accent)" }}
+            >
+              確認
+            </button>
+          </div>
+          {/* ヒントボタン */}
+          <button
+            onClick={() => {
+              setShowHintModal(true);
+            }}
+            className="w-10 h-10 md:w-12 md:h-12 text-white rounded-full shadow-lg hover:scale-110 transition-transform flex items-center justify-center text-xl md:text-2xl hint-button flex-shrink-0"
+            style={{ background: "var(--color-accent)" }}
+          >
+            💡
+          </button>
+        </div>
+        {answerFeedback && (
+          <div className="max-w-2xl mx-auto mt-1 text-sm feedback-wrong text-center">
+            {answerFeedback}
+          </div>
+        )}
+      </div>
 
       {/* ダイヤル錠モーダル */}
       {showDialModal && (
@@ -1271,28 +1265,26 @@ export default function TreasureBoxPage() {
 
       {/* カスタムスタイル */}
       <style>{`
-        /* テーブル関連 */
-        .table-area {
+        /* テーブルコンテナ - テーブルとすべてのオブジェクトを含む */
+        .table-container {
           position: absolute;
           bottom: 0;
           left: 50%;
           transform: translateX(-50%);
-          z-index: 1;
-          width: 100%;
+          width: 70%;
+          max-width: 800px;
         }
 
         .table-image {
-          width: 70%;
-          max-width: 1550px;
+          width: 100%;
           height: auto;
           display: block;
-          margin: 0 auto;
         }
 
-        /* 宝箱コンテナ */
-        .treasure-box-container {
+        /* 宝箱ラッパー - テーブル上に配置 */
+        .treasure-box-wrapper {
           position: absolute;
-          bottom: 280px;
+          top: -5%;
           left: 50%;
           transform: translateX(-50%);
           z-index: 10;
@@ -1301,21 +1293,26 @@ export default function TreasureBoxPage() {
           align-items: center;
         }
 
+        /* 落ちてきた紙 */
+        .fallen-paper {
+          margin-top: -15px;
+        }
+
         /* テーブル上のオブジェクト - 左: 封筒 */
         .table-object-left {
           position: absolute;
-          bottom: 290px;
-          left: calc(50% - 140px);
-          transform: translateX(-100%);
+          top: 5%;
+          left: 18%;
+          transform: translateY(-50%);
           z-index: 9;
         }
 
         /* テーブル上のオブジェクト - 右: メモ */
         .table-object-right {
           position: absolute;
-          bottom: 285px;
-          right: calc(50% - 140px);
-          transform: translateX(100%);
+          top: 5%;
+          right: 18%;
+          transform: translateY(-50%);
           z-index: 9;
         }
 
@@ -1446,30 +1443,25 @@ export default function TreasureBoxPage() {
 
         /* レスポンシブ対応 */
         @media (max-width: 768px) {
-          .table-area {
-            bottom: 0;
+          .table-container {
+            width: 95%;
           }
 
-          .treasure-box-container {
-            transform: translateX(-50%) scale(0.9);
-            bottom: 200px;
+          .treasure-box-wrapper {
+            transform: translateX(-50%) scale(0.85);
+            top: -8%;
           }
 
           .table-object-left {
-            bottom: 210px;
-            left: calc(50% - 100px);
+            top: 8%;
+            left: 8%;
+            transform: translateY(-40%) scale(0.85);
           }
 
           .table-object-right {
-            bottom: 205px;
-            right: calc(50% - 100px);
-          }
-
-          .hint-button {
-            width: 56px;
-            height: 56px;
-            bottom: 20px;
-            right: 20px;
+            top: 8%;
+            right: 8%;
+            transform: translateY(-40%) scale(0.85);
           }
         }
       `}</style>
