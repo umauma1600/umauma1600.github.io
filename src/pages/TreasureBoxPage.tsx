@@ -19,18 +19,15 @@ const CONSTANTS = {
 const clues = [
   {
     step: 1,
-    title: "メモ書き",
-    text: "「私の名前を4桁で表すと<br><span class='clue-number'>1600</span><br>となる」",
+    text: "Numek-n es n.<br>Numek-ki es wrils.<br>Numek-zam es grovinas.<br>Numek-befo es ki.",
   },
   {
     step: 2,
-    title: "走り書き",
-    text: "「宝箱は<span class='highlight'>開くだけが能じゃない</span>。<br>違う視点で見てみろ」",
+    text: "この言語はケルナ語という言語だ",
   },
   {
     step: 3,
-    title: "かすれた文字",
-    text: "「答えは<span class='highlight'>中</span>にはない。<br>もっと<span class='highlight'>下</span>を見ろ」",
+    text: "解錠されることは想定していないようだ",
   },
 ];
 
@@ -1005,23 +1002,26 @@ export default function TreasureBoxPage() {
             >
               <p className="text-sm">親愛なる挑戦者へ</p>
 
-              <p>あなたの元に、古びた宝箱が届きました。</p>
-
               <p>
-                この宝箱には
+                ここには
                 <span
                   className="font-bold"
                   style={{ color: "var(--color-accent)" }}
                 >
                   4桁のダイヤル錠
                 </span>
-                がかかっています。
+                がかかっている
+                <br />
+                古びた宝箱があります。
               </p>
 
               <p>
-                しかし、錠を開けるだけでは
+                この宝箱の中にある紙に書かれた
                 <br />
-                宝箱の中身を手にすることはできません。
+                <span className="font-bold">キーワード</span>
+                を送信できれば、
+                <br />
+                あなたの勝利です。
               </p>
 
               <div
@@ -1035,19 +1035,13 @@ export default function TreasureBoxPage() {
                   className="font-medium"
                   style={{ color: "var(--color-accent)" }}
                 >
-                  「常識」にとらわれていては
+                  固定観念を逆転させ、
                   <br />
-                  真実にたどり着けないでしょう。
+                  宝箱の中に隠されたキーワードを
+                  <br />
+                  見つけ出してください。
                 </p>
               </div>
-
-              <p className="text-sm" style={{ opacity: 0.8 }}>
-                固定観念を逆転させ、
-                <br />
-                宝箱の中に隠された
-                <span className="font-bold">キーワード</span>
-                を見つけ出してください。
-              </p>
 
               <p
                 className="text-xs pt-4"
@@ -1104,12 +1098,6 @@ export default function TreasureBoxPage() {
 
             {/* タイトル */}
             <div className="text-center mb-4">
-              <div
-                className="text-sm tracking-widest mb-1"
-                style={{ color: "var(--color-accent)" }}
-              >
-                📝
-              </div>
               <h3
                 className="text-xl font-bold"
                 style={{
@@ -1117,7 +1105,7 @@ export default function TreasureBoxPage() {
                   fontFamily: "Space Grotesk, sans-serif",
                 }}
               >
-                手掛かり - {clues[currentClueStep]?.title}
+                ダイヤル錠の手がかり
               </h3>
             </div>
 
