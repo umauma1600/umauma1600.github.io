@@ -507,7 +507,7 @@ export default function TreasureBoxPage() {
             <div className="table-container">
               {/* テーブル画像 */}
               <img
-                src="/assets/treasure-box/table1.png"
+                src="/assets/treasure-box/table2.png"
                 alt="テーブル"
                 className="table-image"
                 draggable={false}
@@ -553,79 +553,78 @@ export default function TreasureBoxPage() {
 
               {/* 宝箱コンテナ */}
               <div className="treasure-box-wrapper">
-              {/* 宝箱本体 */}
-              <div
-                ref={treasureBoxRef}
-                className={`treasure-box relative cursor-grab active:cursor-grabbing ${isDragging ? "dragging" : ""}`}
-                style={{ transform: boxTransform }}
-                onMouseDown={handleMouseDown}
-                onTouchStart={handleTouchStart}
-              >
-                {/* 宝箱画像 */}
-                <img
-                  src="/assets/treasure-box/treasure-box2.png"
-                  alt="宝箱"
-                  className="treasure-box-image w-32 md:w-40 max-w-full h-auto select-none"
-                  style={{
-                    filter: "drop-shadow(0 25px 25px rgb(0 0 0 / 0.15))",
-                  }}
-                  draggable={false}
-                />
-
-                {/* ダイヤル錠画像 */}
-                {lockVisible && (
-                  <div
-                    id="lockIcon"
-                    className="absolute top-1/2 left-1/2 w-12 md:w-14 cursor-pointer hover:scale-110 transition-transform z-20 select-none"
+                {/* 宝箱本体 */}
+                <div
+                  ref={treasureBoxRef}
+                  className={`treasure-box relative cursor-grab active:cursor-grabbing ${isDragging ? "dragging" : ""}`}
+                  style={{ transform: boxTransform }}
+                  onMouseDown={handleMouseDown}
+                  onTouchStart={handleTouchStart}
+                >
+                  {/* 宝箱画像 */}
+                  <img
+                    src="/assets/treasure-box/treasure-box2.png"
+                    alt="宝箱"
+                    className="treasure-box-image w-32 md:w-40 max-w-full h-auto select-none"
                     style={{
-                      transform: "translate(-50%, 4px)",
-                      opacity: lockFading ? 0 : 1,
-                      transition: lockFading
-                        ? "opacity 0.5s ease, transform 0.5s ease"
-                        : undefined,
+                      filter: "drop-shadow(0 25px 25px rgb(0 0 0 / 0.15))",
                     }}
                     draggable={false}
+                  />
+
+                  {/* ダイヤル錠画像 */}
+                  {lockVisible && (
+                    <div
+                      id="lockIcon"
+                      className="absolute top-1/2 left-1/2 w-12 md:w-14 cursor-pointer hover:scale-110 transition-transform z-20 select-none"
+                      style={{
+                        transform: "translate(-50%, 4px)",
+                        opacity: lockFading ? 0 : 1,
+                        transition: lockFading
+                          ? "opacity 0.5s ease, transform 0.5s ease"
+                          : undefined,
+                      }}
+                      draggable={false}
+                      onClick={() => {
+                        setShowDialModal(true);
+                      }}
+                    >
+                      <img
+                        src="/assets/treasure-box/dial-lock2.png"
+                        alt="ダイヤル錠"
+                        className="w-full h-auto"
+                        draggable={false}
+                      />
+                    </div>
+                  )}
+                </div>
+
+                {/* 折りたたまれた紙 */}
+                {isBottomDropped && (
+                  <div
+                    className="fallen-paper cursor-pointer hover:scale-105 transition-transform"
+                    style={{
+                      transform: `translateX(${paperPositionX}px)`,
+                    }}
                     onClick={() => {
-                      setShowDialModal(true);
+                      setPaperStep(1);
+                      setShowPaperModal(true);
                     }}
                   >
                     <img
-                      src="/assets/treasure-box/dial-lock2.png"
-                      alt="ダイヤル錠"
-                      className="w-full h-auto"
+                      src="/assets/treasure-box/kami-Photoroom.png"
+                      alt="落ちてきた紙"
+                      className="w-10 md:w-12 h-auto"
+                      style={{
+                        filter: "drop-shadow(0 10px 8px rgb(0 0 0 / 0.04))",
+                      }}
                       draggable={false}
                     />
                   </div>
                 )}
               </div>
-
-              {/* 折りたたまれた紙 */}
-              {isBottomDropped && (
-                <div
-                  className="fallen-paper cursor-pointer hover:scale-105 transition-transform"
-                  style={{
-                    transform: `translateX(${paperPositionX}px)`,
-                  }}
-                  onClick={() => {
-                    setPaperStep(1);
-                    setShowPaperModal(true);
-                  }}
-                >
-                  <img
-                    src="/assets/treasure-box/kami-Photoroom.png"
-                    alt="落ちてきた紙"
-                    className="w-10 md:w-12 h-auto"
-                    style={{
-                      filter: "drop-shadow(0 10px 8px rgb(0 0 0 / 0.04))",
-                    }}
-                    draggable={false}
-                  />
-                </div>
-              )}
-              </div>
             </div>
           </div>
-
         </div>
       </main>
 
@@ -1445,11 +1444,6 @@ export default function TreasureBoxPage() {
         @media (max-width: 768px) {
           .table-container {
             width: 95%;
-          }
-
-          .treasure-box-wrapper {
-            transform: translateX(-50%) scale(0.85);
-            top: -8%;
           }
 
           .table-object-left {
