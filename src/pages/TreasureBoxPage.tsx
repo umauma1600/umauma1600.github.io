@@ -1285,7 +1285,7 @@ export default function TreasureBoxPage() {
         /* 宝箱コンテナ */
         .treasure-box-container {
           position: absolute;
-          bottom: 180px;
+          bottom: 38%;
           left: 50%;
           transform: translateX(-50%);
           z-index: 10;
@@ -1297,7 +1297,7 @@ export default function TreasureBoxPage() {
         /* テーブル上のオブジェクト - 左: 封筒 */
         .table-object-left {
           position: absolute;
-          bottom: 190px;
+          bottom: 40%;
           left: calc(50% - 120px);
           transform: translateX(-100%);
           z-index: 9;
@@ -1306,7 +1306,7 @@ export default function TreasureBoxPage() {
         /* テーブル上のオブジェクト - 右: メモ */
         .table-object-right {
           position: absolute;
-          bottom: 185px;
+          bottom: 39%;
           right: calc(50% - 120px);
           transform: translateX(100%);
           z-index: 9;
@@ -1449,16 +1449,16 @@ export default function TreasureBoxPage() {
 
           .treasure-box-container {
             transform: translateX(-50%) scale(0.85);
-            bottom: 140px;
+            bottom: 36%;
           }
 
           .table-object-left {
-            bottom: 150px;
+            bottom: 38%;
             left: calc(50% - 80px);
           }
 
           .table-object-right {
-            bottom: 145px;
+            bottom: 37%;
             right: calc(50% - 80px);
           }
         }
