@@ -602,7 +602,7 @@ export default function TreasureBoxPage() {
               {/* 折りたたまれた紙 */}
               {isBottomDropped && (
                 <div
-                  className="cursor-pointer hover:scale-105 transition-transform"
+                  className="fallen-paper cursor-pointer hover:scale-105 transition-transform"
                   style={{
                     transform: `translateX(${paperPositionX}px)`,
                   }}
@@ -614,7 +614,7 @@ export default function TreasureBoxPage() {
                   <img
                     src="/assets/treasure-box/kami-Photoroom.png"
                     alt="落ちてきた紙"
-                    className="w-12 h-auto"
+                    className="w-10 md:w-12 h-auto"
                     style={{
                       filter: "drop-shadow(0 10px 8px rgb(0 0 0 / 0.04))",
                     }}
@@ -1293,21 +1293,26 @@ export default function TreasureBoxPage() {
           align-items: center;
         }
 
+        /* 落ちてきた紙 */
+        .fallen-paper {
+          margin-top: -15px;
+        }
+
         /* テーブル上のオブジェクト - 左: 封筒 */
         .table-object-left {
           position: absolute;
-          top: 0;
-          left: 15%;
-          transform: translateY(-70%);
+          top: 5%;
+          left: 18%;
+          transform: translateY(-50%);
           z-index: 9;
         }
 
         /* テーブル上のオブジェクト - 右: メモ */
         .table-object-right {
           position: absolute;
-          top: 0;
-          right: 15%;
-          transform: translateY(-70%);
+          top: 5%;
+          right: 18%;
+          transform: translateY(-50%);
           z-index: 9;
         }
 
@@ -1448,13 +1453,15 @@ export default function TreasureBoxPage() {
           }
 
           .table-object-left {
-            left: 10%;
-            transform: translateY(-60%) scale(0.9);
+            top: 8%;
+            left: 8%;
+            transform: translateY(-40%) scale(0.85);
           }
 
           .table-object-right {
-            right: 10%;
-            transform: translateY(-60%) scale(0.9);
+            top: 8%;
+            right: 8%;
+            transform: translateY(-40%) scale(0.85);
           }
         }
       `}</style>
