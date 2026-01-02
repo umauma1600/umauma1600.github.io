@@ -1287,6 +1287,9 @@ export default function TreasureBoxPage() {
           left: 50%;
           transform: translateX(-50%);
           z-index: 10;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
         }
 
         /* テーブル上のオブジェクト - 左: 封筒 */
