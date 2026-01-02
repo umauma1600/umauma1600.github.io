@@ -1002,23 +1002,26 @@ export default function TreasureBoxPage() {
             >
               <p className="text-sm">親愛なる挑戦者へ</p>
 
-              <p>あなたの元に、古びた宝箱が届きました。</p>
-
               <p>
-                この宝箱には
+                ここには
                 <span
                   className="font-bold"
                   style={{ color: "var(--color-accent)" }}
                 >
                   4桁のダイヤル錠
                 </span>
-                がかかっています。
+                がかかっている
+                <br />
+                古びた宝箱があります。
               </p>
 
               <p>
-                しかし、錠を開けるだけでは
+                この宝箱の中にある紙に書かれた
                 <br />
-                宝箱の中身を手にすることはできません。
+                <span className="font-bold">キーワード</span>
+                を送信できれば、
+                <br />
+                あなたの勝利です。
               </p>
 
               <div
@@ -1032,19 +1035,13 @@ export default function TreasureBoxPage() {
                   className="font-medium"
                   style={{ color: "var(--color-accent)" }}
                 >
-                  「常識」にとらわれていては
+                  固定観念を逆転させ、
                   <br />
-                  真実にたどり着けないでしょう。
+                  宝箱の中に隠されたキーワードを
+                  <br />
+                  見つけ出してください。
                 </p>
               </div>
-
-              <p className="text-sm" style={{ opacity: 0.8 }}>
-                固定観念を逆転させ、
-                <br />
-                宝箱の中に隠された
-                <span className="font-bold">キーワード</span>
-                を見つけ出してください。
-              </p>
 
               <p
                 className="text-xs pt-4"
