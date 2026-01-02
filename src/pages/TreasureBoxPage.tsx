@@ -388,13 +388,9 @@ export default function TreasureBoxPage() {
     }
   };
 
+  // ステップ3では紙クリックで閉じないようにする（×ボタンのみで閉じる）
   const handlePaperStep3Click = () => {
-    if (paperStep === 3) {
-      setShowPaperModal(false);
-      setTimeout(() => {
-        setPaperStep(1);
-      }, CONSTANTS.MODAL_FADE_DELAY);
-    }
+    // 正解キーワード表示時はクリックで閉じない
   };
 
   // Xシェア
@@ -754,7 +750,8 @@ export default function TreasureBoxPage() {
         <div
           className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4 modal-show"
           onClick={(e) => {
-            if (e.target === e.currentTarget) {
+            // ステップ3（正解キーワード表示時）は背景クリックで閉じない
+            if (e.target === e.currentTarget && paperStep !== 3) {
               setShowPaperModal(false);
             }
           }}
