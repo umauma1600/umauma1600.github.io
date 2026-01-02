@@ -19,18 +19,15 @@ const CONSTANTS = {
 const clues = [
   {
     step: 1,
-    title: "メモ書き",
-    text: "「私の名前を4桁で表すと<br><span class='clue-number'>1600</span><br>となる」",
+    text: "Numek-n es n.<br>Numek-ki es wrils.<br>Numek-zam es grovinas.<br>Numek-befo es ki.",
   },
   {
     step: 2,
-    title: "走り書き",
-    text: "「宝箱は<span class='highlight'>開くだけが能じゃない</span>。<br>違う視点で見てみろ」",
+    text: "この言語はケルナ語という言語だ",
   },
   {
     step: 3,
-    title: "かすれた文字",
-    text: "「答えは<span class='highlight'>中</span>にはない。<br>もっと<span class='highlight'>下</span>を見ろ」",
+    text: "解錠されることは想定していないようだ",
   },
 ];
 
@@ -1104,12 +1101,6 @@ export default function TreasureBoxPage() {
 
             {/* タイトル */}
             <div className="text-center mb-4">
-              <div
-                className="text-sm tracking-widest mb-1"
-                style={{ color: "var(--color-accent)" }}
-              >
-                📝
-              </div>
               <h3
                 className="text-xl font-bold"
                 style={{
@@ -1117,7 +1108,7 @@ export default function TreasureBoxPage() {
                   fontFamily: "Space Grotesk, sans-serif",
                 }}
               >
-                手掛かり - {clues[currentClueStep]?.title}
+                ダイヤル錠の手がかり
               </h3>
             </div>
 
