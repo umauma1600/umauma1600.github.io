@@ -58,6 +58,7 @@ export default function TreasureBoxPage() {
   const [showPaperModal, setShowPaperModal] = useState(false);
   const [showClearModal, setShowClearModal] = useState(false);
   const [showStoryModal, setShowStoryModal] = useState(false);
+  const [showClueModal, setShowClueModal] = useState(false);
   const [paperStep, setPaperStep] = useState(1);
 
   // UI状態
@@ -494,14 +495,20 @@ export default function TreasureBoxPage() {
               />
             </div>
 
-            {/* テーブル上のオブジェクト - 右: メモ */}
-            <div className="table-object-right">
+            {/* テーブル上のオブジェクト - 右: メモ（クリックで手掛かり表示） */}
+            <div
+              className="table-object-right cursor-pointer hover:scale-110 transition-transform"
+              onClick={() => {
+                setShowClueModal(true);
+              }}
+            >
               <img
                 src="/assets/treasure-box/memo1.png"
                 alt="メモ"
                 className="w-16 md:w-20 h-auto"
                 style={{
                   filter: "drop-shadow(0 10px 15px rgb(0 0 0 / 0.1))",
+                  transform: "rotate(8deg)",
                 }}
                 draggable={false}
               />
@@ -1043,6 +1050,111 @@ export default function TreasureBoxPage() {
                 style={{ background: "var(--color-accent)" }}
               >
                 謎解きを始める
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* 手掛かりモーダル（メモクリック時） */}
+      {showClueModal && (
+        <div
+          className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4 modal-show"
+          onClick={(e) => {
+            if (e.target === e.currentTarget) {
+              setShowClueModal(false);
+            }
+          }}
+        >
+          <div
+            className="bg-amber-50 rounded-lg max-w-sm w-full p-6 shadow-2xl relative overflow-hidden"
+            style={{
+              backgroundImage:
+                "linear-gradient(135deg, #fffef5 0%, #fff8e1 50%, #ffecb3 100%)",
+              border: "2px solid var(--color-accent)",
+            }}
+          >
+            {/* 閉じるボタン */}
+            <button
+              onClick={() => {
+                setShowClueModal(false);
+              }}
+              className="absolute top-3 right-3 text-2xl leading-none hover:opacity-70 z-10"
+              style={{ color: "var(--color-primary)", opacity: 0.6 }}
+            >
+              &times;
+            </button>
+
+            {/* タイトル */}
+            <div className="text-center mb-4">
+              <div
+                className="text-sm tracking-widest mb-1"
+                style={{ color: "var(--color-accent)" }}
+              >
+                📝
+              </div>
+              <h3
+                className="text-xl font-bold"
+                style={{
+                  color: "var(--color-primary)",
+                  fontFamily: "Space Grotesk, sans-serif",
+                }}
+              >
+                手掛かり
+              </h3>
+            </div>
+
+            {/* 本文 */}
+            <div
+              className="space-y-4 text-center leading-relaxed"
+              style={{
+                color: "var(--color-primary)",
+                fontFamily: "serif",
+              }}
+            >
+              <p className="text-sm" style={{ opacity: 0.8 }}>
+                古びたメモにはこう書かれていた...
+              </p>
+
+              <div
+                className="py-4 px-3 rounded"
+                style={{
+                  background: "rgba(198, 156, 109, 0.1)",
+                  borderLeft: "3px solid var(--color-accent)",
+                }}
+              >
+                <p
+                  className="font-medium text-lg"
+                  style={{ color: "var(--color-primary)" }}
+                >
+                  「私の名前を4桁で表すと
+                  <br />
+                  <span
+                    className="text-2xl font-bold"
+                    style={{ color: "var(--color-accent)" }}
+                  >
+                    1600
+                  </span>
+                  <br />
+                  となる」
+                </p>
+              </div>
+
+              <p className="text-xs" style={{ opacity: 0.6 }}>
+                ── これがダイヤル錠の鍵かもしれない
+              </p>
+            </div>
+
+            {/* 閉じるボタン */}
+            <div className="mt-5 text-center">
+              <button
+                onClick={() => {
+                  setShowClueModal(false);
+                }}
+                className="px-6 py-2 text-white rounded-full hover:opacity-90 transition-colors font-medium text-sm"
+                style={{ background: "var(--color-accent)" }}
+              >
+                閉じる
               </button>
             </div>
           </div>
