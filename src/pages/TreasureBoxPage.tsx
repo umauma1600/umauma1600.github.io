@@ -503,56 +503,56 @@ export default function TreasureBoxPage() {
                 "linear-gradient(to bottom, rgba(198, 156, 109, 0.05), transparent)",
             }}
           >
-            {/* テーブルエリア */}
-            <div className="table-area">
+            {/* テーブルエリア - すべてのオブジェクトを含む */}
+            <div className="table-container">
+              {/* テーブル画像 */}
               <img
                 src="/assets/treasure-box/table1.png"
                 alt="テーブル"
                 className="table-image"
                 draggable={false}
               />
-            </div>
 
-            {/* テーブル上のオブジェクト - 左: 封筒（クリックでストーリー表示） */}
-            <div
-              className="table-object-left cursor-pointer hover:scale-110 transition-transform"
-              onClick={() => {
-                setShowStoryModal(true);
-              }}
-            >
-              <img
-                src="/assets/treasure-box/card1.png"
-                alt="封筒"
-                className="w-16 md:w-20 h-auto"
-                style={{
-                  filter: "drop-shadow(0 10px 15px rgb(0 0 0 / 0.1))",
-                  transform: "rotate(-15deg)",
+              {/* テーブル上のオブジェクト - 左: 封筒（クリックでストーリー表示） */}
+              <div
+                className="table-object-left cursor-pointer hover:scale-110 transition-transform"
+                onClick={() => {
+                  setShowStoryModal(true);
                 }}
-                draggable={false}
-              />
-            </div>
+              >
+                <img
+                  src="/assets/treasure-box/card1.png"
+                  alt="封筒"
+                  className="w-12 md:w-16 h-auto"
+                  style={{
+                    filter: "drop-shadow(0 10px 15px rgb(0 0 0 / 0.1))",
+                    transform: "rotate(-15deg)",
+                  }}
+                  draggable={false}
+                />
+              </div>
 
-            {/* テーブル上のオブジェクト - 右: メモ（クリックで手掛かり表示） */}
-            <div
-              className="table-object-right cursor-pointer hover:scale-110 transition-transform"
-              onClick={() => {
-                setShowClueModal(true);
-              }}
-            >
-              <img
-                src="/assets/treasure-box/memo1.png"
-                alt="メモ"
-                className="w-16 md:w-20 h-auto"
-                style={{
-                  filter: "drop-shadow(0 10px 15px rgb(0 0 0 / 0.1))",
-                  transform: "rotate(8deg)",
+              {/* テーブル上のオブジェクト - 右: メモ（クリックで手掛かり表示） */}
+              <div
+                className="table-object-right cursor-pointer hover:scale-110 transition-transform"
+                onClick={() => {
+                  setShowClueModal(true);
                 }}
-                draggable={false}
-              />
-            </div>
+              >
+                <img
+                  src="/assets/treasure-box/memo1.png"
+                  alt="メモ"
+                  className="w-12 md:w-16 h-auto"
+                  style={{
+                    filter: "drop-shadow(0 10px 15px rgb(0 0 0 / 0.1))",
+                    transform: "rotate(8deg)",
+                  }}
+                  draggable={false}
+                />
+              </div>
 
-            {/* 宝箱コンテナ */}
-            <div className="treasure-box-container">
+              {/* 宝箱コンテナ */}
+              <div className="treasure-box-wrapper">
               {/* 宝箱本体 */}
               <div
                 ref={treasureBoxRef}
@@ -622,6 +622,7 @@ export default function TreasureBoxPage() {
                   />
                 </div>
               )}
+              </div>
             </div>
           </div>
 
@@ -1264,28 +1265,26 @@ export default function TreasureBoxPage() {
 
       {/* カスタムスタイル */}
       <style>{`
-        /* テーブル関連 */
-        .table-area {
+        /* テーブルコンテナ - テーブルとすべてのオブジェクトを含む */
+        .table-container {
           position: absolute;
           bottom: 0;
           left: 50%;
           transform: translateX(-50%);
-          z-index: 1;
-          width: 100%;
+          width: 70%;
+          max-width: 800px;
         }
 
         .table-image {
-          width: 70%;
-          max-width: 1550px;
+          width: 100%;
           height: auto;
           display: block;
-          margin: 0 auto;
         }
 
-        /* 宝箱コンテナ */
-        .treasure-box-container {
+        /* 宝箱ラッパー - テーブル上に配置 */
+        .treasure-box-wrapper {
           position: absolute;
-          bottom: 38%;
+          top: -5%;
           left: 50%;
           transform: translateX(-50%);
           z-index: 10;
@@ -1297,18 +1296,18 @@ export default function TreasureBoxPage() {
         /* テーブル上のオブジェクト - 左: 封筒 */
         .table-object-left {
           position: absolute;
-          bottom: 40%;
-          left: calc(50% - 120px);
-          transform: translateX(-100%);
+          top: 0;
+          left: 15%;
+          transform: translateY(-70%);
           z-index: 9;
         }
 
         /* テーブル上のオブジェクト - 右: メモ */
         .table-object-right {
           position: absolute;
-          bottom: 39%;
-          right: calc(50% - 120px);
-          transform: translateX(100%);
+          top: 0;
+          right: 15%;
+          transform: translateY(-70%);
           z-index: 9;
         }
 
@@ -1439,27 +1438,23 @@ export default function TreasureBoxPage() {
 
         /* レスポンシブ対応 */
         @media (max-width: 768px) {
-          .table-area {
-            bottom: 0;
+          .table-container {
+            width: 95%;
           }
 
-          .table-image {
-            width: 90%;
-          }
-
-          .treasure-box-container {
+          .treasure-box-wrapper {
             transform: translateX(-50%) scale(0.85);
-            bottom: 36%;
+            top: -8%;
           }
 
           .table-object-left {
-            bottom: 38%;
-            left: calc(50% - 80px);
+            left: 10%;
+            transform: translateY(-60%) scale(0.9);
           }
 
           .table-object-right {
-            bottom: 37%;
-            right: calc(50% - 80px);
+            right: 10%;
+            transform: translateY(-60%) scale(0.9);
           }
         }
       `}</style>
