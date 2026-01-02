@@ -87,22 +87,18 @@ umauma1600.github.io/
 │       └── setup.ts                # Vitestセットアップ
 │
 ├── public/                         # 静的ファイル（ビルド時にdist/にコピー）
-│   ├── legacy/                     # 旧サイトのファイル（移行前）
-│   │   ├── index.html              # 旧トップページ
-│   │   ├── contents/               # 旧謎解きコンテンツ
-│   │   ├── css/                    # 旧CSS
-│   │   ├── js/                     # 旧JavaScript
-│   │   ├── contact/                # 旧お問い合わせ
-│   │   └── main-image.png          # 旧画像
-│   │
-│   └── assets/                     # 新サイトの静的アセット（予定）
-│       ├── images/                 # 画像ファイル
+│   └── assets/                     # 静的アセット
+│       ├── images/                 # 画像ファイル（main-image.png等）
+│       ├── treasure-box/           # 逆転の宝箱のアセット
 │       └── downloads/              # ダウンロードコンテンツ（PDF等）
+│
+├── docs/                           # プロジェクトドキュメント
+│   ├── SPEC.md                     # 逆転の宝箱 仕様書
+│   └── KELNA.md                    # ケルナ語ガイド
 │
 ├── dist/                           # ビルド出力（.gitignoreに含まれる）
 │   ├── index.html                  # ビルド済みHTML
-│   ├── assets/                     # ビルド済みJS/CSS
-│   └── legacy/                     # 旧サイトファイル（public/からコピー）
+│   └── assets/                     # ビルド済みJS/CSS/静的ファイル
 │
 ├── tsconfig.json                   # TypeScript設定（ルート）
 ├── tsconfig.app.json               # アプリケーション用TypeScript設定
@@ -255,10 +251,10 @@ umauma1600.github.io/
 4. **`vite.config.ts` の `routes` 配列に新しいルートを追加**（リロード対応のため必須）
 5. トップページにリンクを追加
 
-### レガシーコンテンツ（移行前のHTML/CSS/JS）
-- `public/legacy/` 配下に保存
-- ビルド時に `dist/legacy/` にコピーされ、引き続きアクセス可能
-- 例: `https://umauma1600.github.io/legacy/contents/treasure-box/`
+### ドキュメント
+- 仕様書やガイド文書は `docs/` フォルダに保存
+- `SPEC.md`: 逆転の宝箱の仕様書
+- `KELNA.md`: ケルナ語ガイド（将来のコンテンツ用）
 
 ---
 
@@ -283,7 +279,6 @@ umauma1600.github.io/
 - [ ] モバイル表示の確認（`npm run preview`）
 - [ ] すべてのリンクの動作確認
 - [ ] 画像・アセットの読み込み確認
-- [ ] レガシーコンテンツ（`/legacy/`）のアクセス確認
 
 ---
 
@@ -318,9 +313,9 @@ umauma1600.github.io/
 
 ## 📊 現在のステータス
 
-### レガシーコンテンツについて
-以前はバニラHTML/CSS/JSで構築されていたが、現在はReact + TypeScriptに移行済み。
-旧コンテンツは `public/legacy/` に保存されており、`/legacy/` パスでアクセス可能。
+### 移行ステータス
+以前はバニラHTML/CSS/JSで構築されていたが、React + TypeScriptへの移行が完了。
+旧legacyフォルダは削除済み。必要なドキュメント（SPEC.md, KELNA.md）は`docs/`フォルダに移動。
 
 ### コンテンツ状況
 - **謎解き**: 「逆転の宝箱」公開中
