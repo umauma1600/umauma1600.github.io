@@ -35,24 +35,48 @@ const clues = [
 const hints = [
   {
     step: 1,
-    text: "ダイヤル錠の数字は「1600」です。<br>まずはダイヤルを回して錠を開けてみましょう。",
+    text: "ここからヒントを確認できます。<br>ヒントは段階的に公開されますので、必要に応じて「次のヒント」ボタンを押してください。",
   },
   {
     step: 2,
-    text: '錠は外れたのに開きません...何か別の方法があるのでは？<br><span class="highlight">固定観念にとらわれないで</span>考えてみましょう。',
+    text: 'ダイヤル錠を開けるための手がかりは、どうやら<span class="highlight">大変難しい</span>ようです。',
   },
   {
     step: 3,
-    text: '宝箱を<span class="highlight">違う方向から</span>アプローチしてみては？<br>クリックではなく、ドラッグで動かしてみましょう。',
+    text: '「ケルナ語」とは<span class="highlight">架空の言語</span>のようです。',
   },
   {
     step: 4,
-    text: '宝箱を<span class="highlight">上に持ち上げて</span>みてください！<br>底が抜けて...何か落ちてくるかもしれません。',
+    text: '手掛かりには以下のように書かれているようです：<br><br>「最初の数字は<span class="clue-number">1</span>だよ。<br>2番目の数字は<span class="clue-number">5</span>だよ。<br>3番目の数字は<span class="clue-number">8</span>だよ。<br>4番目の数字は<span class="clue-number">2</span>だよ。」',
+  },
+  {
+    step: 5,
+    text: 'ダイヤル錠を開けるための番号は「<span class="highlight">1582</span>」になるようです。',
+  },
+  {
+    step: 6,
+    text: 'どうやらダイヤル錠を解錠しても宝箱は開かないようです。<br><span class="highlight">逆転の発想</span>が必要になりそうです。',
+  },
+  {
+    step: 7,
+    text: 'もしかすると<span class="highlight">宝箱自体</span>に何か仕掛けがあるかもしれません。',
+  },
+  {
+    step: 8,
+    text: 'この宝箱は<span class="highlight">最初から机に置いてありました</span>ね。',
+  },
+  {
+    step: 9,
+    text: '宝箱の<span class="highlight">底がない</span>可能性を考えてみてください。',
+  },
+  {
+    step: 10,
+    text: '底がない宝箱であれば、宝箱を<span class="highlight">上に持ち上げる</span>ことで中の紙を見つけることができそうです！',
   },
 ];
 
 // ===== 正解 =====
-const correctDial = [1, 6, 0, 0];
+const correctDial = [1, 5, 8, 2];
 const correctAnswers = [
   "逆転の発想",
   "ぎゃくてんのはっそう",
