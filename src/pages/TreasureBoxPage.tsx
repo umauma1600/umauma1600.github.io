@@ -15,6 +15,25 @@ const CONSTANTS = {
   TIMER_INTERVAL: 1000,
 };
 
+// ===== 手掛かり情報 =====
+const clues = [
+  {
+    step: 1,
+    title: "メモ書き",
+    text: "「私の名前を4桁で表すと<br><span class='clue-number'>1600</span><br>となる」",
+  },
+  {
+    step: 2,
+    title: "走り書き",
+    text: "「宝箱は<span class='highlight'>開くだけが能じゃない</span>。<br>違う視点で見てみろ」",
+  },
+  {
+    step: 3,
+    title: "かすれた文字",
+    text: "「答えは<span class='highlight'>中</span>にはない。<br>もっと<span class='highlight'>下</span>を見ろ」",
+  },
+];
+
 // ===== ヒント情報 =====
 const hints = [
   {
@@ -50,6 +69,7 @@ export default function TreasureBoxPage() {
   const [isCleared, setIsCleared] = useState(false);
   const [startTime] = useState(Date.now());
   const [currentHintStep, setCurrentHintStep] = useState(0);
+  const [currentClueStep, setCurrentClueStep] = useState(0);
   const [timerDisplay, setTimerDisplay] = useState("00:00");
 
   // モーダル状態
@@ -1100,24 +1120,20 @@ export default function TreasureBoxPage() {
                   fontFamily: "Space Grotesk, sans-serif",
                 }}
               >
-                手掛かり
+                手掛かり - {clues[currentClueStep]?.title}
               </h3>
             </div>
 
             {/* 本文 */}
             <div
-              className="space-y-4 text-center leading-relaxed"
+              className="mb-4 leading-relaxed text-center"
               style={{
                 color: "var(--color-primary)",
                 fontFamily: "serif",
               }}
             >
-              <p className="text-sm" style={{ opacity: 0.8 }}>
-                古びたメモにはこう書かれていた...
-              </p>
-
               <div
-                className="py-4 px-3 rounded"
+                className="py-4 px-3 rounded min-h-[100px] flex items-center justify-center"
                 style={{
                   background: "rgba(198, 156, 109, 0.1)",
                   borderLeft: "3px solid var(--color-accent)",
@@ -1126,36 +1142,45 @@ export default function TreasureBoxPage() {
                 <p
                   className="font-medium text-lg"
                   style={{ color: "var(--color-primary)" }}
-                >
-                  「私の名前を4桁で表すと
-                  <br />
-                  <span
-                    className="text-2xl font-bold"
-                    style={{ color: "var(--color-accent)" }}
-                  >
-                    1600
-                  </span>
-                  <br />
-                  となる」
-                </p>
+                  dangerouslySetInnerHTML={{
+                    __html: clues[currentClueStep]?.text || "",
+                  }}
+                />
               </div>
-
-              <p className="text-xs" style={{ opacity: 0.6 }}>
-                ── これがダイヤル錠の鍵かもしれない
-              </p>
             </div>
 
-            {/* 閉じるボタン */}
-            <div className="mt-5 text-center">
+            {/* ページ切り替えボタン */}
+            <div className="flex gap-2 justify-center mb-3">
               <button
                 onClick={() => {
-                  setShowClueModal(false);
+                  setCurrentClueStep((prev) => Math.max(0, prev - 1));
                 }}
-                className="px-6 py-2 text-white rounded-full hover:opacity-90 transition-colors font-medium text-sm"
+                disabled={currentClueStep === 0}
+                className="px-4 py-2 bg-gray-200 rounded-lg hover:bg-gray-300 transition-colors disabled:opacity-50 disabled:cursor-not-allowed text-sm"
+                style={{ color: "var(--color-text)" }}
+              >
+                ← 前
+              </button>
+              <button
+                onClick={() => {
+                  setCurrentClueStep((prev) =>
+                    Math.min(clues.length - 1, prev + 1),
+                  );
+                }}
+                disabled={currentClueStep === clues.length - 1}
+                className="px-4 py-2 text-white rounded-lg hover:opacity-90 transition-colors disabled:opacity-50 disabled:cursor-not-allowed text-sm"
                 style={{ background: "var(--color-accent)" }}
               >
-                閉じる
+                次 →
               </button>
+            </div>
+
+            {/* ページ番号 */}
+            <div
+              className="text-center text-xs"
+              style={{ color: "var(--color-text)", opacity: 0.6 }}
+            >
+              手掛かり {currentClueStep + 1} / {clues.length}
             </div>
           </div>
         </div>
@@ -1394,6 +1419,17 @@ export default function TreasureBoxPage() {
         .highlight {
           background: linear-gradient(transparent 60%, rgba(198, 156, 109, 0.25) 60%);
           font-weight: 500;
+        }
+
+        /* 手掛かりの数字 */
+        .clue-number {
+          font-size: 1.5rem;
+          font-weight: bold;
+          color: var(--color-accent);
+          display: inline-block;
+          padding: 0.25rem 0.5rem;
+          background: rgba(198, 156, 109, 0.15);
+          border-radius: 4px;
         }
 
         /* レスポンシブ対応 */
