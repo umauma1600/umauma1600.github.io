@@ -1,5 +1,4 @@
 import { Link } from "react-router-dom";
-import Footer from "../components/Footer";
 
 export default function PuzzleListPage() {
   return (
@@ -112,9 +111,6 @@ export default function PuzzleListPage() {
           </div>
         </div>
       </section>
-
-      {/* フッター */}
-      <Footer />
 
       {/* カスタムスタイル */}
       <style>{`
