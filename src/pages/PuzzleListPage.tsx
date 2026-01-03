@@ -7,25 +7,43 @@ export default function PuzzleListPage() {
       {/* ページヘッダー */}
       <section
         style={{
-          padding: "4rem 0 3rem",
+          padding: "3rem 0",
           background:
             "linear-gradient(135deg, rgba(245, 240, 232, 0.6) 0%, rgba(235, 229, 217, 0.6) 100%)",
           borderBottom: "1px solid rgba(198, 156, 109, 0.2)",
         }}
       >
         <div className="max-w-6xl mx-auto px-6 md:px-12 lg:px-20">
-          <h1
-            className="text-4xl md:text-5xl font-bold mb-4"
-            style={{ color: "var(--color-primary)" }}
-          >
-            謎解き
-          </h1>
-          <p
-            className="text-lg md:text-xl"
-            style={{ color: "var(--color-text)" }}
-          >
-            ブラウザで遊べるインタラクティブな謎解きコンテンツ
-          </p>
+          <div className="flex flex-col md:flex-row items-center gap-6 md:gap-10">
+            {/* ヘッダー画像 */}
+            <div
+              className="w-40 h-40 md:w-48 md:h-48 flex-shrink-0 rounded-2xl overflow-hidden shadow-lg"
+              style={{
+                border: "3px solid rgba(198, 156, 109, 0.3)",
+              }}
+            >
+              <img
+                src="/assets/images/puzzle-header.jpg"
+                alt="謎解き"
+                className="w-full h-full object-cover"
+              />
+            </div>
+            {/* テキスト */}
+            <div className="text-center md:text-left">
+              <h1
+                className="text-4xl md:text-5xl font-bold mb-4"
+                style={{ color: "var(--color-primary)" }}
+              >
+                謎解き
+              </h1>
+              <p
+                className="text-lg md:text-xl"
+                style={{ color: "var(--color-text)" }}
+              >
+                ブラウザで遊べるインタラクティブな謎解きコンテンツ
+              </p>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -37,7 +55,15 @@ export default function PuzzleListPage() {
             {/* 逆転の宝箱 */}
             <div className="puzzle-card">
               <div className="puzzle-card-image">
-                <span style={{ fontSize: "3rem" }}>📦</span>
+                <img
+                  src="/assets/images/treasure-box-thumbnail.jpg"
+                  alt="逆転の宝箱"
+                  style={{
+                    width: "100%",
+                    height: "100%",
+                    objectFit: "cover",
+                  }}
+                />
               </div>
               <div className="puzzle-card-content">
                 <div className="mb-3">
