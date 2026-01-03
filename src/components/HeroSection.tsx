@@ -2,7 +2,7 @@ export default function HeroSection() {
   return (
     <section
       id="home"
-      className="min-h-[70vh] md:min-h-[70vh] sm:min-h-[50vh] flex items-center relative overflow-hidden"
+      className="min-h-[55vh] md:min-h-[55vh] sm:min-h-[45vh] flex items-center relative overflow-hidden"
       style={{
         backgroundImage: "url('/assets/images/main-image.png')",
         backgroundSize: "cover",
