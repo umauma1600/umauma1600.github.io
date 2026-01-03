@@ -799,16 +799,8 @@ export default function TreasureBoxPage() {
           }}
         >
           <div className="bg-white rounded-2xl max-w-md w-full p-6 shadow-2xl">
-            <div className="flex justify-between items-start mb-4">
-              <h3
-                className="text-2xl font-bold"
-                style={{
-                  color: "var(--color-primary)",
-                  fontFamily: "Space Grotesk, sans-serif",
-                }}
-              >
-                📄 紙
-              </h3>
+            {/* 閉じるボタン（右上） */}
+            <div className="flex justify-end mb-2">
               <button
                 onClick={() => {
                   setShowPaperModal(false);
@@ -826,26 +818,27 @@ export default function TreasureBoxPage() {
                 className="cursor-pointer hover:scale-105 transition-transform"
                 onClick={handlePaperStep1Click}
               >
-                <div className="w-full flex items-center justify-center p-6">
-                  <div className="text-center">
-                    <img
-                      src="/assets/treasure-box/kami-Photoroom.png"
-                      alt="折りたたまれた紙"
-                      className="max-w-full h-auto mx-auto mb-3"
-                      draggable={false}
-                    />
-                    <div
-                      className="text-sm"
-                      style={{ color: "var(--color-text)", opacity: 0.8 }}
-                    >
-                      どうやら底が開いていたようだ
-                    </div>
-                    <div
-                      className="text-xs mt-2"
-                      style={{ color: "var(--color-text)", opacity: 0.6 }}
-                    >
-                      クリックして紙を開く
-                    </div>
+                <div className="w-full flex flex-col items-center justify-center py-4 px-6">
+                  <div
+                    className="text-base font-medium mb-4 text-center"
+                    style={{ color: "var(--color-primary)" }}
+                  >
+                    どうやら宝箱の底が抜けていたようだ
+                  </div>
+                  <img
+                    src="/assets/treasure-box/kami-Photoroom.png"
+                    alt="折りたたまれた紙"
+                    className="max-w-full h-auto mx-auto mb-4"
+                    draggable={false}
+                  />
+                  <div
+                    className="text-xs py-2 px-4 rounded-full"
+                    style={{
+                      color: "var(--color-accent)",
+                      background: "rgba(198, 156, 109, 0.1)",
+                    }}
+                  >
+                    タップして紙を開く
                   </div>
                 </div>
               </div>
