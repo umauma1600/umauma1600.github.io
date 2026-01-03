@@ -1,16 +1,8 @@
 export default function HeroSection() {
-  const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
-    e.preventDefault();
-    const targetElement = document.getElementById("contents");
-    if (targetElement) {
-      targetElement.scrollIntoView({ behavior: "smooth" });
-    }
-  };
-
   return (
     <section
       id="home"
-      className="min-h-[70vh] md:min-h-[70vh] sm:min-h-[50vh] flex items-center relative overflow-hidden"
+      className="min-h-[55vh] md:min-h-[55vh] sm:min-h-[45vh] flex items-center relative overflow-hidden"
       style={{
         backgroundImage: "url('/assets/images/main-image.png')",
         backgroundSize: "cover",
@@ -42,36 +34,6 @@ export default function HeroSection() {
             <br />
             謎解きアトリエ
           </h1>
-          <p
-            className="text-lg md:text-2xl mb-8 leading-relaxed"
-            style={{
-              color: "var(--color-text)",
-              textShadow: "1px 1px 3px rgba(255, 255, 255, 0.9)",
-            }}
-          >
-            ひとりでゆっくり謎を解いたり、
-            <br />
-            みんなでマダミスを楽しんだり。
-            <br />
-            気ままに遊べるコンテンツをつくっています。
-          </p>
-          <a
-            href="#contents"
-            onClick={handleClick}
-            className="inline-block py-4 px-8 rounded-lg font-semibold transition-all duration-300 shadow-xl hover:shadow-2xl hover:-translate-y-0.5"
-            style={{
-              background: "var(--color-accent)",
-              color: "white",
-            }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.background = "#a77d4f";
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.background = "var(--color-accent)";
-            }}
-          >
-            コンテンツを見る
-          </a>
         </div>
       </div>
     </section>
