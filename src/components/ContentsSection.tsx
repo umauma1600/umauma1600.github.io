@@ -66,38 +66,7 @@ export default function ContentsSection() {
             </Link>
           </div>
 
-          {/* マダミスカード */}
-          <div
-            className="bg-white rounded-2xl p-8 shadow-sm border border-gray-200 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl"
-            style={{
-              boxShadow: "0 4px 6px rgba(0, 0, 0, 0.05)",
-            }}
-          >
-            <div className="mb-4">
-              <span className="inline-block py-2 px-4 bg-yellow-100 text-yellow-900 rounded-full text-sm font-semibold">
-                Coming Soon
-              </span>
-            </div>
-            <h3
-              className="text-2xl font-bold mb-3"
-              style={{ color: "var(--color-primary)" }}
-            >
-              マーダーミステリー
-            </h3>
-            <p className="text-gray-600 mb-6 leading-relaxed">
-              ダウンロードして遊べるマダミスシナリオ。
-              <br />
-              PDF形式で提供予定。
-            </p>
-            <div className="flex flex-wrap gap-2">
-              <span className="px-3 py-1 bg-purple-100 text-purple-700 rounded text-sm font-medium">
-                PDF配布
-              </span>
-              <span className="px-3 py-1 bg-pink-100 text-pink-700 rounded text-sm font-medium">
-                オフライン可
-              </span>
-            </div>
-          </div>
+          {/* マダミスカード - 準備中のため非表示 */}
         </div>
       </div>
     </section>
