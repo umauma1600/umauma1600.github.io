@@ -1468,8 +1468,16 @@ export default function TreasureBoxPage() {
           }
 
           .table-container {
-            width: 55%;
-            max-width: 650px;
+            width: 70%;
+            max-width: 800px;
+          }
+
+          .table-object-left {
+            left: 12%;
+          }
+
+          .table-object-right {
+            right: 12%;
           }
         }
 
