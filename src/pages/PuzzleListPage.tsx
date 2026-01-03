@@ -7,43 +7,26 @@ export default function PuzzleListPage() {
       {/* ページヘッダー */}
       <section
         style={{
-          padding: "3rem 0",
-          background:
-            "linear-gradient(135deg, rgba(245, 240, 232, 0.6) 0%, rgba(235, 229, 217, 0.6) 100%)",
+          padding: "5rem 0",
+          backgroundImage: `linear-gradient(rgba(250, 248, 245, 0.85), rgba(250, 248, 245, 0.85)), url('/assets/images/puzzle-header.jpg')`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
           borderBottom: "1px solid rgba(198, 156, 109, 0.2)",
         }}
       >
-        <div className="max-w-6xl mx-auto px-6 md:px-12 lg:px-20">
-          <div className="flex flex-col md:flex-row items-center gap-6 md:gap-10">
-            {/* ヘッダー画像 */}
-            <div
-              className="w-40 h-40 md:w-48 md:h-48 flex-shrink-0 rounded-2xl overflow-hidden shadow-lg"
-              style={{
-                border: "3px solid rgba(198, 156, 109, 0.3)",
-              }}
-            >
-              <img
-                src="/assets/images/puzzle-header.jpg"
-                alt="謎解き"
-                className="w-full h-full object-cover"
-              />
-            </div>
-            {/* テキスト */}
-            <div className="text-center md:text-left">
-              <h1
-                className="text-4xl md:text-5xl font-bold mb-4"
-                style={{ color: "var(--color-primary)" }}
-              >
-                謎解き
-              </h1>
-              <p
-                className="text-lg md:text-xl"
-                style={{ color: "var(--color-text)" }}
-              >
-                ブラウザで遊べるインタラクティブな謎解きコンテンツ
-              </p>
-            </div>
-          </div>
+        <div className="max-w-6xl mx-auto px-6 md:px-12 lg:px-20 text-center">
+          <h1
+            className="text-4xl md:text-5xl font-bold mb-4"
+            style={{ color: "var(--color-primary)" }}
+          >
+            謎解き
+          </h1>
+          <p
+            className="text-lg md:text-xl"
+            style={{ color: "var(--color-text)" }}
+          >
+            ブラウザで遊べるインタラクティブな謎解きコンテンツ
+          </p>
         </div>
       </section>
 
