@@ -466,13 +466,13 @@ export default function TreasureBoxPage() {
 
       {/* メインコンテンツ */}
       <main
-        className="pt-24 pb-12 px-4"
+        className="pt-16 md:pt-20 px-4 game-main"
         style={{ background: "var(--color-bg)" }}
       >
         {/* タイトルセクション */}
-        <div className="max-w-4xl mx-auto text-center mb-8">
+        <div className="max-w-4xl mx-auto text-center mb-4 md:mb-6">
           <h1
-            className="text-4xl md:text-5xl font-bold mb-4"
+            className="text-3xl md:text-4xl font-bold mb-2"
             style={{
               color: "var(--color-primary)",
               fontFamily: "Space Grotesk, sans-serif",
@@ -481,13 +481,13 @@ export default function TreasureBoxPage() {
             逆転の宝箱
           </h1>
           <p
-            className="text-lg mb-2"
+            className="text-base md:text-lg mb-1"
             style={{ color: "var(--color-text)", opacity: 0.8 }}
           >
             常識にとらわれていませんか？
           </p>
           <p
-            className="text-sm"
+            className="text-xs md:text-sm"
             style={{ color: "var(--color-text)", opacity: 0.6 }}
           >
             難易度: ★☆☆☆☆ (初心者向け) | 想定プレイ時間: 10分
@@ -495,9 +495,9 @@ export default function TreasureBoxPage() {
         </div>
 
         {/* ゲームエリア */}
-        <div className="max-w-6xl mx-auto pb-28 md:pb-24">
+        <div className="max-w-6xl mx-auto game-area-container">
           <div
-            className="relative p-4 md:p-8 rounded-2xl min-h-[400px] md:min-h-[500px] flex items-center justify-center"
+            className="relative p-2 md:p-4 rounded-2xl game-area flex items-end justify-center"
             style={{
               background:
                 "linear-gradient(to bottom, rgba(198, 156, 109, 0.05), transparent)",
@@ -1264,14 +1264,35 @@ export default function TreasureBoxPage() {
 
       {/* カスタムスタイル */}
       <style>{`
+        /* メインコンテンツ - 画面に収まるように */
+        .game-main {
+          min-height: calc(100vh - 64px);
+          display: flex;
+          flex-direction: column;
+          overflow: hidden;
+        }
+
+        /* ゲームエリアコンテナ */
+        .game-area-container {
+          flex: 1;
+          display: flex;
+          flex-direction: column;
+          min-height: 0;
+        }
+
+        /* ゲームエリア */
+        .game-area {
+          flex: 1;
+          min-height: 0;
+          position: relative;
+        }
+
         /* テーブルコンテナ - テーブルとすべてのオブジェクトを含む */
         .table-container {
-          position: absolute;
-          bottom: 0;
-          left: 50%;
-          transform: translateX(-50%);
-          width: 70%;
-          max-width: 800px;
+          position: relative;
+          width: 60%;
+          max-width: 700px;
+          margin: 0 auto;
         }
 
         .table-image {
@@ -1440,10 +1461,34 @@ export default function TreasureBoxPage() {
           border-radius: 4px;
         }
 
-        /* レスポンシブ対応 */
-        @media (max-width: 768px) {
+        /* レスポンシブ対応 - PC版 */
+        @media (min-width: 769px) {
+          .game-main {
+            padding-bottom: 80px; /* フッター分の余白 */
+          }
+
           .table-container {
-            width: 95%;
+            width: 70%;
+            max-width: 800px;
+          }
+
+          .table-object-left {
+            left: 12%;
+          }
+
+          .table-object-right {
+            right: 12%;
+          }
+        }
+
+        /* レスポンシブ対応 - モバイル版 */
+        @media (max-width: 768px) {
+          .game-main {
+            padding-bottom: 100px; /* モバイルフッター分の余白 */
+          }
+
+          .table-container {
+            width: 90%;
           }
 
           .table-object-left {
