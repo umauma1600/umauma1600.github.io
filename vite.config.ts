@@ -7,7 +7,7 @@ import { join } from "path";
 // ビルド後に各ルートにindex.htmlをコピーするプラグイン
 function copyIndexToRoutes(): Plugin {
   // SPAのルート一覧（App.tsxのルートと一致させる）
-  const routes = ["contents/nazo", "contents/treasure-box", "contact"];
+  const routes = ["nazo", "nazo/treasure-box", "contact"];
 
   return {
     name: "copy-index-to-routes",

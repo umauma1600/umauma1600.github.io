@@ -473,7 +473,7 @@ export default function TreasureBoxPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
             <Link
-              to="/contents/nazo"
+              to="/nazo"
               className="font-semibold text-lg hover:opacity-70 transition-colors"
               style={{
                 color: "var(--color-primary)",
@@ -1271,7 +1271,7 @@ export default function TreasureBoxPage() {
                   <span>クリアを X でシェア</span>
                 </button>
                 <Link
-                  to="/contents/nazo"
+                  to="/nazo"
                   className="block w-full px-6 py-3 text-white rounded-lg hover:opacity-90 transition-colors font-medium"
                   style={{ background: "var(--color-accent)" }}
                 >

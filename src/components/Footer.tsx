@@ -92,7 +92,7 @@ export default function Footer() {
               </li>
               <li>
                 <Link
-                  to="/contents/nazo"
+                  to="/nazo"
                   className="transition-colors duration-200 hover:text-[#c69c6d]"
                   style={{ color: "var(--color-text)" }}
                 >
