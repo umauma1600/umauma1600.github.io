@@ -11,11 +11,11 @@ function App() {
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<HomePage />} />
-          <Route path="contents/nazo" element={<PuzzleListPage />} />
+          <Route path="nazo" element={<PuzzleListPage />} />
           <Route path="contact" element={<ContactPage />} />
         </Route>
         {/* 謎解きコンテンツ（専用レイアウト） */}
-        <Route path="contents/treasure-box" element={<TreasureBoxPage />} />
+        <Route path="nazo/treasure-box" element={<TreasureBoxPage />} />
       </Routes>
     </Router>
   );

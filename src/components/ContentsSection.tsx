@@ -49,7 +49,7 @@ export default function ContentsSection() {
               </span>
             </div>
             <Link
-              to="/contents/nazo"
+              to="/nazo"
               className="inline-block text-center py-4 px-8 rounded-lg font-semibold transition-all duration-300 shadow hover:shadow-lg hover:-translate-y-0.5"
               style={{
                 background: "var(--color-accent)",

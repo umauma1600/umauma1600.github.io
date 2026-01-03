@@ -10,7 +10,7 @@ export default function Sidebar({ activeSection }: SidebarProps) {
   const navLinks = [
     { href: "/", label: "ホーム", type: "route" },
     { href: "#contents", label: "コンテンツ", type: "hash" },
-    { href: "/contents/nazo", label: "謎解き", type: "route" },
+    { href: "/nazo", label: "謎解き", type: "route" },
     { href: "/contact", label: "お問い合わせ", type: "route" },
   ];
 

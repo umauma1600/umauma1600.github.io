@@ -94,7 +94,7 @@ export default function PuzzleListPage() {
                 </div>
               </div>
               <div className="puzzle-card-footer">
-                <Link to="/contents/treasure-box" className="btn-primary">
+                <Link to="/nazo/treasure-box" className="btn-primary">
                   挑戦する
                 </Link>
               </div>
