@@ -53,7 +53,6 @@ export default function PuzzleListPage() {
                   <span className="badge badge-difficulty-easy">
                     初心者向け
                   </span>
-                  <span className="badge badge-tag">ドラッグ</span>
                 </div>
                 <h3
                   className="text-xl font-bold mb-2"
