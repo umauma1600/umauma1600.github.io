@@ -24,11 +24,6 @@ export default function ContentsSection() {
               boxShadow: "0 4px 6px rgba(0, 0, 0, 0.05)",
             }}
           >
-            <div className="mb-4">
-              <span className="inline-block py-2 px-4 bg-yellow-100 text-yellow-900 rounded-full text-sm font-semibold">
-                準備中
-              </span>
-            </div>
             <h3
               className="text-2xl font-bold mb-3"
               style={{ color: "var(--color-primary)" }}
