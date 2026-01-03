@@ -130,6 +130,34 @@ export default function TreasureBoxPage() {
   const treasureBoxRef = useRef<HTMLDivElement>(null);
   const keywordInputRef = useRef<HTMLInputElement>(null);
 
+  // ページ全体のスクロールを防止（モバイル対応）
+  useEffect(() => {
+    // 現在のスタイルを保存
+    const originalHtmlStyle = document.documentElement.style.cssText;
+    const originalBodyStyle = document.body.style.cssText;
+
+    // スクロールを無効化
+    document.documentElement.style.cssText = `
+      overflow: hidden;
+      height: 100%;
+      position: fixed;
+      width: 100%;
+    `;
+    document.body.style.cssText = `
+      overflow: hidden;
+      height: 100%;
+      position: fixed;
+      width: 100%;
+      overscroll-behavior: none;
+    `;
+
+    // クリーンアップ: 元のスタイルに戻す
+    return () => {
+      document.documentElement.style.cssText = originalHtmlStyle;
+      document.body.style.cssText = originalBodyStyle;
+    };
+  }, []);
+
   // タイマー更新
   useEffect(() => {
     if (isCleared) return;
@@ -1266,10 +1294,12 @@ export default function TreasureBoxPage() {
       <style>{`
         /* メインコンテンツ - 画面に収まるように */
         .game-main {
-          min-height: calc(100vh - 64px);
+          height: calc(100vh - 64px);
+          height: calc(100dvh - 64px); /* 動的ビューポート高さ（iOS Safari対応） */
           display: flex;
           flex-direction: column;
           overflow: hidden;
+          touch-action: none; /* タッチスクロールを防止 */
         }
 
         /* ゲームエリアコンテナ */
@@ -1464,7 +1494,9 @@ export default function TreasureBoxPage() {
         /* レスポンシブ対応 - PC版 */
         @media (min-width: 769px) {
           .game-main {
-            padding-bottom: 80px; /* フッター分の余白 */
+            height: calc(100vh - 80px - 80px); /* ナビとフッターを除く */
+            height: calc(100dvh - 80px - 80px); /* 動的ビューポート高さ */
+            padding-bottom: 0;
           }
 
           .table-container {
@@ -1484,7 +1516,10 @@ export default function TreasureBoxPage() {
         /* レスポンシブ対応 - モバイル版 */
         @media (max-width: 768px) {
           .game-main {
-            padding-bottom: 100px; /* モバイルフッター分の余白 */
+            height: calc(100vh - 64px - 80px); /* ナビとフッターを除く */
+            height: calc(100dvh - 64px - 80px); /* 動的ビューポート高さ（iOS Safari対応） */
+            padding-bottom: 0;
+            box-sizing: border-box;
           }
 
           .table-container {
