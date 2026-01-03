@@ -5,6 +5,7 @@ on:
     branches:
       - main
       - 'claude/**'
+      - 'codex/**'
   workflow_dispatch:
     inputs:
       branch:
