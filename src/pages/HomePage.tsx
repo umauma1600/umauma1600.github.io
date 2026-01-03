@@ -1,6 +1,5 @@
 import HeroSection from "../components/HeroSection";
 import ContentsSection from "../components/ContentsSection";
-import Footer from "../components/Footer";
 
 export default function HomePage() {
   return (
@@ -11,8 +10,6 @@ export default function HomePage() {
       {/* コンテンツセクション */}
       <ContentsSection />
 
-      {/* フッター */}
-      <Footer />
     </>
   );
 }
