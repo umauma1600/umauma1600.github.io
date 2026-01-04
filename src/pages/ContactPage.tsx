@@ -28,39 +28,6 @@ export default function ContactPage() {
       {/* お問い合わせ方法 */}
       <section className="px-6 py-12 md:py-16">
         <div className="max-w-4xl mx-auto space-y-6">
-          {/* GitHub Issues */}
-          <div className="contact-card">
-            <div className="flex flex-col md:flex-row gap-6">
-              <div className="icon-wrapper">
-                <span>💻</span>
-              </div>
-              <div className="flex-1">
-                <h3
-                  className="text-2xl font-bold mb-3"
-                  style={{ color: "var(--color-primary)" }}
-                >
-                  GitHub Issues
-                </h3>
-                <p className="text-gray-600 mb-4 leading-relaxed">
-                  バグ報告や機能リクエストはGitHub Issuesでお願いします。
-                  <br />
-                  技術的な問題や改善提案にご利用ください。
-                </p>
-                <div className="mb-3 text-sm text-gray-500">
-                  ※ GitHubアカウントが必要です
-                </div>
-                <a
-                  href="https://github.com/umauma1600/umauma1600.github.io/issues"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="btn-primary"
-                >
-                  Issueを作成する →
-                </a>
-              </div>
-            </div>
-          </div>
-
           {/* SNS */}
           <div className="contact-card">
             <div className="flex flex-col md:flex-row gap-6">
@@ -75,11 +42,18 @@ export default function ContactPage() {
                   SNS
                 </h3>
                 <p className="text-gray-600 mb-4 leading-relaxed">
-                  TwitterやSNSでのご連絡も受け付けています。
+                  X（旧Twitter）で最新情報を発信しています。
                   <br />
-                  ちょっとした質問やご感想などお気軽にどうぞ。
+                  フォローやリプライでお気軽にご連絡ください。
                 </p>
-                <div className="btn-disabled">準備中...</div>
+                <a
+                  href="https://x.com/umauma1600"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn-primary"
+                >
+                  Xでやまーたをフォローする →
+                </a>
               </div>
             </div>
           </div>
@@ -100,9 +74,11 @@ export default function ContactPage() {
                 <p className="text-gray-600 mb-4 leading-relaxed">
                   プライベートなご連絡やご相談など、
                   <br />
-                  メールでのお問い合わせも今後対応予定です。
+                  メールでも直接お問い合わせいただけます。
                 </p>
-                <div className="btn-disabled">準備中...</div>
+                <a className="btn-primary" href="mailto:umauma1600@gmail.com">
+                  umauma1600@gmail.com にメールする →
+                </a>
               </div>
             </div>
           </div>
