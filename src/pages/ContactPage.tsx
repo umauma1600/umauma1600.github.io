@@ -58,27 +58,44 @@ export default function ContactPage() {
             </div>
           </div>
 
-          {/* メール */}
+          {/* お問い合わせフォーム */}
           <div className="contact-card">
             <div className="flex flex-col md:flex-row gap-6">
               <div className="icon-wrapper">
-                <span>✉️</span>
+                <span>📝</span>
               </div>
-              <div className="flex-1">
+              <div className="flex-1 space-y-4">
                 <h3
-                  className="text-2xl font-bold mb-3"
+                  className="text-2xl font-bold"
                   style={{ color: "var(--color-primary)" }}
                 >
-                  メール
+                  お問い合わせフォーム
                 </h3>
-                <p className="text-gray-600 mb-4 leading-relaxed">
-                  プライベートなご連絡やご相談など、
+                <p className="text-gray-600 leading-relaxed">
+                  Googleフォームからお問い合わせを受け付けています。
                   <br />
-                  メールでも直接お問い合わせいただけます。
+                  返信が必要な場合は、フォーム内で返信用のメールアドレスをご入力ください。
                 </p>
-                <a className="btn-primary" href="mailto:umauma1600@gmail.com">
-                  umauma1600@gmail.com にメールする →
-                </a>
+                <div className="form-embed">
+                  <iframe
+                    src="https://docs.google.com/forms/d/e/1FAIpQLScKSm1omQGgdJoAtyZD_mOVPjpfN2lLLBFgE8ot1Z9Hn3FpxA/viewform?embedded=1"
+                    title="お問い合わせフォーム"
+                    loading="lazy"
+                    allowFullScreen
+                  >
+                    読み込んでいます…
+                  </iframe>
+                </div>
+                <div>
+                  <a
+                    className="btn-primary"
+                    href="https://docs.google.com/forms/d/e/1FAIpQLScKSm1omQGgdJoAtyZD_mOVPjpfN2lLLBFgE8ot1Z9Hn3FpxA/viewform"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    フォームを別タブで開く →
+                  </a>
+                </div>
               </div>
             </div>
           </div>
@@ -185,6 +202,21 @@ export default function ContactPage() {
           background: #a77d4f;
           transform: translateY(-2px);
           box-shadow: 0 8px 16px rgba(198, 156, 109, 0.3);
+        }
+
+        .form-embed {
+          width: 100%;
+          border-radius: 0.75rem;
+          overflow: hidden;
+          border: 1px solid #e2e8f0;
+          box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        .form-embed iframe {
+          width: 100%;
+          height: 1000px;
+          border: none;
+          background: #f8fafc;
         }
 
         .btn-disabled {
