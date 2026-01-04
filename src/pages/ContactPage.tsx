@@ -4,21 +4,21 @@ export default function ContactPage() {
 
   return (
     <>
+      <section className="contact-header">
+        <div className="contact-header__inner">
+          <h1 className="contact-title">お問い合わせ</h1>
+          <p className="contact-intro">
+            ご質問、ご感想、バグ報告などお気軽にどうぞ。
+            <br />
+            以下の方法でご連絡いただけます。
+          </p>
+        </div>
+      </section>
+
       <section className="contact-hero">
         <div className="contact-hero__overlay" aria-hidden="true" />
         <div className="contact-hero__overlay contact-hero__overlay--right" aria-hidden="true" />
         <div className="contact-hero__content">
-          <div className="contact-badge">
-            <span className="contact-badge__title">Contact</span>
-            <span className="contact-badge__subtitle">お問い合わせ</span>
-          </div>
-
-          <p className="contact-lead">
-            謎解きコンテンツやゲームの制作依頼・ご質問など、お気軽にお問い合わせください。
-            <br />
-            便利なフォームとX（旧Twitter）の2つの方法をご用意しています。
-          </p>
-
           <div className="contact-grid">
             <div className="contact-card contact-card--accent">
               <div className="contact-card__header">
@@ -71,22 +71,37 @@ export default function ContactPage() {
         </div>
       </section>
 
-      <section className="contact-notes">
-        <div className="contact-notes__inner">
-          <h4 className="contact-notes__title">お願い</h4>
-          <ul className="contact-notes__list">
-            <li>返信までお時間をいただく場合があります。</li>
-            <li>内容によってはお答えできない場合があります。</li>
-            <li>不具合のご報告は発生環境や再現手順を添えていただけると助かります。</li>
-          </ul>
-        </div>
-      </section>
-
       <style>{`
+        .contact-header {
+          padding: 4rem 0 3rem;
+          background: linear-gradient(135deg, rgba(245, 240, 232, 0.6) 0%, rgba(235, 229, 217, 0.6) 100%);
+          border-bottom: 1px solid rgba(198, 156, 109, 0.2);
+        }
+
+        .contact-header__inner {
+          max-width: 960px;
+          margin: 0 auto;
+          padding: 0 1.5rem;
+        }
+
+        .contact-title {
+          font-size: clamp(2.5rem, 3vw + 1.5rem, 3.5rem);
+          font-weight: 800;
+          margin: 0 0 1rem;
+          color: #e16e3a;
+        }
+
+        .contact-intro {
+          font-size: 1.05rem;
+          color: #4a5568;
+          line-height: 1.8;
+          margin: 0;
+        }
+
         .contact-hero {
           position: relative;
           overflow: hidden;
-          padding: 4rem 1.5rem 3rem;
+          padding: 3rem 1.5rem 3.5rem;
           background: linear-gradient(180deg, #ffb347 0%, #ff8554 100%);
         }
 
@@ -114,44 +129,9 @@ export default function ContactPage() {
           margin: 0 auto;
           background: linear-gradient(145deg, #ffffff, #fff6ed);
           border-radius: 24px;
-          padding: 2.5rem 2rem;
+          padding: 2rem 2rem 2.5rem;
           box-shadow: 0 22px 55px rgba(0, 0, 0, 0.12);
           border: 1px solid rgba(255, 255, 255, 0.5);
-        }
-
-        .contact-badge {
-          width: 160px;
-          height: 160px;
-          margin: -140px auto 1.5rem;
-          background: linear-gradient(145deg, #ffb347 0%, #ff9557 100%);
-          border-radius: 50%;
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          justify-content: center;
-          color: #fff;
-          box-shadow: 0 18px 30px rgba(255, 133, 84, 0.4);
-          text-align: center;
-          border: 6px solid #fff0e1;
-        }
-
-        .contact-badge__title {
-          font-size: 1.4rem;
-          font-weight: 700;
-          letter-spacing: 0.05em;
-        }
-
-        .contact-badge__subtitle {
-          font-size: 0.9rem;
-          opacity: 0.95;
-        }
-
-        .contact-lead {
-          text-align: center;
-          color: #5b4b3f;
-          line-height: 1.8;
-          font-size: 1.05rem;
-          margin-bottom: 2rem;
         }
 
         .contact-grid {
@@ -259,44 +239,7 @@ export default function ContactPage() {
           background: #fff7ef;
         }
 
-        .contact-notes {
-          padding: 0 1.5rem 3rem;
-          background: linear-gradient(180deg, #fff7ef 0%, #fff 100%);
-        }
-
-        .contact-notes__inner {
-          max-width: 880px;
-          margin: -0.5rem auto 0;
-          background: #fff;
-          border-radius: 16px;
-          border: 1px solid #f0e4d7;
-          box-shadow: 0 10px 22px rgba(0, 0, 0, 0.06);
-          padding: 1.75rem;
-        }
-
-        .contact-notes__title {
-          margin: 0 0 0.75rem;
-          font-size: 1.1rem;
-          font-weight: 700;
-          color: #e16e3a;
-        }
-
-        .contact-notes__list {
-          margin: 0;
-          padding-left: 1.25rem;
-          color: #5b4b3f;
-          line-height: 1.7;
-          display: grid;
-          gap: 0.35rem;
-        }
-
         @media (max-width: 640px) {
-          .contact-badge {
-            width: 130px;
-            height: 130px;
-            margin-top: -120px;
-          }
-
           .contact-hero__content {
             padding: 2rem 1.25rem;
           }
