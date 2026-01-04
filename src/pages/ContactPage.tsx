@@ -1,3 +1,6 @@
+const FORM_URL =
+  "https://docs.google.com/forms/d/e/1FAIpQLScKSm1omQGgdJoAtyZD_mOVPjpfN2lLLBFgE8ot1Z9Hn3FpxA/viewform";
+
 export default function ContactPage() {
   return (
     <>
@@ -31,18 +34,22 @@ export default function ContactPage() {
           {/* SNS */}
           <div className="contact-card">
             <div className="flex flex-col md:flex-row gap-6">
-              <div className="icon-wrapper">
-                <span>📱</span>
+              <div className="icon-wrapper flex items-center justify-center">
+                <img
+                  src="/assets/images/logo-black.png"
+                  alt="X ロゴ"
+                  className="h-10 w-10 object-contain"
+                />
               </div>
               <div className="flex-1">
                 <h3
                   className="text-2xl font-bold mb-3"
                   style={{ color: "var(--color-primary)" }}
                 >
-                  SNS
+                  X（旧Twitter）
                 </h3>
                 <p className="text-gray-600 mb-4 leading-relaxed">
-                  X（旧Twitter）で最新情報を発信しています。
+                  Xで最新情報を発信しています。
                   <br />
                   フォローやリプライでお気軽にご連絡ください。
                 </p>
@@ -74,84 +81,20 @@ export default function ContactPage() {
                 <p className="text-gray-600 leading-relaxed">
                   Googleフォームからお問い合わせを受け付けています。
                   <br />
-                  返信が必要な場合は、フォーム内で返信用のメールアドレスをご入力ください。
+                  メールアドレスの入力は不要です。内容をご記入の上、送信してください。
                 </p>
-                <div className="form-embed">
-                  <iframe
-                    src="https://docs.google.com/forms/d/e/1FAIpQLScKSm1omQGgdJoAtyZD_mOVPjpfN2lLLBFgE8ot1Z9Hn3FpxA/viewform?embedded=1"
-                    title="お問い合わせフォーム"
-                    loading="lazy"
-                    allowFullScreen
-                  >
-                    読み込んでいます…
-                  </iframe>
-                </div>
                 <div>
                   <a
                     className="btn-primary"
-                    href="https://docs.google.com/forms/d/e/1FAIpQLScKSm1omQGgdJoAtyZD_mOVPjpfN2lLLBFgE8ot1Z9Hn3FpxA/viewform"
+                    href={FORM_URL}
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    フォームを別タブで開く →
+                    フォームを開く →
                   </a>
                 </div>
               </div>
             </div>
-          </div>
-        </div>
-      </section>
-
-      {/* 注意事項 */}
-      <section className="px-6 pb-12 md:pb-16">
-        <div className="max-w-4xl mx-auto">
-          <div className="bg-white rounded-xl p-8 border-l-4 border-orange-500">
-            <h4
-              className="text-xl font-bold mb-4"
-              style={{ color: "var(--color-primary)" }}
-            >
-              お問い合わせの際の注意事項
-            </h4>
-            <ul className="space-y-3 text-gray-700">
-              <li className="flex items-start">
-                <span
-                  className="mr-3 flex-shrink-0 font-bold"
-                  style={{ color: "var(--color-accent)" }}
-                >
-                  ▸
-                </span>
-                <span>回答には時間がかかる場合があります。</span>
-              </li>
-              <li className="flex items-start">
-                <span
-                  className="mr-3 flex-shrink-0 font-bold"
-                  style={{ color: "var(--color-accent)" }}
-                >
-                  ▸
-                </span>
-                <span>すべてのお問い合わせに返信できるとは限りません。</span>
-              </li>
-              <li className="flex items-start">
-                <span
-                  className="mr-3 flex-shrink-0 font-bold"
-                  style={{ color: "var(--color-accent)" }}
-                >
-                  ▸
-                </span>
-                <span>不適切な内容のお問い合わせにはお答えできません。</span>
-              </li>
-              <li className="flex items-start">
-                <span
-                  className="mr-3 flex-shrink-0 font-bold"
-                  style={{ color: "var(--color-accent)" }}
-                >
-                  ▸
-                </span>
-                <span>
-                  バグを発見した場合は、できるだけ詳しい情報（発生環境、再現手順など）をお知らせください。
-                </span>
-              </li>
-            </ul>
           </div>
         </div>
       </section>
@@ -204,29 +147,10 @@ export default function ContactPage() {
           box-shadow: 0 8px 16px rgba(198, 156, 109, 0.3);
         }
 
-        .form-embed {
-          width: 100%;
-          border-radius: 0.75rem;
-          overflow: hidden;
-          border: 1px solid #e2e8f0;
-          box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-        }
-
-        .form-embed iframe {
-          width: 100%;
-          height: 1000px;
-          border: none;
-          background: #f8fafc;
-        }
-
-        .btn-disabled {
-          display: inline-block;
-          padding: 0.875rem 2rem;
-          background: #e2e8f0;
-          color: #a0aec0;
-          border-radius: 0.5rem;
-          font-weight: 600;
-          cursor: not-allowed;
+        @media (max-width: 640px) {
+          .contact-card {
+            padding: 1.5rem;
+          }
         }
       `}</style>
     </>
