@@ -1,232 +1,314 @@
 export default function ContactPage() {
+  const formUrl =
+    "https://docs.google.com/forms/d/e/1FAIpQLScKSm1omQGgdJoAtyZD_mOVPjpfN2lLLBFgE8ot1Z9Hn3FpxA/viewform";
+
   return (
     <>
-      {/* ページヘッダー */}
-      <section
-        style={{
-          padding: "4rem 0 3rem",
-          background:
-            "linear-gradient(135deg, rgba(245, 240, 232, 0.6) 0%, rgba(235, 229, 217, 0.6) 100%)",
-          borderBottom: "1px solid rgba(198, 156, 109, 0.2)",
-        }}
-      >
-        <div className="max-w-4xl mx-auto px-6">
-          <h1
-            className="text-4xl md:text-5xl font-bold mb-6"
-            style={{ color: "var(--color-primary)" }}
-          >
-            お問い合わせ
-          </h1>
-          <p className="text-lg text-gray-600 leading-relaxed">
-            ご質問、ご感想、バグ報告などお気軽にどうぞ。
-            <br />
-            以下の方法でご連絡いただけます。
-          </p>
-        </div>
-      </section>
-
-      {/* お問い合わせ方法 */}
-      <section className="px-6 py-12 md:py-16">
-        <div className="max-w-4xl mx-auto space-y-6">
-          {/* SNS */}
-          <div className="contact-card">
-            <div className="flex flex-col md:flex-row gap-6">
-              <div className="icon-wrapper">
-                <span>📱</span>
-              </div>
-              <div className="flex-1">
-                <h3
-                  className="text-2xl font-bold mb-3"
-                  style={{ color: "var(--color-primary)" }}
-                >
-                  SNS
-                </h3>
-                <p className="text-gray-600 mb-4 leading-relaxed">
-                  X（旧Twitter）で最新情報を発信しています。
-                  <br />
-                  フォローやリプライでお気軽にご連絡ください。
-                </p>
-                <a
-                  href="https://x.com/umauma1600"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="btn-primary"
-                >
-                  Xでやまーたをフォローする →
-                </a>
-              </div>
-            </div>
+      <section className="contact-hero">
+        <div className="contact-hero__overlay" aria-hidden="true" />
+        <div className="contact-hero__overlay contact-hero__overlay--right" aria-hidden="true" />
+        <div className="contact-hero__content">
+          <div className="contact-badge">
+            <span className="contact-badge__title">Contact</span>
+            <span className="contact-badge__subtitle">お問い合わせ</span>
           </div>
 
-          {/* お問い合わせフォーム */}
-          <div className="contact-card">
-            <div className="flex flex-col md:flex-row gap-6">
-              <div className="icon-wrapper">
-                <span>📝</span>
-              </div>
-              <div className="flex-1 space-y-4">
-                <h3
-                  className="text-2xl font-bold"
-                  style={{ color: "var(--color-primary)" }}
-                >
-                  お問い合わせフォーム
-                </h3>
-                <p className="text-gray-600 leading-relaxed">
-                  Googleフォームからお問い合わせを受け付けています。
-                  <br />
-                  返信が必要な場合は、フォーム内で返信用のメールアドレスをご入力ください。
-                </p>
-                <div className="form-embed">
-                  <iframe
-                    src="https://docs.google.com/forms/d/e/1FAIpQLScKSm1omQGgdJoAtyZD_mOVPjpfN2lLLBFgE8ot1Z9Hn3FpxA/viewform?embedded=1"
-                    title="お問い合わせフォーム"
-                    loading="lazy"
-                    allowFullScreen
-                  >
-                    読み込んでいます…
-                  </iframe>
+          <p className="contact-lead">
+            謎解きコンテンツやゲームの制作依頼・ご質問など、お気軽にお問い合わせください。
+            <br />
+            便利なフォームとX（旧Twitter）の2つの方法をご用意しています。
+          </p>
+
+          <div className="contact-grid">
+            <div className="contact-card contact-card--accent">
+              <div className="contact-card__header">
+                <div className="contact-icon" aria-hidden="true">
+                  <span role="img" aria-label="pencil">
+                    📝
+                  </span>
                 </div>
                 <div>
-                  <a
-                    className="btn-primary"
-                    href="https://docs.google.com/forms/d/e/1FAIpQLScKSm1omQGgdJoAtyZD_mOVPjpfN2lLLBFgE8ot1Z9Hn3FpxA/viewform"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    フォームを別タブで開く →
-                  </a>
+                  <h3 className="contact-card__title">お問い合わせフォーム</h3>
+                  <p className="contact-card__caption">Googleフォームで受け付けています</p>
                 </div>
               </div>
+              <p className="contact-card__description">
+                フォームにアクセスし、内容をご記入ください。メールアドレスの入力は不要です。
+              </p>
+              <a
+                className="contact-button contact-button--primary"
+                href={formUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                フォームを開く
+              </a>
+            </div>
+
+            <div className="contact-card">
+              <div className="contact-card__header">
+                <div className="contact-icon contact-icon--neutral" aria-hidden="true">
+                  <img src="/assets/images/logo-black.png" alt="X ロゴ" className="contact-icon__image" />
+                </div>
+                <div>
+                  <h3 className="contact-card__title">X（旧Twitter）</h3>
+                  <p className="contact-card__caption">フォローやDMでご連絡ください</p>
+                </div>
+              </div>
+              <p className="contact-card__description">
+                最新情報や制作の進捗もXで発信しています。お気軽にリプライやDMで声をお寄せください。
+              </p>
+              <a
+                className="contact-button contact-button--ghost"
+                href="https://x.com/umauma1600"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Xでやまーたに連絡する
+              </a>
             </div>
           </div>
         </div>
       </section>
 
-      {/* 注意事項 */}
-      <section className="px-6 pb-12 md:pb-16">
-        <div className="max-w-4xl mx-auto">
-          <div className="bg-white rounded-xl p-8 border-l-4 border-orange-500">
-            <h4
-              className="text-xl font-bold mb-4"
-              style={{ color: "var(--color-primary)" }}
-            >
-              お問い合わせの際の注意事項
-            </h4>
-            <ul className="space-y-3 text-gray-700">
-              <li className="flex items-start">
-                <span
-                  className="mr-3 flex-shrink-0 font-bold"
-                  style={{ color: "var(--color-accent)" }}
-                >
-                  ▸
-                </span>
-                <span>回答には時間がかかる場合があります。</span>
-              </li>
-              <li className="flex items-start">
-                <span
-                  className="mr-3 flex-shrink-0 font-bold"
-                  style={{ color: "var(--color-accent)" }}
-                >
-                  ▸
-                </span>
-                <span>すべてのお問い合わせに返信できるとは限りません。</span>
-              </li>
-              <li className="flex items-start">
-                <span
-                  className="mr-3 flex-shrink-0 font-bold"
-                  style={{ color: "var(--color-accent)" }}
-                >
-                  ▸
-                </span>
-                <span>不適切な内容のお問い合わせにはお答えできません。</span>
-              </li>
-              <li className="flex items-start">
-                <span
-                  className="mr-3 flex-shrink-0 font-bold"
-                  style={{ color: "var(--color-accent)" }}
-                >
-                  ▸
-                </span>
-                <span>
-                  バグを発見した場合は、できるだけ詳しい情報（発生環境、再現手順など）をお知らせください。
-                </span>
-              </li>
-            </ul>
-          </div>
+      <section className="contact-notes">
+        <div className="contact-notes__inner">
+          <h4 className="contact-notes__title">お願い</h4>
+          <ul className="contact-notes__list">
+            <li>返信までお時間をいただく場合があります。</li>
+            <li>内容によってはお答えできない場合があります。</li>
+            <li>不具合のご報告は発生環境や再現手順を添えていただけると助かります。</li>
+          </ul>
         </div>
       </section>
 
-      {/* カスタムスタイル */}
       <style>{`
-        /* カード */
-        .contact-card {
-          background: white;
-          border-radius: 1rem;
-          padding: 2rem;
-          box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-          transition: all 0.3s ease;
-          border: 1px solid #e2e8f0;
+        .contact-hero {
+          position: relative;
+          overflow: hidden;
+          padding: 4rem 1.5rem 3rem;
+          background: linear-gradient(180deg, #ffb347 0%, #ff8554 100%);
         }
 
-        .contact-card:hover {
-          transform: translateY(-4px);
-          box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
+        .contact-hero__overlay {
+          position: absolute;
+          width: 360px;
+          height: 360px;
+          border-radius: 50%;
+          background: radial-gradient(circle, rgba(255, 255, 255, 0.28) 0%, rgba(255, 255, 255, 0) 60%);
+          top: -80px;
+          left: -120px;
+          filter: blur(2px);
         }
 
-        /* アイコンラッパー */
-        .icon-wrapper {
-          width: 60px;
-          height: 60px;
-          background: linear-gradient(135deg, #c69c6d 0%, #b88a5a 100%);
-          border-radius: 12px;
+        .contact-hero__overlay--right {
+          top: 120px;
+          left: auto;
+          right: -140px;
+          background: radial-gradient(circle, rgba(255, 255, 255, 0.18) 0%, rgba(255, 255, 255, 0) 60%);
+        }
+
+        .contact-hero__content {
+          position: relative;
+          max-width: 880px;
+          margin: 0 auto;
+          background: linear-gradient(145deg, #ffffff, #fff6ed);
+          border-radius: 24px;
+          padding: 2.5rem 2rem;
+          box-shadow: 0 22px 55px rgba(0, 0, 0, 0.12);
+          border: 1px solid rgba(255, 255, 255, 0.5);
+        }
+
+        .contact-badge {
+          width: 160px;
+          height: 160px;
+          margin: -140px auto 1.5rem;
+          background: linear-gradient(145deg, #ffb347 0%, #ff9557 100%);
+          border-radius: 50%;
           display: flex;
+          flex-direction: column;
           align-items: center;
           justify-content: center;
-          font-size: 2rem;
-          flex-shrink: 0;
+          color: #fff;
+          box-shadow: 0 18px 30px rgba(255, 133, 84, 0.4);
+          text-align: center;
+          border: 6px solid #fff0e1;
         }
 
-        /* ボタン */
-        .btn-primary {
-          display: inline-block;
-          padding: 0.875rem 2rem;
-          background: var(--color-accent);
-          color: white;
+        .contact-badge__title {
+          font-size: 1.4rem;
+          font-weight: 700;
+          letter-spacing: 0.05em;
+        }
+
+        .contact-badge__subtitle {
+          font-size: 0.9rem;
+          opacity: 0.95;
+        }
+
+        .contact-lead {
+          text-align: center;
+          color: #5b4b3f;
+          line-height: 1.8;
+          font-size: 1.05rem;
+          margin-bottom: 2rem;
+        }
+
+        .contact-grid {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+          gap: 1.5rem;
+        }
+
+        .contact-card {
+          background: #ffffff;
+          border-radius: 16px;
+          padding: 1.75rem;
+          box-shadow: 0 12px 26px rgba(0, 0, 0, 0.08);
+          border: 1px solid #f2e8db;
+        }
+
+        .contact-card--accent {
+          background: linear-gradient(165deg, #fff4e5 0%, #ffe8d0 100%);
+          border-color: #ffd0a8;
+        }
+
+        .contact-card__header {
+          display: flex;
+          align-items: center;
+          gap: 1rem;
+          margin-bottom: 1rem;
+        }
+
+        .contact-card__title {
+          font-size: 1.2rem;
+          font-weight: 700;
+          color: #e16e3a;
+          margin: 0;
+        }
+
+        .contact-card__caption {
+          margin: 0.25rem 0 0;
+          color: #8b735b;
+          font-size: 0.9rem;
+        }
+
+        .contact-card__description {
+          color: #5b4b3f;
+          line-height: 1.7;
+          margin: 0 0 1.25rem;
+        }
+
+        .contact-icon {
+          width: 60px;
+          height: 60px;
+          border-radius: 18px;
+          background: linear-gradient(135deg, #ffb347 0%, #ff8d5a 100%);
+          display: grid;
+          place-items: center;
+          font-size: 1.6rem;
+          color: #fff;
+          box-shadow: 0 10px 18px rgba(255, 141, 90, 0.25);
+        }
+
+        .contact-icon--neutral {
+          background: #ffffff;
+          border: 1px solid #ebe4db;
+          box-shadow: 0 10px 18px rgba(0, 0, 0, 0.06);
+        }
+
+        .contact-icon__image {
+          width: 28px;
+          height: 28px;
+          object-fit: contain;
+        }
+
+        .contact-button {
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          gap: 0.5rem;
+          padding: 0.85rem 1.6rem;
+          border-radius: 999px;
+          font-weight: 700;
           text-decoration: none;
-          border-radius: 0.5rem;
-          font-weight: 600;
-          transition: all 0.3s ease;
+          transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
         }
 
-        .btn-primary:hover {
-          background: #a77d4f;
-          transform: translateY(-2px);
-          box-shadow: 0 8px 16px rgba(198, 156, 109, 0.3);
-        }
-
-        .form-embed {
-          width: 100%;
-          border-radius: 0.75rem;
-          overflow: hidden;
-          border: 1px solid #e2e8f0;
-          box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-        }
-
-        .form-embed iframe {
-          width: 100%;
-          height: 1000px;
+        .contact-button--primary {
+          background: linear-gradient(135deg, #ffb347 0%, #ff8d5a 100%);
+          color: #fff;
+          box-shadow: 0 12px 24px rgba(255, 141, 90, 0.35);
           border: none;
-          background: #f8fafc;
         }
 
-        .btn-disabled {
-          display: inline-block;
-          padding: 0.875rem 2rem;
-          background: #e2e8f0;
-          color: #a0aec0;
-          border-radius: 0.5rem;
-          font-weight: 600;
-          cursor: not-allowed;
+        .contact-button--primary:hover {
+          transform: translateY(-2px);
+          box-shadow: 0 16px 28px rgba(255, 141, 90, 0.45);
+        }
+
+        .contact-button--ghost {
+          background: #ffffff;
+          color: #e16e3a;
+          border: 1px solid #efd9c5;
+        }
+
+        .contact-button--ghost:hover {
+          transform: translateY(-2px);
+          box-shadow: 0 12px 22px rgba(0, 0, 0, 0.08);
+          background: #fff7ef;
+        }
+
+        .contact-notes {
+          padding: 0 1.5rem 3rem;
+          background: linear-gradient(180deg, #fff7ef 0%, #fff 100%);
+        }
+
+        .contact-notes__inner {
+          max-width: 880px;
+          margin: -0.5rem auto 0;
+          background: #fff;
+          border-radius: 16px;
+          border: 1px solid #f0e4d7;
+          box-shadow: 0 10px 22px rgba(0, 0, 0, 0.06);
+          padding: 1.75rem;
+        }
+
+        .contact-notes__title {
+          margin: 0 0 0.75rem;
+          font-size: 1.1rem;
+          font-weight: 700;
+          color: #e16e3a;
+        }
+
+        .contact-notes__list {
+          margin: 0;
+          padding-left: 1.25rem;
+          color: #5b4b3f;
+          line-height: 1.7;
+          display: grid;
+          gap: 0.35rem;
+        }
+
+        @media (max-width: 640px) {
+          .contact-badge {
+            width: 130px;
+            height: 130px;
+            margin-top: -120px;
+          }
+
+          .contact-hero__content {
+            padding: 2rem 1.25rem;
+          }
+
+          .contact-card__header {
+            align-items: flex-start;
+          }
+
+          .contact-icon {
+            width: 52px;
+            height: 52px;
+          }
         }
       `}</style>
     </>
