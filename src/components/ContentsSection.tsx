@@ -6,7 +6,9 @@ export default function ContentsSection() {
 
   const handleKeyClick = () => {
     setKeyRotated(true);
-    setTimeout(() => setKeyRotated(false), 600);
+    setTimeout(() => {
+      setKeyRotated(false);
+    }, 600);
   };
 
   return (
@@ -29,7 +31,12 @@ export default function ContentsSection() {
           height="24"
           viewBox="0 0 24 24"
           fill="none"
-          style={{ position: "absolute", top: "15%", left: "8%", opacity: 0.15 }}
+          style={{
+            position: "absolute",
+            top: "15%",
+            left: "8%",
+            opacity: 0.15,
+          }}
         >
           <path
             d="M21 10h-8.35A5.99 5.99 0 0 0 7 6a6 6 0 0 0 0 12 5.99 5.99 0 0 0 5.65-4H13l2 2 2-2 2 2 2-2v-4zM7 14a2 2 0 1 1 0-4 2 2 0 0 1 0 4z"
@@ -42,7 +49,12 @@ export default function ContentsSection() {
           height="32"
           viewBox="0 0 24 24"
           fill="none"
-          style={{ position: "absolute", top: "60%", right: "10%", opacity: 0.12 }}
+          style={{
+            position: "absolute",
+            top: "60%",
+            right: "10%",
+            opacity: 0.12,
+          }}
         >
           <path
             d="M21 10h-8.35A5.99 5.99 0 0 0 7 6a6 6 0 0 0 0 12 5.99 5.99 0 0 0 5.65-4H13l2 2 2-2 2 2 2-2v-4zM7 14a2 2 0 1 1 0-4 2 2 0 0 1 0 4z"
@@ -55,11 +67,19 @@ export default function ContentsSection() {
           height="20"
           viewBox="0 0 24 24"
           fill="none"
-          style={{ position: "absolute", top: "35%", right: "25%", opacity: 0.1 }}
+          style={{
+            position: "absolute",
+            top: "35%",
+            right: "25%",
+            opacity: 0.1,
+          }}
         >
           <path
-            d="M21 10h-8.35A5.99 5.99 0 0 0 7 6a6 6 0 0 0 0 12 5.99 5.99 0 0 0 5.65-4H13l2 2 2-2 2 2 2-2v-4zM7 14a2 2 0 1 1 0-4 2 2 0 0 1 0 4z"
-            fill="currentColor"
+            d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
           />
         </svg>
       </div>
@@ -104,32 +124,26 @@ export default function ContentsSection() {
         </div>
 
         {/* 作品カードグリッド */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {/* 逆転の宝箱 - 額縁風カード */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          {/* 謎解き - 逆転の宝箱 */}
           <Link to="/nazo/treasure-box" className="artwork-card group">
-            {/* 額縁の外枠 */}
             <div className="artwork-frame">
-              {/* 光のエフェクト用オーバーレイ */}
               <div className="artwork-shine" />
-
-              {/* サムネイル画像 */}
               <div className="artwork-image">
                 <img
                   src="/assets/images/treasure-box-thumbnail.jpg"
                   alt="逆転の宝箱"
                   className="w-full h-full object-cover"
                 />
-                {/* ホバー時のキラキラ */}
                 <div className="sparkles">
                   <span className="sparkle sparkle-1">✦</span>
                   <span className="sparkle sparkle-2">✧</span>
                   <span className="sparkle sparkle-3">✦</span>
                 </div>
               </div>
-
-              {/* コンテンツ部分 */}
               <div className="artwork-content">
                 <div className="flex items-center gap-2 mb-2">
+                  <span className="genre-badge genre-badge-nazo">謎解き</span>
                   <span className="difficulty-badge">初心者向け</span>
                 </div>
                 <h3 className="artwork-title">逆転の宝箱</h3>
@@ -170,7 +184,7 @@ export default function ContentsSection() {
                     約10分
                   </span>
                 </div>
-                <div className="artwork-cta">
+                <div className="artwork-cta artwork-cta-nazo">
                   <span className="cta-text">挑戦する</span>
                   <svg
                     className="cta-arrow"
@@ -192,36 +206,95 @@ export default function ContentsSection() {
             </div>
           </Link>
 
-          {/* Coming Soon カード */}
-          <div className="artwork-card artwork-card-coming-soon">
-            <div className="artwork-frame coming-soon-frame">
-              <div className="artwork-image coming-soon-image">
-                <div className="coming-soon-content">
-                  <svg
-                    width="48"
-                    height="48"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    style={{ color: "var(--color-accent)", opacity: 0.5 }}
-                  >
-                    <path
-                      d="M21 10h-8.35A5.99 5.99 0 0 0 7 6a6 6 0 0 0 0 12 5.99 5.99 0 0 0 5.65-4H13l2 2 2-2 2 2 2-2v-4zM7 14a2 2 0 1 1 0-4 2 2 0 0 1 0 4z"
-                      fill="currentColor"
-                    />
-                  </svg>
-                  <span className="coming-soon-text">Coming Soon...</span>
+          {/* マダミス - 煙の向こうで */}
+          <a
+            href="https://umauma1600.booth.pm/items/5403959"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="artwork-card group"
+          >
+            <div className="artwork-frame artwork-frame-madamis">
+              <div className="artwork-shine" />
+              <div className="artwork-image">
+                <img
+                  src="/assets/images/kemurinomukoude.png"
+                  alt="煙の向こうで"
+                  className="w-full h-full object-cover"
+                />
+                <div className="sparkles sparkles-madamis">
+                  <span className="sparkle sparkle-1">✦</span>
+                  <span className="sparkle sparkle-2">✧</span>
+                  <span className="sparkle sparkle-3">✦</span>
                 </div>
               </div>
-              <div className="artwork-content coming-soon-info">
-                <h3 className="artwork-title" style={{ opacity: 0.5 }}>
-                  次の謎解き
-                </h3>
-                <p className="artwork-description" style={{ opacity: 0.4 }}>
-                  新しい作品を準備中です。お楽しみに！
+              <div className="artwork-content">
+                <div className="flex items-center gap-2 mb-2">
+                  <span className="genre-badge genre-badge-madamis">
+                    マダミス
+                  </span>
+                </div>
+                <h3 className="artwork-title">煙の向こうで</h3>
+                <p className="artwork-description">
+                  Boothで詳細をご確認ください。
                 </p>
+                <div className="artwork-cta artwork-cta-madamis">
+                  <span className="cta-text">Boothで見る</span>
+                  <svg
+                    className="cta-arrow"
+                    width="20"
+                    height="20"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="2"
+                      d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+                    />
+                  </svg>
+                </div>
               </div>
             </div>
-          </div>
+          </a>
+        </div>
+
+        {/* もっと見るリンク */}
+        <div className="mt-12 flex flex-col sm:flex-row justify-center gap-4">
+          <Link to="/nazo" className="more-link more-link-nazo">
+            <svg
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              style={{ color: "var(--color-accent)" }}
+            >
+              <path
+                d="M21 10h-8.35A5.99 5.99 0 0 0 7 6a6 6 0 0 0 0 12 5.99 5.99 0 0 0 5.65-4H13l2 2 2-2 2 2 2-2v-4zM7 14a2 2 0 1 1 0-4 2 2 0 0 1 0 4z"
+                fill="currentColor"
+              />
+            </svg>
+            謎解き一覧へ
+          </Link>
+          <Link to="/madamis" className="more-link more-link-madamis">
+            <svg
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              style={{ color: "#8b5cf6" }}
+            >
+              <path
+                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+            マダミス一覧へ
+          </Link>
         </div>
       </div>
 
@@ -240,7 +313,7 @@ export default function ContentsSection() {
 
         .floating-key-1 { animation-delay: 0s; }
         .floating-key-2 { animation-delay: 2s; }
-        .floating-key-3 { animation-delay: 4s; }
+        .floating-key-3 { animation-delay: 4s; color: #8b5cf6; }
 
         /* 鍵ボタン */
         .key-button {
@@ -277,14 +350,6 @@ export default function ContentsSection() {
           transform: translateY(-8px);
         }
 
-        .artwork-card-coming-soon {
-          cursor: default;
-        }
-
-        .artwork-card-coming-soon:hover {
-          transform: none;
-        }
-
         /* 額縁フレーム */
         .artwork-frame {
           position: relative;
@@ -308,6 +373,10 @@ export default function ContentsSection() {
           z-index: -1;
         }
 
+        .artwork-frame-madamis::before {
+          background: linear-gradient(135deg, #a78bfa 0%, #8b5cf6 50%, #7c3aed 100%);
+        }
+
         .artwork-card:hover .artwork-frame {
           box-shadow:
             0 8px 16px rgba(198, 156, 109, 0.15),
@@ -315,9 +384,11 @@ export default function ContentsSection() {
             inset 0 1px 0 rgba(255, 255, 255, 0.8);
         }
 
-        .coming-soon-frame::before {
-          background: linear-gradient(135deg, #ccc 0%, #bbb 50%, #aaa 100%);
-          opacity: 0.5;
+        .artwork-card:hover .artwork-frame-madamis {
+          box-shadow:
+            0 8px 16px rgba(139, 92, 246, 0.15),
+            0 20px 40px rgba(0, 0, 0, 0.1),
+            inset 0 1px 0 rgba(255, 255, 255, 0.8);
         }
 
         /* 光のエフェクト */
@@ -346,7 +417,7 @@ export default function ContentsSection() {
         /* サムネイル画像 */
         .artwork-image {
           position: relative;
-          height: 200px;
+          height: 220px;
           overflow: hidden;
           background: linear-gradient(135deg, #e8e0d5 0%, #d4cbb8 100%);
         }
@@ -357,29 +428,6 @@ export default function ContentsSection() {
 
         .artwork-card:hover .artwork-image img {
           transform: scale(1.05);
-        }
-
-        .coming-soon-image {
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          background: linear-gradient(135deg, #e8e0d5 0%, #d4cbb8 100%);
-          opacity: 0.6;
-        }
-
-        .coming-soon-content {
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          gap: 12px;
-        }
-
-        .coming-soon-text {
-          font-size: 0.875rem;
-          font-weight: 600;
-          color: var(--color-accent);
-          opacity: 0.6;
-          letter-spacing: 0.1em;
         }
 
         /* キラキラエフェクト */
@@ -402,6 +450,10 @@ export default function ContentsSection() {
           animation: sparkle 1.5s ease-in-out infinite;
         }
 
+        .sparkles-madamis .sparkle {
+          color: #a78bfa;
+        }
+
         .sparkle-1 { top: 20%; left: 15%; animation-delay: 0s; }
         .sparkle-2 { top: 40%; right: 20%; animation-delay: 0.3s; }
         .sparkle-3 { bottom: 25%; left: 30%; animation-delay: 0.6s; }
@@ -416,8 +468,23 @@ export default function ContentsSection() {
           padding: 1.25rem;
         }
 
-        .coming-soon-info {
-          opacity: 0.7;
+        /* ジャンルバッジ */
+        .genre-badge {
+          display: inline-block;
+          padding: 0.25rem 0.75rem;
+          border-radius: 9999px;
+          font-size: 0.75rem;
+          font-weight: 600;
+        }
+
+        .genre-badge-nazo {
+          background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+          color: #92400e;
+        }
+
+        .genre-badge-madamis {
+          background: linear-gradient(135deg, #ede9fe 0%, #ddd6fe 100%);
+          color: #5b21b6;
         }
 
         .difficulty-badge {
@@ -469,9 +536,16 @@ export default function ContentsSection() {
           display: flex;
           align-items: center;
           gap: 0.5rem;
-          color: var(--color-accent);
           font-weight: 600;
           font-size: 0.9rem;
+        }
+
+        .artwork-cta-nazo {
+          color: var(--color-accent);
+        }
+
+        .artwork-cta-madamis {
+          color: #8b5cf6;
         }
 
         .cta-arrow {
@@ -480,6 +554,41 @@ export default function ContentsSection() {
 
         .artwork-card:hover .cta-arrow {
           transform: translateX(4px);
+        }
+
+        /* もっと見るリンク */
+        .more-link {
+          display: inline-flex;
+          align-items: center;
+          gap: 0.5rem;
+          padding: 0.75rem 1.5rem;
+          border-radius: 9999px;
+          font-weight: 600;
+          font-size: 0.9rem;
+          text-decoration: none;
+          transition: all 0.3s ease;
+        }
+
+        .more-link-nazo {
+          background: rgba(198, 156, 109, 0.1);
+          color: var(--color-accent);
+          border: 2px solid rgba(198, 156, 109, 0.3);
+        }
+
+        .more-link-nazo:hover {
+          background: rgba(198, 156, 109, 0.2);
+          border-color: var(--color-accent);
+        }
+
+        .more-link-madamis {
+          background: rgba(139, 92, 246, 0.1);
+          color: #8b5cf6;
+          border: 2px solid rgba(139, 92, 246, 0.3);
+        }
+
+        .more-link-madamis:hover {
+          background: rgba(139, 92, 246, 0.2);
+          border-color: #8b5cf6;
         }
 
         /* レスポンシブ */
