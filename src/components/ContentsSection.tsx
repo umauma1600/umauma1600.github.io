@@ -283,7 +283,7 @@ export default function ContentsSection() {
               height="20"
               viewBox="0 0 24 24"
               fill="none"
-              style={{ color: "#8b5cf6" }}
+              style={{ color: "var(--color-accent)" }}
             >
               <path
                 d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
@@ -313,7 +313,7 @@ export default function ContentsSection() {
 
         .floating-key-1 { animation-delay: 0s; }
         .floating-key-2 { animation-delay: 2s; }
-        .floating-key-3 { animation-delay: 4s; color: #8b5cf6; }
+        .floating-key-3 { animation-delay: 4s; }
 
         /* 鍵ボタン */
         .key-button {
@@ -374,7 +374,7 @@ export default function ContentsSection() {
         }
 
         .artwork-frame-madamis::before {
-          background: linear-gradient(135deg, #a78bfa 0%, #8b5cf6 50%, #7c3aed 100%);
+          background: linear-gradient(135deg, #d4a574 0%, #c69c6d 50%, #b8956a 100%);
         }
 
         .artwork-card:hover .artwork-frame {
@@ -386,7 +386,7 @@ export default function ContentsSection() {
 
         .artwork-card:hover .artwork-frame-madamis {
           box-shadow:
-            0 8px 16px rgba(139, 92, 246, 0.15),
+            0 8px 16px rgba(198, 156, 109, 0.15),
             0 20px 40px rgba(0, 0, 0, 0.1),
             inset 0 1px 0 rgba(255, 255, 255, 0.8);
         }
@@ -451,7 +451,7 @@ export default function ContentsSection() {
         }
 
         .sparkles-madamis .sparkle {
-          color: #a78bfa;
+          color: #ffd700;
         }
 
         .sparkle-1 { top: 20%; left: 15%; animation-delay: 0s; }
@@ -483,8 +483,8 @@ export default function ContentsSection() {
         }
 
         .genre-badge-madamis {
-          background: linear-gradient(135deg, #ede9fe 0%, #ddd6fe 100%);
-          color: #5b21b6;
+          background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+          color: #92400e;
         }
 
         .difficulty-badge {
@@ -545,7 +545,7 @@ export default function ContentsSection() {
         }
 
         .artwork-cta-madamis {
-          color: #8b5cf6;
+          color: var(--color-accent);
         }
 
         .cta-arrow {
@@ -581,14 +581,14 @@ export default function ContentsSection() {
         }
 
         .more-link-madamis {
-          background: rgba(139, 92, 246, 0.1);
-          color: #8b5cf6;
-          border: 2px solid rgba(139, 92, 246, 0.3);
+          background: rgba(198, 156, 109, 0.1);
+          color: var(--color-accent);
+          border: 2px solid rgba(198, 156, 109, 0.3);
         }
 
         .more-link-madamis:hover {
-          background: rgba(139, 92, 246, 0.2);
-          border-color: #8b5cf6;
+          background: rgba(198, 156, 109, 0.2);
+          border-color: var(--color-accent);
         }
 
         /* レスポンシブ */

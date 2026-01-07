@@ -4,9 +4,9 @@ export default function MadamisListPage() {
       className="relative min-h-screen overflow-hidden"
       style={{
         background: `
-          radial-gradient(ellipse at 20% 20%, rgba(139, 92, 246, 0.06) 0%, transparent 50%),
-          radial-gradient(ellipse at 80% 80%, rgba(139, 92, 246, 0.04) 0%, transparent 50%),
-          linear-gradient(to bottom, #faf8f5, #f3f0f8)
+          radial-gradient(ellipse at 20% 20%, rgba(198, 156, 109, 0.08) 0%, transparent 50%),
+          radial-gradient(ellipse at 80% 80%, rgba(198, 156, 109, 0.06) 0%, transparent 50%),
+          linear-gradient(to bottom, #faf8f5, #f5f0e8)
         `,
       }}
     >
@@ -63,8 +63,8 @@ export default function MadamisListPage() {
             <div
               className="flex items-center justify-center w-12 h-12 rounded-full"
               style={{
-                background: "rgba(139, 92, 246, 0.1)",
-                border: "2px solid rgba(139, 92, 246, 0.3)",
+                background: "rgba(198, 156, 109, 0.1)",
+                border: "2px solid rgba(198, 156, 109, 0.3)",
               }}
             >
               <svg
@@ -72,7 +72,7 @@ export default function MadamisListPage() {
                 height="28"
                 viewBox="0 0 24 24"
                 fill="none"
-                style={{ color: "#8b5cf6" }}
+                style={{ color: "var(--color-accent)" }}
               >
                 <path
                   d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
@@ -158,7 +158,7 @@ export default function MadamisListPage() {
                       height="48"
                       viewBox="0 0 24 24"
                       fill="none"
-                      style={{ color: "#8b5cf6", opacity: 0.5 }}
+                      style={{ color: "var(--color-accent)", opacity: 0.5 }}
                     >
                       <path
                         d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
@@ -193,7 +193,7 @@ export default function MadamisListPage() {
         }
 
         .floating-icon {
-          color: #8b5cf6;
+          color: var(--color-accent);
           animation: float 6s ease-in-out infinite;
         }
 
@@ -235,14 +235,14 @@ export default function MadamisListPage() {
           content: '';
           position: absolute;
           inset: -3px;
-          background: linear-gradient(135deg, #a78bfa 0%, #8b5cf6 50%, #7c3aed 100%);
+          background: linear-gradient(135deg, #d4a574 0%, #c69c6d 50%, #b8956a 100%);
           border-radius: 14px;
           z-index: -1;
         }
 
         .artwork-card:hover .artwork-frame {
           box-shadow:
-            0 8px 16px rgba(139, 92, 246, 0.15),
+            0 8px 16px rgba(198, 156, 109, 0.15),
             0 20px 40px rgba(0, 0, 0, 0.1),
             inset 0 1px 0 rgba(255, 255, 255, 0.8);
         }
@@ -310,7 +310,7 @@ export default function MadamisListPage() {
         .coming-soon-text {
           font-size: 0.875rem;
           font-weight: 600;
-          color: #8b5cf6;
+          color: var(--color-accent);
           opacity: 0.6;
           letter-spacing: 0.1em;
         }
@@ -329,7 +329,7 @@ export default function MadamisListPage() {
 
         .sparkle {
           position: absolute;
-          color: #a78bfa;
+          color: #ffd700;
           font-size: 1rem;
           animation: sparkle 1.5s ease-in-out infinite;
         }
@@ -369,7 +369,7 @@ export default function MadamisListPage() {
           display: flex;
           align-items: center;
           gap: 0.5rem;
-          color: #8b5cf6;
+          color: var(--color-accent);
           font-weight: 600;
           font-size: 0.9rem;
         }
