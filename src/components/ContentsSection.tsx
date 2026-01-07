@@ -19,7 +19,7 @@ export default function ContentsSection() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
           {/* 謎解きカード */}
           <div
-            className="bg-white rounded-2xl p-8 shadow-sm border border-gray-200 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl"
+            className="bg-white rounded-2xl p-8 shadow-sm border border-gray-200"
             style={{
               boxShadow: "0 4px 6px rgba(0, 0, 0, 0.05)",
             }}
