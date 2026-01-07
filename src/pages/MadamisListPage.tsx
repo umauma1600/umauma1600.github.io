@@ -1,21 +1,19 @@
-import { Link } from "react-router-dom";
-
-export default function PuzzleListPage() {
+export default function MadamisListPage() {
   return (
     <section
       className="relative min-h-screen overflow-hidden"
       style={{
         background: `
-          radial-gradient(ellipse at 20% 20%, rgba(198, 156, 109, 0.08) 0%, transparent 50%),
-          radial-gradient(ellipse at 80% 80%, rgba(198, 156, 109, 0.06) 0%, transparent 50%),
-          linear-gradient(to bottom, #faf8f5, #f5f0e8)
+          radial-gradient(ellipse at 20% 20%, rgba(139, 92, 246, 0.06) 0%, transparent 50%),
+          radial-gradient(ellipse at 80% 80%, rgba(139, 92, 246, 0.04) 0%, transparent 50%),
+          linear-gradient(to bottom, #faf8f5, #f3f0f8)
         `,
       }}
     >
-      {/* 浮遊する鍵アイコン - 装飾 */}
+      {/* 浮遊する虫眼鏡アイコン - 装飾 */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
         <svg
-          className="floating-key floating-key-1"
+          className="floating-icon floating-icon-1"
           width="24"
           height="24"
           viewBox="0 0 24 24"
@@ -28,12 +26,15 @@ export default function PuzzleListPage() {
           }}
         >
           <path
-            d="M21 10h-8.35A5.99 5.99 0 0 0 7 6a6 6 0 0 0 0 12 5.99 5.99 0 0 0 5.65-4H13l2 2 2-2 2 2 2-2v-4zM7 14a2 2 0 1 1 0-4 2 2 0 0 1 0 4z"
-            fill="currentColor"
+            d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
           />
         </svg>
         <svg
-          className="floating-key floating-key-2"
+          className="floating-icon floating-icon-2"
           width="32"
           height="32"
           viewBox="0 0 24 24"
@@ -46,8 +47,11 @@ export default function PuzzleListPage() {
           }}
         >
           <path
-            d="M21 10h-8.35A5.99 5.99 0 0 0 7 6a6 6 0 0 0 0 12 5.99 5.99 0 0 0 5.65-4H13l2 2 2-2 2 2 2-2v-4zM7 14a2 2 0 1 1 0-4 2 2 0 0 1 0 4z"
-            fill="currentColor"
+            d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
           />
         </svg>
       </div>
@@ -59,8 +63,8 @@ export default function PuzzleListPage() {
             <div
               className="flex items-center justify-center w-12 h-12 rounded-full"
               style={{
-                background: "rgba(198, 156, 109, 0.1)",
-                border: "2px solid rgba(198, 156, 109, 0.3)",
+                background: "rgba(139, 92, 246, 0.1)",
+                border: "2px solid rgba(139, 92, 246, 0.3)",
               }}
             >
               <svg
@@ -68,11 +72,14 @@ export default function PuzzleListPage() {
                 height="28"
                 viewBox="0 0 24 24"
                 fill="none"
-                style={{ color: "var(--color-accent)" }}
+                style={{ color: "#8b5cf6" }}
               >
                 <path
-                  d="M21 10h-8.35A5.99 5.99 0 0 0 7 6a6 6 0 0 0 0 12 5.99 5.99 0 0 0 5.65-4H13l2 2 2-2 2 2 2-2v-4zM7 14a2 2 0 1 1 0-4 2 2 0 0 1 0 4z"
-                  fill="currentColor"
+                  d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
                 />
               </svg>
             </div>
@@ -80,11 +87,11 @@ export default function PuzzleListPage() {
               className="text-3xl md:text-4xl font-bold"
               style={{ color: "var(--color-primary)" }}
             >
-              謎解き
+              マーダーミステリー
             </h1>
           </div>
           <p className="text-lg text-gray-600">
-            ブラウザで遊べるインタラクティブな謎解きコンテンツ
+            Boothで販売中のマーダーミステリー作品
           </p>
         </div>
       </div>
@@ -93,14 +100,19 @@ export default function PuzzleListPage() {
       <div className="px-6 md:px-12 lg:px-20 pb-16 md:pb-24">
         <div className="max-w-6xl mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {/* 逆転の宝箱 */}
-            <Link to="/nazo/treasure-box" className="artwork-card group">
-              <div className="artwork-frame">
+            {/* 煙の向こうで */}
+            <a
+              href="https://umauma1600.booth.pm/items/5403959"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="artwork-card group"
+            >
+              <div className="artwork-frame artwork-frame-madamis">
                 <div className="artwork-shine" />
                 <div className="artwork-image">
                   <img
-                    src="/assets/images/treasure-box-thumbnail.jpg"
-                    alt="逆転の宝箱"
+                    src="/assets/images/kemurinomukoude.png"
+                    alt="煙の向こうで"
                     className="w-full h-full object-cover"
                   />
                   <div className="sparkles">
@@ -110,49 +122,12 @@ export default function PuzzleListPage() {
                   </div>
                 </div>
                 <div className="artwork-content">
-                  <div className="flex items-center gap-2 mb-2">
-                    <span className="difficulty-badge">初心者向け</span>
-                  </div>
-                  <h3 className="artwork-title">逆転の宝箱</h3>
+                  <h3 className="artwork-title">煙の向こうで</h3>
                   <p className="artwork-description">
-                    4桁のダイヤル錠がかかった古びた宝箱。常識にとらわれていませんか？
+                    Boothで詳細をご確認ください。
                   </p>
-                  <div className="artwork-meta">
-                    <span className="meta-item">
-                      <svg
-                        className="meta-icon"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth="2"
-                          d="M13 10V3L4 14h7v7l9-11h-7z"
-                        />
-                      </svg>
-                      ★☆☆☆☆
-                    </span>
-                    <span className="meta-item">
-                      <svg
-                        className="meta-icon"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth="2"
-                          d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
-                        />
-                      </svg>
-                      約10分
-                    </span>
-                  </div>
                   <div className="artwork-cta">
-                    <span className="cta-text">挑戦する</span>
+                    <span className="cta-text">Boothで見る</span>
                     <svg
                       className="cta-arrow"
                       width="20"
@@ -165,13 +140,13 @@ export default function PuzzleListPage() {
                         strokeLinecap="round"
                         strokeLinejoin="round"
                         strokeWidth="2"
-                        d="M17 8l4 4m0 0l-4 4m4-4H3"
+                        d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
                       />
                     </svg>
                   </div>
                 </div>
               </div>
-            </Link>
+            </a>
 
             {/* Coming Soon */}
             <div className="artwork-card artwork-card-coming-soon">
@@ -183,11 +158,14 @@ export default function PuzzleListPage() {
                       height="48"
                       viewBox="0 0 24 24"
                       fill="none"
-                      style={{ color: "var(--color-accent)", opacity: 0.5 }}
+                      style={{ color: "#8b5cf6", opacity: 0.5 }}
                     >
                       <path
-                        d="M21 10h-8.35A5.99 5.99 0 0 0 7 6a6 6 0 0 0 0 12 5.99 5.99 0 0 0 5.65-4H13l2 2 2-2 2 2 2-2v-4zM7 14a2 2 0 1 1 0-4 2 2 0 0 1 0 4z"
-                        fill="currentColor"
+                        d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
                       />
                     </svg>
                     <span className="coming-soon-text">Coming Soon...</span>
@@ -195,7 +173,7 @@ export default function PuzzleListPage() {
                 </div>
                 <div className="artwork-content coming-soon-info">
                   <h3 className="artwork-title" style={{ opacity: 0.5 }}>
-                    次の謎解き
+                    次のマダミス
                   </h3>
                   <p className="artwork-description" style={{ opacity: 0.4 }}>
                     新しい作品を準備中です。お楽しみに！
@@ -214,13 +192,13 @@ export default function PuzzleListPage() {
           50% { transform: translateY(-10px) rotate(5deg); }
         }
 
-        .floating-key {
-          color: var(--color-accent);
+        .floating-icon {
+          color: #8b5cf6;
           animation: float 6s ease-in-out infinite;
         }
 
-        .floating-key-1 { animation-delay: 0s; }
-        .floating-key-2 { animation-delay: 2s; }
+        .floating-icon-1 { animation-delay: 0s; }
+        .floating-icon-2 { animation-delay: 2s; }
 
         .artwork-card {
           display: block;
@@ -253,24 +231,29 @@ export default function PuzzleListPage() {
           background-clip: padding-box;
         }
 
-        .artwork-frame::before {
+        .artwork-frame-madamis::before {
           content: '';
           position: absolute;
           inset: -3px;
-          background: linear-gradient(135deg, #d4a574 0%, #c69c6d 50%, #b8956a 100%);
+          background: linear-gradient(135deg, #a78bfa 0%, #8b5cf6 50%, #7c3aed 100%);
           border-radius: 14px;
           z-index: -1;
         }
 
         .artwork-card:hover .artwork-frame {
           box-shadow:
-            0 8px 16px rgba(198, 156, 109, 0.15),
+            0 8px 16px rgba(139, 92, 246, 0.15),
             0 20px 40px rgba(0, 0, 0, 0.1),
             inset 0 1px 0 rgba(255, 255, 255, 0.8);
         }
 
         .coming-soon-frame::before {
+          content: '';
+          position: absolute;
+          inset: -3px;
           background: linear-gradient(135deg, #ccc 0%, #bbb 50%, #aaa 100%);
+          border-radius: 14px;
+          z-index: -1;
           opacity: 0.5;
         }
 
@@ -327,7 +310,7 @@ export default function PuzzleListPage() {
         .coming-soon-text {
           font-size: 0.875rem;
           font-weight: 600;
-          color: var(--color-accent);
+          color: #8b5cf6;
           opacity: 0.6;
           letter-spacing: 0.1em;
         }
@@ -346,7 +329,7 @@ export default function PuzzleListPage() {
 
         .sparkle {
           position: absolute;
-          color: #ffd700;
+          color: #a78bfa;
           font-size: 1rem;
           animation: sparkle 1.5s ease-in-out infinite;
         }
@@ -368,16 +351,6 @@ export default function PuzzleListPage() {
           opacity: 0.7;
         }
 
-        .difficulty-badge {
-          display: inline-block;
-          padding: 0.25rem 0.75rem;
-          background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
-          color: #065f46;
-          border-radius: 9999px;
-          font-size: 0.75rem;
-          font-weight: 600;
-        }
-
         .artwork-title {
           font-size: 1.25rem;
           font-weight: 700;
@@ -392,31 +365,11 @@ export default function PuzzleListPage() {
           margin-bottom: 1rem;
         }
 
-        .artwork-meta {
-          display: flex;
-          gap: 1rem;
-          margin-bottom: 1rem;
-        }
-
-        .meta-item {
-          display: flex;
-          align-items: center;
-          gap: 0.375rem;
-          font-size: 0.8rem;
-          color: var(--color-text);
-        }
-
-        .meta-icon {
-          width: 1rem;
-          height: 1rem;
-          color: var(--color-accent);
-        }
-
         .artwork-cta {
           display: flex;
           align-items: center;
           gap: 0.5rem;
-          color: var(--color-accent);
+          color: #8b5cf6;
           font-weight: 600;
           font-size: 0.9rem;
         }
@@ -434,7 +387,7 @@ export default function PuzzleListPage() {
             height: 180px;
           }
 
-          .floating-key {
+          .floating-icon {
             display: none;
           }
         }
