@@ -21,135 +21,215 @@ export default function ContactPage() {
             お問い合わせ
           </h1>
           <p className="text-lg text-gray-600 leading-relaxed">
-            ご質問、ご感想、バグ報告などお気軽にどうぞ。
-            <br />
             以下の方法でご連絡いただけます。
           </p>
         </div>
       </section>
 
-      {/* お問い合わせ方法 */}
+      {/* メインコンテンツ */}
       <section className="px-6 py-12 md:py-16">
-        <div className="max-w-4xl mx-auto space-y-6">
-          {/* SNS */}
-          <div className="contact-card">
-            <div className="flex flex-col md:flex-row gap-6">
-              <div className="icon-wrapper flex items-center justify-center">
-                <img
-                  src="/assets/images/logo-black.png"
-                  alt="X ロゴ"
-                  className="h-10 w-10 object-contain"
-                />
-              </div>
-              <div className="flex-1">
-                <h3
-                  className="text-2xl font-bold mb-3"
-                  style={{ color: "var(--color-primary)" }}
-                >
-                  X（旧Twitter）
-                </h3>
-                <p className="text-gray-600 mb-4 leading-relaxed">
-                  Xで最新情報を発信しています。
-                  <br />
-                  フォローやリプライでお気軽にご連絡ください。
-                </p>
-                <a
-                  href="https://x.com/umauma1600"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="btn-primary"
-                >
-                  Xでやまーたをフォローする →
-                </a>
-              </div>
-            </div>
+        <div className="content-wrapper">
+          {/* フォームカード */}
+          <div className="form-card">
+            <h2 className="form-title">お問い合わせフォーム</h2>
+            <p className="form-intro">
+              本サイトへのご相談やご要望など
+              <br className="hidden sm:inline" />
+              お気軽にお問い合わせください。
+            </p>
+            <p className="form-description">
+              Googleフォームからお問い合わせを受け付けています。
+              <br />
+              メールアドレスの入力は不要です。
+            </p>
+            <a
+              href={FORM_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="form-button"
+            >
+              <span>フォームを開く</span>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                className="w-5 h-5"
+              >
+                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+                <polyline points="15,3 21,3 21,9" />
+                <line x1="10" y1="14" x2="21" y2="3" />
+              </svg>
+            </a>
           </div>
 
-          {/* お問い合わせフォーム */}
-          <div className="contact-card">
-            <div className="flex flex-col md:flex-row gap-6">
-              <div className="icon-wrapper">
-                <span>📝</span>
-              </div>
-              <div className="flex-1 space-y-4">
-                <h3
-                  className="text-2xl font-bold"
-                  style={{ color: "var(--color-primary)" }}
-                >
-                  お問い合わせフォーム
-                </h3>
-                <p className="text-gray-600 leading-relaxed">
-                  Googleフォームからお問い合わせを受け付けています。
-                  <br />
-                  メールアドレスの入力は不要です。内容をご記入の上、送信してください。
-                </p>
-                <div>
-                  <a
-                    className="btn-primary"
-                    href={FORM_URL}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    フォームを開く →
-                  </a>
-                </div>
-              </div>
+          {/* その他の連絡先 */}
+          <div className="form-card">
+            <h3 className="other-title">その他の連絡先</h3>
+            <p className="other-description">
+              SNSでのお問い合わせも受け付けています。
+            </p>
+            <div className="social-links">
+              <a
+                href="https://x.com/umauma1600"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="social-link"
+              >
+                <img
+                  src="/assets/images/logo-black.png"
+                  alt="X"
+                  className="social-icon"
+                />
+                <span className="social-handle">@umauma1600</span>
+              </a>
             </div>
           </div>
         </div>
       </section>
 
-      {/* カスタムスタイル */}
+      {/* スタイル */}
       <style>{`
-        /* カード */
-        .contact-card {
+        .content-wrapper {
+          max-width: 600px;
+          margin: 0 auto;
+        }
+
+        /* フォームカード */
+        .form-card {
           background: white;
-          border-radius: 1rem;
-          padding: 2rem;
-          box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-          transition: all 0.3s ease;
-          border: 1px solid #e2e8f0;
+          border-radius: 1.5rem;
+          padding: 2.5rem 2rem;
+          box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+          text-align: center;
+          margin-bottom: 2rem;
         }
 
-        .contact-card:hover {
-          transform: translateY(-4px);
-          box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
+        .form-title {
+          font-family: 'Space Grotesk', sans-serif;
+          font-size: 1.5rem;
+          font-weight: 700;
+          color: var(--color-primary);
+          margin-bottom: 1rem;
         }
 
-        /* アイコンラッパー */
-        .icon-wrapper {
-          width: 60px;
-          height: 60px;
-          background: linear-gradient(135deg, #c69c6d 0%, #b88a5a 100%);
-          border-radius: 12px;
-          display: flex;
+        .form-intro {
+          color: var(--color-primary);
+          font-size: 1rem;
+          font-weight: 500;
+          line-height: 1.8;
+          margin-bottom: 1rem;
+        }
+
+        .form-description {
+          color: #666;
+          font-size: 0.9rem;
+          line-height: 1.7;
+          margin-bottom: 2rem;
+        }
+
+        .form-button {
+          display: inline-flex;
           align-items: center;
-          justify-content: center;
-          font-size: 2rem;
-          flex-shrink: 0;
-        }
-
-        /* ボタン */
-        .btn-primary {
-          display: inline-block;
-          padding: 0.875rem 2rem;
-          background: var(--color-accent);
+          gap: 0.5rem;
+          padding: 1rem 2.5rem;
+          background: linear-gradient(135deg, #c69c6d 0%, #b88a5a 100%);
           color: white;
           text-decoration: none;
-          border-radius: 0.5rem;
+          border-radius: 9999px;
+          font-weight: 600;
+          font-size: 1rem;
+          transition: all 0.3s ease;
+          box-shadow: 0 4px 15px rgba(198, 156, 109, 0.3);
+        }
+
+        .form-button:hover {
+          transform: translateY(-2px);
+          box-shadow: 0 8px 25px rgba(198, 156, 109, 0.4);
+        }
+
+        /* その他の連絡先 */
+        .other-title {
+          font-family: 'Space Grotesk', sans-serif;
+          font-size: 1.25rem;
+          font-weight: 700;
+          color: var(--color-primary);
+          margin-bottom: 0.5rem;
+        }
+
+        .other-description {
+          color: #666;
+          font-size: 0.9rem;
+          margin-bottom: 1.5rem;
+        }
+
+        .social-links {
+          display: flex;
+          justify-content: center;
+          gap: 1rem;
+        }
+
+        .social-link {
+          display: inline-flex;
+          align-items: center;
+          gap: 0.75rem;
+          padding: 0.875rem 1.5rem;
+          background: white;
+          border: 2px solid #e2e8f0;
+          border-radius: 9999px;
+          text-decoration: none;
+          color: var(--color-primary);
           font-weight: 600;
           transition: all 0.3s ease;
         }
 
-        .btn-primary:hover {
-          background: #a77d4f;
+        .social-link:hover {
+          border-color: var(--color-accent);
+          background: #faf8f5;
           transform: translateY(-2px);
-          box-shadow: 0 8px 16px rgba(198, 156, 109, 0.3);
+          box-shadow: 0 4px 12px rgba(0,0,0,0.08);
         }
 
+        .social-icon {
+          width: 24px;
+          height: 24px;
+          object-fit: contain;
+        }
+
+        .social-handle {
+          font-size: 0.95rem;
+        }
+
+        /* レスポンシブ対応 */
         @media (max-width: 640px) {
-          .contact-card {
-            padding: 1.5rem;
+          .form-card {
+            padding: 2rem 1.5rem;
+            border-radius: 1rem;
+          }
+
+          .form-icon {
+            width: 56px;
+            height: 56px;
+          }
+
+          .form-title {
+            font-size: 1.25rem;
+          }
+
+          .form-intro {
+            font-size: 0.95rem;
+          }
+
+          .form-description {
+            font-size: 0.85rem;
+          }
+
+          .form-button {
+            padding: 0.875rem 2rem;
+            font-size: 0.95rem;
           }
         }
       `}</style>
