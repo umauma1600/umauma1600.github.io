@@ -259,43 +259,6 @@ export default function ContentsSection() {
             </div>
           </a>
         </div>
-
-        {/* もっと見るリンク */}
-        <div className="mt-12 flex flex-col sm:flex-row justify-center gap-4">
-          <Link to="/nazo" className="more-link more-link-nazo">
-            <svg
-              width="20"
-              height="20"
-              viewBox="0 0 24 24"
-              fill="none"
-              style={{ color: "var(--color-accent)" }}
-            >
-              <path
-                d="M21 10h-8.35A5.99 5.99 0 0 0 7 6a6 6 0 0 0 0 12 5.99 5.99 0 0 0 5.65-4H13l2 2 2-2 2 2 2-2v-4zM7 14a2 2 0 1 1 0-4 2 2 0 0 1 0 4z"
-                fill="currentColor"
-              />
-            </svg>
-            謎解き一覧へ
-          </Link>
-          <Link to="/madamis" className="more-link more-link-madamis">
-            <svg
-              width="20"
-              height="20"
-              viewBox="0 0 24 24"
-              fill="none"
-              style={{ color: "var(--color-accent)" }}
-            >
-              <path
-                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            </svg>
-            マダミス一覧へ
-          </Link>
-        </div>
       </div>
 
       {/* スタイル */}
@@ -554,41 +517,6 @@ export default function ContentsSection() {
 
         .artwork-card:hover .cta-arrow {
           transform: translateX(4px);
-        }
-
-        /* もっと見るリンク */
-        .more-link {
-          display: inline-flex;
-          align-items: center;
-          gap: 0.5rem;
-          padding: 0.75rem 1.5rem;
-          border-radius: 9999px;
-          font-weight: 600;
-          font-size: 0.9rem;
-          text-decoration: none;
-          transition: all 0.3s ease;
-        }
-
-        .more-link-nazo {
-          background: rgba(198, 156, 109, 0.1);
-          color: var(--color-accent);
-          border: 2px solid rgba(198, 156, 109, 0.3);
-        }
-
-        .more-link-nazo:hover {
-          background: rgba(198, 156, 109, 0.2);
-          border-color: var(--color-accent);
-        }
-
-        .more-link-madamis {
-          background: rgba(198, 156, 109, 0.1);
-          color: var(--color-accent);
-          border: 2px solid rgba(198, 156, 109, 0.3);
-        }
-
-        .more-link-madamis:hover {
-          background: rgba(198, 156, 109, 0.2);
-          border-color: var(--color-accent);
         }
 
         /* レスポンシブ */
