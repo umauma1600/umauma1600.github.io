@@ -203,6 +203,19 @@ export default function MobileHeader({ activeSection }: MobileHeaderProps) {
             );
           }
         })}
+
+        {/* 鍵穴アイコン */}
+        <div className="mt-8 flex justify-center">
+          <svg
+            className="w-10 h-10 opacity-40"
+            viewBox="0 0 100 100"
+            style={{ color: "var(--color-primary)" }}
+          >
+            <circle cx="50" cy="50" r="48" fill="currentColor" />
+            <ellipse cx="50" cy="38" rx="12" ry="12" fill="#f5f0e8" />
+            <polygon points="38,42 62,42 58,72 42,72" fill="#f5f0e8" />
+          </svg>
+        </div>
       </nav>
 
       {/* オーバーレイ */}
