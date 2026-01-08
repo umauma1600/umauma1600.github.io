@@ -9,8 +9,9 @@ export default function Sidebar({ activeSection }: SidebarProps) {
 
   const navLinks = [
     { href: "/", label: "ホーム", type: "route" },
-    { href: "/nazo", label: "謎解き", type: "route" },
-    { href: "/madamis", label: "マダミス", type: "route" },
+    { href: "", label: "アトリエ作品", type: "category" },
+    { href: "/nazo", label: "謎解き", type: "route", indent: true },
+    { href: "/madamis", label: "マダミス", type: "route", indent: true },
     { href: "/contact", label: "お問い合わせ", type: "route" },
   ];
 
@@ -69,12 +70,39 @@ export default function Sidebar({ activeSection }: SidebarProps) {
       </Link>
       <nav>
         {navLinks.map((link) => {
+          // カテゴリの場合はリンクなしで表示
+          if (link.type === "category") {
+            return (
+              <div
+                key={link.label}
+                className="py-[14px] px-5 mb-2 text-sm font-semibold uppercase tracking-wider flex items-center gap-2"
+                style={{ color: "var(--color-accent)" }}
+              >
+                <svg
+                  className="w-4 h-4"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M15 7a2 2 0 012 2m4 0a6 6 0 01-7.743 5.743L11 17H9v2H7v2H4a1 1 0 01-1-1v-2.586a1 1 0 01.293-.707l5.964-5.964A6 6 0 1121 9z"
+                  />
+                </svg>
+                {link.label}
+              </div>
+            );
+          }
+
           const active = isActive(link.href, link.type);
+          const indent = "indent" in link && link.indent;
           const className = `block py-[14px] px-5 mb-2 rounded-lg font-medium transition-all duration-200 ${
             active
               ? "bg-[rgba(198,156,109,0.25)]"
               : "hover:bg-[rgba(198,156,109,0.25)]"
-          } hover:translate-x-1`;
+          } hover:translate-x-1 ${indent ? "ml-4" : ""}`;
           const style = {
             color: active ? "var(--color-primary)" : "var(--color-text)",
           };
