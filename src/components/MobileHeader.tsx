@@ -207,12 +207,13 @@ export default function MobileHeader({ activeSection }: MobileHeaderProps) {
         {/* 鍵穴アイコン */}
         <div className="mt-8 flex justify-center">
           <svg
-            className="w-8 h-8 opacity-30"
-            viewBox="0 0 24 24"
-            fill="currentColor"
+            className="w-10 h-10 opacity-40"
+            viewBox="0 0 100 100"
             style={{ color: "var(--color-primary)" }}
           >
-            <path d="M12 2C9.24 2 7 4.24 7 7c0 1.85 1.01 3.45 2.5 4.31V22h5V11.31c1.49-.86 2.5-2.46 2.5-4.31 0-2.76-2.24-5-5-5zm0 8c-1.66 0-3-1.34-3-3s1.34-3 3-3 3 1.34 3 3-1.34 3-3 3z" />
+            <circle cx="50" cy="50" r="48" fill="currentColor" />
+            <ellipse cx="50" cy="38" rx="12" ry="12" fill="#f5f0e8" />
+            <polygon points="38,42 62,42 58,72 42,72" fill="#f5f0e8" />
           </svg>
         </div>
       </nav>
