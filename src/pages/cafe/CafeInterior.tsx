@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 export default function CafeInterior() {
   const navigate = useNavigate();
@@ -7,15 +7,27 @@ export default function CafeInterior() {
   const [showDialogue, setShowDialogue] = useState(false);
   const [showMenu, setShowMenu] = useState(false);
   const [dialogueIndex, setDialogueIndex] = useState(0);
+  const [dialogueMode, setDialogueMode] = useState<"greeting" | "intro">(
+    "greeting",
+  );
 
-  // やまーたのセリフ
-  const dialogues = [
+  // やまーたのセリフ（挨拶）
+  const greetingDialogues = [
     "いらっしゃいませ〜！",
     "Café ひみつの鍵へようこそ！",
+    "何かご用はありますか？",
+  ];
+
+  // やまーたのセリフ（自己紹介）
+  const introDialogues = [
+    "私ですか？",
     "私は看板娘のやまーたです♪",
     "ここでは謎解きとドリンクが楽しめますよ",
-    "メニューをどうぞ！",
+    "ぜひゆっくりしていってくださいね！",
   ];
+
+  const dialogues =
+    dialogueMode === "greeting" ? greetingDialogues : introDialogues;
 
   useEffect(() => {
     // 順番にアニメーション表示
@@ -46,6 +58,17 @@ export default function CafeInterior() {
   // メニューへ遷移
   const goToMenu = () => {
     void navigate("/cafe/menu");
+  };
+
+  // 自己紹介モードに切り替え
+  const askWhoAreYou = () => {
+    setDialogueMode("intro");
+    setDialogueIndex(0);
+  };
+
+  // 店を出る
+  const exitCafe = () => {
+    void navigate("/");
   };
 
   return (
@@ -119,15 +142,6 @@ export default function CafeInterior() {
         </div>
       </div>
 
-      {/* 戻るリンク */}
-      <Link
-        to="/cafe"
-        className="absolute top-6 left-6 text-amber-800/60 hover:text-amber-800 transition-colors text-sm flex items-center gap-2 z-20"
-      >
-        <span>←</span>
-        <span>外に出る</span>
-      </Link>
-
       {/* メインコンテンツ */}
       <div className="relative z-10 min-h-screen flex flex-col items-center justify-center px-4 py-16">
         {/* カフェ名 */}
@@ -197,20 +211,21 @@ export default function CafeInterior() {
           </div>
         </div>
 
-        {/* メニューボタン */}
+        {/* 選択肢ボタン */}
         <div
-          className={`mt-12 transition-all duration-700 delay-500 ${
+          className={`mt-12 flex flex-col gap-3 w-full max-w-xs transition-all duration-700 delay-500 ${
             showMenu ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
           }`}
         >
+          {/* メニューを見る */}
           <button
             onClick={goToMenu}
-            className="group relative px-8 py-4 bg-amber-800 hover:bg-amber-700 text-white rounded-lg shadow-lg transition-all duration-300 hover:shadow-xl hover:-translate-y-1"
+            className="group relative px-6 py-3 bg-amber-800 hover:bg-amber-700 text-white rounded-lg shadow-lg transition-all duration-300 hover:shadow-xl hover:-translate-y-1"
           >
-            <span className="flex items-center gap-3">
+            <span className="flex items-center justify-center gap-3">
               <svg
-                width="20"
-                height="20"
+                width="18"
+                height="18"
                 viewBox="0 0 24 24"
                 fill="none"
                 stroke="currentColor"
@@ -224,6 +239,61 @@ export default function CafeInterior() {
                 style={{ fontFamily: "Space Grotesk, sans-serif" }}
               >
                 メニューを見る
+              </span>
+            </span>
+          </button>
+
+          {/* 君は誰？ */}
+          <button
+            onClick={askWhoAreYou}
+            className="group relative px-6 py-3 bg-white hover:bg-amber-50 text-amber-800 border-2 border-amber-300 hover:border-amber-400 rounded-lg shadow-md transition-all duration-300 hover:shadow-lg hover:-translate-y-1"
+          >
+            <span className="flex items-center justify-center gap-3">
+              <svg
+                width="18"
+                height="18"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                className="transition-transform group-hover:scale-110"
+              >
+                <circle cx="12" cy="8" r="5" />
+                <path d="M20 21a8 8 0 0 0-16 0" />
+              </svg>
+              <span
+                className="font-bold tracking-wide"
+                style={{ fontFamily: "Space Grotesk, sans-serif" }}
+              >
+                君は誰？
+              </span>
+            </span>
+          </button>
+
+          {/* 店を出る */}
+          <button
+            onClick={exitCafe}
+            className="group relative px-6 py-3 bg-gray-100 hover:bg-gray-200 text-gray-600 hover:text-gray-700 rounded-lg shadow-md transition-all duration-300 hover:shadow-lg hover:-translate-y-1"
+          >
+            <span className="flex items-center justify-center gap-3">
+              <svg
+                width="18"
+                height="18"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                className="transition-transform group-hover:-translate-x-1"
+              >
+                <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" />
+                <polyline points="16 17 21 12 16 7" />
+                <line x1="21" y1="12" x2="9" y2="12" />
+              </svg>
+              <span
+                className="font-bold tracking-wide"
+                style={{ fontFamily: "Space Grotesk, sans-serif" }}
+              >
+                店を出る
               </span>
             </span>
           </button>
