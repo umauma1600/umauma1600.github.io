@@ -1211,44 +1211,104 @@ export default function TreasureBoxPage() {
 
       {/* クリアモーダル */}
       {showClearModal && (
-        <div className="fixed inset-0 bg-black/70 backdrop-blur-sm z-50 flex items-center justify-center p-4 modal-show">
-          <div className="bg-white rounded-2xl max-w-lg w-full p-8 shadow-2xl text-center relative overflow-hidden">
+        <div
+          className="fixed inset-0 backdrop-blur-sm z-50 flex items-center justify-center p-4 modal-show"
+          style={{
+            background:
+              "radial-gradient(ellipse at center, rgba(198, 156, 109, 0.3) 0%, rgba(0,0,0,0.7) 100%)",
+          }}
+        >
+          {/* 背景の装飾 - キラキラ */}
+          <div className="absolute inset-0 pointer-events-none overflow-hidden">
+            <div className="floating-sparkle sparkle-1">🌟</div>
+            <div className="floating-sparkle sparkle-2">✨</div>
+            <div className="floating-sparkle sparkle-3">⭐</div>
+            <div className="floating-sparkle sparkle-4">✨</div>
+            <div className="floating-sparkle sparkle-5">🌟</div>
+            <div className="floating-sparkle sparkle-6">✨</div>
+            <div className="floating-sparkle sparkle-7">⭐</div>
+            <div className="floating-sparkle sparkle-8">✨</div>
+          </div>
+
+          <div
+            className="rounded-2xl max-w-md w-full p-6 text-center relative overflow-hidden clear-modal-card"
+            style={{
+              background:
+                "linear-gradient(145deg, #fffcf7 0%, #fff9f0 30%, #fff5e6 70%, #fffcf7 100%)",
+              border: "3px solid var(--color-accent)",
+            }}
+          >
             {/* 紙吹雪エリア */}
             <div
               id="confettiContainer"
-              className="absolute inset-0 pointer-events-none"
+              className="absolute inset-0 pointer-events-none overflow-hidden"
             ></div>
 
-            <div className="relative z-10">
-              <div className="text-6xl mb-4">🎉</div>
-              <h2
-                className="text-3xl font-bold mb-4"
+            {/* 上部の装飾リボン */}
+            <div className="absolute -top-3 left-1/2 transform -translate-x-1/2 z-20">
+              <div
+                className="px-8 py-2 rounded-full text-sm font-bold shadow-lg ribbon-bounce flex items-center gap-1"
                 style={{
-                  color: "var(--color-primary)",
-                  fontFamily: "Space Grotesk, sans-serif",
+                  background:
+                    "linear-gradient(135deg, #e8a54d 0%, #c69c6d 50%, #e8a54d 100%)",
+                  color: "white",
+                  boxShadow: "0 4px 15px rgba(198, 156, 109, 0.5)",
                 }}
               >
-                おめでとうございます！
+                <span>🎊</span>
+                <span>CLEAR!</span>
+                <span>🎊</span>
+              </div>
+            </div>
+
+            <div className="relative z-10 pt-6">
+              {/* キャラクター画像 */}
+              <div className="character-bounce mb-3">
+                <img
+                  src="/assets/images/yama-tahappy.png"
+                  alt="やまーた"
+                  className="w-40 h-auto mx-auto"
+                  style={{
+                    filter: "drop-shadow(0 8px 16px rgba(198, 156, 109, 0.3))",
+                  }}
+                  draggable={false}
+                />
+              </div>
+
+              <h2
+                className="text-2xl md:text-3xl font-bold mb-2"
+                style={{
+                  fontFamily: "Space Grotesk, sans-serif",
+                  color: "var(--color-primary)",
+                }}
+              >
+                🎉 おめでとう！ 🎉
               </h2>
               <p
-                className="text-lg mb-6"
+                className="text-base mb-4"
                 style={{ color: "var(--color-text)" }}
               >
                 「逆転の宝箱」をクリアしました！
               </p>
 
+              {/* クリアタイム */}
               <div
-                className="rounded-lg p-4 mb-6"
-                style={{ background: "rgba(198, 156, 109, 0.1)" }}
+                className="rounded-xl p-4 mb-5 relative overflow-hidden"
+                style={{
+                  background:
+                    "linear-gradient(135deg, rgba(232, 165, 77, 0.15) 0%, rgba(198, 156, 109, 0.1) 100%)",
+                  border: "2px solid rgba(198, 156, 109, 0.4)",
+                }}
               >
+                <div className="absolute top-1 right-2 text-lg">⏱️</div>
                 <div
-                  className="text-sm mb-1"
-                  style={{ color: "var(--color-text)", opacity: 0.6 }}
+                  className="text-xs mb-1 font-semibold tracking-wide"
+                  style={{ color: "var(--color-accent)" }}
                 >
                   クリアタイム
                 </div>
                 <div
-                  className="text-2xl font-mono font-bold"
+                  className="text-3xl font-mono font-bold"
                   style={{ color: "var(--color-primary)" }}
                 >
                   {timerDisplay}
@@ -1258,22 +1318,29 @@ export default function TreasureBoxPage() {
               <div className="space-y-3">
                 <button
                   onClick={shareOnX}
-                  className="w-full px-6 py-3 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors font-medium flex items-center justify-center gap-2"
+                  className="w-full px-6 py-3 bg-black text-white rounded-lg hover:bg-gray-800 transition-all font-medium flex items-center justify-center gap-2 shadow-md hover:shadow-lg"
                 >
                   <span>𝕏</span>
-                  <span>クリアを X でシェア</span>
+                  <span>でシェア</span>
                 </button>
                 <Link
                   to="/nazo"
-                  className="block w-full px-6 py-3 text-white rounded-lg hover:opacity-90 transition-colors font-medium"
-                  style={{ background: "var(--color-accent)" }}
+                  className="block w-full px-6 py-3 text-white rounded-lg hover:opacity-90 transition-all font-medium shadow-md hover:shadow-lg"
+                  style={{
+                    background:
+                      "linear-gradient(135deg, #d4a574 0%, #c69c6d 100%)",
+                  }}
                 >
                   謎解き一覧に戻る
                 </Link>
                 <button
                   onClick={retry}
-                  className="w-full px-6 py-3 bg-gray-200 rounded-lg hover:bg-gray-300 transition-colors font-medium"
-                  style={{ color: "var(--color-text)" }}
+                  className="w-full px-6 py-3 rounded-lg transition-all font-medium border-2 hover:bg-amber-50"
+                  style={{
+                    color: "var(--color-text)",
+                    borderColor: "var(--color-accent)",
+                    background: "transparent",
+                  }}
                 >
                   もう一度挑戦
                 </button>
@@ -1397,7 +1464,8 @@ export default function TreasureBoxPage() {
           position: absolute;
           width: 10px;
           height: 10px;
-          animation: confettiFall 3s linear infinite;
+          top: -10px;
+          animation: confettiFall 3s linear forwards;
         }
 
         @keyframes confettiFall {
@@ -1406,7 +1474,7 @@ export default function TreasureBoxPage() {
             opacity: 1;
           }
           100% {
-            transform: translateY(500px) rotate(720deg);
+            transform: translateY(600px) rotate(720deg);
             opacity: 0;
           }
         }
@@ -1529,6 +1597,118 @@ export default function TreasureBoxPage() {
             top: 8%;
             right: 8%;
             transform: translateY(-40%) scale(0.85);
+          }
+        }
+
+        /* ===== クリアモーダル用アニメーション ===== */
+
+        /* キャラクターのバウンスアニメーション */
+        .character-bounce {
+          animation: characterBounce 2.5s ease-in-out infinite;
+        }
+
+        @keyframes characterBounce {
+          0%, 100% {
+            transform: translateY(0);
+          }
+          50% {
+            transform: translateY(-8px);
+          }
+        }
+
+        /* リボンのバウンスアニメーション */
+        .ribbon-bounce {
+          animation: ribbonBounce 2s ease-in-out infinite;
+        }
+
+        @keyframes ribbonBounce {
+          0%, 100% {
+            transform: scale(1);
+          }
+          50% {
+            transform: scale(1.03);
+          }
+        }
+
+        /* モーダルカードの光沢効果 */
+        .clear-modal-card {
+          box-shadow:
+            0 0 40px rgba(232, 165, 77, 0.3),
+            0 0 80px rgba(198, 156, 109, 0.2),
+            0 25px 50px rgba(0, 0, 0, 0.15);
+        }
+
+        /* キラキラのフローティングアニメーション */
+        .floating-sparkle {
+          position: absolute;
+          font-size: 1.5rem;
+          animation: floatSparkle 3s ease-in-out infinite;
+        }
+
+        .sparkle-1 {
+          top: 15%;
+          left: 10%;
+          animation-delay: 0s;
+          font-size: 1.8rem;
+        }
+
+        .sparkle-2 {
+          top: 25%;
+          right: 12%;
+          animation-delay: 0.4s;
+          font-size: 1.3rem;
+        }
+
+        .sparkle-3 {
+          bottom: 40%;
+          left: 8%;
+          animation-delay: 0.8s;
+          font-size: 1.6rem;
+        }
+
+        .sparkle-4 {
+          top: 50%;
+          right: 8%;
+          animation-delay: 1.2s;
+          font-size: 1.2rem;
+        }
+
+        .sparkle-5 {
+          bottom: 20%;
+          left: 15%;
+          animation-delay: 1.6s;
+          font-size: 1.7rem;
+        }
+
+        .sparkle-6 {
+          top: 35%;
+          left: 5%;
+          animation-delay: 2s;
+          font-size: 1.1rem;
+        }
+
+        .sparkle-7 {
+          bottom: 30%;
+          right: 15%;
+          animation-delay: 2.4s;
+          font-size: 1.4rem;
+        }
+
+        .sparkle-8 {
+          top: 18%;
+          right: 5%;
+          animation-delay: 2.8s;
+          font-size: 1rem;
+        }
+
+        @keyframes floatSparkle {
+          0%, 100% {
+            transform: scale(1) rotate(0deg);
+            opacity: 0.7;
+          }
+          50% {
+            transform: scale(1.4) rotate(15deg);
+            opacity: 1;
           }
         }
       `}</style>
