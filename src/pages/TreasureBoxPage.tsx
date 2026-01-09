@@ -1543,13 +1543,8 @@ export default function TreasureBoxPage() {
 
         /* 手掛かりの数字 */
         .clue-number {
-          font-size: 1.5rem;
           font-weight: bold;
           color: var(--color-accent);
-          display: inline-block;
-          padding: 0.25rem 0.5rem;
-          background: rgba(198, 156, 109, 0.15);
-          border-radius: 4px;
         }
 
         /* レスポンシブ対応 - PC版 */
