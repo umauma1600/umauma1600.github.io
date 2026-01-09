@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 export default function CafeInterior() {
   const navigate = useNavigate();
@@ -7,15 +7,38 @@ export default function CafeInterior() {
   const [showDialogue, setShowDialogue] = useState(false);
   const [showMenu, setShowMenu] = useState(false);
   const [dialogueIndex, setDialogueIndex] = useState(0);
+  const [dialogueMode, setDialogueMode] = useState<
+    "greeting" | "intro" | "menu"
+  >("greeting");
 
-  // やまーたのセリフ
-  const dialogues = [
+  // やまーたのセリフ（挨拶）
+  const greetingDialogues = [
     "いらっしゃいませ〜！",
     "Café ひみつの鍵へようこそ！",
-    "私は看板娘のやまーたです♪",
-    "ここでは謎解きとドリンクが楽しめますよ",
-    "メニューをどうぞ！",
+    "何かご用はありますか？",
   ];
+
+  // やまーたのセリフ（自己紹介）
+  const introDialogues = [
+    "私ですか？",
+    "私はやまーたって言います！",
+    "実はこのサイトのいろんな場所にいるんです",
+    "ぜひ探してみてくださいね",
+  ];
+
+  // やまーたのセリフ（メニュー準備中）
+  const menuDialogues = [
+    "あっ、ごめんなさい！",
+    "メニューはまだ準備中なんです...",
+    "もう少しだけ待っていてくださいね",
+  ];
+
+  const dialogues =
+    dialogueMode === "greeting"
+      ? greetingDialogues
+      : dialogueMode === "intro"
+        ? introDialogues
+        : menuDialogues;
 
   useEffect(() => {
     // 順番にアニメーション表示
@@ -43,9 +66,30 @@ export default function CafeInterior() {
     }
   };
 
-  // メニューへ遷移
+  // メニュー（準備中）
   const goToMenu = () => {
-    void navigate("/cafe/menu");
+    setDialogueMode("menu");
+    setDialogueIndex(0);
+  };
+
+  // 自己紹介モードに切り替え
+  const askWhoAreYou = () => {
+    setDialogueMode("intro");
+    setDialogueIndex(0);
+  };
+
+  // 店を出る
+  const exitCafe = () => {
+    void navigate("/");
+  };
+
+  // Xでシェア
+  const shareOnX = () => {
+    const text =
+      "「Café ひみつの鍵」にたどり着きました☕ 謎解きとドリンクが楽しめる不思議なカフェ...";
+    const url = "https://umauma1600.github.io";
+    const shareUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(url)}`;
+    window.open(shareUrl, "_blank", "noopener,noreferrer");
   };
 
   return (
@@ -119,15 +163,6 @@ export default function CafeInterior() {
         </div>
       </div>
 
-      {/* 戻るリンク */}
-      <Link
-        to="/cafe"
-        className="absolute top-6 left-6 text-amber-800/60 hover:text-amber-800 transition-colors text-sm flex items-center gap-2 z-20"
-      >
-        <span>←</span>
-        <span>外に出る</span>
-      </Link>
-
       {/* メインコンテンツ */}
       <div className="relative z-10 min-h-screen flex flex-col items-center justify-center px-4 py-16">
         {/* カフェ名 */}
@@ -143,28 +178,49 @@ export default function CafeInterior() {
           </h1>
         </div>
 
-        {/* やまーた（看板娘） */}
+        {/* やまーた（看板娘）と吹き出し */}
         <div
-          className={`relative transition-all duration-700 ease-out ${
+          className={`relative flex flex-col md:flex-row items-center gap-4 transition-all duration-700 ease-out ${
             showMascot ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
           }`}
         >
+          {/* やまーた画像 */}
+          <div className="relative">
+            <img
+              src="/assets/yama-ta.png"
+              alt="やまーた"
+              className="w-48 h-48 md:w-56 md:h-56 object-contain drop-shadow-lg"
+              style={{
+                animation: showMascot
+                  ? "float 3s ease-in-out infinite"
+                  : "none",
+              }}
+            />
+          </div>
+
           {/* 吹き出し */}
           {showDialogue && (
-            <div className="absolute -top-4 left-1/2 -translate-x-1/2 -translate-y-full transition-all duration-500 opacity-100 scale-100">
+            <div className="relative transition-all duration-500 opacity-100 scale-100 md:absolute md:left-full md:top-1/2 md:-translate-y-1/2 md:ml-2">
               <div
-                className="relative bg-white px-6 py-4 rounded-2xl shadow-lg border-2 border-amber-200 cursor-pointer hover:bg-amber-50 transition-colors min-w-[200px] max-w-[280px]"
+                className="relative bg-white px-5 py-3 rounded-2xl shadow-lg border-2 border-amber-200 cursor-pointer hover:bg-amber-50 transition-colors min-w-[180px] max-w-[220px]"
                 onClick={advanceDialogue}
               >
-                <p className="text-amber-900 text-center font-medium">
+                <p className="text-amber-900 text-center font-medium text-sm">
                   {dialogues[dialogueIndex]}
                 </p>
-                {/* 吹き出しの尻尾 */}
-                <div className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-full">
-                  <div className="w-0 h-0 border-l-8 border-r-8 border-t-8 border-l-transparent border-r-transparent border-t-white" />
+                {/* 吹き出しの尻尾（モバイル：上向き、デスクトップ：左向き） */}
+                <div className="hidden md:block absolute top-1/2 -translate-y-1/2 -left-2">
+                  <div className="w-0 h-0 border-t-8 border-b-8 border-r-8 border-t-transparent border-b-transparent border-r-white" />
                 </div>
-                <div className="absolute -bottom-0.5 left-1/2 -translate-x-1/2 translate-y-full">
-                  <div className="w-0 h-0 border-l-10 border-r-10 border-t-10 border-l-transparent border-r-transparent border-t-amber-200" />
+                <div className="hidden md:block absolute top-1/2 -translate-y-1/2 -left-2.5">
+                  <div className="w-0 h-0 border-t-10 border-b-10 border-r-10 border-t-transparent border-b-transparent border-r-amber-200 -z-10" />
+                </div>
+                {/* モバイル用の尻尾（上向き） */}
+                <div className="md:hidden absolute -top-2 left-1/2 -translate-x-1/2">
+                  <div className="w-0 h-0 border-l-8 border-r-8 border-b-8 border-l-transparent border-r-transparent border-b-white" />
+                </div>
+                <div className="md:hidden absolute -top-2.5 left-1/2 -translate-x-1/2">
+                  <div className="w-0 h-0 border-l-10 border-r-10 border-b-10 border-l-transparent border-r-transparent border-b-amber-200 -z-10" />
                 </div>
                 {/* クリックヒント */}
                 {dialogueIndex < dialogues.length - 1 && (
@@ -175,42 +231,23 @@ export default function CafeInterior() {
               </div>
             </div>
           )}
-
-          {/* やまーた画像 */}
-          <div className="relative">
-            <img
-              src="/assets/yama-ta.png"
-              alt="やまーた"
-              className="w-48 h-48 md:w-64 md:h-64 object-contain drop-shadow-lg"
-              style={{
-                animation: showMascot
-                  ? "float 3s ease-in-out infinite"
-                  : "none",
-              }}
-            />
-            {/* 名札 */}
-            <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 bg-amber-100 px-3 py-1 rounded-full border border-amber-300 shadow-sm">
-              <span className="text-amber-800 text-xs font-medium">
-                看板娘 やまーた
-              </span>
-            </div>
-          </div>
         </div>
 
-        {/* メニューボタン */}
+        {/* 選択肢ボタン */}
         <div
-          className={`mt-12 transition-all duration-700 delay-500 ${
+          className={`mt-12 flex flex-col gap-3 w-full max-w-xs transition-all duration-700 delay-500 ${
             showMenu ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
           }`}
         >
+          {/* メニューを見る */}
           <button
             onClick={goToMenu}
-            className="group relative px-8 py-4 bg-amber-800 hover:bg-amber-700 text-white rounded-lg shadow-lg transition-all duration-300 hover:shadow-xl hover:-translate-y-1"
+            className="group relative px-6 py-3 bg-amber-800 hover:bg-amber-700 text-white rounded-lg shadow-lg transition-all duration-300 hover:shadow-xl hover:-translate-y-1"
           >
-            <span className="flex items-center gap-3">
+            <span className="flex items-center justify-center gap-3">
               <svg
-                width="20"
-                height="20"
+                width="18"
+                height="18"
                 viewBox="0 0 24 24"
                 fill="none"
                 stroke="currentColor"
@@ -224,6 +261,85 @@ export default function CafeInterior() {
                 style={{ fontFamily: "Space Grotesk, sans-serif" }}
               >
                 メニューを見る
+              </span>
+            </span>
+          </button>
+
+          {/* 君は誰？ */}
+          <button
+            onClick={askWhoAreYou}
+            className="group relative px-6 py-3 bg-white hover:bg-amber-50 text-amber-800 border-2 border-amber-300 hover:border-amber-400 rounded-lg shadow-md transition-all duration-300 hover:shadow-lg hover:-translate-y-1"
+          >
+            <span className="flex items-center justify-center gap-3">
+              <svg
+                width="18"
+                height="18"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                className="transition-transform group-hover:scale-110"
+              >
+                <circle cx="12" cy="8" r="5" />
+                <path d="M20 21a8 8 0 0 0-16 0" />
+              </svg>
+              <span
+                className="font-bold tracking-wide"
+                style={{ fontFamily: "Space Grotesk, sans-serif" }}
+              >
+                君はだれ？
+              </span>
+            </span>
+          </button>
+
+          {/* Xでシェア */}
+          <button
+            onClick={shareOnX}
+            className="group relative px-6 py-3 bg-black hover:bg-gray-800 text-white rounded-lg shadow-md transition-all duration-300 hover:shadow-lg hover:-translate-y-1"
+          >
+            <span className="flex items-center justify-center gap-3">
+              <svg
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+                className="transition-transform group-hover:scale-110"
+              >
+                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+              </svg>
+              <span
+                className="font-bold tracking-wide"
+                style={{ fontFamily: "Space Grotesk, sans-serif" }}
+              >
+                Xでシェア
+              </span>
+            </span>
+          </button>
+
+          {/* 店を出る */}
+          <button
+            onClick={exitCafe}
+            className="group relative px-6 py-3 bg-gray-100 hover:bg-gray-200 text-gray-600 hover:text-gray-700 rounded-lg shadow-md transition-all duration-300 hover:shadow-lg hover:-translate-y-1"
+          >
+            <span className="flex items-center justify-center gap-3">
+              <svg
+                width="18"
+                height="18"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                className="transition-transform group-hover:-translate-x-1"
+              >
+                <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" />
+                <polyline points="16 17 21 12 16 7" />
+                <line x1="21" y1="12" x2="9" y2="12" />
+              </svg>
+              <span
+                className="font-bold tracking-wide"
+                style={{ fontFamily: "Space Grotesk, sans-serif" }}
+              >
+                店を出る
               </span>
             </span>
           </button>
