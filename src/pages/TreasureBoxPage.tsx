@@ -681,7 +681,7 @@ export default function TreasureBoxPage() {
               className="px-4 md:px-6 py-2 text-white rounded-lg hover:opacity-90 transition-colors font-medium text-sm md:text-base whitespace-nowrap"
               style={{ background: "var(--color-accent)" }}
             >
-              確認
+              回答
             </button>
           </div>
           {/* ヒントボタン */}
@@ -1282,7 +1282,7 @@ export default function TreasureBoxPage() {
                   color: "var(--color-primary)",
                 }}
               >
-                🎉 おめでとう！ 🎉
+                おめでとう！
               </h2>
               <p
                 className="text-base mb-4"
@@ -1300,7 +1300,6 @@ export default function TreasureBoxPage() {
                   border: "2px solid rgba(198, 156, 109, 0.4)",
                 }}
               >
-                <div className="absolute top-1 right-2 text-lg">⏱️</div>
                 <div
                   className="text-xs mb-1 font-semibold tracking-wide"
                   style={{ color: "var(--color-accent)" }}
@@ -1543,13 +1542,8 @@ export default function TreasureBoxPage() {
 
         /* 手掛かりの数字 */
         .clue-number {
-          font-size: 1.5rem;
           font-weight: bold;
           color: var(--color-accent);
-          display: inline-block;
-          padding: 0.25rem 0.5rem;
-          background: rgba(198, 156, 109, 0.15);
-          border-radius: 4px;
         }
 
         /* レスポンシブ対応 - PC版 */
