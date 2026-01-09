@@ -7,9 +7,9 @@ export default function CafeInterior() {
   const [showDialogue, setShowDialogue] = useState(false);
   const [showMenu, setShowMenu] = useState(false);
   const [dialogueIndex, setDialogueIndex] = useState(0);
-  const [dialogueMode, setDialogueMode] = useState<"greeting" | "intro">(
-    "greeting",
-  );
+  const [dialogueMode, setDialogueMode] = useState<
+    "greeting" | "intro" | "menu"
+  >("greeting");
 
   // やまーたのセリフ（挨拶）
   const greetingDialogues = [
@@ -26,8 +26,19 @@ export default function CafeInterior() {
     "ぜひゆっくりしていってくださいね！",
   ];
 
+  // やまーたのセリフ（メニュー準備中）
+  const menuDialogues = [
+    "あっ、ごめんなさい！",
+    "メニューはまだ準備中なんです...",
+    "もう少しだけ待っていてくださいね♪",
+  ];
+
   const dialogues =
-    dialogueMode === "greeting" ? greetingDialogues : introDialogues;
+    dialogueMode === "greeting"
+      ? greetingDialogues
+      : dialogueMode === "intro"
+        ? introDialogues
+        : menuDialogues;
 
   useEffect(() => {
     // 順番にアニメーション表示
@@ -55,9 +66,10 @@ export default function CafeInterior() {
     }
   };
 
-  // メニューへ遷移
+  // メニュー（準備中）
   const goToMenu = () => {
-    void navigate("/cafe/menu");
+    setDialogueMode("menu");
+    setDialogueIndex(0);
   };
 
   // 自己紹介モードに切り替え
