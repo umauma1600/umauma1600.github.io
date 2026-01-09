@@ -71,6 +71,15 @@ export default function CafeInterior() {
     void navigate("/");
   };
 
+  // Xでシェア
+  const shareOnX = () => {
+    const text =
+      "Café ひみつの鍵にたどり着きました☕🔑\n謎解きとドリンクが楽しめる不思議なカフェ...";
+    const url = "https://umauma1600.github.io/cafe";
+    const shareUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(url)}`;
+    window.open(shareUrl, "_blank", "noopener,noreferrer");
+  };
+
   return (
     <div className="min-h-screen bg-gradient-to-b from-[#faf8f5] via-[#f5efe6] to-[#faf8f5] relative overflow-hidden">
       {/* 背景装飾：店内の雰囲気 */}
@@ -267,6 +276,30 @@ export default function CafeInterior() {
                 style={{ fontFamily: "Space Grotesk, sans-serif" }}
               >
                 君は誰？
+              </span>
+            </span>
+          </button>
+
+          {/* Xでシェア */}
+          <button
+            onClick={shareOnX}
+            className="group relative px-6 py-3 bg-black hover:bg-gray-800 text-white rounded-lg shadow-md transition-all duration-300 hover:shadow-lg hover:-translate-y-1"
+          >
+            <span className="flex items-center justify-center gap-3">
+              <svg
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+                className="transition-transform group-hover:scale-110"
+              >
+                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+              </svg>
+              <span
+                className="font-bold tracking-wide"
+                style={{ fontFamily: "Space Grotesk, sans-serif" }}
+              >
+                Xでシェア
               </span>
             </span>
           </button>
