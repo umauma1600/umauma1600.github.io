@@ -13,7 +13,6 @@ function copyIndexToRoutes(): Plugin {
     "madamis",
     "contact",
     "cafe",
-    "cafe/interior",
     "cafe/menu",
   ];
 
