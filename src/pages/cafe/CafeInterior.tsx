@@ -235,24 +235,25 @@ export default function CafeInterior() {
 
         {/* 選択肢ボタン */}
         <div
-          className={`mt-12 flex flex-col gap-4 w-full max-w-xs transition-all duration-700 delay-500 ${
+          className={`mt-10 w-full max-w-sm transition-all duration-700 delay-500 ${
             showMenu ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
           }`}
         >
-          {/* メニューを見る */}
+          {/* メインアクション：メニューを見る */}
           <button
             onClick={goToMenu}
-            className="group relative px-6 py-4 bg-gradient-to-r from-amber-100 to-orange-50 hover:from-amber-50 hover:to-orange-100 text-amber-900 rounded-2xl shadow-[0_4px_16px_rgba(180,130,80,0.15)] hover:shadow-[0_6px_24px_rgba(180,130,80,0.25)] transition-all duration-300 hover:-translate-y-1 border-2 border-amber-200/60 overflow-hidden"
+            className="group relative w-full px-6 py-5 bg-gradient-to-r from-amber-100 via-orange-50 to-amber-100 hover:from-amber-50 hover:via-orange-100 hover:to-amber-50 text-amber-900 rounded-2xl shadow-[0_4px_20px_rgba(180,130,80,0.2)] hover:shadow-[0_8px_30px_rgba(180,130,80,0.3)] transition-all duration-300 hover:-translate-y-1 border-2 border-amber-300/70 overflow-hidden"
           >
-            {/* 装飾：コーヒー豆 */}
-            <span className="absolute -right-2 -top-2 text-2xl opacity-20 group-hover:opacity-40 transition-opacity rotate-12">
+            {/* 装飾 */}
+            <span className="absolute left-3 top-3 text-lg opacity-30">☕</span>
+            <span className="absolute right-3 bottom-3 text-lg opacity-30">
               ☕
             </span>
             <span className="relative flex items-center justify-center gap-3">
-              <span className="w-8 h-8 flex items-center justify-center bg-amber-700/90 rounded-full text-amber-50 shadow-inner group-hover:scale-110 transition-transform">
+              <span className="w-10 h-10 flex items-center justify-center bg-amber-700 rounded-full text-amber-50 shadow-md group-hover:scale-110 transition-transform">
                 <svg
-                  width="16"
-                  height="16"
+                  width="20"
+                  height="20"
                   viewBox="0 0 24 24"
                   fill="none"
                   stroke="currentColor"
@@ -262,7 +263,7 @@ export default function CafeInterior() {
                 </svg>
               </span>
               <span
-                className="font-bold tracking-wide text-base"
+                className="font-bold tracking-wide text-lg"
                 style={{ fontFamily: "Space Grotesk, sans-serif" }}
               >
                 メニューを見る
@@ -270,98 +271,87 @@ export default function CafeInterior() {
             </span>
           </button>
 
-          {/* 君は誰？ */}
-          <button
-            onClick={askWhoAreYou}
-            className="group relative px-6 py-4 bg-gradient-to-r from-pink-50 to-rose-50 hover:from-rose-50 hover:to-pink-100 text-rose-700 rounded-2xl shadow-[0_4px_16px_rgba(200,150,150,0.15)] hover:shadow-[0_6px_24px_rgba(200,150,150,0.25)] transition-all duration-300 hover:-translate-y-1 border-2 border-rose-200/60 overflow-hidden"
-          >
-            {/* 装飾：ハート */}
-            <span className="absolute -right-1 -top-1 text-xl opacity-20 group-hover:opacity-40 transition-opacity">
-              💕
-            </span>
-            <span className="relative flex items-center justify-center gap-3">
-              <span className="w-8 h-8 flex items-center justify-center bg-rose-400/90 rounded-full text-rose-50 shadow-inner group-hover:scale-110 group-hover:rotate-6 transition-all">
-                <svg
-                  width="16"
-                  height="16"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2.5"
+          {/* サブアクション：2列グリッド */}
+          <div className="mt-4 grid grid-cols-2 gap-3">
+            {/* 君は誰？ */}
+            <button
+              onClick={askWhoAreYou}
+              className="group relative px-4 py-3 bg-gradient-to-br from-pink-50 to-rose-100 hover:from-rose-50 hover:to-pink-100 text-rose-600 rounded-xl shadow-[0_3px_12px_rgba(200,150,150,0.15)] hover:shadow-[0_5px_20px_rgba(200,150,150,0.25)] transition-all duration-300 hover:-translate-y-0.5 border border-rose-200/80 overflow-hidden"
+            >
+              <span className="absolute -right-1 -top-1 text-sm opacity-30">
+                💕
+              </span>
+              <span className="relative flex flex-col items-center gap-2">
+                <span className="w-8 h-8 flex items-center justify-center bg-rose-400 rounded-full text-rose-50 shadow-sm group-hover:scale-110 transition-transform">
+                  <svg
+                    width="14"
+                    height="14"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2.5"
+                  >
+                    <circle cx="12" cy="8" r="5" />
+                    <path d="M20 21a8 8 0 0 0-16 0" />
+                  </svg>
+                </span>
+                <span
+                  className="font-bold text-sm"
+                  style={{ fontFamily: "Space Grotesk, sans-serif" }}
                 >
-                  <circle cx="12" cy="8" r="5" />
-                  <path d="M20 21a8 8 0 0 0-16 0" />
-                </svg>
+                  君はだれ？
+                </span>
               </span>
-              <span
-                className="font-bold tracking-wide text-base"
-                style={{ fontFamily: "Space Grotesk, sans-serif" }}
-              >
-                君はだれ？
-              </span>
-            </span>
-          </button>
+            </button>
 
-          {/* Xでシェア */}
-          <button
-            onClick={shareOnX}
-            className="group relative px-6 py-4 bg-gradient-to-r from-sky-50 to-blue-50 hover:from-blue-50 hover:to-sky-100 text-sky-700 rounded-2xl shadow-[0_4px_16px_rgba(100,150,200,0.15)] hover:shadow-[0_6px_24px_rgba(100,150,200,0.25)] transition-all duration-300 hover:-translate-y-1 border-2 border-sky-200/60 overflow-hidden"
-          >
-            {/* 装飾：キラキラ */}
-            <span className="absolute -right-1 -top-1 text-xl opacity-20 group-hover:opacity-40 transition-opacity">
-              ✨
-            </span>
-            <span className="relative flex items-center justify-center gap-3">
-              <span className="w-8 h-8 flex items-center justify-center bg-sky-500/90 rounded-full text-sky-50 shadow-inner group-hover:scale-110 transition-transform">
-                <svg
-                  width="14"
-                  height="14"
-                  viewBox="0 0 24 24"
-                  fill="currentColor"
+            {/* Xでシェア */}
+            <button
+              onClick={shareOnX}
+              className="group relative px-4 py-3 bg-gradient-to-br from-sky-50 to-blue-100 hover:from-blue-50 hover:to-sky-100 text-sky-600 rounded-xl shadow-[0_3px_12px_rgba(100,150,200,0.15)] hover:shadow-[0_5px_20px_rgba(100,150,200,0.25)] transition-all duration-300 hover:-translate-y-0.5 border border-sky-200/80 overflow-hidden"
+            >
+              <span className="absolute -right-1 -top-1 text-sm opacity-30">
+                ✨
+              </span>
+              <span className="relative flex flex-col items-center gap-2">
+                <span className="w-8 h-8 flex items-center justify-center bg-sky-500 rounded-full text-sky-50 shadow-sm group-hover:scale-110 transition-transform">
+                  <svg
+                    width="12"
+                    height="12"
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                  >
+                    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+                  </svg>
+                </span>
+                <span
+                  className="font-bold text-sm"
+                  style={{ fontFamily: "Space Grotesk, sans-serif" }}
                 >
-                  <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
-                </svg>
+                  Xでシェア
+                </span>
               </span>
-              <span
-                className="font-bold tracking-wide text-base"
-                style={{ fontFamily: "Space Grotesk, sans-serif" }}
-              >
-                Xでシェア
-              </span>
-            </span>
-          </button>
+            </button>
+          </div>
 
-          {/* 店を出る */}
+          {/* 店を出る：控えめなリンク風 */}
           <button
             onClick={exitCafe}
-            className="group relative px-6 py-4 bg-gradient-to-r from-stone-100 to-neutral-100 hover:from-neutral-100 hover:to-stone-150 text-stone-500 hover:text-stone-600 rounded-2xl shadow-[0_4px_16px_rgba(120,120,120,0.1)] hover:shadow-[0_6px_24px_rgba(120,120,120,0.15)] transition-all duration-300 hover:-translate-y-1 border-2 border-stone-200/60 overflow-hidden"
+            className="group mt-6 mx-auto flex items-center gap-2 px-4 py-2 text-stone-400 hover:text-stone-600 transition-colors"
           >
-            {/* 装飾：ドア */}
-            <span className="absolute -right-1 -top-1 text-xl opacity-15 group-hover:opacity-30 transition-opacity">
-              🚪
-            </span>
-            <span className="relative flex items-center justify-center gap-3">
-              <span className="w-8 h-8 flex items-center justify-center bg-stone-400/80 rounded-full text-stone-50 shadow-inner group-hover:scale-110 group-hover:-translate-x-0.5 transition-all">
-                <svg
-                  width="16"
-                  height="16"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2.5"
-                >
-                  <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" />
-                  <polyline points="16 17 21 12 16 7" />
-                  <line x1="21" y1="12" x2="9" y2="12" />
-                </svg>
-              </span>
-              <span
-                className="font-bold tracking-wide text-base"
-                style={{ fontFamily: "Space Grotesk, sans-serif" }}
-              >
-                店を出る
-              </span>
-            </span>
+            <svg
+              width="14"
+              height="14"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              className="group-hover:-translate-x-0.5 transition-transform"
+            >
+              <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" />
+              <polyline points="16 17 21 12 16 7" />
+              <line x1="21" y1="12" x2="9" y2="12" />
+            </svg>
+            <span className="text-sm">店を出る</span>
           </button>
         </div>
 
