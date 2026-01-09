@@ -6,6 +6,7 @@ import MadamisListPage from "./pages/MadamisListPage";
 import ContactPage from "./pages/ContactPage";
 import TreasureBoxPage from "./pages/TreasureBoxPage";
 import CafeEntrance from "./pages/cafe/CafeEntrance";
+import CafeInterior from "./pages/cafe/CafeInterior";
 import CafeMenu from "./pages/cafe/CafeMenu";
 
 function App() {
@@ -22,6 +23,7 @@ function App() {
         <Route path="nazo/treasure-box" element={<TreasureBoxPage />} />
         {/* カフェ（専用レイアウト） */}
         <Route path="cafe" element={<CafeEntrance />} />
+        <Route path="cafe/interior" element={<CafeInterior />} />
         <Route path="cafe/menu" element={<CafeMenu />} />
       </Routes>
     </Router>
