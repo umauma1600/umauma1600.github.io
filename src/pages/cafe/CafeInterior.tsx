@@ -304,13 +304,13 @@ export default function CafeInterior() {
               </span>
             </button>
 
-            {/* Xでシェア */}
+            {/* 来店をシェア */}
             <button
               onClick={shareOnX}
               className="group relative px-4 py-3 bg-gradient-to-br from-stone-50 to-stone-100 hover:from-stone-100 hover:to-stone-150 text-stone-600 rounded-xl shadow-[0_3px_12px_rgba(120,110,100,0.15)] hover:shadow-[0_5px_20px_rgba(120,110,100,0.25)] transition-all duration-300 hover:-translate-y-0.5 border border-stone-200/80 overflow-hidden"
             >
               <span className="absolute -right-1 -top-1 text-sm opacity-30">
-                ✨
+                ☕
               </span>
               <span className="relative flex flex-col items-center gap-2">
                 <span className="w-8 h-8 flex items-center justify-center bg-stone-500 rounded-full text-stone-50 shadow-sm group-hover:scale-110 transition-transform">
@@ -324,10 +324,12 @@ export default function CafeInterior() {
                   </svg>
                 </span>
                 <span
-                  className="font-bold text-sm"
+                  className="font-bold text-sm leading-tight text-center"
                   style={{ fontFamily: "Space Grotesk, sans-serif" }}
                 >
-                  Xでシェア
+                  来店を
+                  <br />
+                  シェア
                 </span>
               </span>
             </button>
