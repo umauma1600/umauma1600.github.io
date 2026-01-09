@@ -49,7 +49,7 @@ export default function CafeEntrance() {
         <div className="mb-8">
           <div className="inline-block px-8 py-4 border-2 border-amber-600/50 rounded-lg bg-[#1a1510]/80 backdrop-blur-sm">
             <p className="text-amber-500/80 text-xs tracking-[0.3em] mb-1">
-              PUZZLE CAFE
+              NAZO CAFE
             </p>
             <h1
               className="text-3xl md:text-4xl font-bold text-amber-100"
