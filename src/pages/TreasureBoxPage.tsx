@@ -1321,7 +1321,7 @@ export default function TreasureBoxPage() {
                   className="w-full px-6 py-3 bg-black text-white rounded-lg hover:bg-gray-800 transition-all font-medium flex items-center justify-center gap-2 shadow-md hover:shadow-lg"
                 >
                   <span>𝕏</span>
-                  <span>クリアを X でシェア</span>
+                  <span>でシェア</span>
                 </button>
                 <Link
                   to="/nazo"
