@@ -1282,7 +1282,7 @@ export default function TreasureBoxPage() {
                   color: "var(--color-primary)",
                 }}
               >
-                🎉 おめでとう！ 🎉
+                おめでとう！
               </h2>
               <p
                 className="text-base mb-4"
@@ -1300,7 +1300,6 @@ export default function TreasureBoxPage() {
                   border: "2px solid rgba(198, 156, 109, 0.4)",
                 }}
               >
-                <div className="absolute top-1 right-2 text-lg">⏱️</div>
                 <div
                   className="text-xs mb-1 font-semibold tracking-wide"
                   style={{ color: "var(--color-accent)" }}
