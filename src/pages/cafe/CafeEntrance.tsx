@@ -16,9 +16,9 @@ export default function CafeEntrance() {
       setShowWelcome(true);
     }, 800);
 
-    // メニュー画面へ遷移
+    // 店内画面へ遷移
     setTimeout(() => {
-      void navigate("/cafe/menu");
+      void navigate("/cafe/interior");
     }, 2000);
   };
 
