@@ -276,13 +276,13 @@ export default function CafeInterior() {
             {/* 君は誰？ */}
             <button
               onClick={askWhoAreYou}
-              className="group relative px-4 py-3 bg-gradient-to-br from-pink-50 to-rose-100 hover:from-rose-50 hover:to-pink-100 text-rose-600 rounded-xl shadow-[0_3px_12px_rgba(200,150,150,0.15)] hover:shadow-[0_5px_20px_rgba(200,150,150,0.25)] transition-all duration-300 hover:-translate-y-0.5 border border-rose-200/80 overflow-hidden"
+              className="group relative px-4 py-3 bg-gradient-to-br from-orange-50 to-amber-100 hover:from-amber-50 hover:to-orange-100 text-amber-700 rounded-xl shadow-[0_3px_12px_rgba(180,140,100,0.15)] hover:shadow-[0_5px_20px_rgba(180,140,100,0.25)] transition-all duration-300 hover:-translate-y-0.5 border border-amber-200/80 overflow-hidden"
             >
               <span className="absolute -right-1 -top-1 text-sm opacity-30">
-                💕
+                ?
               </span>
               <span className="relative flex flex-col items-center gap-2">
-                <span className="w-8 h-8 flex items-center justify-center bg-rose-400 rounded-full text-rose-50 shadow-sm group-hover:scale-110 transition-transform">
+                <span className="w-8 h-8 flex items-center justify-center bg-amber-600 rounded-full text-amber-50 shadow-sm group-hover:scale-110 transition-transform">
                   <svg
                     width="14"
                     height="14"
@@ -307,13 +307,13 @@ export default function CafeInterior() {
             {/* Xでシェア */}
             <button
               onClick={shareOnX}
-              className="group relative px-4 py-3 bg-gradient-to-br from-sky-50 to-blue-100 hover:from-blue-50 hover:to-sky-100 text-sky-600 rounded-xl shadow-[0_3px_12px_rgba(100,150,200,0.15)] hover:shadow-[0_5px_20px_rgba(100,150,200,0.25)] transition-all duration-300 hover:-translate-y-0.5 border border-sky-200/80 overflow-hidden"
+              className="group relative px-4 py-3 bg-gradient-to-br from-stone-50 to-stone-100 hover:from-stone-100 hover:to-stone-150 text-stone-600 rounded-xl shadow-[0_3px_12px_rgba(120,110,100,0.15)] hover:shadow-[0_5px_20px_rgba(120,110,100,0.25)] transition-all duration-300 hover:-translate-y-0.5 border border-stone-200/80 overflow-hidden"
             >
               <span className="absolute -right-1 -top-1 text-sm opacity-30">
                 ✨
               </span>
               <span className="relative flex flex-col items-center gap-2">
-                <span className="w-8 h-8 flex items-center justify-center bg-sky-500 rounded-full text-sky-50 shadow-sm group-hover:scale-110 transition-transform">
+                <span className="w-8 h-8 flex items-center justify-center bg-stone-500 rounded-full text-stone-50 shadow-sm group-hover:scale-110 transition-transform">
                   <svg
                     width="12"
                     height="12"
