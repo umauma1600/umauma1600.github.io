@@ -168,7 +168,7 @@ export default function CafeInterior() {
         {/* カフェ名 */}
         <div className="mb-8 text-center">
           <p className="text-amber-600/80 text-xs tracking-[0.3em] mb-1">
-            PUZZLE CAFE
+            NAZO CAFE
           </p>
           <h1
             className="text-2xl md:text-3xl font-bold text-amber-900"

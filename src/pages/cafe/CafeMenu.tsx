@@ -124,7 +124,7 @@ export default function CafeMenu() {
         {/* カフェ名とウェルカムメッセージ */}
         <div className="text-center mb-8">
           <p className="text-amber-600 text-sm tracking-widest mb-2">
-            ── PUZZLE CAFE ──
+            ── NAZO CAFE ──
           </p>
           <h2
             className="text-2xl md:text-3xl font-bold text-amber-900 mb-4"
