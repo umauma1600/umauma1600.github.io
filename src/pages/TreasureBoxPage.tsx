@@ -681,7 +681,7 @@ export default function TreasureBoxPage() {
               className="px-4 md:px-6 py-2 text-white rounded-lg hover:opacity-90 transition-colors font-medium text-sm md:text-base whitespace-nowrap"
               style={{ background: "var(--color-accent)" }}
             >
-              確認
+              回答
             </button>
           </div>
           {/* ヒントボタン */}
