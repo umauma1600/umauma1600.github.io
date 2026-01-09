@@ -235,29 +235,34 @@ export default function CafeInterior() {
 
         {/* 選択肢ボタン */}
         <div
-          className={`mt-12 flex flex-col gap-3 w-full max-w-xs transition-all duration-700 delay-500 ${
+          className={`mt-12 flex flex-col gap-4 w-full max-w-xs transition-all duration-700 delay-500 ${
             showMenu ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
           }`}
         >
           {/* メニューを見る */}
           <button
             onClick={goToMenu}
-            className="group relative px-6 py-3 bg-amber-800 hover:bg-amber-700 text-white rounded-lg shadow-lg transition-all duration-300 hover:shadow-xl hover:-translate-y-1"
+            className="group relative px-6 py-4 bg-gradient-to-r from-amber-100 to-orange-50 hover:from-amber-50 hover:to-orange-100 text-amber-900 rounded-2xl shadow-[0_4px_16px_rgba(180,130,80,0.15)] hover:shadow-[0_6px_24px_rgba(180,130,80,0.25)] transition-all duration-300 hover:-translate-y-1 border-2 border-amber-200/60 overflow-hidden"
           >
-            <span className="flex items-center justify-center gap-3">
-              <svg
-                width="18"
-                height="18"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                className="transition-transform group-hover:rotate-12"
-              >
-                <path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20" />
-              </svg>
+            {/* 装飾：コーヒー豆 */}
+            <span className="absolute -right-2 -top-2 text-2xl opacity-20 group-hover:opacity-40 transition-opacity rotate-12">
+              ☕
+            </span>
+            <span className="relative flex items-center justify-center gap-3">
+              <span className="w-8 h-8 flex items-center justify-center bg-amber-700/90 rounded-full text-amber-50 shadow-inner group-hover:scale-110 transition-transform">
+                <svg
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2.5"
+                >
+                  <path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20" />
+                </svg>
+              </span>
               <span
-                className="font-bold tracking-wide"
+                className="font-bold tracking-wide text-base"
                 style={{ fontFamily: "Space Grotesk, sans-serif" }}
               >
                 メニューを見る
@@ -268,23 +273,28 @@ export default function CafeInterior() {
           {/* 君は誰？ */}
           <button
             onClick={askWhoAreYou}
-            className="group relative px-6 py-3 bg-white hover:bg-amber-50 text-amber-800 border-2 border-amber-300 hover:border-amber-400 rounded-lg shadow-md transition-all duration-300 hover:shadow-lg hover:-translate-y-1"
+            className="group relative px-6 py-4 bg-gradient-to-r from-pink-50 to-rose-50 hover:from-rose-50 hover:to-pink-100 text-rose-700 rounded-2xl shadow-[0_4px_16px_rgba(200,150,150,0.15)] hover:shadow-[0_6px_24px_rgba(200,150,150,0.25)] transition-all duration-300 hover:-translate-y-1 border-2 border-rose-200/60 overflow-hidden"
           >
-            <span className="flex items-center justify-center gap-3">
-              <svg
-                width="18"
-                height="18"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                className="transition-transform group-hover:scale-110"
-              >
-                <circle cx="12" cy="8" r="5" />
-                <path d="M20 21a8 8 0 0 0-16 0" />
-              </svg>
+            {/* 装飾：ハート */}
+            <span className="absolute -right-1 -top-1 text-xl opacity-20 group-hover:opacity-40 transition-opacity">
+              💕
+            </span>
+            <span className="relative flex items-center justify-center gap-3">
+              <span className="w-8 h-8 flex items-center justify-center bg-rose-400/90 rounded-full text-rose-50 shadow-inner group-hover:scale-110 group-hover:rotate-6 transition-all">
+                <svg
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2.5"
+                >
+                  <circle cx="12" cy="8" r="5" />
+                  <path d="M20 21a8 8 0 0 0-16 0" />
+                </svg>
+              </span>
               <span
-                className="font-bold tracking-wide"
+                className="font-bold tracking-wide text-base"
                 style={{ fontFamily: "Space Grotesk, sans-serif" }}
               >
                 君はだれ？
@@ -295,20 +305,25 @@ export default function CafeInterior() {
           {/* Xでシェア */}
           <button
             onClick={shareOnX}
-            className="group relative px-6 py-3 bg-black hover:bg-gray-800 text-white rounded-lg shadow-md transition-all duration-300 hover:shadow-lg hover:-translate-y-1"
+            className="group relative px-6 py-4 bg-gradient-to-r from-sky-50 to-blue-50 hover:from-blue-50 hover:to-sky-100 text-sky-700 rounded-2xl shadow-[0_4px_16px_rgba(100,150,200,0.15)] hover:shadow-[0_6px_24px_rgba(100,150,200,0.25)] transition-all duration-300 hover:-translate-y-1 border-2 border-sky-200/60 overflow-hidden"
           >
-            <span className="flex items-center justify-center gap-3">
-              <svg
-                width="16"
-                height="16"
-                viewBox="0 0 24 24"
-                fill="currentColor"
-                className="transition-transform group-hover:scale-110"
-              >
-                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
-              </svg>
+            {/* 装飾：キラキラ */}
+            <span className="absolute -right-1 -top-1 text-xl opacity-20 group-hover:opacity-40 transition-opacity">
+              ✨
+            </span>
+            <span className="relative flex items-center justify-center gap-3">
+              <span className="w-8 h-8 flex items-center justify-center bg-sky-500/90 rounded-full text-sky-50 shadow-inner group-hover:scale-110 transition-transform">
+                <svg
+                  width="14"
+                  height="14"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                >
+                  <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+                </svg>
+              </span>
               <span
-                className="font-bold tracking-wide"
+                className="font-bold tracking-wide text-base"
                 style={{ fontFamily: "Space Grotesk, sans-serif" }}
               >
                 Xでシェア
@@ -319,24 +334,29 @@ export default function CafeInterior() {
           {/* 店を出る */}
           <button
             onClick={exitCafe}
-            className="group relative px-6 py-3 bg-gray-100 hover:bg-gray-200 text-gray-600 hover:text-gray-700 rounded-lg shadow-md transition-all duration-300 hover:shadow-lg hover:-translate-y-1"
+            className="group relative px-6 py-4 bg-gradient-to-r from-stone-100 to-neutral-100 hover:from-neutral-100 hover:to-stone-150 text-stone-500 hover:text-stone-600 rounded-2xl shadow-[0_4px_16px_rgba(120,120,120,0.1)] hover:shadow-[0_6px_24px_rgba(120,120,120,0.15)] transition-all duration-300 hover:-translate-y-1 border-2 border-stone-200/60 overflow-hidden"
           >
-            <span className="flex items-center justify-center gap-3">
-              <svg
-                width="18"
-                height="18"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                className="transition-transform group-hover:-translate-x-1"
-              >
-                <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" />
-                <polyline points="16 17 21 12 16 7" />
-                <line x1="21" y1="12" x2="9" y2="12" />
-              </svg>
+            {/* 装飾：ドア */}
+            <span className="absolute -right-1 -top-1 text-xl opacity-15 group-hover:opacity-30 transition-opacity">
+              🚪
+            </span>
+            <span className="relative flex items-center justify-center gap-3">
+              <span className="w-8 h-8 flex items-center justify-center bg-stone-400/80 rounded-full text-stone-50 shadow-inner group-hover:scale-110 group-hover:-translate-x-0.5 transition-all">
+                <svg
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2.5"
+                >
+                  <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" />
+                  <polyline points="16 17 21 12 16 7" />
+                  <line x1="21" y1="12" x2="9" y2="12" />
+                </svg>
+              </span>
               <span
-                className="font-bold tracking-wide"
+                className="font-bold tracking-wide text-base"
                 style={{ fontFamily: "Space Grotesk, sans-serif" }}
               >
                 店を出る
