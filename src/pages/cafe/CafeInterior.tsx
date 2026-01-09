@@ -21,9 +21,9 @@ export default function CafeInterior() {
   // やまーたのセリフ（自己紹介）
   const introDialogues = [
     "私ですか？",
-    "私は看板娘のやまーたです！",
-    "ここでは謎解きとドリンクが楽しめますよ",
-    "ぜひゆっくりしていってくださいね",
+    "私はやまーたって言います！",
+    "実はこのサイトのいろんな場所にいるんです",
+    "ぜひ探してみてくださいね",
   ];
 
   // やまーたのセリフ（メニュー準備中）
@@ -287,7 +287,7 @@ export default function CafeInterior() {
                 className="font-bold tracking-wide"
                 style={{ fontFamily: "Space Grotesk, sans-serif" }}
               >
-                君は誰？
+                君はだれ？
               </span>
             </span>
           </button>
