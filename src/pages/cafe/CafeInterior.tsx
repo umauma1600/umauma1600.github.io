@@ -157,28 +157,49 @@ export default function CafeInterior() {
           </h1>
         </div>
 
-        {/* やまーた（看板娘） */}
+        {/* やまーた（看板娘）と吹き出し */}
         <div
-          className={`relative transition-all duration-700 ease-out ${
+          className={`relative flex flex-col md:flex-row items-center gap-4 transition-all duration-700 ease-out ${
             showMascot ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
           }`}
         >
+          {/* やまーた画像 */}
+          <div className="relative">
+            <img
+              src="/assets/yama-ta.png"
+              alt="やまーた"
+              className="w-48 h-48 md:w-56 md:h-56 object-contain drop-shadow-lg"
+              style={{
+                animation: showMascot
+                  ? "float 3s ease-in-out infinite"
+                  : "none",
+              }}
+            />
+          </div>
+
           {/* 吹き出し */}
           {showDialogue && (
-            <div className="absolute -top-4 left-1/2 -translate-x-1/2 -translate-y-full transition-all duration-500 opacity-100 scale-100">
+            <div className="relative transition-all duration-500 opacity-100 scale-100 md:absolute md:left-full md:top-1/2 md:-translate-y-1/2 md:ml-2">
               <div
-                className="relative bg-white px-6 py-4 rounded-2xl shadow-lg border-2 border-amber-200 cursor-pointer hover:bg-amber-50 transition-colors min-w-[200px] max-w-[280px]"
+                className="relative bg-white px-5 py-3 rounded-2xl shadow-lg border-2 border-amber-200 cursor-pointer hover:bg-amber-50 transition-colors min-w-[180px] max-w-[220px]"
                 onClick={advanceDialogue}
               >
-                <p className="text-amber-900 text-center font-medium">
+                <p className="text-amber-900 text-center font-medium text-sm">
                   {dialogues[dialogueIndex]}
                 </p>
-                {/* 吹き出しの尻尾 */}
-                <div className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-full">
-                  <div className="w-0 h-0 border-l-8 border-r-8 border-t-8 border-l-transparent border-r-transparent border-t-white" />
+                {/* 吹き出しの尻尾（モバイル：上向き、デスクトップ：左向き） */}
+                <div className="hidden md:block absolute top-1/2 -translate-y-1/2 -left-2">
+                  <div className="w-0 h-0 border-t-8 border-b-8 border-r-8 border-t-transparent border-b-transparent border-r-white" />
                 </div>
-                <div className="absolute -bottom-0.5 left-1/2 -translate-x-1/2 translate-y-full">
-                  <div className="w-0 h-0 border-l-10 border-r-10 border-t-10 border-l-transparent border-r-transparent border-t-amber-200" />
+                <div className="hidden md:block absolute top-1/2 -translate-y-1/2 -left-2.5">
+                  <div className="w-0 h-0 border-t-10 border-b-10 border-r-10 border-t-transparent border-b-transparent border-r-amber-200 -z-10" />
+                </div>
+                {/* モバイル用の尻尾（上向き） */}
+                <div className="md:hidden absolute -top-2 left-1/2 -translate-x-1/2">
+                  <div className="w-0 h-0 border-l-8 border-r-8 border-b-8 border-l-transparent border-r-transparent border-b-white" />
+                </div>
+                <div className="md:hidden absolute -top-2.5 left-1/2 -translate-x-1/2">
+                  <div className="w-0 h-0 border-l-10 border-r-10 border-b-10 border-l-transparent border-r-transparent border-b-amber-200 -z-10" />
                 </div>
                 {/* クリックヒント */}
                 {dialogueIndex < dialogues.length - 1 && (
@@ -189,26 +210,6 @@ export default function CafeInterior() {
               </div>
             </div>
           )}
-
-          {/* やまーた画像 */}
-          <div className="relative">
-            <img
-              src="/assets/yama-ta.png"
-              alt="やまーた"
-              className="w-48 h-48 md:w-64 md:h-64 object-contain drop-shadow-lg"
-              style={{
-                animation: showMascot
-                  ? "float 3s ease-in-out infinite"
-                  : "none",
-              }}
-            />
-            {/* 名札 */}
-            <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 bg-amber-100 px-3 py-1 rounded-full border border-amber-300 shadow-sm">
-              <span className="text-amber-800 text-xs font-medium">
-                看板娘 やまーた
-              </span>
-            </div>
-          </div>
         </div>
 
         {/* 選択肢ボタン */}
