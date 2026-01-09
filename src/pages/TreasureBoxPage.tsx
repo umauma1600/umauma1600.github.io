@@ -1211,29 +1211,35 @@ export default function TreasureBoxPage() {
 
       {/* クリアモーダル */}
       {showClearModal && (
-        <div className="fixed inset-0 bg-gradient-to-br from-pink-100/90 via-amber-50/90 to-yellow-100/90 backdrop-blur-sm z-50 flex items-center justify-center p-4 modal-show">
-          {/* 背景の装飾 - 星とハート */}
+        <div className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 modal-show">
+          {/* 背景の装飾 - キラキラ */}
           <div className="absolute inset-0 pointer-events-none overflow-hidden">
-            <div className="floating-star star-1">⭐</div>
-            <div className="floating-star star-2">✨</div>
-            <div className="floating-star star-3">🌟</div>
-            <div className="floating-heart heart-1">💖</div>
-            <div className="floating-heart heart-2">💕</div>
-            <div className="floating-star star-4">✨</div>
-            <div className="floating-heart heart-3">💗</div>
+            <div className="floating-sparkle sparkle-1">✨</div>
+            <div className="floating-sparkle sparkle-2">✦</div>
+            <div className="floating-sparkle sparkle-3">✨</div>
+            <div className="floating-sparkle sparkle-4">✦</div>
+            <div className="floating-sparkle sparkle-5">✨</div>
           </div>
 
-          <div className="bg-white/95 rounded-3xl max-w-md w-full p-6 shadow-2xl text-center relative overflow-hidden border-4 border-pink-200">
-            {/* 紙吹雪エリア */}
-            <div
-              id="confettiContainer"
-              className="absolute inset-0 pointer-events-none"
-            ></div>
-
+          <div
+            className="rounded-2xl max-w-md w-full p-6 shadow-2xl text-center relative overflow-hidden"
+            style={{
+              background:
+                "linear-gradient(135deg, #faf8f5 0%, #fff8f0 50%, #faf8f5 100%)",
+              border: "3px solid var(--color-accent)",
+            }}
+          >
             {/* 上部の装飾リボン */}
-            <div className="absolute -top-2 left-1/2 transform -translate-x-1/2">
-              <div className="bg-gradient-to-r from-pink-400 via-pink-300 to-pink-400 text-white px-8 py-1 rounded-full text-sm font-bold shadow-lg ribbon-bounce">
-                🎀 CLEAR! 🎀
+            <div className="absolute -top-3 left-1/2 transform -translate-x-1/2">
+              <div
+                className="px-6 py-1.5 rounded-full text-sm font-bold shadow-lg ribbon-bounce"
+                style={{
+                  background:
+                    "linear-gradient(135deg, #c69c6d 0%, #d4a574 50%, #c69c6d 100%)",
+                  color: "white",
+                }}
+              >
+                🎉 CLEAR! 🎉
               </div>
             </div>
 
@@ -1243,15 +1249,16 @@ export default function TreasureBoxPage() {
                 <img
                   src="/assets/images/yama-tahappy.png"
                   alt="やまーた"
-                  className="w-40 h-auto mx-auto drop-shadow-lg"
+                  className="w-36 h-auto mx-auto drop-shadow-lg"
                   draggable={false}
                 />
               </div>
 
               <h2
-                className="text-2xl md:text-3xl font-bold mb-2 bg-gradient-to-r from-pink-500 via-amber-500 to-pink-500 bg-clip-text text-transparent"
+                className="text-2xl md:text-3xl font-bold mb-2"
                 style={{
                   fontFamily: "Space Grotesk, sans-serif",
+                  color: "var(--color-primary)",
                 }}
               >
                 おめでとう！
@@ -1263,19 +1270,18 @@ export default function TreasureBoxPage() {
                 「逆転の宝箱」をクリアしました！
               </p>
 
-              {/* クリアタイム - 可愛いデザイン */}
+              {/* クリアタイム */}
               <div
-                className="rounded-2xl p-4 mb-5 relative overflow-hidden"
+                className="rounded-xl p-4 mb-5 relative overflow-hidden"
                 style={{
-                  background:
-                    "linear-gradient(135deg, #fff5f7 0%, #fff8e1 100%)",
-                  border: "2px dashed #f9a8d4",
+                  background: "rgba(198, 156, 109, 0.1)",
+                  border: "2px dashed var(--color-accent)",
                 }}
               >
                 <div className="absolute top-1 right-2 text-lg">⏱️</div>
                 <div
                   className="text-xs mb-1 font-medium"
-                  style={{ color: "#ec4899" }}
+                  style={{ color: "var(--color-accent)" }}
                 >
                   クリアタイム
                 </div>
@@ -1290,25 +1296,26 @@ export default function TreasureBoxPage() {
               <div className="space-y-3">
                 <button
                   onClick={shareOnX}
-                  className="w-full px-6 py-3 bg-gradient-to-r from-blue-400 to-blue-500 text-white rounded-full hover:from-blue-500 hover:to-blue-600 transition-all font-medium flex items-center justify-center gap-2 shadow-lg hover:shadow-xl transform hover:scale-105"
+                  className="w-full px-6 py-3 bg-black text-white rounded-lg hover:bg-gray-800 transition-all font-medium flex items-center justify-center gap-2 shadow-md hover:shadow-lg"
                 >
                   <span>𝕏</span>
                   <span>クリアを X でシェア</span>
                 </button>
                 <Link
                   to="/nazo"
-                  className="block w-full px-6 py-3 text-white rounded-full hover:opacity-90 transition-all font-medium shadow-lg hover:shadow-xl transform hover:scale-105"
-                  style={{
-                    background:
-                      "linear-gradient(135deg, #f472b6 0%, #c69c6d 100%)",
-                  }}
+                  className="block w-full px-6 py-3 text-white rounded-lg hover:opacity-90 transition-all font-medium shadow-md hover:shadow-lg"
+                  style={{ background: "var(--color-accent)" }}
                 >
                   謎解き一覧に戻る
                 </Link>
                 <button
                   onClick={retry}
-                  className="w-full px-6 py-3 bg-gradient-to-r from-gray-100 to-gray-200 rounded-full hover:from-gray-200 hover:to-gray-300 transition-all font-medium transform hover:scale-105"
-                  style={{ color: "var(--color-text)" }}
+                  className="w-full px-6 py-3 rounded-lg transition-all font-medium border-2"
+                  style={{
+                    color: "var(--color-text)",
+                    borderColor: "var(--color-accent)",
+                    background: "transparent",
+                  }}
                 >
                   もう一度挑戦
                 </button>
@@ -1432,7 +1439,8 @@ export default function TreasureBoxPage() {
           position: absolute;
           width: 10px;
           height: 10px;
-          animation: confettiFall 3s linear infinite;
+          top: -10px;
+          animation: confettiFall 3s linear forwards;
         }
 
         @keyframes confettiFall {
@@ -1441,7 +1449,7 @@ export default function TreasureBoxPage() {
             opacity: 1;
           }
           100% {
-            transform: translateY(500px) rotate(720deg);
+            transform: translateY(600px) rotate(720deg);
             opacity: 0;
           }
         }
@@ -1571,24 +1579,21 @@ export default function TreasureBoxPage() {
 
         /* キャラクターのバウンスアニメーション */
         .character-bounce {
-          animation: characterBounce 2s ease-in-out infinite;
+          animation: characterBounce 2.5s ease-in-out infinite;
         }
 
         @keyframes characterBounce {
           0%, 100% {
-            transform: translateY(0) rotate(0deg);
+            transform: translateY(0);
           }
-          25% {
-            transform: translateY(-10px) rotate(-3deg);
-          }
-          75% {
-            transform: translateY(-5px) rotate(3deg);
+          50% {
+            transform: translateY(-8px);
           }
         }
 
         /* リボンのバウンスアニメーション */
         .ribbon-bounce {
-          animation: ribbonBounce 1.5s ease-in-out infinite;
+          animation: ribbonBounce 2s ease-in-out infinite;
         }
 
         @keyframes ribbonBounce {
@@ -1596,89 +1601,58 @@ export default function TreasureBoxPage() {
             transform: scale(1);
           }
           50% {
-            transform: scale(1.05);
+            transform: scale(1.03);
           }
         }
 
-        /* 星のフローティングアニメーション */
-        .floating-star {
+        /* キラキラのフローティングアニメーション */
+        .floating-sparkle {
           position: absolute;
-          font-size: 1.5rem;
-          animation: floatStar 4s ease-in-out infinite;
-          opacity: 0.8;
+          font-size: 1.2rem;
+          animation: floatSparkle 3s ease-in-out infinite;
+          color: #c69c6d;
         }
 
-        .star-1 {
-          top: 10%;
-          left: 10%;
+        .sparkle-1 {
+          top: 20%;
+          left: 15%;
           animation-delay: 0s;
         }
 
-        .star-2 {
-          top: 20%;
-          right: 15%;
-          animation-delay: 1s;
-          font-size: 1.2rem;
-        }
-
-        .star-3 {
-          bottom: 30%;
-          left: 8%;
-          animation-delay: 2s;
-        }
-
-        .star-4 {
-          bottom: 20%;
-          right: 10%;
-          animation-delay: 0.5s;
+        .sparkle-2 {
+          top: 30%;
+          right: 18%;
+          animation-delay: 0.6s;
           font-size: 1rem;
         }
 
-        @keyframes floatStar {
-          0%, 100% {
-            transform: translateY(0) rotate(0deg) scale(1);
-            opacity: 0.8;
-          }
-          50% {
-            transform: translateY(-20px) rotate(180deg) scale(1.2);
-            opacity: 1;
-          }
+        .sparkle-3 {
+          bottom: 35%;
+          left: 12%;
+          animation-delay: 1.2s;
         }
 
-        /* ハートのフローティングアニメーション */
-        .floating-heart {
-          position: absolute;
-          font-size: 1.3rem;
-          animation: floatHeart 3s ease-in-out infinite;
-          opacity: 0.7;
+        .sparkle-4 {
+          top: 45%;
+          right: 12%;
+          animation-delay: 1.8s;
+          font-size: 0.9rem;
         }
 
-        .heart-1 {
-          top: 15%;
-          left: 20%;
-          animation-delay: 0.5s;
-        }
-
-        .heart-2 {
-          top: 25%;
-          right: 25%;
-          animation-delay: 1.5s;
-          font-size: 1rem;
-        }
-
-        .heart-3 {
+        .sparkle-5 {
           bottom: 25%;
-          left: 15%;
-          animation-delay: 2.5s;
+          right: 20%;
+          animation-delay: 2.4s;
+          font-size: 1.1rem;
         }
 
-        @keyframes floatHeart {
+        @keyframes floatSparkle {
           0%, 100% {
-            transform: translateY(0) scale(1);
-            opacity: 0.7;
+            transform: scale(1);
+            opacity: 0.6;
           }
           50% {
-            transform: translateY(-15px) scale(1.15);
+            transform: scale(1.3);
             opacity: 1;
           }
         }
