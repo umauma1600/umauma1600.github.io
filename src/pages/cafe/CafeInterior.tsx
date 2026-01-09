@@ -242,28 +242,22 @@ export default function CafeInterior() {
           {/* メインアクション：メニューを見る */}
           <button
             onClick={goToMenu}
-            className="group relative w-full px-6 py-5 bg-gradient-to-r from-amber-100 via-orange-50 to-amber-100 hover:from-amber-50 hover:via-orange-100 hover:to-amber-50 text-amber-900 rounded-2xl shadow-[0_4px_20px_rgba(180,130,80,0.2)] hover:shadow-[0_8px_30px_rgba(180,130,80,0.3)] transition-all duration-300 hover:-translate-y-1 border-2 border-amber-300/70 overflow-hidden"
+            className="group relative w-full px-6 py-4 bg-amber-800 hover:bg-amber-700 text-amber-50 rounded-xl transition-all duration-300 hover:-translate-y-0.5"
           >
-            {/* 装飾 */}
-            <span className="absolute left-3 top-3 text-lg opacity-30">☕</span>
-            <span className="absolute right-3 bottom-3 text-lg opacity-30">
-              ☕
-            </span>
-            <span className="relative flex items-center justify-center gap-3">
-              <span className="w-10 h-10 flex items-center justify-center bg-amber-700 rounded-full text-amber-50 shadow-md group-hover:scale-110 transition-transform">
-                <svg
-                  width="20"
-                  height="20"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2.5"
-                >
-                  <path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20" />
-                </svg>
-              </span>
+            <span className="flex items-center justify-center gap-3">
+              <svg
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                className="group-hover:scale-105 transition-transform"
+              >
+                <path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20" />
+              </svg>
               <span
-                className="font-bold tracking-wide text-lg"
+                className="font-bold tracking-wide"
                 style={{ fontFamily: "Space Grotesk, sans-serif" }}
               >
                 メニューを見る
@@ -272,29 +266,25 @@ export default function CafeInterior() {
           </button>
 
           {/* サブアクション：2列グリッド */}
-          <div className="mt-4 grid grid-cols-2 gap-3">
+          <div className="mt-3 grid grid-cols-2 gap-3">
             {/* 君は誰？ */}
             <button
               onClick={askWhoAreYou}
-              className="group relative px-4 py-3 bg-gradient-to-br from-orange-50 to-amber-100 hover:from-amber-50 hover:to-orange-100 text-amber-700 rounded-xl shadow-[0_3px_12px_rgba(180,140,100,0.15)] hover:shadow-[0_5px_20px_rgba(180,140,100,0.25)] transition-all duration-300 hover:-translate-y-0.5 border border-amber-200/80 overflow-hidden"
+              className="group px-4 py-3 bg-amber-100 hover:bg-amber-200 text-amber-800 rounded-xl transition-all duration-300 hover:-translate-y-0.5"
             >
-              <span className="absolute -right-1 -top-1 text-sm opacity-30">
-                ?
-              </span>
-              <span className="relative flex flex-col items-center gap-2">
-                <span className="w-8 h-8 flex items-center justify-center bg-amber-600 rounded-full text-amber-50 shadow-sm group-hover:scale-110 transition-transform">
-                  <svg
-                    width="14"
-                    height="14"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2.5"
-                  >
-                    <circle cx="12" cy="8" r="5" />
-                    <path d="M20 21a8 8 0 0 0-16 0" />
-                  </svg>
-                </span>
+              <span className="flex flex-col items-center gap-1.5">
+                <svg
+                  width="18"
+                  height="18"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  className="group-hover:scale-105 transition-transform"
+                >
+                  <circle cx="12" cy="8" r="5" />
+                  <path d="M20 21a8 8 0 0 0-16 0" />
+                </svg>
                 <span
                   className="font-bold text-sm"
                   style={{ fontFamily: "Space Grotesk, sans-serif" }}
@@ -307,22 +297,18 @@ export default function CafeInterior() {
             {/* カフェの発見をシェア */}
             <button
               onClick={shareOnX}
-              className="group relative px-4 py-3 bg-gradient-to-br from-stone-50 to-stone-100 hover:from-stone-100 hover:to-stone-150 text-stone-600 rounded-xl shadow-[0_3px_12px_rgba(120,110,100,0.15)] hover:shadow-[0_5px_20px_rgba(120,110,100,0.25)] transition-all duration-300 hover:-translate-y-0.5 border border-stone-200/80 overflow-hidden"
+              className="group px-4 py-3 bg-stone-200 hover:bg-stone-300 text-stone-700 rounded-xl transition-all duration-300 hover:-translate-y-0.5"
             >
-              <span className="absolute -right-1 -top-1 text-sm opacity-30">
-                ☕
-              </span>
-              <span className="relative flex flex-col items-center gap-2">
-                <span className="w-8 h-8 flex items-center justify-center bg-stone-500 rounded-full text-stone-50 shadow-sm group-hover:scale-110 transition-transform">
-                  <svg
-                    width="12"
-                    height="12"
-                    viewBox="0 0 24 24"
-                    fill="currentColor"
-                  >
-                    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
-                  </svg>
-                </span>
+              <span className="flex flex-col items-center gap-1.5">
+                <svg
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                  className="group-hover:scale-105 transition-transform"
+                >
+                  <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+                </svg>
                 <span
                   className="font-bold text-xs leading-tight text-center"
                   style={{ fontFamily: "Space Grotesk, sans-serif" }}
