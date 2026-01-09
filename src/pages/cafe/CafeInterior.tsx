@@ -74,8 +74,8 @@ export default function CafeInterior() {
   // Xでシェア
   const shareOnX = () => {
     const text =
-      "Café ひみつの鍵にたどり着きました☕🔑\n謎解きとドリンクが楽しめる不思議なカフェ...";
-    const url = "https://umauma1600.github.io/cafe";
+      "「Café ひみつの鍵」にたどり着きました🔑 謎解きとドリンクが楽しめる不思議なカフェ...";
+    const url = "https://umauma1600.github.io";
     const shareUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(url)}`;
     window.open(shareUrl, "_blank", "noopener,noreferrer");
   };
