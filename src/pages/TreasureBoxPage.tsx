@@ -1211,45 +1211,66 @@ export default function TreasureBoxPage() {
 
       {/* クリアモーダル */}
       {showClearModal && (
-        <div className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 modal-show">
+        <div
+          className="fixed inset-0 backdrop-blur-sm z-50 flex items-center justify-center p-4 modal-show"
+          style={{
+            background:
+              "radial-gradient(ellipse at center, rgba(198, 156, 109, 0.3) 0%, rgba(0,0,0,0.7) 100%)",
+          }}
+        >
           {/* 背景の装飾 - キラキラ */}
           <div className="absolute inset-0 pointer-events-none overflow-hidden">
-            <div className="floating-sparkle sparkle-1">✨</div>
-            <div className="floating-sparkle sparkle-2">✦</div>
-            <div className="floating-sparkle sparkle-3">✨</div>
-            <div className="floating-sparkle sparkle-4">✦</div>
-            <div className="floating-sparkle sparkle-5">✨</div>
+            <div className="floating-sparkle sparkle-1">🌟</div>
+            <div className="floating-sparkle sparkle-2">✨</div>
+            <div className="floating-sparkle sparkle-3">⭐</div>
+            <div className="floating-sparkle sparkle-4">✨</div>
+            <div className="floating-sparkle sparkle-5">🌟</div>
+            <div className="floating-sparkle sparkle-6">✨</div>
+            <div className="floating-sparkle sparkle-7">⭐</div>
+            <div className="floating-sparkle sparkle-8">✨</div>
           </div>
 
           <div
-            className="rounded-2xl max-w-md w-full p-6 shadow-2xl text-center relative overflow-hidden"
+            className="rounded-2xl max-w-md w-full p-6 text-center relative overflow-hidden clear-modal-card"
             style={{
               background:
-                "linear-gradient(135deg, #faf8f5 0%, #fff8f0 50%, #faf8f5 100%)",
+                "linear-gradient(145deg, #fffcf7 0%, #fff9f0 30%, #fff5e6 70%, #fffcf7 100%)",
               border: "3px solid var(--color-accent)",
             }}
           >
+            {/* 紙吹雪エリア */}
+            <div
+              id="confettiContainer"
+              className="absolute inset-0 pointer-events-none overflow-hidden"
+            ></div>
+
             {/* 上部の装飾リボン */}
-            <div className="absolute -top-3 left-1/2 transform -translate-x-1/2">
+            <div className="absolute -top-3 left-1/2 transform -translate-x-1/2 z-20">
               <div
-                className="px-6 py-1.5 rounded-full text-sm font-bold shadow-lg ribbon-bounce"
+                className="px-8 py-2 rounded-full text-sm font-bold shadow-lg ribbon-bounce flex items-center gap-1"
                 style={{
                   background:
-                    "linear-gradient(135deg, #c69c6d 0%, #d4a574 50%, #c69c6d 100%)",
+                    "linear-gradient(135deg, #e8a54d 0%, #c69c6d 50%, #e8a54d 100%)",
                   color: "white",
+                  boxShadow: "0 4px 15px rgba(198, 156, 109, 0.5)",
                 }}
               >
-                🎉 CLEAR! 🎉
+                <span>🎊</span>
+                <span>CLEAR!</span>
+                <span>🎊</span>
               </div>
             </div>
 
-            <div className="relative z-10 pt-4">
+            <div className="relative z-10 pt-6">
               {/* キャラクター画像 */}
-              <div className="character-bounce mb-2">
+              <div className="character-bounce mb-3">
                 <img
                   src="/assets/images/yama-tahappy.png"
                   alt="やまーた"
-                  className="w-36 h-auto mx-auto drop-shadow-lg"
+                  className="w-40 h-auto mx-auto"
+                  style={{
+                    filter: "drop-shadow(0 8px 16px rgba(198, 156, 109, 0.3))",
+                  }}
                   draggable={false}
                 />
               </div>
@@ -1261,7 +1282,7 @@ export default function TreasureBoxPage() {
                   color: "var(--color-primary)",
                 }}
               >
-                おめでとう！
+                🎉 おめでとう！ 🎉
               </h2>
               <p
                 className="text-base mb-4"
@@ -1274,13 +1295,14 @@ export default function TreasureBoxPage() {
               <div
                 className="rounded-xl p-4 mb-5 relative overflow-hidden"
                 style={{
-                  background: "rgba(198, 156, 109, 0.1)",
-                  border: "2px dashed var(--color-accent)",
+                  background:
+                    "linear-gradient(135deg, rgba(232, 165, 77, 0.15) 0%, rgba(198, 156, 109, 0.1) 100%)",
+                  border: "2px solid rgba(198, 156, 109, 0.4)",
                 }}
               >
                 <div className="absolute top-1 right-2 text-lg">⏱️</div>
                 <div
-                  className="text-xs mb-1 font-medium"
+                  className="text-xs mb-1 font-semibold tracking-wide"
                   style={{ color: "var(--color-accent)" }}
                 >
                   クリアタイム
@@ -1304,13 +1326,16 @@ export default function TreasureBoxPage() {
                 <Link
                   to="/nazo"
                   className="block w-full px-6 py-3 text-white rounded-lg hover:opacity-90 transition-all font-medium shadow-md hover:shadow-lg"
-                  style={{ background: "var(--color-accent)" }}
+                  style={{
+                    background:
+                      "linear-gradient(135deg, #d4a574 0%, #c69c6d 100%)",
+                  }}
                 >
                   謎解き一覧に戻る
                 </Link>
                 <button
                   onClick={retry}
-                  className="w-full px-6 py-3 rounded-lg transition-all font-medium border-2"
+                  className="w-full px-6 py-3 rounded-lg transition-all font-medium border-2 hover:bg-amber-50"
                   style={{
                     color: "var(--color-text)",
                     borderColor: "var(--color-accent)",
@@ -1605,54 +1630,84 @@ export default function TreasureBoxPage() {
           }
         }
 
+        /* モーダルカードの光沢効果 */
+        .clear-modal-card {
+          box-shadow:
+            0 0 40px rgba(232, 165, 77, 0.3),
+            0 0 80px rgba(198, 156, 109, 0.2),
+            0 25px 50px rgba(0, 0, 0, 0.15);
+        }
+
         /* キラキラのフローティングアニメーション */
         .floating-sparkle {
           position: absolute;
-          font-size: 1.2rem;
+          font-size: 1.5rem;
           animation: floatSparkle 3s ease-in-out infinite;
-          color: #c69c6d;
         }
 
         .sparkle-1 {
-          top: 20%;
-          left: 15%;
+          top: 15%;
+          left: 10%;
           animation-delay: 0s;
+          font-size: 1.8rem;
         }
 
         .sparkle-2 {
-          top: 30%;
-          right: 18%;
-          animation-delay: 0.6s;
-          font-size: 1rem;
+          top: 25%;
+          right: 12%;
+          animation-delay: 0.4s;
+          font-size: 1.3rem;
         }
 
         .sparkle-3 {
-          bottom: 35%;
-          left: 12%;
-          animation-delay: 1.2s;
+          bottom: 40%;
+          left: 8%;
+          animation-delay: 0.8s;
+          font-size: 1.6rem;
         }
 
         .sparkle-4 {
-          top: 45%;
-          right: 12%;
-          animation-delay: 1.8s;
-          font-size: 0.9rem;
+          top: 50%;
+          right: 8%;
+          animation-delay: 1.2s;
+          font-size: 1.2rem;
         }
 
         .sparkle-5 {
-          bottom: 25%;
-          right: 20%;
-          animation-delay: 2.4s;
+          bottom: 20%;
+          left: 15%;
+          animation-delay: 1.6s;
+          font-size: 1.7rem;
+        }
+
+        .sparkle-6 {
+          top: 35%;
+          left: 5%;
+          animation-delay: 2s;
           font-size: 1.1rem;
+        }
+
+        .sparkle-7 {
+          bottom: 30%;
+          right: 15%;
+          animation-delay: 2.4s;
+          font-size: 1.4rem;
+        }
+
+        .sparkle-8 {
+          top: 18%;
+          right: 5%;
+          animation-delay: 2.8s;
+          font-size: 1rem;
         }
 
         @keyframes floatSparkle {
           0%, 100% {
-            transform: scale(1);
-            opacity: 0.6;
+            transform: scale(1) rotate(0deg);
+            opacity: 0.7;
           }
           50% {
-            transform: scale(1.3);
+            transform: scale(1.4) rotate(15deg);
             opacity: 1;
           }
         }
