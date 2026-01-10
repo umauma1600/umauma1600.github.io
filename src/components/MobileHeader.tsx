@@ -198,12 +198,12 @@ export default function MobileHeader({ activeSection }: MobileHeaderProps) {
     };
   }, [isDragging, checkKeyholeOverlap, closeMenu]);
 
-  // 扉開きアニメーション完了後にナビゲート
+  // ローディングアニメーション完了後にナビゲート
   useEffect(() => {
     if (isUnlocking) {
       const timer = setTimeout(() => {
         void navigate("/cafe");
-      }, 1200); // アニメーション時間に合わせる
+      }, 2000); // アニメーション時間に合わせる
       return () => {
         clearTimeout(timer);
       };
@@ -400,68 +400,74 @@ export default function MobileHeader({ activeSection }: MobileHeaderProps) {
         </div>
       )}
 
-      {/* 扉開きアニメーション */}
+      {/* 光のエフェクト＆ローディング画面 */}
       {isUnlocking && (
-        <div className="fixed inset-0 z-[3000] pointer-events-none overflow-hidden">
-          {/* 左の扉 */}
+        <div className="fixed inset-0 z-[3000] overflow-hidden">
+          {/* 中央から広がる光 */}
           <div
-            className="absolute top-0 left-0 w-1/2 h-full origin-left"
+            className="absolute inset-0"
             style={{
               background:
-                "linear-gradient(90deg, #3d2f23 0%, #5a4535 50%, #3d2f23 100%)",
-              boxShadow: "inset -20px 0 40px rgba(0,0,0,0.3)",
-              animation: "doorOpenLeft 1s ease-in-out forwards",
+                "radial-gradient(circle at center, rgba(251, 243, 219, 1) 0%, rgba(198, 156, 109, 0.3) 50%, transparent 70%)",
+              animation: "lightExpand 0.8s ease-out forwards",
             }}
-          >
-            {/* 扉の装飾 */}
-            <div className="absolute inset-4 border-2 border-[#c69c6d]/30 rounded-sm" />
-            <div className="absolute top-1/2 right-6 w-3 h-8 bg-[#c69c6d] rounded-full transform -translate-y-1/2" />
-          </div>
-          {/* 右の扉 */}
+          />
+          {/* 背景のフェードイン */}
           <div
-            className="absolute top-0 right-0 w-1/2 h-full origin-right"
+            className="absolute inset-0 bg-amber-50"
             style={{
-              background:
-                "linear-gradient(270deg, #3d2f23 0%, #5a4535 50%, #3d2f23 100%)",
-              boxShadow: "inset 20px 0 40px rgba(0,0,0,0.3)",
-              animation: "doorOpenRight 1s ease-in-out forwards",
-            }}
-          >
-            {/* 扉の装飾 */}
-            <div className="absolute inset-4 border-2 border-[#c69c6d]/30 rounded-sm" />
-            <div className="absolute top-1/2 left-6 w-3 h-8 bg-[#c69c6d] rounded-full transform -translate-y-1/2" />
-          </div>
-          {/* 光のエフェクト */}
-          <div
-            className="absolute inset-0 bg-[#faf8f5]"
-            style={{
-              animation: "fadeIn 0.8s ease-in-out 0.4s forwards",
+              animation: "bgFadeIn 0.6s ease-out 0.3s forwards",
               opacity: 0,
             }}
           />
+          {/* ウェルカムメッセージ */}
+          <div
+            className="absolute inset-0 flex items-center justify-center"
+            style={{
+              animation: "contentFadeIn 0.5s ease-out 0.6s forwards",
+              opacity: 0,
+            }}
+          >
+            <div className="text-center">
+              <p className="text-amber-800 text-lg mb-2">いらっしゃいませ</p>
+              <h2
+                className="text-2xl font-bold text-amber-900"
+                style={{ fontFamily: "Space Grotesk, sans-serif" }}
+              >
+                Café ひみつの鍵へようこそ
+              </h2>
+              <div className="mt-4 flex justify-center">
+                <div className="w-8 h-8 border-4 border-amber-600 border-t-transparent rounded-full animate-spin" />
+              </div>
+            </div>
+          </div>
           <style>{`
-            @keyframes doorOpenLeft {
+            @keyframes lightExpand {
               0% {
-                transform: perspective(1200px) rotateY(0deg);
+                transform: scale(0);
+                opacity: 1;
               }
               100% {
-                transform: perspective(1200px) rotateY(-105deg);
+                transform: scale(3);
+                opacity: 0.8;
               }
             }
-            @keyframes doorOpenRight {
-              0% {
-                transform: perspective(1200px) rotateY(0deg);
-              }
-              100% {
-                transform: perspective(1200px) rotateY(105deg);
-              }
-            }
-            @keyframes fadeIn {
+            @keyframes bgFadeIn {
               0% {
                 opacity: 0;
               }
               100% {
                 opacity: 1;
+              }
+            }
+            @keyframes contentFadeIn {
+              0% {
+                opacity: 0;
+                transform: translateY(10px);
+              }
+              100% {
+                opacity: 1;
+                transform: translateY(0);
               }
             }
           `}</style>
