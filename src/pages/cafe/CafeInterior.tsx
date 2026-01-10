@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
 export default function CafeInterior() {
   const navigate = useNavigate();
@@ -93,7 +93,27 @@ export default function CafeInterior() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-[#faf8f5] via-[#f5efe6] to-[#faf8f5] relative overflow-hidden">
+    <div className="min-h-screen bg-gradient-to-b from-[#faf8f5] via-[#f5efe6] to-[#faf8f5] flex flex-col relative overflow-hidden">
+      {/* ヘッダー */}
+      <header className="sticky top-0 bg-white/90 backdrop-blur-md shadow-sm z-40">
+        <div className="max-w-4xl mx-auto px-4 py-4 flex items-center justify-between">
+          <Link
+            to="/"
+            className="text-amber-800 hover:text-amber-600 transition-colors flex items-center gap-2"
+          >
+            <span>←</span>
+            <span className="text-sm">トップに戻る</span>
+          </Link>
+          <h1
+            className="text-xl font-bold text-amber-900"
+            style={{ fontFamily: "Space Grotesk, sans-serif" }}
+          >
+            NAZO CAFE
+          </h1>
+          <div className="w-20" /> {/* スペーサー */}
+        </div>
+      </header>
+
       {/* 背景装飾：店内の雰囲気 */}
       <div className="absolute inset-0 pointer-events-none">
         {/* 窓からの光 */}
@@ -164,7 +184,7 @@ export default function CafeInterior() {
       </div>
 
       {/* メインコンテンツ */}
-      <div className="relative z-10 min-h-screen flex flex-col items-center justify-center px-4 py-16">
+      <div className="relative z-10 flex-1 flex flex-col items-center justify-center px-4 py-16">
         {/* カフェ名 */}
         <div className="mb-8 text-center">
           <p className="text-amber-600/80 text-xs tracking-[0.3em] mb-1">
@@ -351,8 +371,14 @@ export default function CafeInterior() {
         </p>
       </div>
 
-      {/* カウンター風の装飾（画面下部） */}
-      <div className="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-amber-900/20 to-transparent pointer-events-none" />
+      {/* フッター */}
+      <footer className="mt-auto py-6 bg-amber-900/10">
+        <div className="max-w-4xl mx-auto px-4 text-center">
+          <p className="text-amber-600/60 text-xs">
+            © Café ひみつの鍵 - やまーたの謎解きアトリエ
+          </p>
+        </div>
+      </footer>
 
       {/* スタイル */}
       <style>{`
