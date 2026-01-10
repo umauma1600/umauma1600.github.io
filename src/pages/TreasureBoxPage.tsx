@@ -535,7 +535,7 @@ export default function TreasureBoxPage() {
             <div className="table-container">
               {/* テーブル画像 */}
               <img
-                src="/assets/treasure-box/table2.png"
+                src="/assets/treasure-box/table2.webp"
                 alt="テーブル"
                 className="table-image"
                 draggable={false}
@@ -549,7 +549,7 @@ export default function TreasureBoxPage() {
                 }}
               >
                 <img
-                  src="/assets/treasure-box/card1.png"
+                  src="/assets/treasure-box/card1.webp"
                   alt="封筒"
                   className="w-18 md:w-24 h-auto"
                   style={{
@@ -568,7 +568,7 @@ export default function TreasureBoxPage() {
                 }}
               >
                 <img
-                  src="/assets/treasure-box/memo1.png"
+                  src="/assets/treasure-box/memo1.webp"
                   alt="メモ"
                   className="w-18 md:w-24 h-auto"
                   style={{
@@ -591,7 +591,7 @@ export default function TreasureBoxPage() {
                 >
                   {/* 宝箱画像 */}
                   <img
-                    src="/assets/treasure-box/treasure-box2.png"
+                    src="/assets/treasure-box/treasure-box2.webp"
                     alt="宝箱"
                     className="treasure-box-image w-32 md:w-40 max-w-full h-auto select-none"
                     style={{
@@ -618,7 +618,7 @@ export default function TreasureBoxPage() {
                       }}
                     >
                       <img
-                        src="/assets/treasure-box/dial-lock2.png"
+                        src="/assets/treasure-box/dial-lock2.webp"
                         alt="ダイヤル錠"
                         className="w-full h-auto"
                         draggable={false}
@@ -640,7 +640,7 @@ export default function TreasureBoxPage() {
                     }}
                   >
                     <img
-                      src="/assets/treasure-box/kami-Photoroom.png"
+                      src="/assets/treasure-box/kami-Photoroom.webp"
                       alt="落ちてきた紙"
                       className="w-10 md:w-12 h-auto"
                       style={{
@@ -826,7 +826,7 @@ export default function TreasureBoxPage() {
                     どうやら宝箱の底が抜けていたようだ
                   </div>
                   <img
-                    src="/assets/treasure-box/kami-Photoroom.png"
+                    src="/assets/treasure-box/kami-Photoroom.webp"
                     alt="折りたたまれた紙"
                     className="max-w-full h-auto mx-auto mb-4"
                     draggable={false}
@@ -849,7 +849,7 @@ export default function TreasureBoxPage() {
               <div className="cursor-pointer" onClick={handlePaperStep2Click}>
                 <div className="w-full flex items-center justify-center p-6">
                   <img
-                    src="/assets/treasure-box/hirakutotyu-Photoroom.png"
+                    src="/assets/treasure-box/hirakutotyu-Photoroom.webp"
                     alt="開きかけの紙"
                     className="max-w-full h-auto mx-auto paper-opening-animation"
                     draggable={false}
@@ -863,7 +863,7 @@ export default function TreasureBoxPage() {
               <div className="cursor-pointer" onClick={handlePaperStep3Click}>
                 <div className="w-full flex items-center justify-center p-6 relative">
                   <img
-                    src="/assets/treasure-box/kamikami-Photoroom.png"
+                    src="/assets/treasure-box/kamikami-Photoroom.webp"
                     alt="開いた紙"
                     className="max-w-full h-auto mx-auto"
                     draggable={false}
@@ -1265,7 +1265,7 @@ export default function TreasureBoxPage() {
               {/* キャラクター画像 */}
               <div className="character-bounce mb-3">
                 <img
-                  src="/assets/images/yama-tahappy.png"
+                  src="/assets/images/yama-tahappy.webp"
                   alt="やまーた"
                   className="w-40 h-auto mx-auto"
                   style={{

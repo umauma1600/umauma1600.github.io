@@ -4,7 +4,7 @@ export default function HeroSection() {
       id="home"
       className="min-h-[55vh] md:min-h-[55vh] sm:min-h-[45vh] flex items-center relative overflow-hidden"
       style={{
-        backgroundImage: "url('/assets/images/main-image.png')",
+        backgroundImage: "url('/assets/images/main-image.webp')",
         backgroundSize: "cover",
         backgroundPosition: "center",
         backgroundRepeat: "no-repeat",

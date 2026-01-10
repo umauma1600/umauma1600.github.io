@@ -80,7 +80,7 @@ export default function ContactPage() {
                 className="social-link"
               >
                 <img
-                  src="/assets/images/logo-black.png"
+                  src="/assets/images/logo-black.webp"
                   alt="X"
                   className="social-icon"
                 />
