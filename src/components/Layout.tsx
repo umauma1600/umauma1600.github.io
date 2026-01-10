@@ -6,6 +6,7 @@ import MobileHeader from "./MobileHeader";
 export default function Layout() {
   const location = useLocation();
   const [activeSection, setActiveSection] = useState("");
+  const [showSpeech, setShowSpeech] = useState(false);
 
   useEffect(() => {
     // ページが変わったときにトップにスクロール
@@ -46,6 +47,15 @@ export default function Layout() {
     }
   }, [location]);
 
+  const handleYamataClick = () => {
+    if (!showSpeech) {
+      setShowSpeech(true);
+      setTimeout(() => {
+        setShowSpeech(false);
+      }, 3000);
+    }
+  };
+
   return (
     <>
       {/* サイドバー（デスクトップ） */}
@@ -67,15 +77,37 @@ export default function Layout() {
               © やまーたの謎解きアトリエ
             </p>
             {/* 隠しやまーた */}
-            <img
-              src="/assets/images/yama-taosuwari.png"
-              alt=""
-              className="absolute bottom-[-8px] right-3 w-7 h-auto opacity-40 pointer-events-none"
-              aria-hidden="true"
-            />
+            <button
+              onClick={handleYamataClick}
+              className="absolute bottom-[-8px] right-3 w-7 h-auto opacity-40 hover:opacity-60 transition-opacity cursor-pointer bg-transparent border-none p-0"
+              aria-label="やまーた"
+            >
+              <img
+                src="/assets/images/yama-taosuwari.png"
+                alt=""
+                className="w-full h-auto"
+              />
+            </button>
+            {/* セリフ吹き出し */}
+            {showSpeech && (
+              <div className="absolute bottom-8 right-0 bg-white/95 backdrop-blur-sm px-3 py-2 rounded-lg shadow-lg text-xs text-[var(--color-primary)] whitespace-nowrap animate-fade-in border border-[var(--color-accent)]/20">
+                ひみつのカフェがどこかにあるみたい…？
+                <div className="absolute bottom-[-6px] right-4 w-3 h-3 bg-white/95 border-r border-b border-[var(--color-accent)]/20 rotate-45" />
+              </div>
+            )}
           </div>
         </footer>
       </main>
+
+      <style>{`
+        @keyframes fadeIn {
+          from { opacity: 0; transform: translateY(4px); }
+          to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-fade-in {
+          animation: fadeIn 0.3s ease-out forwards;
+        }
+      `}</style>
     </>
   );
 }
