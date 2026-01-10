@@ -91,8 +91,27 @@ export default function ContactPage() {
         </div>
       </section>
 
+      {/* 隠しやまーた */}
+      <img
+        src="/assets/images/yama-taosuwari.png"
+        alt=""
+        className="hidden-yamata"
+        aria-hidden="true"
+      />
+
       {/* スタイル */}
       <style>{`
+        .hidden-yamata {
+          position: fixed;
+          bottom: 12px;
+          right: 12px;
+          width: 28px;
+          height: auto;
+          opacity: 0.4;
+          pointer-events: none;
+          z-index: 10;
+        }
+
         .content-wrapper {
           max-width: 600px;
           margin: 0 auto;
