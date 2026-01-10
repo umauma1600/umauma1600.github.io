@@ -231,7 +231,7 @@ export default function CafeInterior() {
               {/* タップ誘導テキスト */}
               {dialogueIndex < dialogues.length - 1 && (
                 <p className="text-center text-amber-500/60 text-xs mt-2 animate-pulse">
-                  タップして続きを読む
+                  吹き出しをタップして続きを読む
                 </p>
               )}
             </div>
