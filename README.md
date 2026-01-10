@@ -36,10 +36,11 @@
 
 ## 🛠️ 技術スタック
 
-- HTML5
-- Tailwind CSS (CDN)
-- JavaScript (ES6+)
-- Google Fonts (Space Grotesk, Inter)
+- React 19 + TypeScript 5.6
+- Vite 6（ビルドツール）
+- Tailwind CSS 4（Viteプラグイン経由）
+- React Router DOM 7（クライアントサイドルーティング）
+- Google Fonts（Space Grotesk, Inter）
 - GitHub Pages
 
 ## 🎨 デザイン
@@ -55,4 +56,4 @@
 
 ---
 
-© 2025 やまーたの謎解きアトリエ. All rights reserved.
+© 2026 やまーたの謎解きアトリエ. All rights reserved.

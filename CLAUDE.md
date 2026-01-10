@@ -81,6 +81,7 @@ umauma1600.github.io/
 │   ├── index.css                   # グローバルスタイル（Tailwind CSS）
 │   ├── components/                 # 再利用可能なコンポーネント
 │   ├── pages/                      # ページコンポーネント
+│   │   └── cafe/                   # カフェ関連ページ（CafeInterior.tsx, CafeMenu.tsx）
 │   ├── hooks/                      # カスタムフック
 │   ├── utils/                      # ユーティリティ関数
 │   └── test/
@@ -88,9 +89,9 @@ umauma1600.github.io/
 │
 ├── public/                         # 静的ファイル（ビルド時にdist/にコピー）
 │   └── assets/                     # 静的アセット
-│       ├── images/                 # 画像ファイル（main-image.png等）
+│       ├── images/                 # 画像ファイル（webp形式）
 │       ├── treasure-box/           # 逆転の宝箱のアセット
-│       └── downloads/              # ダウンロードコンテンツ（PDF等）
+│       └── yama-ta.webp            # やまーたのマスコット画像
 │
 ├── docs/                           # プロジェクトドキュメント
 │   ├── SPEC.md                     # 逆転の宝箱 仕様書
@@ -329,6 +330,7 @@ umauma1600.github.io/
 ### コンテンツ状況
 - **謎解き**: 「逆転の宝箱」公開中
 - **マダミス**: 準備中
+- **カフェ**: 「Café ひみつの鍵」公開中（隠し要素としてサイト内に存在）
 
 ### 更新頻度
 - 不定期
@@ -346,6 +348,6 @@ umauma1600.github.io/
 
 ---
 
-**最終更新日**: 2026-01-07
+**最終更新日**: 2026-01-10
 **作成者**: Claude AI
 **サイト名**: やまーたの謎解きアトリエ
