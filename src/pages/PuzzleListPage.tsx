@@ -99,9 +99,10 @@ export default function PuzzleListPage() {
                 <div className="artwork-shine" />
                 <div className="artwork-image">
                   <img
-                    src="/assets/images/treasure-box-thumbnail.jpg"
+                    src="/assets/images/treasure-box-thumbnail.webp"
                     alt="逆転の宝箱"
                     className="w-full h-full object-cover"
+                    loading="lazy"
                   />
                   <div className="sparkles">
                     <span className="sparkle sparkle-1">✦</span>

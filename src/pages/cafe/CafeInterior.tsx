@@ -240,7 +240,7 @@ export default function CafeInterior() {
           {/* やまーた画像 */}
           <div className="relative">
             <img
-              src="/assets/yama-ta.png"
+              src="/assets/yama-ta.webp"
               alt="やまーた"
               className="w-48 h-48 md:w-56 md:h-56 object-contain drop-shadow-lg"
               style={{

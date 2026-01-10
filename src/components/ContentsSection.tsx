@@ -131,9 +131,10 @@ export default function ContentsSection() {
               <div className="artwork-shine" />
               <div className="artwork-image">
                 <img
-                  src="/assets/images/treasure-box-thumbnail.jpg"
+                  src="/assets/images/treasure-box-thumbnail.webp"
                   alt="逆転の宝箱"
                   className="w-full h-full object-cover"
+                  loading="lazy"
                 />
                 <div className="sparkles">
                   <span className="sparkle sparkle-1">✦</span>
@@ -217,9 +218,10 @@ export default function ContentsSection() {
               <div className="artwork-shine" />
               <div className="artwork-image">
                 <img
-                  src="/assets/images/kemurinomukoude.png"
+                  src="/assets/images/kemurinomukoude.webp"
                   alt="煙の向こうで"
                   className="w-full h-full object-cover"
+                  loading="lazy"
                 />
                 <div className="sparkles sparkles-madamis">
                   <span className="sparkle sparkle-1">✦</span>

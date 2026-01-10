@@ -111,9 +111,10 @@ export default function MadamisListPage() {
                 <div className="artwork-shine" />
                 <div className="artwork-image">
                   <img
-                    src="/assets/images/kemurinomukoude.png"
+                    src="/assets/images/kemurinomukoude.webp"
                     alt="煙の向こうで"
                     className="w-full h-full object-cover"
+                    loading="lazy"
                   />
                   <div className="sparkles">
                     <span className="sparkle sparkle-1">✦</span>
