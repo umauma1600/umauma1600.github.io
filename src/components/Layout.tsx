@@ -55,13 +55,13 @@ export default function Layout() {
       <MobileHeader activeSection={activeSection} />
 
       {/* メインコンテンツエリア */}
-      <main className="md:ml-[280px] min-h-screen md:pt-0 pt-[70px] flex flex-col">
+      <main className="md:ml-[280px] min-h-screen md:pt-0 pt-[70px] flex flex-col bg-[var(--color-bg)]">
         <div className="flex-1">
           <Outlet />
         </div>
 
         {/* フッター */}
-        <footer className="mt-8 py-6 bg-[var(--color-primary)]/5">
+        <footer className="py-6 bg-[var(--color-primary)]/5">
           <div className="relative max-w-4xl mx-auto px-4 text-center">
             <p className="text-[var(--color-primary)]/50 text-xs">
               © やまーたの謎解きアトリエ
