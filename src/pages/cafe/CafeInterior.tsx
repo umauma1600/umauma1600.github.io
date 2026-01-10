@@ -200,10 +200,43 @@ export default function CafeInterior() {
 
         {/* やまーた（看板娘）と吹き出し */}
         <div
-          className={`relative flex flex-col md:flex-row items-center gap-4 transition-all duration-700 ease-out ${
+          className={`relative flex flex-col items-center gap-4 transition-all duration-700 ease-out ${
             showMascot ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
           }`}
         >
+          {/* 吹き出し（やまーたの上に配置） */}
+          {showDialogue && (
+            <div
+              className="relative transition-all duration-500 opacity-100 scale-100 cursor-pointer"
+              onClick={advanceDialogue}
+            >
+              <div className="relative bg-white px-6 py-4 rounded-2xl shadow-lg border-2 border-amber-200 hover:bg-amber-50 transition-colors w-[280px] md:w-[320px]">
+                <p className="text-amber-900 text-center font-medium text-base leading-relaxed">
+                  {dialogues[dialogueIndex]}
+                </p>
+                {/* 吹き出しの尻尾（下向き：やまーたを指す） */}
+                <div className="absolute -bottom-2 left-1/2 -translate-x-1/2">
+                  <div className="w-0 h-0 border-l-8 border-r-8 border-t-8 border-l-transparent border-r-transparent border-t-white" />
+                </div>
+                <div className="absolute -bottom-2.5 left-1/2 -translate-x-1/2 -z-10">
+                  <div className="w-0 h-0 border-l-10 border-r-10 border-t-10 border-l-transparent border-r-transparent border-t-amber-200" />
+                </div>
+                {/* クリックヒント */}
+                {dialogueIndex < dialogues.length - 1 && (
+                  <span className="absolute bottom-2 right-3 text-amber-400 text-xs animate-pulse">
+                    ▼
+                  </span>
+                )}
+              </div>
+              {/* タップ誘導テキスト */}
+              {dialogueIndex < dialogues.length - 1 && (
+                <p className="text-center text-amber-500/60 text-xs mt-2 animate-pulse">
+                  吹き出しをタップして続きを読む
+                </p>
+              )}
+            </div>
+          )}
+
           {/* やまーた画像 */}
           <div className="relative">
             <img
@@ -217,40 +250,6 @@ export default function CafeInterior() {
               }}
             />
           </div>
-
-          {/* 吹き出し */}
-          {showDialogue && (
-            <div className="relative transition-all duration-500 opacity-100 scale-100 md:absolute md:left-full md:top-1/2 md:-translate-y-1/2 md:ml-2">
-              <div
-                className="relative bg-white px-5 py-3 rounded-2xl shadow-lg border-2 border-amber-200 cursor-pointer hover:bg-amber-50 transition-colors min-w-[180px] max-w-[220px]"
-                onClick={advanceDialogue}
-              >
-                <p className="text-amber-900 text-center font-medium text-sm">
-                  {dialogues[dialogueIndex]}
-                </p>
-                {/* 吹き出しの尻尾（モバイル：上向き、デスクトップ：左向き） */}
-                <div className="hidden md:block absolute top-1/2 -translate-y-1/2 -left-2">
-                  <div className="w-0 h-0 border-t-8 border-b-8 border-r-8 border-t-transparent border-b-transparent border-r-white" />
-                </div>
-                <div className="hidden md:block absolute top-1/2 -translate-y-1/2 -left-2.5">
-                  <div className="w-0 h-0 border-t-10 border-b-10 border-r-10 border-t-transparent border-b-transparent border-r-amber-200 -z-10" />
-                </div>
-                {/* モバイル用の尻尾（上向き） */}
-                <div className="md:hidden absolute -top-2 left-1/2 -translate-x-1/2">
-                  <div className="w-0 h-0 border-l-8 border-r-8 border-b-8 border-l-transparent border-r-transparent border-b-white" />
-                </div>
-                <div className="md:hidden absolute -top-2.5 left-1/2 -translate-x-1/2">
-                  <div className="w-0 h-0 border-l-10 border-r-10 border-b-10 border-l-transparent border-r-transparent border-b-amber-200 -z-10" />
-                </div>
-                {/* クリックヒント */}
-                {dialogueIndex < dialogues.length - 1 && (
-                  <span className="absolute bottom-1 right-2 text-amber-400 text-xs animate-pulse">
-                    ▼
-                  </span>
-                )}
-              </div>
-            </div>
-          )}
         </div>
 
         {/* 選択肢ボタン */}
