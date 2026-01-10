@@ -252,7 +252,7 @@ export default function MobileHeader({ activeSection }: MobileHeaderProps) {
 
       {/* オーバーレイ */}
       <div
-        className={`md:hidden fixed top-0 left-0 right-0 bottom-0 bg-black/50 z-[999] transition-all duration-300 ${
+        className={`md:hidden fixed top-0 left-0 right-0 bottom-0 bg-black/50 z-[999] transition-all duration-300 cursor-pointer ${
           isMenuOpen ? "opacity-100 visible" : "opacity-0 invisible"
         }`}
         onClick={closeMenu}

@@ -22,6 +22,22 @@ body {
   padding: 0;
 }
 
+/* クリック可能な要素のカーソル */
+a,
+button,
+[role="button"],
+input[type="submit"],
+input[type="button"] {
+  cursor: pointer;
+}
+
+/* 無効化された要素 */
+button:disabled,
+input:disabled,
+[aria-disabled="true"] {
+  cursor: not-allowed;
+}
+
 h1,
 h2,
 h3,
