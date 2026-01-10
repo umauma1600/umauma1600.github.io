@@ -55,8 +55,26 @@ export default function Layout() {
       <MobileHeader activeSection={activeSection} />
 
       {/* メインコンテンツエリア */}
-      <main className="md:ml-[280px] min-h-screen md:pt-0 pt-[70px]">
-        <Outlet />
+      <main className="md:ml-[280px] min-h-screen md:pt-0 pt-[70px] flex flex-col">
+        <div className="flex-1">
+          <Outlet />
+        </div>
+
+        {/* フッター */}
+        <footer className="mt-8 py-6 bg-[var(--color-primary)]/5">
+          <div className="relative max-w-4xl mx-auto px-4 text-center">
+            <p className="text-[var(--color-primary)]/50 text-xs">
+              © やまーたの謎解きアトリエ
+            </p>
+            {/* 隠しやまーた */}
+            <img
+              src="/assets/images/yama-taosuwari.png"
+              alt=""
+              className="absolute bottom-[-8px] right-3 w-7 h-auto opacity-40 pointer-events-none"
+              aria-hidden="true"
+            />
+          </div>
+        </footer>
       </main>
     </>
   );
