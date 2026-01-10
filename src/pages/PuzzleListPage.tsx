@@ -227,6 +227,7 @@ export default function PuzzleListPage() {
           display: block;
           text-decoration: none;
           transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+          cursor: pointer;
         }
 
         .artwork-card:hover {
