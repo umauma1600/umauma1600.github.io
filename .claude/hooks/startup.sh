@@ -1,10 +1,13 @@
 #!/bin/bash
 
 # SessionStartフックで実行されるスクリプト
-# npm依存関係をインストール
+# npm依存関係とPlaywrightブラウザをインストール
 
 echo "📦 Installing npm dependencies..."
 npm install
+
+echo "🎭 Installing Playwright Chromium browser..."
+npx playwright install chromium
 
 echo "✅ Startup complete!"
 exit 0
