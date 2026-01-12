@@ -2,18 +2,10 @@
   "mcpServers": {
     "playwright": {
       "command": "npx",
-      "args": ["@playwright/mcp@latest", "--browser", "chromium"]
-    },
-    "chrome-devtools": {
-      "command": "npx",
-      "args": [
-        "-y",
-        "chrome-devtools-mcp@latest",
-        "--headless",
-        "--chromeArg=--no-sandbox",
-        "--chromeArg=--disable-setuid-sandbox",
-        "--chromeArg=--disable-gpu"
-      ]
+      "args": ["@playwright/mcp@latest", "--browser", "firefox"],
+      "env": {
+        "HOME": "/tmp/playwright-home"
+      }
     }
   }
 }
