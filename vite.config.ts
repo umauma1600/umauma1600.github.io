@@ -14,6 +14,7 @@ function copyIndexToRoutes(): Plugin {
     "contact",
     "cafe",
     "cafe/menu",
+    "cafe/menu/latte",
   ];
 
   return {

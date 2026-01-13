@@ -10,6 +10,7 @@ const ContactPage = lazy(() => import("./pages/ContactPage"));
 const TreasureBoxPage = lazy(() => import("./pages/TreasureBoxPage"));
 const CafeInterior = lazy(() => import("./pages/cafe/CafeInterior"));
 const CafeMenu = lazy(() => import("./pages/cafe/CafeMenu"));
+const LattePuzzle = lazy(() => import("./pages/cafe/LattePuzzle"));
 
 // ローディングコンポーネント
 function PageLoader() {
@@ -39,6 +40,7 @@ function App() {
           {/* カフェ（専用レイアウト） */}
           <Route path="cafe" element={<CafeInterior />} />
           <Route path="cafe/menu" element={<CafeMenu />} />
+          <Route path="cafe/menu/latte" element={<LattePuzzle />} />
         </Routes>
       </Suspense>
     </Router>
