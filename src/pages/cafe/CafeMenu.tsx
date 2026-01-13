@@ -30,7 +30,8 @@ const menuItems: MenuItem[] = [
     description: "まろやかな味わい。少し考える謎。",
     difficulty: 2,
     category: "drink",
-    available: false,
+    available: true,
+    path: "/cafe/menu/latte",
   },
   {
     id: "espresso",
