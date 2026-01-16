@@ -145,14 +145,6 @@ export default function LattePuzzle() {
             )}
           </div>
         )}
-
-        {/* ヒント */}
-        <div className="mt-8 p-4 bg-amber-50 border border-amber-200 rounded-lg">
-          <p className="text-amber-700 text-sm text-center">
-            <span className="font-bold">ヒント：</span>
-            上の例を参考に、カフェラテが何になるか考えてみましょう。
-          </p>
-        </div>
       </main>
     </div>
   );
