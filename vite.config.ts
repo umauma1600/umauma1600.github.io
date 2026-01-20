@@ -10,6 +10,7 @@ function copyIndexToRoutes(): Plugin {
   const routes = [
     "nazo",
     "nazo/treasure-box",
+    "nazo/escape",
     "madamis",
     "contact",
     "cafe",

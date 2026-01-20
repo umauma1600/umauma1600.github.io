@@ -8,6 +8,7 @@ const PuzzleListPage = lazy(() => import("./pages/PuzzleListPage"));
 const MadamisListPage = lazy(() => import("./pages/MadamisListPage"));
 const ContactPage = lazy(() => import("./pages/ContactPage"));
 const TreasureBoxPage = lazy(() => import("./pages/TreasureBoxPage"));
+const EscapeGamePage = lazy(() => import("./pages/escape/EscapeGamePage"));
 const CafeInterior = lazy(() => import("./pages/cafe/CafeInterior"));
 const CafeMenu = lazy(() => import("./pages/cafe/CafeMenu"));
 const LattePuzzle = lazy(() => import("./pages/cafe/LattePuzzle"));
@@ -37,6 +38,7 @@ function App() {
           </Route>
           {/* 謎解きコンテンツ（専用レイアウト） */}
           <Route path="nazo/treasure-box" element={<TreasureBoxPage />} />
+          <Route path="nazo/escape" element={<EscapeGamePage />} />
           {/* カフェ（専用レイアウト） */}
           <Route path="cafe" element={<CafeInterior />} />
           <Route path="cafe/menu" element={<CafeMenu />} />
