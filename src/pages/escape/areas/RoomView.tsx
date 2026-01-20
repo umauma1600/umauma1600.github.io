@@ -1,4 +1,21 @@
+import { useState } from "react";
 import { useGame } from "../GameContext";
+import type { AreaType } from "../types";
+
+// 各エリアの説明テキスト
+const areaDescriptions: Record<AreaType | "room", string> = {
+  room: "気になる場所をタップして調べよう",
+  tank: "壁際に置かれた水槽。魚が泳いでいる",
+  kitchen: "キッチン。コンロとシンクがある",
+  door: "重厚な木製のドア。鍵がかかっている",
+  fireplace: "暖炉。炎が燃えていて暖かい",
+  table: "部屋の中央にあるテーブル",
+  statue: "石でできた像。誰かを象っているようだ",
+  shelf: "本や小物が並んだ棚",
+  ceiling: "天井のシャンデリア。キラキラ輝いている",
+  lower: "下の階への階段",
+  upper: "上の階への階段",
+};
 
 // 水槽のSVGアイコン
 function TankIcon() {
@@ -236,23 +253,24 @@ function CeilingIcon() {
 
 export default function RoomView() {
   const { state, changeArea } = useGame();
+  const [hoveredArea, setHoveredArea] = useState<AreaType | "room">("room");
 
   return (
     <div className="flex flex-col items-center gap-4">
-      {/* 説明テキスト */}
-      <div className="text-center">
-        <p className="text-gray-400 text-sm">
-          部屋を探索してください。各エリアをタップすると詳しく調べられます。
-        </p>
-        {state.flags.lowerFloorAccessible && (
-          <p className="text-green-400 text-sm mt-2">
-            ✓ 下の階への扉が開いています
-          </p>
-        )}
-        {state.flags.upperFloorAccessible && (
-          <p className="text-yellow-400 text-sm mt-2">✓ 上の階に行けます</p>
-        )}
-      </div>
+      {/* フロア移動ステータス */}
+      {(state.flags.lowerFloorAccessible ||
+        state.flags.upperFloorAccessible) && (
+        <div className="text-center">
+          {state.flags.lowerFloorAccessible && (
+            <p className="text-green-400 text-sm">
+              ✓ 下の階への扉が開いています
+            </p>
+          )}
+          {state.flags.upperFloorAccessible && (
+            <p className="text-yellow-400 text-sm">✓ 上の階に行けます</p>
+          )}
+        </div>
+      )}
 
       {/* 部屋のビジュアル */}
       <div className="relative w-full max-w-md aspect-square overflow-hidden rounded-xl shadow-2xl">
@@ -303,6 +321,12 @@ export default function RoomView() {
           onClick={() => {
             changeArea("ceiling");
           }}
+          onMouseEnter={() => {
+            setHoveredArea("ceiling");
+          }}
+          onMouseLeave={() => {
+            setHoveredArea("room");
+          }}
           className="absolute top-2 left-1/2 -translate-x-1/2 w-20 h-12 hover:scale-110 transition-transform duration-200 drop-shadow-lg z-10 cursor-pointer"
           title="天井を調べる"
         >
@@ -313,6 +337,12 @@ export default function RoomView() {
         <button
           onClick={() => {
             changeArea("tank");
+          }}
+          onMouseEnter={() => {
+            setHoveredArea("tank");
+          }}
+          onMouseLeave={() => {
+            setHoveredArea("room");
           }}
           className="absolute top-[15%] left-[5%] w-24 h-16 hover:scale-110 transition-transform duration-200 drop-shadow-lg cursor-pointer"
           title="水槽を調べる"
@@ -325,6 +355,12 @@ export default function RoomView() {
           onClick={() => {
             changeArea("kitchen");
           }}
+          onMouseEnter={() => {
+            setHoveredArea("kitchen");
+          }}
+          onMouseLeave={() => {
+            setHoveredArea("room");
+          }}
           className="absolute top-[12%] right-[3%] w-32 h-20 hover:scale-110 transition-transform duration-200 drop-shadow-lg cursor-pointer"
           title="キッチンを調べる"
         >
@@ -335,6 +371,12 @@ export default function RoomView() {
         <button
           onClick={() => {
             changeArea("door");
+          }}
+          onMouseEnter={() => {
+            setHoveredArea("door");
+          }}
+          onMouseLeave={() => {
+            setHoveredArea("room");
           }}
           className="absolute top-[38%] left-[2%] w-14 h-24 hover:scale-110 transition-transform duration-200 drop-shadow-xl cursor-pointer"
           title="ドアを調べる"
@@ -347,6 +389,12 @@ export default function RoomView() {
           onClick={() => {
             changeArea("fireplace");
           }}
+          onMouseEnter={() => {
+            setHoveredArea("fireplace");
+          }}
+          onMouseLeave={() => {
+            setHoveredArea("room");
+          }}
           className="absolute top-[35%] right-[2%] w-20 h-28 hover:scale-110 transition-transform duration-200 drop-shadow-xl cursor-pointer"
           title="暖炉を調べる"
         >
@@ -357,6 +405,12 @@ export default function RoomView() {
         <button
           onClick={() => {
             changeArea("table");
+          }}
+          onMouseEnter={() => {
+            setHoveredArea("table");
+          }}
+          onMouseLeave={() => {
+            setHoveredArea("room");
           }}
           className="absolute top-[55%] left-1/2 -translate-x-1/2 w-36 h-24 hover:scale-110 transition-transform duration-200 drop-shadow-xl cursor-pointer"
           title="テーブルを調べる"
@@ -369,6 +423,12 @@ export default function RoomView() {
           onClick={() => {
             changeArea("statue");
           }}
+          onMouseEnter={() => {
+            setHoveredArea("statue");
+          }}
+          onMouseLeave={() => {
+            setHoveredArea("room");
+          }}
           className="absolute bottom-[8%] left-[8%] w-16 h-20 hover:scale-110 transition-transform duration-200 drop-shadow-lg cursor-pointer"
           title="像を調べる"
         >
@@ -379,6 +439,12 @@ export default function RoomView() {
         <button
           onClick={() => {
             changeArea("shelf");
+          }}
+          onMouseEnter={() => {
+            setHoveredArea("shelf");
+          }}
+          onMouseLeave={() => {
+            setHoveredArea("room");
           }}
           className="absolute bottom-[5%] left-[30%] w-28 h-18 hover:scale-110 transition-transform duration-200 drop-shadow-lg cursor-pointer"
           title="棚を調べる"
@@ -392,6 +458,12 @@ export default function RoomView() {
             onClick={() => {
               changeArea("lower");
             }}
+            onMouseEnter={() => {
+              setHoveredArea("lower");
+            }}
+            onMouseLeave={() => {
+              setHoveredArea("room");
+            }}
             className="absolute top-[70%] left-1/2 -translate-x-1/2 px-4 py-2 bg-gradient-to-b from-amber-600 to-amber-800 hover:from-amber-500 hover:to-amber-700 rounded-lg border-2 border-amber-400 text-white text-sm font-bold transition-all hover:scale-110 shadow-lg cursor-pointer animate-pulse"
             title="下の階へ"
           >
@@ -404,6 +476,12 @@ export default function RoomView() {
           <button
             onClick={() => {
               changeArea("upper");
+            }}
+            onMouseEnter={() => {
+              setHoveredArea("upper");
+            }}
+            onMouseLeave={() => {
+              setHoveredArea("room");
             }}
             className="absolute top-[5%] right-[35%] px-4 py-2 bg-gradient-to-b from-blue-600 to-blue-800 hover:from-blue-500 hover:to-blue-700 rounded-lg border-2 border-blue-400 text-white text-sm font-bold transition-all hover:scale-110 shadow-lg cursor-pointer animate-pulse"
             title="上の階へ"
@@ -422,10 +500,11 @@ export default function RoomView() {
         />
       </div>
 
-      {/* 部屋の説明 */}
-      <div className="text-gray-400 text-xs max-w-md space-y-1 text-center italic">
-        <p>どこかからかぐわしい香りがする...</p>
-        <p>部屋全体は暖かく、密室のようだ</p>
+      {/* エリア説明（ホバー時に表示） */}
+      <div className="h-8 flex items-center justify-center">
+        <p className="text-gray-300 text-sm text-center transition-opacity duration-200">
+          {areaDescriptions[hoveredArea]}
+        </p>
       </div>
     </div>
   );
