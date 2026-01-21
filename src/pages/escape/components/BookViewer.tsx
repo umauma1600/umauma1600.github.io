@@ -7,8 +7,8 @@ const plantBookPages = [
     content: (
       <div className="flex justify-center">
         <img
-          src="/assets/escape/plant-suzuran.png"
-          alt="鈴蘭"
+          src="/assets/escape/plant-ginreika.png"
+          alt="銀鈴花"
           className="max-w-full max-h-64 object-contain"
         />
       </div>
@@ -18,8 +18,8 @@ const plantBookPages = [
     content: (
       <div className="flex justify-center">
         <img
-          src="/assets/escape/plant-tulip.png"
-          alt="チューリップ"
+          src="/assets/escape/plant-yubaesou.png"
+          alt="夕映草"
           className="max-w-full max-h-64 object-contain"
         />
       </div>
@@ -29,8 +29,8 @@ const plantBookPages = [
     content: (
       <div className="flex justify-center">
         <img
-          src="/assets/escape/plant-himawari.png"
-          alt="ヒマワリ"
+          src="/assets/escape/plant-yourinka.png"
+          alt="陽輪花"
           className="max-w-full max-h-64 object-contain"
         />
       </div>
@@ -40,8 +40,8 @@ const plantBookPages = [
     content: (
       <div className="flex justify-center">
         <img
-          src="/assets/escape/plant-rafflesia.png"
-          alt="ラフレシア"
+          src="/assets/escape/plant-shokugokuka.png"
+          alt="喰獄花"
           className="max-w-full max-h-64 object-contain"
         />
       </div>
@@ -51,8 +51,8 @@ const plantBookPages = [
     content: (
       <div className="flex justify-center">
         <img
-          src="/assets/escape/plant-dyckia.png"
-          alt="ディッキア"
+          src="/assets/escape/plant-tekkyokuju.png"
+          alt="鉄棘樹"
           className="max-w-full max-h-64 object-contain"
         />
       </div>
