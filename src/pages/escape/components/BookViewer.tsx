@@ -1,32 +1,62 @@
 import { useState } from "react";
 import { useGame } from "../GameContext";
 
-// 植物図鑑の内容
-const plantBook = [
+// 植物図鑑の内容（画像を使用）
+const plantBookPages = [
   {
-    name: "鈴蘭",
-    description:
-      "香りがいい反面、毒があるため食用には不向き。白い花弁をインクに使用すると綺麗な発色となる。",
+    content: (
+      <div className="flex justify-center">
+        <img
+          src="/assets/escape/plant-suzuran.png"
+          alt="鈴蘭"
+          className="max-w-full max-h-64 object-contain"
+        />
+      </div>
+    ),
   },
   {
-    name: "チューリップ",
-    description:
-      "和名は「鬱金香（うっこんこう）」。ウコンに似たほろ苦い香りがすることからこの名がついた。",
+    content: (
+      <div className="flex justify-center">
+        <img
+          src="/assets/escape/plant-tulip.png"
+          alt="チューリップ"
+          className="max-w-full max-h-64 object-contain"
+        />
+      </div>
+    ),
   },
   {
-    name: "ヒマワリ",
-    description:
-      "種実を食用や油糧とするため、あるいは花を花卉（かき）として観賞するために広く栽培される。",
+    content: (
+      <div className="flex justify-center">
+        <img
+          src="/assets/escape/plant-himawari.png"
+          alt="ヒマワリ"
+          className="max-w-full max-h-64 object-contain"
+        />
+      </div>
+    ),
   },
   {
-    name: "ラフレシア",
-    description:
-      "異臭を放つ巨大な花として有名。独特なにおいによって生物を誘い、誘われた生物を吸収する。人間など、いかなるものでも消化し溶かしきることが可能。",
+    content: (
+      <div className="flex justify-center">
+        <img
+          src="/assets/escape/plant-rafflesia.png"
+          alt="ラフレシア"
+          className="max-w-full max-h-64 object-contain"
+        />
+      </div>
+    ),
   },
   {
-    name: "ディッキア",
-    description:
-      "葉に触れた生物を問答無用で取り込み瞬時に死に至らしめる。また、非常に硬いため、刃物で伐採は不可能であり、火にも耐性がある。枯らす場合は毒を用いる。",
+    content: (
+      <div className="flex justify-center">
+        <img
+          src="/assets/escape/plant-dyckia.png"
+          alt="ディッキア"
+          className="max-w-full max-h-64 object-contain"
+        />
+      </div>
+    ),
   },
 ];
 
@@ -132,17 +162,7 @@ export default function BookViewer() {
       case "plant":
         return {
           title: "植物図鑑",
-          pages: plantBook.map((p) => ({
-            label: p.name,
-            content: (
-              <div>
-                <h3 className="text-2xl font-bold mb-4 border-b border-gray-600 pb-2">
-                  {p.name}
-                </h3>
-                <p className="text-lg leading-relaxed">{p.description}</p>
-              </div>
-            ),
-          })),
+          pages: plantBookPages,
         };
       case "manual":
         return {
