@@ -44,136 +44,65 @@ const manualBook = [
   },
 ];
 
-// 謎の本の内容
+// 謎の本の内容（画像を使用）
 const mysteryBookPages = [
   {
     label: "A",
     content: (
-      <div className="space-y-6 text-2xl text-center">
-        <p>
-          い
-          <span className="inline-block w-8 h-8 border-2 border-gray-600 text-lg leading-8">
-            ?
-          </span>
-          <span className="inline-block w-8 h-8 border-2 border-gray-600 text-lg leading-8">
-            ?
-          </span>
-          も
-        </p>
-        <p>
-          な
-          <span className="inline-block w-8 h-8 border-2 border-gray-600 text-lg leading-8">
-            ?
-          </span>
-          <span className="inline-block w-8 h-8 border-2 border-gray-600 text-lg leading-8">
-            ?
-          </span>
-          わ
-        </p>
-        <p>
-          メ
-          <span className="inline-block w-8 h-8 border-2 border-gray-600 text-lg leading-8">
-            ?
-          </span>
-          <span className="inline-block w-8 h-8 border-2 border-gray-600 text-lg leading-8">
-            ?
-          </span>
-          ック
-        </p>
+      <div className="flex justify-center">
+        <img
+          src="/assets/escape/1.png"
+          alt="謎A"
+          className="max-w-full max-h-64 object-contain"
+        />
       </div>
     ),
   },
   {
     label: "B",
     content: (
-      <div className="space-y-4 text-center">
-        <div className="flex items-center justify-center gap-4 text-xl">
-          <span>朝</span>
-          <span className="border-2 border-gray-600 px-4 py-2 rounded">
-            まりも
-          </span>
-        </div>
-        <div className="flex items-center justify-center gap-4 text-xl">
-          <span>↓</span>
-          <span className="border-2 border-gray-600 px-4 py-2 rounded">
-            こよみ
-          </span>
-        </div>
-        <div className="flex items-center justify-center gap-4 text-xl">
-          <span>夕方</span>
-          <span className="border-2 border-gray-600 px-4 py-2 rounded">
-            うどん
-          </span>
-        </div>
-        <div className="mt-6 flex justify-end">
-          <div className="text-4xl">🧭</div>
-        </div>
-        <div className="mt-2 text-center text-3xl">☀️</div>
+      <div className="flex justify-center">
+        <img
+          src="/assets/escape/2.png"
+          alt="謎B"
+          className="max-w-full max-h-64 object-contain"
+        />
       </div>
     ),
   },
   {
     label: "C",
     content: (
-      <div className="space-y-6">
-        <div className="flex items-center justify-center gap-4 text-3xl">
-          <span>🐱</span>
-          <span>→</span>
-          <span>🪙</span>
-        </div>
-        <div className="flex items-center justify-center gap-4 text-3xl">
-          <span>🐷</span>
-          <span>→</span>
-          <span>💎</span>
-        </div>
-        <div className="flex items-center justify-center gap-4 text-3xl">
-          <span>🐴</span>
-          <span>→</span>
-          <span className="text-4xl">❓</span>
-        </div>
+      <div className="flex justify-center">
+        <img
+          src="/assets/escape/3.png"
+          alt="謎C"
+          className="max-w-full max-h-64 object-contain"
+        />
       </div>
     ),
   },
   {
     label: "D",
     content: (
-      <div className="text-center">
-        <p className="text-3xl">角のない色は？</p>
+      <div className="flex justify-center">
+        <img
+          src="/assets/escape/4.png"
+          alt="謎D"
+          className="max-w-full max-h-64 object-contain"
+        />
       </div>
     ),
   },
   {
     label: "E",
     content: (
-      <div className="text-center">
-        <p className="text-2xl mb-6">順番につなげ</p>
-        <div className="grid grid-cols-5 gap-2 text-lg">
-          <span>🍈</span>
-          <span>こ</span>
-          <span>た</span>
-          <span>🐤</span>
-          <span>ま</span>
-          <span>せ</span>
-          <span>あ</span>
-          <span>え</span>
-          <span className="invisible">.</span>
-          <span>ね</span>
-          <span>い</span>
-          <span>🎅</span>
-          <span>た</span>
-          <span>ー</span>
-          <span className="invisible">.</span>
-          <span>か</span>
-          <span>は</span>
-          <span>ま</span>
-          <span>🦍</span>
-          <span>み</span>
-          <span>🖍️</span>
-          <span>く</span>
-          <span>ら</span>
-          <span>や</span>
-          <span>🦴</span>
-        </div>
+      <div className="flex justify-center">
+        <img
+          src="/assets/escape/5.png"
+          alt="謎E"
+          className="max-w-full max-h-64 object-contain"
+        />
       </div>
     ),
   },

@@ -1,11 +1,11 @@
 import { useState } from "react";
 import { useGame } from "../GameContext";
-import { pillInfo } from "../types";
 
 export default function ShelfArea() {
   const { state, obtainItem, openBox, showBook, showDialog } = useGame();
   const [boxCode, setBoxCode] = useState(["0", "0", "0"]);
   const [showBoxInput, setShowBoxInput] = useState(false);
+  const [showBoxContent, setShowBoxContent] = useState(false);
 
   const handlePillRed = () => {
     if (!state.items.pill_red.obtained) {
@@ -28,13 +28,8 @@ export default function ShelfArea() {
     } else if (!state.flags.boxOpened) {
       setShowBoxInput(true);
     } else {
-      // 箱が開いている場合、錠剤の効果説明を表示
-      showDialog(
-        "箱の中には錠剤の効果が書かれた紙が入っていた。\n\n" +
-          Object.entries(pillInfo)
-            .map(([, info]) => `【${info.name}】${info.effect}`)
-            .join("\n"),
-      );
+      // 箱が開いている場合、錠剤の効果説明を画像で表示
+      setShowBoxContent(true);
     }
   };
 
@@ -53,7 +48,7 @@ export default function ShelfArea() {
     const code = boxCode.join("");
     if (openBox(code)) {
       setShowBoxInput(false);
-      showDialog("箱が開いた！\n中には錠剤の効果が書かれた紙が入っていた。");
+      setShowBoxContent(true);
     } else {
       showDialog("開かない...。番号が違うようだ。");
     }
@@ -219,6 +214,47 @@ export default function ShelfArea() {
               >
                 開ける
               </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* 箱の中身表示モーダル */}
+      {showBoxContent && (
+        <div className="fixed inset-0 bg-black/80 z-50 flex items-center justify-center p-4">
+          <div className="bg-amber-100 rounded-lg shadow-2xl max-w-2xl w-full max-h-[80vh] overflow-hidden">
+            {/* ヘッダー */}
+            <div className="bg-amber-800 text-white px-6 py-4 flex items-center justify-between">
+              <h2 className="text-xl font-bold">箱の中身</h2>
+              <button
+                onClick={() => {
+                  setShowBoxContent(false);
+                }}
+                className="text-white/80 hover:text-white transition-colors"
+              >
+                <svg
+                  className="w-6 h-6"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M6 18L18 6M6 6l12 12"
+                  />
+                </svg>
+              </button>
+            </div>
+
+            {/* コンテンツ */}
+            <div className="p-6 flex justify-center bg-[url('data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22100%22%20height%3D%22100%22%3E%3Crect%20fill%3D%22%23f5f0e1%22%20width%3D%22100%22%20height%3D%22100%22%2F%3E%3C%2Fsvg%3E')]">
+              <img
+                src="/assets/escape/表.png"
+                alt="錠剤の効果一覧"
+                className="max-w-full max-h-[60vh] object-contain"
+              />
             </div>
           </div>
         </div>
