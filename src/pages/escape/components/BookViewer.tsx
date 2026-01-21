@@ -1,32 +1,62 @@
 import { useState } from "react";
 import { useGame } from "../GameContext";
 
-// 植物図鑑の内容
-const plantBook = [
+// 植物図鑑の内容（画像を使用）
+const plantBookPages = [
   {
-    name: "鈴蘭",
-    description:
-      "香りがいい反面、毒があるため食用には不向き。白い花弁をインクに使用すると綺麗な発色となる。",
+    content: (
+      <div className="flex justify-center">
+        <img
+          src="/assets/escape/plant-ginreika.png"
+          alt="銀鈴花"
+          className="max-w-full max-h-[480px] object-contain"
+        />
+      </div>
+    ),
   },
   {
-    name: "チューリップ",
-    description:
-      "和名は「鬱金香（うっこんこう）」。ウコンに似たほろ苦い香りがすることからこの名がついた。",
+    content: (
+      <div className="flex justify-center">
+        <img
+          src="/assets/escape/plant-yubaesou.png"
+          alt="夕映草"
+          className="max-w-full max-h-[480px] object-contain"
+        />
+      </div>
+    ),
   },
   {
-    name: "ヒマワリ",
-    description:
-      "種実を食用や油糧とするため、あるいは花を花卉（かき）として観賞するために広く栽培される。",
+    content: (
+      <div className="flex justify-center">
+        <img
+          src="/assets/escape/plant-yourinka.png"
+          alt="陽輪花"
+          className="max-w-full max-h-[480px] object-contain"
+        />
+      </div>
+    ),
   },
   {
-    name: "ラフレシア",
-    description:
-      "異臭を放つ巨大な花として有名。独特なにおいによって生物を誘い、誘われた生物を吸収する。人間など、いかなるものでも消化し溶かしきることが可能。",
+    content: (
+      <div className="flex justify-center">
+        <img
+          src="/assets/escape/plant-shokugokuka.png"
+          alt="喰獄花"
+          className="max-w-full max-h-[480px] object-contain"
+        />
+      </div>
+    ),
   },
   {
-    name: "ディッキア",
-    description:
-      "葉に触れた生物を問答無用で取り込み瞬時に死に至らしめる。また、非常に硬いため、刃物で伐採は不可能であり、火にも耐性がある。枯らす場合は毒を用いる。",
+    content: (
+      <div className="flex justify-center">
+        <img
+          src="/assets/escape/plant-tekkyokuju.png"
+          alt="鉄棘樹"
+          className="max-w-full max-h-[480px] object-contain"
+        />
+      </div>
+    ),
   },
 ];
 
@@ -53,7 +83,7 @@ const mysteryBookPages = [
         <img
           src="/assets/escape/mystery-a.png"
           alt="謎A"
-          className="max-w-full max-h-64 object-contain"
+          className="max-w-full max-h-[480px] object-contain"
         />
       </div>
     ),
@@ -65,7 +95,7 @@ const mysteryBookPages = [
         <img
           src="/assets/escape/mystery-b.png"
           alt="謎B"
-          className="max-w-full max-h-64 object-contain"
+          className="max-w-full max-h-[480px] object-contain"
         />
       </div>
     ),
@@ -77,7 +107,7 @@ const mysteryBookPages = [
         <img
           src="/assets/escape/mystery-c.png"
           alt="謎C"
-          className="max-w-full max-h-64 object-contain"
+          className="max-w-full max-h-[480px] object-contain"
         />
       </div>
     ),
@@ -89,7 +119,7 @@ const mysteryBookPages = [
         <img
           src="/assets/escape/mystery-d.png"
           alt="謎D"
-          className="max-w-full max-h-64 object-contain"
+          className="max-w-full max-h-[480px] object-contain"
         />
       </div>
     ),
@@ -101,7 +131,7 @@ const mysteryBookPages = [
         <img
           src="/assets/escape/mystery-e.png"
           alt="謎E"
-          className="max-w-full max-h-64 object-contain"
+          className="max-w-full max-h-[480px] object-contain"
         />
       </div>
     ),
@@ -112,7 +142,7 @@ const mysteryBookPages = [
         <img
           src="/assets/escape/mystery-f.png"
           alt="謎6"
-          className="max-w-full max-h-64 object-contain"
+          className="max-w-full max-h-[480px] object-contain"
         />
       </div>
     ),
@@ -132,17 +162,7 @@ export default function BookViewer() {
       case "plant":
         return {
           title: "植物図鑑",
-          pages: plantBook.map((p) => ({
-            label: p.name,
-            content: (
-              <div>
-                <h3 className="text-2xl font-bold mb-4 border-b border-gray-600 pb-2">
-                  {p.name}
-                </h3>
-                <p className="text-lg leading-relaxed">{p.description}</p>
-              </div>
-            ),
-          })),
+          pages: plantBookPages,
         };
       case "manual":
         return {
@@ -173,7 +193,7 @@ export default function BookViewer() {
 
   return (
     <div className="fixed inset-0 bg-black/80 z-50 flex items-center justify-center p-4">
-      <div className="bg-amber-100 rounded-lg shadow-2xl max-w-2xl w-full max-h-[80vh] overflow-hidden">
+      <div className="bg-amber-100 rounded-lg shadow-2xl max-w-4xl w-full max-h-[90vh] overflow-hidden">
         {/* ヘッダー */}
         <div className="bg-amber-800 text-white px-6 py-4 flex items-center justify-between">
           <h2 className="text-xl font-bold">{book.title}</h2>
@@ -198,7 +218,7 @@ export default function BookViewer() {
         </div>
 
         {/* コンテンツ */}
-        <div className="p-8 min-h-[300px] bg-[url('data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22100%22%20height%3D%22100%22%3E%3Crect%20fill%3D%22%23f5f0e1%22%20width%3D%22100%22%20height%3D%22100%22%2F%3E%3C%2Fsvg%3E')]">
+        <div className="p-4 md:p-8 min-h-[200px] bg-[url('data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22100%22%20height%3D%22100%22%3E%3Crect%20fill%3D%22%23f5f0e1%22%20width%3D%22100%22%20height%3D%22100%22%2F%3E%3C%2Fsvg%3E')] overflow-auto">
           <div className="text-gray-800">
             {book.pages[currentPage]?.content}
           </div>
