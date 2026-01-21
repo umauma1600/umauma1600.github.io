@@ -9,7 +9,7 @@ const plantBookPages = [
         <img
           src="/assets/escape/plant-ginreika.png"
           alt="銀鈴花"
-          className="max-w-full max-h-64 object-contain"
+          className="max-w-full max-h-[480px] object-contain"
         />
       </div>
     ),
@@ -20,7 +20,7 @@ const plantBookPages = [
         <img
           src="/assets/escape/plant-yubaesou.png"
           alt="夕映草"
-          className="max-w-full max-h-64 object-contain"
+          className="max-w-full max-h-[480px] object-contain"
         />
       </div>
     ),
@@ -31,7 +31,7 @@ const plantBookPages = [
         <img
           src="/assets/escape/plant-yourinka.png"
           alt="陽輪花"
-          className="max-w-full max-h-64 object-contain"
+          className="max-w-full max-h-[480px] object-contain"
         />
       </div>
     ),
@@ -42,7 +42,7 @@ const plantBookPages = [
         <img
           src="/assets/escape/plant-shokugokuka.png"
           alt="喰獄花"
-          className="max-w-full max-h-64 object-contain"
+          className="max-w-full max-h-[480px] object-contain"
         />
       </div>
     ),
@@ -53,7 +53,7 @@ const plantBookPages = [
         <img
           src="/assets/escape/plant-tekkyokuju.png"
           alt="鉄棘樹"
-          className="max-w-full max-h-64 object-contain"
+          className="max-w-full max-h-[480px] object-contain"
         />
       </div>
     ),
@@ -83,7 +83,7 @@ const mysteryBookPages = [
         <img
           src="/assets/escape/mystery-a.png"
           alt="謎A"
-          className="max-w-full max-h-64 object-contain"
+          className="max-w-full max-h-[480px] object-contain"
         />
       </div>
     ),
@@ -95,7 +95,7 @@ const mysteryBookPages = [
         <img
           src="/assets/escape/mystery-b.png"
           alt="謎B"
-          className="max-w-full max-h-64 object-contain"
+          className="max-w-full max-h-[480px] object-contain"
         />
       </div>
     ),
@@ -107,7 +107,7 @@ const mysteryBookPages = [
         <img
           src="/assets/escape/mystery-c.png"
           alt="謎C"
-          className="max-w-full max-h-64 object-contain"
+          className="max-w-full max-h-[480px] object-contain"
         />
       </div>
     ),
@@ -119,7 +119,7 @@ const mysteryBookPages = [
         <img
           src="/assets/escape/mystery-d.png"
           alt="謎D"
-          className="max-w-full max-h-64 object-contain"
+          className="max-w-full max-h-[480px] object-contain"
         />
       </div>
     ),
@@ -131,7 +131,7 @@ const mysteryBookPages = [
         <img
           src="/assets/escape/mystery-e.png"
           alt="謎E"
-          className="max-w-full max-h-64 object-contain"
+          className="max-w-full max-h-[480px] object-contain"
         />
       </div>
     ),
@@ -142,7 +142,7 @@ const mysteryBookPages = [
         <img
           src="/assets/escape/mystery-f.png"
           alt="謎6"
-          className="max-w-full max-h-64 object-contain"
+          className="max-w-full max-h-[480px] object-contain"
         />
       </div>
     ),
@@ -193,7 +193,7 @@ export default function BookViewer() {
 
   return (
     <div className="fixed inset-0 bg-black/80 z-50 flex items-center justify-center p-4">
-      <div className="bg-amber-100 rounded-lg shadow-2xl max-w-2xl w-full max-h-[80vh] overflow-hidden">
+      <div className="bg-amber-100 rounded-lg shadow-2xl max-w-4xl w-full max-h-[90vh] overflow-hidden">
         {/* ヘッダー */}
         <div className="bg-amber-800 text-white px-6 py-4 flex items-center justify-between">
           <h2 className="text-xl font-bold">{book.title}</h2>
@@ -218,7 +218,7 @@ export default function BookViewer() {
         </div>
 
         {/* コンテンツ */}
-        <div className="p-8 min-h-[300px] bg-[url('data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22100%22%20height%3D%22100%22%3E%3Crect%20fill%3D%22%23f5f0e1%22%20width%3D%22100%22%20height%3D%22100%22%2F%3E%3C%2Fsvg%3E')]">
+        <div className="p-4 md:p-8 min-h-[200px] bg-[url('data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22100%22%20height%3D%22100%22%3E%3Crect%20fill%3D%22%23f5f0e1%22%20width%3D%22100%22%20height%3D%22100%22%2F%3E%3C%2Fsvg%3E')] overflow-auto">
           <div className="text-gray-800">
             {book.pages[currentPage]?.content}
           </div>
