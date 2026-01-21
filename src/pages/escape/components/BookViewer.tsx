@@ -107,12 +107,11 @@ const mysteryBookPages = [
     ),
   },
   {
-    label: "F",
     content: (
       <div className="flex justify-center">
         <img
           src="/assets/escape/mystery-f.png"
-          alt="謎F"
+          alt="謎6"
           className="max-w-full max-h-64 object-contain"
         />
       </div>
@@ -219,9 +218,6 @@ export default function BookViewer() {
             </button>
             <span className="text-amber-800">
               {currentPage + 1} / {book.pages.length}
-              {book.pages[currentPage]?.label && (
-                <span className="ml-2">({book.pages[currentPage].label})</span>
-              )}
             </span>
             <button
               onClick={() => {

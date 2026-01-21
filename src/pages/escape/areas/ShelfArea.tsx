@@ -306,9 +306,6 @@ export default function ShelfArea() {
               </button>
               <span className="text-amber-800">
                 {boxContentPage + 1} / {boxContentPages.length}
-                <span className="ml-2">
-                  ({boxContentPages[boxContentPage].label})
-                </span>
               </span>
               <button
                 onClick={() => {
