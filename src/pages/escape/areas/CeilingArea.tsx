@@ -94,30 +94,6 @@ export default function CeilingArea() {
         )}
       </div>
 
-      {/* 説明 */}
-      <div className="text-gray-300 text-sm max-w-md space-y-2">
-        {!hasHole ? (
-          <>
-            <p>• 天井にひび割れが見える</p>
-            <p>• 何か道具があれば穴を広げられそうだ</p>
-          </>
-        ) : (
-          <>
-            <p>• 天井に穴が開いている</p>
-            <p>• 上の階が見える</p>
-            {canFly ? (
-              <p className="text-yellow-400">
-                ✓ 黄色の錠剤の効果で飛ぶことができる！
-              </p>
-            ) : (
-              <p className="text-gray-500">
-                • 登る手段がない...何か方法はないだろうか
-              </p>
-            )}
-          </>
-        )}
-      </div>
-
       {/* 黄色の錠剤のヒント */}
       {hasHole && !canFly && state.items.pill_yellow.obtained && (
         <div className="bg-yellow-900/30 border border-yellow-600 rounded-lg p-4 max-w-md">

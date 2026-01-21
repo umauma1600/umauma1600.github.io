@@ -158,23 +158,6 @@ export default function LowerFloorArea() {
         </div>
       </div>
 
-      {/* 説明 */}
-      <div className="text-gray-300 text-sm max-w-md space-y-2">
-        <p>• 暗い地下室。植物が生い茂っている</p>
-        {!pathCleared && (
-          <p className="text-yellow-400">• ディッキアの棘が道を塞いでいる</p>
-        )}
-        {pathCleared && !state.items.key.obtained && (
-          <>
-            <p className="text-green-400">✓ ディッキアを切り開いた</p>
-            <p className="text-red-400">• ラフレシアが毒ガスを放っている</p>
-          </>
-        )}
-        {state.items.key.obtained && (
-          <p className="text-green-400">✓ ラフレシアから鍵を入手した</p>
-        )}
-      </div>
-
       {/* ヒント */}
       {pathCleared && !state.items.key.obtained && !hasAntidote && (
         <div className="bg-blue-900/30 border border-blue-600 rounded-lg p-4 max-w-md">

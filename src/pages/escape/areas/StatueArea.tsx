@@ -73,16 +73,6 @@ export default function StatueArea() {
         </div>
       </div>
 
-      {/* 説明 */}
-      <div className="text-gray-300 text-sm max-w-md space-y-2">
-        <p>• 重厚な像が置いてある</p>
-        <p>• 像の後ろにボタン③がある</p>
-        <p>• 像は重くて通常の力では動かすことができない</p>
-        {state.flags.button3Pressed && (
-          <p className="text-green-400">✓ 像を動かしてボタン③を押した</p>
-        )}
-      </div>
-
       {/* ヒント */}
       {!state.flags.button3Pressed &&
         state.items.pill_purple.obtained &&

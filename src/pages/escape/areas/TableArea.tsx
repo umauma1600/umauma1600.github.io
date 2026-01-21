@@ -81,20 +81,6 @@ export default function TableArea() {
         </div>
       </div>
 
-      {/* 説明 */}
-      <div className="text-gray-300 text-sm max-w-md space-y-2">
-        <p>• 部屋の中央にあるテーブル</p>
-        <p>• テーブルの下にカーペットが敷いてある</p>
-        {state.flags.carpetRemoved && !state.flags.trapdoorUnlocked && (
-          <p className="text-yellow-400">
-            • カーペットの下に扉がある。3つのボタンを押す必要があるようだ
-          </p>
-        )}
-        {state.flags.trapdoorUnlocked && (
-          <p className="text-green-400">• 扉が開いた！下の階に行ける</p>
-        )}
-      </div>
-
       {/* ボタン状態の表示 */}
       {state.flags.carpetRemoved && !state.flags.trapdoorUnlocked && (
         <div className="flex gap-4 mt-4">

@@ -168,13 +168,6 @@ export default function ShelfArea() {
         </div>
       </div>
 
-      {/* 説明 */}
-      <div className="text-gray-300 text-sm max-w-md space-y-2">
-        <p>• 棚には本と錠剤が置いてある</p>
-        <p>• 3つの本が並んでいる</p>
-        <p>• 3桁錠のついた箱がある</p>
-      </div>
-
       {/* 3桁錠の入力モーダル */}
       {showBoxInput && (
         <div className="fixed inset-0 bg-black/80 z-50 flex items-center justify-center p-4">
