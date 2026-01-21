@@ -1,11 +1,46 @@
 import { useState } from "react";
 import { useGame } from "../GameContext";
 
+// 箱の中身の画像データ
+const boxContentPages = [
+  {
+    label: "一覧表",
+    src: "/assets/escape/pill-chart.png",
+    alt: "錠剤の効果一覧",
+  },
+  {
+    label: "ドクガアール",
+    src: "/assets/escape/pill-dokugaaru.png",
+    alt: "ドクガアール",
+  },
+  {
+    label: "アツクナーイ",
+    src: "/assets/escape/pill-atsukunai.png",
+    alt: "アツクナーイ",
+  },
+  {
+    label: "タカクトーブ",
+    src: "/assets/escape/pill-takakutobu.png",
+    alt: "タカクトーブ",
+  },
+  {
+    label: "オボレナーイ",
+    src: "/assets/escape/pill-oborenai.png",
+    alt: "オボレナーイ",
+  },
+  {
+    label: "チカラモーチ",
+    src: "/assets/escape/pill-chikaramochi.png",
+    alt: "チカラモーチ",
+  },
+];
+
 export default function ShelfArea() {
   const { state, obtainItem, openBox, showBook, showDialog } = useGame();
   const [boxCode, setBoxCode] = useState(["0", "0", "0"]);
   const [showBoxInput, setShowBoxInput] = useState(false);
   const [showBoxContent, setShowBoxContent] = useState(false);
+  const [boxContentPage, setBoxContentPage] = useState(0);
 
   const handlePillRed = () => {
     if (!state.items.pill_red.obtained) {
@@ -229,6 +264,7 @@ export default function ShelfArea() {
               <button
                 onClick={() => {
                   setShowBoxContent(false);
+                  setBoxContentPage(0);
                 }}
                 className="text-white/80 hover:text-white transition-colors"
               >
@@ -251,10 +287,40 @@ export default function ShelfArea() {
             {/* コンテンツ */}
             <div className="p-6 flex justify-center bg-[url('data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22100%22%20height%3D%22100%22%3E%3Crect%20fill%3D%22%23f5f0e1%22%20width%3D%22100%22%20height%3D%22100%22%2F%3E%3C%2Fsvg%3E')]">
               <img
-                src="/assets/escape/表.png"
-                alt="錠剤の効果一覧"
-                className="max-w-full max-h-[60vh] object-contain"
+                src={boxContentPages[boxContentPage].src}
+                alt={boxContentPages[boxContentPage].alt}
+                className="max-w-full max-h-[50vh] object-contain"
               />
+            </div>
+
+            {/* ページナビ */}
+            <div className="bg-amber-200 px-6 py-4 flex items-center justify-between">
+              <button
+                onClick={() => {
+                  setBoxContentPage((p) => Math.max(0, p - 1));
+                }}
+                disabled={boxContentPage === 0}
+                className="px-4 py-2 bg-amber-600 text-white rounded disabled:opacity-50 disabled:cursor-not-allowed"
+              >
+                ◀ 前へ
+              </button>
+              <span className="text-amber-800">
+                {boxContentPage + 1} / {boxContentPages.length}
+                <span className="ml-2">
+                  ({boxContentPages[boxContentPage].label})
+                </span>
+              </span>
+              <button
+                onClick={() => {
+                  setBoxContentPage((p) =>
+                    Math.min(boxContentPages.length - 1, p + 1),
+                  );
+                }}
+                disabled={boxContentPage === boxContentPages.length - 1}
+                className="px-4 py-2 bg-amber-600 text-white rounded disabled:opacity-50 disabled:cursor-not-allowed"
+              >
+                次へ ▶
+              </button>
             </div>
           </div>
         </div>

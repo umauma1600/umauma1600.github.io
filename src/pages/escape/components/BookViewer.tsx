@@ -51,7 +51,7 @@ const mysteryBookPages = [
     content: (
       <div className="flex justify-center">
         <img
-          src="/assets/escape/1.png"
+          src="/assets/escape/mystery-a.png"
           alt="謎A"
           className="max-w-full max-h-64 object-contain"
         />
@@ -63,7 +63,7 @@ const mysteryBookPages = [
     content: (
       <div className="flex justify-center">
         <img
-          src="/assets/escape/2.png"
+          src="/assets/escape/mystery-b.png"
           alt="謎B"
           className="max-w-full max-h-64 object-contain"
         />
@@ -75,7 +75,7 @@ const mysteryBookPages = [
     content: (
       <div className="flex justify-center">
         <img
-          src="/assets/escape/3.png"
+          src="/assets/escape/mystery-c.png"
           alt="謎C"
           className="max-w-full max-h-64 object-contain"
         />
@@ -87,7 +87,7 @@ const mysteryBookPages = [
     content: (
       <div className="flex justify-center">
         <img
-          src="/assets/escape/4.png"
+          src="/assets/escape/mystery-d.png"
           alt="謎D"
           className="max-w-full max-h-64 object-contain"
         />
@@ -99,8 +99,20 @@ const mysteryBookPages = [
     content: (
       <div className="flex justify-center">
         <img
-          src="/assets/escape/5.png"
+          src="/assets/escape/mystery-e.png"
           alt="謎E"
+          className="max-w-full max-h-64 object-contain"
+        />
+      </div>
+    ),
+  },
+  {
+    label: "F",
+    content: (
+      <div className="flex justify-center">
+        <img
+          src="/assets/escape/mystery-f.png"
+          alt="謎F"
           className="max-w-full max-h-64 object-contain"
         />
       </div>
