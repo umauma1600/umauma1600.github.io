@@ -60,17 +60,29 @@ const plantBookPages = [
   },
 ];
 
-// 取扱説明書の内容
-const manualBook = [
+// 取扱説明書の内容（画像を使用）
+const manualBookPages = [
   {
-    name: "時限爆弾",
-    description:
-      "アナログ時計の針に起爆装置の回路から引いた電線を接着し、設定した時刻に針が重なることで起爆する。そのため、爆弾自体はある程度衝撃への耐性がある。",
+    content: (
+      <div className="flex justify-center">
+        <img
+          src="/assets/escape/manual-bakudan.png"
+          alt="時限爆弾"
+          className="max-w-full max-h-[480px] object-contain"
+        />
+      </div>
+    ),
   },
   {
-    name: "錠剤",
-    description:
-      "自力で行動可能な生物（動物）のみが服用することができる。効果時間は服用後1分間。",
+    content: (
+      <div className="flex justify-center">
+        <img
+          src="/assets/escape/manual-zyouzai.png"
+          alt="錠剤"
+          className="max-w-full max-h-[480px] object-contain"
+        />
+      </div>
+    ),
   },
 ];
 
@@ -167,17 +179,7 @@ export default function BookViewer() {
       case "manual":
         return {
           title: "取扱説明書",
-          pages: manualBook.map((p) => ({
-            label: p.name,
-            content: (
-              <div>
-                <h3 className="text-2xl font-bold mb-4 border-b border-gray-600 pb-2">
-                  {p.name}
-                </h3>
-                <p className="text-lg leading-relaxed">{p.description}</p>
-              </div>
-            ),
-          })),
+          pages: manualBookPages,
         };
       case "mystery":
         return {
