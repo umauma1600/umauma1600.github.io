@@ -1,11 +1,46 @@
 import { useState } from "react";
 import { useGame } from "../GameContext";
-import { pillInfo } from "../types";
+
+// 箱の中身の画像データ
+const boxContentPages = [
+  {
+    label: "一覧表",
+    src: "/assets/escape/pill-chart.png",
+    alt: "錠剤の効果一覧",
+  },
+  {
+    label: "ドクガアール",
+    src: "/assets/escape/pill-dokugaaru.png",
+    alt: "ドクガアール",
+  },
+  {
+    label: "アツクナーイ",
+    src: "/assets/escape/pill-atsukunai.png",
+    alt: "アツクナーイ",
+  },
+  {
+    label: "タカクトーブ",
+    src: "/assets/escape/pill-takakutobu.png",
+    alt: "タカクトーブ",
+  },
+  {
+    label: "オボレナーイ",
+    src: "/assets/escape/pill-oborenai.png",
+    alt: "オボレナーイ",
+  },
+  {
+    label: "チカラモーチ",
+    src: "/assets/escape/pill-chikaramochi.png",
+    alt: "チカラモーチ",
+  },
+];
 
 export default function ShelfArea() {
   const { state, obtainItem, openBox, showBook, showDialog } = useGame();
   const [boxCode, setBoxCode] = useState(["0", "0", "0"]);
   const [showBoxInput, setShowBoxInput] = useState(false);
+  const [showBoxContent, setShowBoxContent] = useState(false);
+  const [boxContentPage, setBoxContentPage] = useState(0);
 
   const handlePillRed = () => {
     if (!state.items.pill_red.obtained) {
@@ -28,13 +63,8 @@ export default function ShelfArea() {
     } else if (!state.flags.boxOpened) {
       setShowBoxInput(true);
     } else {
-      // 箱が開いている場合、錠剤の効果説明を表示
-      showDialog(
-        "箱の中には錠剤の効果が書かれた紙が入っていた。\n\n" +
-          Object.entries(pillInfo)
-            .map(([, info]) => `【${info.name}】${info.effect}`)
-            .join("\n"),
-      );
+      // 箱が開いている場合、錠剤の効果説明を画像で表示
+      setShowBoxContent(true);
     }
   };
 
@@ -53,7 +83,7 @@ export default function ShelfArea() {
     const code = boxCode.join("");
     if (openBox(code)) {
       setShowBoxInput(false);
-      showDialog("箱が開いた！\n中には錠剤の効果が書かれた紙が入っていた。");
+      setShowBoxContent(true);
     } else {
       showDialog("開かない...。番号が違うようだ。");
     }
@@ -218,6 +248,75 @@ export default function ShelfArea() {
                 className="px-6 py-2 bg-amber-600 hover:bg-amber-500 text-white rounded-lg"
               >
                 開ける
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* 箱の中身表示モーダル */}
+      {showBoxContent && (
+        <div className="fixed inset-0 bg-black/80 z-50 flex items-center justify-center p-4">
+          <div className="bg-amber-100 rounded-lg shadow-2xl max-w-2xl w-full max-h-[80vh] overflow-hidden">
+            {/* ヘッダー */}
+            <div className="bg-amber-800 text-white px-6 py-4 flex items-center justify-between">
+              <h2 className="text-xl font-bold">箱の中身</h2>
+              <button
+                onClick={() => {
+                  setShowBoxContent(false);
+                  setBoxContentPage(0);
+                }}
+                className="text-white/80 hover:text-white transition-colors"
+              >
+                <svg
+                  className="w-6 h-6"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M6 18L18 6M6 6l12 12"
+                  />
+                </svg>
+              </button>
+            </div>
+
+            {/* コンテンツ */}
+            <div className="p-6 flex justify-center bg-[url('data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22100%22%20height%3D%22100%22%3E%3Crect%20fill%3D%22%23f5f0e1%22%20width%3D%22100%22%20height%3D%22100%22%2F%3E%3C%2Fsvg%3E')]">
+              <img
+                src={boxContentPages[boxContentPage].src}
+                alt={boxContentPages[boxContentPage].alt}
+                className="max-w-full max-h-[50vh] object-contain"
+              />
+            </div>
+
+            {/* ページナビ */}
+            <div className="bg-amber-200 px-6 py-4 flex items-center justify-between">
+              <button
+                onClick={() => {
+                  setBoxContentPage((p) => Math.max(0, p - 1));
+                }}
+                disabled={boxContentPage === 0}
+                className="px-4 py-2 bg-amber-600 text-white rounded disabled:opacity-50 disabled:cursor-not-allowed"
+              >
+                ◀ 前へ
+              </button>
+              <span className="text-amber-800">
+                {boxContentPage + 1} / {boxContentPages.length}
+              </span>
+              <button
+                onClick={() => {
+                  setBoxContentPage((p) =>
+                    Math.min(boxContentPages.length - 1, p + 1),
+                  );
+                }}
+                disabled={boxContentPage === boxContentPages.length - 1}
+                className="px-4 py-2 bg-amber-600 text-white rounded disabled:opacity-50 disabled:cursor-not-allowed"
+              >
+                次へ ▶
               </button>
             </div>
           </div>
