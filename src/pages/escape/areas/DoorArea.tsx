@@ -78,16 +78,6 @@ export default function DoorArea() {
         </div>
       </div>
 
-      {/* 説明 */}
-      <div className="text-gray-300 text-sm max-w-md space-y-2">
-        <p>• ドアには鍵がかかっている</p>
-        <p>• 防音扉のように隙間はない</p>
-        <p>• ドアの近くに紫の錠剤が落ちている</p>
-        {state.flags.keyObtained && (
-          <p className="text-green-400">✓ 鍵を持っている。ドアを開けられる！</p>
-        )}
-      </div>
-
       {/* 脱出ボタン */}
       {state.flags.keyObtained && (
         <div className="mt-4">

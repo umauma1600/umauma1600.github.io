@@ -139,25 +139,6 @@ export default function UpperFloorArea() {
         </div>
       </div>
 
-      {/* 説明 */}
-      <div className="text-gray-300 text-sm max-w-md space-y-2">
-        <p>• 薄暗い屋根裏部屋</p>
-        <p>• 中央に大きなタンクがある</p>
-        {!state.flags.bombDisarmed && !state.items.bomb.obtained && (
-          <p className="text-orange-400">
-            • タンクの中で何かが煮えたぎっている
-          </p>
-        )}
-        {state.items.bomb.obtained && !state.flags.bombDisarmed && (
-          <p className="text-red-400 font-bold animate-pulse">
-            ⚠️ 時限爆弾を持っている！解除が必要だ！
-          </p>
-        )}
-        {state.flags.bombDisarmed && (
-          <p className="text-green-400">✓ 時限爆弾を解除した</p>
-        )}
-      </div>
-
       {/* ヒント */}
       {!state.items.bomb.obtained && !hasFireResistance && (
         <div className="bg-red-900/30 border border-red-600 rounded-lg p-4 max-w-md">

@@ -98,19 +98,6 @@ export default function TankArea() {
         </div>
       </div>
 
-      {/* 説明 */}
-      <div className="text-gray-300 text-sm max-w-md space-y-2">
-        <p>• 高さ150センチ程度（溺れることはない）</p>
-        <p>• そのまま入ったら服は濡れます</p>
-        <p>• 水槽の底にボタン②がある</p>
-        {state.flags.waterInPot && (
-          <p className="text-green-400">✓ 調理器具で水を汲んだ</p>
-        )}
-        {state.flags.button2Pressed && (
-          <p className="text-green-400">✓ ボタン②は押した</p>
-        )}
-      </div>
-
       {/* アニメーション用CSS */}
       <style>{`
         @keyframes wave {

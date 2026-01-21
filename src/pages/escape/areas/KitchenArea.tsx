@@ -126,14 +126,6 @@ export default function KitchenArea() {
           </div>
         </div>
       </div>
-
-      {/* 説明 */}
-      <div className="text-gray-300 text-sm max-w-md space-y-2">
-        <p>• 一般家庭のキッチンにあるようなものがある</p>
-        <p>• 水道は出ない</p>
-        <p>• コンロの火はつかない</p>
-        <p>• 換気扇もつかない。後ろは壁になっている</p>
-      </div>
     </div>
   );
 }

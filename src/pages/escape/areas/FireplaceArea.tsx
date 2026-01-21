@@ -82,29 +82,6 @@ export default function FireplaceArea() {
         </div>
       </div>
 
-      {/* 説明 */}
-      <div className="text-gray-300 text-sm max-w-md space-y-2">
-        {!state.flags.fireExtinguished ? (
-          <>
-            <p>• 暖炉で炎が燃えている。もちろん熱い</p>
-            <p>• 炎の後ろにボタン①があるようだ</p>
-            <p className="text-yellow-400">
-              → 何か水をかけられるものがあれば火を消せそうだ
-            </p>
-          </>
-        ) : (
-          <>
-            <p>• 火は消えている</p>
-            <p>
-              • 暖炉自体に煙突などはなく、隙間から空気が入らないようになっている
-            </p>
-            {!state.flags.button1Pressed && (
-              <p className="text-green-400">• ボタン①が押せる状態だ</p>
-            )}
-          </>
-        )}
-      </div>
-
       {/* ヒント */}
       {!state.flags.fireExtinguished &&
         state.items.cooking_tools.obtained &&
