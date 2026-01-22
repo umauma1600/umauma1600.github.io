@@ -22,7 +22,7 @@ import {
 function gameReducer(state: GameState, action: GameAction): GameState {
   switch (action.type) {
     case "START_GAME":
-      return { ...state, status: "caution" };
+      return { ...state, status: "opening" };
 
     case "SHOW_CAUTION":
       return { ...state, status: "caution" };
