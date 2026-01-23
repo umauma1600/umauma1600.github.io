@@ -90,45 +90,13 @@ export default function OpeningScreen() {
       {/* メッセージ */}
       {showMessage && (
         <div className="max-w-2xl w-full animate-fade-in">
-          {/* メッセージカード */}
-          <div className="relative bg-gray-900 rounded-lg p-8 shadow-2xl border-2 border-red-800">
-            {/* リボン装飾 */}
-            <div className="absolute -top-2 -left-2 w-16 h-16">
-              <div className="absolute top-0 left-0 w-full h-4 bg-red-700 transform -rotate-45 origin-top-left" />
-            </div>
-            <div className="absolute -bottom-2 -right-2 w-16 h-16">
-              <div className="absolute bottom-0 right-0 w-full h-4 bg-red-700 transform -rotate-45 origin-bottom-right" />
-            </div>
-
-            {/* メッセージ内容 */}
-            <div className="text-gray-200 text-lg leading-relaxed space-y-4 font-serif">
-              <p>この部屋のとある場所に時限爆弾をしかけた。</p>
-              <p>
-                タイムリミットは君がこの手紙を読んでから
-                <span className="text-red-500 font-bold text-2xl">60分</span>
-                だ。
-              </p>
-              <p className="text-gray-400">
-                理由？そんなものは果たして必要なのかい。
-                <br />
-                運命とは数奇なる偶然と必然によってできたもの。
-                <br />
-                それ以上でも以下でもない。
-              </p>
-              <p>
-                ひとつ助言をするのであれば
-                <br />
-                最善手というのは
-                <span className="text-yellow-400">然るべき時</span>に
-                <span className="text-yellow-400">然るべき物</span>
-                により
-                <br />
-                得られることができる。
-              </p>
-              <p className="text-red-400 text-xl mt-6">
-                さあ、君たちが生き残れることを楽しみにしているよ。
-              </p>
-            </div>
+          {/* メッセージ画像 */}
+          <div className="relative">
+            <img
+              src="/assets/escape/message.png"
+              alt="脅迫文"
+              className="w-full rounded-lg shadow-2xl"
+            />
           </div>
 
           {/* スタートボタン */}
