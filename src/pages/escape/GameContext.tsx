@@ -18,8 +18,8 @@ import {
   initialFlags,
 } from "./types";
 
-// ゲームのリデューサー
-function gameReducer(state: GameState, action: GameAction): GameState {
+// ゲームのリデューサー（テスト用にエクスポート）
+export function gameReducer(state: GameState, action: GameAction): GameState {
   switch (action.type) {
     case "START_GAME":
       return { ...state, status: "opening" };
