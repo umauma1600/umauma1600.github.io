@@ -151,10 +151,11 @@ export default function ShelfArea() {
               {state.items.pill_red.obtained ? (
                 <span className="text-gray-400 text-xs">取得済</span>
               ) : (
-                <>
-                  <span className="text-xl">❤️</span>
-                  <span className="text-red-300 text-xs">赤</span>
-                </>
+                <img
+                  src="/assets/escape/pill-atsukunai.png"
+                  alt="赤い錠剤"
+                  className="w-12 h-14 object-contain"
+                />
               )}
             </button>
 
@@ -171,10 +172,11 @@ export default function ShelfArea() {
               {state.items.pill_yellow.obtained ? (
                 <span className="text-gray-400 text-xs">取得済</span>
               ) : (
-                <>
-                  <span className="text-xl">⭐</span>
-                  <span className="text-yellow-300 text-xs">黄</span>
-                </>
+                <img
+                  src="/assets/escape/pill-takakutobu.png"
+                  alt="黄色い錠剤"
+                  className="w-12 h-14 object-contain"
+                />
               )}
             </button>
 
