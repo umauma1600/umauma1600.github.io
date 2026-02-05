@@ -152,7 +152,7 @@ export default function ShelfArea() {
                 <span className="text-gray-400 text-xs">取得済</span>
               ) : (
                 <img
-                  src="/assets/escape/pill-atsukunai.png"
+                  src="/assets/escape/pill-icon-heart.png"
                   alt="赤い錠剤"
                   className="w-12 h-14 object-contain"
                 />
@@ -173,7 +173,7 @@ export default function ShelfArea() {
                 <span className="text-gray-400 text-xs">取得済</span>
               ) : (
                 <img
-                  src="/assets/escape/pill-takakutobu.png"
+                  src="/assets/escape/pill-icon-star.png"
                   alt="黄色い錠剤"
                   className="w-12 h-14 object-contain"
                 />
