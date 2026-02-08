@@ -69,10 +69,11 @@ export default function DoorArea() {
             {state.items.pill_purple.obtained ? (
               <span className="text-gray-400 text-xs">取得済</span>
             ) : (
-              <>
-                <span className="text-2xl">💜</span>
-                <span className="text-purple-300 text-xs mt-1">紫の錠剤</span>
-              </>
+              <img
+                src="/assets/escape/pill-icon-triangle.png"
+                alt="紫の錠剤"
+                className="w-12 h-16 object-contain"
+              />
             )}
           </button>
         </div>

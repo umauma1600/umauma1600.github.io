@@ -69,7 +69,11 @@ export default function KitchenArea() {
               {state.items.pill_white.obtained ? (
                 <span className="text-gray-400 text-xs">取得済</span>
               ) : (
-                <span className="text-2xl">⚪</span>
+                <img
+                  src="/assets/escape/pill-icon-circle.png"
+                  alt="白い錠剤"
+                  className="w-10 h-14 object-contain"
+                />
               )}
             </button>
 
