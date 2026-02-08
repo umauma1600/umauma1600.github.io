@@ -64,10 +64,11 @@ export default function StatueArea() {
             {state.items.pill_blue.obtained ? (
               <span className="text-gray-400 text-xs">取得済</span>
             ) : (
-              <>
-                <span className="text-2xl">☁️</span>
-                <span className="text-blue-300 text-xs mt-1">青い錠剤</span>
-              </>
+              <img
+                src="/assets/escape/pill-icon-cloud.png"
+                alt="青い錠剤"
+                className="w-12 h-16 object-contain"
+              />
             )}
           </button>
         </div>
