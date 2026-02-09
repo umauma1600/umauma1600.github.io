@@ -3,8 +3,27 @@ import { useGame } from "../GameContext";
 import type { ItemType } from "../types";
 import { pillInfo } from "../types";
 
-// アイテムのアイコン設定
-const itemIcons: Record<ItemType, string> = {
+// アイテムの画像パス（存在するもののみ）
+const itemImages: Partial<Record<ItemType, { src: string; alt: string }>> = {
+  message: { src: "/assets/escape/message.png", alt: "メッセージ" },
+  pill_purple: {
+    src: "/assets/escape/pill-icon-triangle.png",
+    alt: "紫の錠剤",
+  },
+  pill_white: {
+    src: "/assets/escape/pill-icon-circle.png",
+    alt: "白い錠剤",
+  },
+  pill_red: { src: "/assets/escape/pill-icon-heart.png", alt: "赤い錠剤" },
+  pill_yellow: {
+    src: "/assets/escape/pill-icon-star.png",
+    alt: "黄色い錠剤",
+  },
+  pill_blue: { src: "/assets/escape/pill-icon-cloud.png", alt: "青い錠剤" },
+};
+
+// 画像がないアイテム用の絵文字フォールバック
+const itemFallbackIcons: Record<ItemType, string> = {
   message: "✉️",
   pill_purple: "💜",
   pill_white: "⚪",
@@ -74,7 +93,8 @@ export default function ItemPopup({ itemId, onClose }: ItemPopupProps) {
   const gameContext = useGame();
   const { state, selectItem, openBox, showDialog } = gameContext;
   const item = state.items[itemId];
-  const icon = itemIcons[itemId];
+  const image = itemImages[itemId];
+  const fallbackIcon = itemFallbackIcons[itemId];
   const description = itemDescriptions[itemId];
 
   // 3桁錠の状態
@@ -402,8 +422,16 @@ export default function ItemPopup({ itemId, onClose }: ItemPopupProps) {
           </button>
 
           {/* アイコン */}
-          <div className="w-20 h-20 rounded-2xl bg-gray-600/50 border-2 border-gray-500/50 flex items-center justify-center mb-3">
-            <span className="text-5xl">{icon}</span>
+          <div className="w-24 h-24 rounded-2xl bg-gray-600/50 border-2 border-gray-500/50 flex items-center justify-center mb-3 overflow-hidden">
+            {image ? (
+              <img
+                src={image.src}
+                alt={image.alt}
+                className="w-20 h-20 object-contain"
+              />
+            ) : (
+              <span className="text-5xl">{fallbackIcon}</span>
+            )}
           </div>
 
           {/* 名前 */}
