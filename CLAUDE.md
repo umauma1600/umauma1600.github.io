@@ -46,7 +46,6 @@
 - **Prettier 3**: コードフォーマッター
 - **Vitest 3**: テストフレームワーク
 - **React Testing Library**: Reactコンポーネントのテスト
-- **Playwright**: E2Eテスト用
 
 ### ビルド・デプロイ
 - **Vite**: バンドラー（ターゲット: ESNext）
