@@ -1,0 +1,1155 @@
+/* ===== やまーたからの挑戦状 ===== */
+
+.eg-root {
+  --eg-dark: #140e0b;
+  --eg-panel: #221813;
+  --eg-ink: #f3ead8;
+  --eg-dim: #b5a68d;
+  --eg-gold: #c69c6d;
+  --eg-gold-light: #f0d7a4;
+  --eg-red: #c8201c;
+  --eg-line: rgba(198, 156, 109, 0.3);
+  --eg-serif: "Yu Mincho", "Hiragino Mincho ProN", "Noto Serif JP", serif;
+
+  position: fixed;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  background: var(--eg-dark);
+  color: var(--eg-ink);
+  font-size: 15px;
+  line-height: 1.7;
+  overscroll-behavior: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.eg-root button {
+  font: inherit;
+  color: inherit;
+}
+
+.eg-root :focus-visible {
+  outline: 2px solid var(--eg-gold-light);
+  outline-offset: 2px;
+}
+
+.eg-root :where(h1, h2, p, ul, ol) {
+  margin: 0;
+  padding: 0;
+}
+
+.eg-root :where(ul, ol) {
+  list-style: none;
+}
+
+/* ===== 共通の部品 ===== */
+
+.eg-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 46px;
+  padding: 8px 18px;
+  border: 1px solid var(--eg-line);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--eg-ink);
+  font-size: 15px;
+  font-weight: 600;
+  text-decoration: none;
+  transition:
+    background 0.15s,
+    transform 0.1s;
+}
+
+.eg-btn:hover:not(:disabled) {
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.eg-btn:active:not(:disabled) {
+  transform: scale(0.97);
+}
+
+.eg-btn:disabled {
+  opacity: 0.35;
+}
+
+.eg-btn-wide {
+  width: 100%;
+}
+
+.eg-btn-primary {
+  border-color: transparent;
+  background: var(--eg-red);
+  color: #fff;
+}
+
+.eg-btn-primary:hover:not(:disabled) {
+  background: #dd2f2a;
+}
+
+.eg-btn-danger {
+  border-color: rgba(232, 56, 46, 0.7);
+  color: #ff9d94;
+}
+
+.eg-back {
+  padding: 8px 4px;
+  font-size: 13px;
+  color: var(--eg-gold-light);
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.eg-back:hover {
+  color: #fff;
+}
+
+.eg-note {
+  font-size: 13px;
+  color: var(--eg-dim);
+}
+
+.eg-fade {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  width: 100%;
+  animation: eg-fade-in 0.6s ease-out both;
+}
+
+@keyframes eg-fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+}
+
+/* ===== タイトル・オープニング・エンディング（縦に流れるページ） ===== */
+
+.eg-page {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 28px;
+  padding: 16px 20px 40px;
+  overflow-y: auto;
+  background: radial-gradient(
+    ellipse 90% 60% at 50% 30%,
+    #3a1513 0%,
+    var(--eg-dark) 70%
+  );
+}
+
+.eg-page > * {
+  width: 100%;
+  max-width: 460px;
+}
+
+.eg-page > .eg-back {
+  align-self: flex-start;
+  width: auto;
+  max-width: none;
+}
+
+.eg-title-main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
+  margin: auto 0;
+  text-align: center;
+  animation: eg-fade-in 0.8s ease-out both;
+}
+
+.eg-kicker {
+  padding: 2px 16px;
+  border: 1px solid var(--eg-line);
+  border-radius: 999px;
+  font-size: 12px;
+  letter-spacing: 0.3em;
+  color: var(--eg-gold-light);
+}
+
+.eg-title h1 {
+  font-family: var(--eg-serif);
+  font-size: clamp(34px, 10vw, 52px);
+  font-weight: 700;
+  line-height: 1.35;
+  letter-spacing: 0.06em;
+}
+
+.eg-title h1 em {
+  font-style: normal;
+  font-size: 1.35em;
+  color: var(--eg-red);
+  text-shadow: 0 0 28px rgba(200, 32, 28, 0.55);
+}
+
+.eg-lead {
+  font-family: var(--eg-serif);
+  color: var(--eg-dim);
+}
+
+.eg-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  max-width: 320px;
+}
+
+.eg-cautions {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding-top: 16px;
+  border-top: 1px solid var(--eg-line);
+  font-size: 12px;
+  color: var(--eg-dim);
+}
+
+.eg-cautions li {
+  padding-left: 1em;
+  text-indent: -1em;
+}
+
+.eg-cautions li::before {
+  content: "・";
+}
+
+.eg-cautions b {
+  white-space: nowrap;
+  color: var(--eg-gold-light);
+}
+
+.eg-opening,
+.eg-ending {
+  justify-content: safe center;
+}
+
+.eg-story {
+  display: flex;
+  flex-direction: column;
+  font-family: var(--eg-serif);
+  font-size: 16px;
+  line-height: 2;
+  text-align: center;
+}
+
+.eg-story-left {
+  width: 100%;
+  padding: 20px;
+  border: 1px solid var(--eg-line);
+  border-radius: 10px;
+  background: rgba(0, 0, 0, 0.35);
+  font-size: 15px;
+  text-align: left;
+}
+
+.eg-envelope {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 20px 14px;
+  border: 0;
+  border-radius: 12px;
+  background: none;
+  font-size: 14px;
+  color: var(--eg-gold-light);
+}
+
+.eg-envelope span {
+  animation: eg-pulse 1.8s ease-in-out infinite;
+}
+
+.eg-envelope-art {
+  width: min(64vw, 260px);
+  transition: transform 0.25s;
+}
+
+.eg-envelope:hover .eg-envelope-art {
+  transform: translateY(-4px) rotate(1deg);
+}
+
+@keyframes eg-pulse {
+  50% {
+    opacity: 0.4;
+  }
+}
+
+.eg-letter {
+  flex: none;
+  width: 100%;
+  border-radius: 6px;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.6);
+}
+
+.eg-ending-label {
+  font-family: var(--eg-serif);
+  font-size: clamp(34px, 10vw, 48px);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  line-height: 1.2;
+}
+
+.eg-ending-sub {
+  margin-top: -12px;
+  font-size: 14px;
+  text-align: center;
+  color: var(--eg-dim);
+}
+
+.eg-ending-bad .eg-ending-label {
+  color: #e8463c;
+}
+
+.eg-ending-normal {
+  background: radial-gradient(
+    ellipse 90% 60% at 50% 30%,
+    #3d3214 0%,
+    var(--eg-dark) 70%
+  );
+}
+
+.eg-ending-normal .eg-ending-label {
+  color: #f0c95a;
+}
+
+.eg-ending-true {
+  background: radial-gradient(
+    ellipse 90% 60% at 50% 30%,
+    #1d3b2c 0%,
+    var(--eg-dark) 70%
+  );
+}
+
+.eg-ending-true .eg-ending-label {
+  color: #8fe0a4;
+}
+
+.eg-yamata {
+  width: 120px;
+  height: auto;
+}
+
+/* ===== 探索画面 ===== */
+
+.eg-play {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+
+.eg-header {
+  flex: none;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: 8px;
+  height: 48px;
+  padding: 0 12px;
+  border-bottom: 1px solid var(--eg-line);
+}
+
+.eg-header .eg-back {
+  justify-self: start;
+}
+
+.eg-header h1 {
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  white-space: nowrap;
+}
+
+.eg-timer {
+  justify-self: end;
+  padding: 2px 10px;
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.07);
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 15px;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+  color: var(--eg-gold-light);
+}
+
+.eg-timer.is-low {
+  color: #ffc94d;
+}
+
+.eg-timer.is-critical {
+  background: rgba(200, 32, 28, 0.35);
+  color: #ffb0a8;
+  animation: eg-pulse 1s ease-in-out infinite;
+}
+
+.eg-timer.is-safe {
+  font-family: inherit;
+  font-size: 12px;
+  color: #8fe0a4;
+}
+
+.eg-stage {
+  flex: 1;
+  min-height: 0;
+  display: grid;
+  place-items: center;
+  container-type: size;
+  overflow: hidden;
+  background: #0a0706;
+}
+
+.eg-scene {
+  position: relative;
+  width: min(100cqw, 80cqh);
+  aspect-ratio: 4 / 5;
+}
+
+.eg-scene-art {
+  position: absolute;
+  inset: 0;
+  animation: eg-scene-in 0.3s ease-out both;
+}
+
+@keyframes eg-scene-in {
+  from {
+    opacity: 0;
+  }
+}
+
+.eg-art {
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  user-select: none;
+}
+
+.eg-art text {
+  font-family: var(--eg-serif);
+  pointer-events: none;
+}
+
+.eg-vignette {
+  position: absolute;
+  /* 場面の外の余白まで、ステージ全体を覆う */
+  inset: calc((100% - 100cqh) / 2) calc((100% - 100cqw) / 2);
+  background: radial-gradient(
+    ellipse 85% 75% at 50% 45%,
+    transparent 50%,
+    rgba(0, 0, 0, 0.5)
+  );
+  pointer-events: none;
+}
+
+.eg-hot {
+  cursor: pointer;
+  outline: none;
+  transition: filter 0.15s;
+}
+
+.eg-hot:hover,
+.eg-hot:focus-visible {
+  filter: brightness(1.22);
+}
+
+.eg-hot:active {
+  filter: brightness(1.4);
+}
+
+/* 絵の中の動き */
+
+.eg-flame {
+  transform-box: fill-box;
+  transform-origin: 50% 100%;
+  animation: eg-flicker 0.9s ease-in-out infinite alternate;
+}
+
+@keyframes eg-flicker {
+  0% {
+    transform: scale(1, 1);
+  }
+  40% {
+    transform: scale(0.95, 1.08) skewX(2deg);
+  }
+  100% {
+    transform: scale(1.04, 0.94) skewX(-2deg);
+  }
+}
+
+/* 光や火の粉は飾り。下にあるものをタップできるよう、当たり判定を持たせない */
+.eg-glow,
+.eg-ember,
+.eg-steam,
+.eg-stink {
+  pointer-events: none;
+}
+
+.eg-glow {
+  animation: eg-glow 2.4s ease-in-out infinite alternate;
+}
+
+@keyframes eg-glow {
+  to {
+    opacity: 0.1;
+  }
+}
+
+.eg-bubble,
+.eg-boil {
+  transform-box: fill-box;
+  animation: eg-rise 2.6s ease-in infinite;
+}
+
+.eg-boil {
+  animation-duration: 0.9s;
+}
+
+@keyframes eg-rise {
+  from {
+    transform: translateY(6px);
+    opacity: 0;
+  }
+  30% {
+    opacity: 0.7;
+  }
+  to {
+    transform: translateY(-14px);
+    opacity: 0;
+  }
+}
+
+.eg-steam,
+.eg-stink {
+  animation: eg-waft 2.8s ease-out infinite;
+}
+
+@keyframes eg-waft {
+  from {
+    transform: translateY(12px);
+    opacity: 0;
+  }
+  40% {
+    opacity: 0.35;
+  }
+  to {
+    transform: translateY(-16px);
+    opacity: 0;
+  }
+}
+
+.eg-ember {
+  animation: eg-ember 2.4s ease-out infinite;
+}
+
+@keyframes eg-ember {
+  from {
+    transform: translate(0, 40px);
+    opacity: 0;
+  }
+  30% {
+    opacity: 0.9;
+  }
+  to {
+    transform: translate(6px, -50px);
+    opacity: 0;
+  }
+}
+
+.eg-twinkle {
+  animation: eg-pulse 1.4s ease-in-out infinite;
+}
+
+/* 向きを変えるボタン */
+
+.eg-nav {
+  position: absolute;
+  display: grid;
+  place-items: center;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 999px;
+  background: rgba(10, 7, 6, 0.6);
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1;
+  white-space: nowrap;
+  backdrop-filter: blur(3px);
+  transition: background 0.15s;
+}
+
+.eg-root .eg-nav {
+  color: var(--eg-gold-light);
+}
+
+.eg-nav:hover {
+  background: rgba(60, 40, 28, 0.85);
+}
+
+.eg-nav-left,
+.eg-nav-right {
+  bottom: 3%;
+  width: 46px;
+  height: 46px;
+  padding-bottom: 4px;
+  font-size: 28px;
+}
+
+.eg-nav-left {
+  left: 2.5%;
+}
+
+.eg-nav-right {
+  right: 2.5%;
+}
+
+.eg-nav-up,
+.eg-nav-down,
+.eg-nav-back {
+  height: 34px;
+  padding: 0 14px;
+}
+
+.eg-nav-up {
+  top: 2%;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.eg-nav-down {
+  bottom: 4%;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.eg-nav-back {
+  top: 2%;
+  left: 2.5%;
+}
+
+.eg-effects {
+  position: absolute;
+  top: 2%;
+  right: 2.5%;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.eg-effects li {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 3px 10px;
+  border-radius: 999px;
+  background: rgba(10, 7, 6, 0.75);
+  font-size: 12px;
+  font-variant-numeric: tabular-nums;
+}
+
+/* ひとことと選択肢 */
+
+.eg-dialog-layer {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: flex-end;
+  padding: 10px;
+  background: linear-gradient(transparent 45%, rgba(0, 0, 0, 0.55));
+  cursor: pointer;
+}
+
+.eg-dialog {
+  display: flex;
+  gap: 12px;
+  width: 100%;
+  padding: 14px 16px;
+  border: 1px solid var(--eg-line);
+  border-radius: 10px;
+  background: rgba(20, 14, 11, 0.94);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
+  animation: eg-fade-in 0.2s ease-out both;
+}
+
+.eg-dialog-got {
+  flex: none;
+  width: 56px;
+  height: 56px;
+  padding: 4px;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.07);
+}
+
+.eg-dialog-main {
+  flex: 1;
+  min-width: 0;
+}
+
+.eg-dialog p {
+  font-family: var(--eg-serif);
+  font-size: 15px;
+  white-space: pre-line;
+}
+
+.eg-dialog-next {
+  display: block;
+  margin-top: 2px;
+  font-size: 10px;
+  text-align: right;
+  color: var(--eg-gold);
+  animation: eg-pulse 1.2s ease-in-out infinite;
+}
+
+.eg-choices {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.eg-choices .eg-btn {
+  flex: 1 1 130px;
+}
+
+/* 持ち物 */
+
+.eg-footer {
+  flex: none;
+  padding: 6px 10px max(8px, env(safe-area-inset-bottom));
+  border-top: 1px solid var(--eg-line);
+  background: var(--eg-panel);
+}
+
+.eg-selected {
+  min-height: 18px;
+  overflow: hidden;
+  font-size: 11px;
+  line-height: 18px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: var(--eg-dim);
+}
+
+.eg-bar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  max-width: 620px;
+  margin: 4px auto 0;
+}
+
+.eg-items {
+  flex: 1;
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  min-height: 52px;
+  padding: 2px;
+}
+
+.eg-slot {
+  flex: none;
+  display: block;
+  width: 48px;
+  height: 48px;
+  padding: 4px;
+  border: 1px solid var(--eg-line);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.05);
+  transition: transform 0.12s;
+}
+
+.eg-slot.is-selected {
+  border-color: var(--eg-gold-light);
+  background: rgba(240, 215, 164, 0.2);
+  box-shadow: 0 0 0 2px var(--eg-gold-light);
+  transform: translateY(-2px);
+}
+
+.eg-item-art {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.eg-tools {
+  flex: none;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.eg-tool {
+  min-width: 58px;
+  height: 24px;
+  border: 1px solid var(--eg-line);
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.05);
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.eg-root .eg-tool {
+  color: var(--eg-gold-light);
+}
+
+.eg-tool:hover {
+  background: rgba(255, 255, 255, 0.12);
+}
+
+/* ===== 重ねて開くシート ===== */
+
+.eg-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 10;
+  display: grid;
+  place-items: center;
+  padding: 12px;
+  background: rgba(0, 0, 0, 0.72);
+  animation: eg-scene-in 0.15s ease-out both;
+}
+
+.eg-sheet {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 380px;
+  max-height: 100%;
+  border: 1px solid var(--eg-line);
+  border-radius: 12px;
+  background: var(--eg-panel);
+  box-shadow: 0 16px 50px rgba(0, 0, 0, 0.6);
+  outline: none;
+  overflow: hidden;
+}
+
+.eg-sheet-wide {
+  max-width: 760px;
+}
+
+.eg-sheet-head {
+  flex: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 4px 4px 4px 16px;
+  border-bottom: 1px solid var(--eg-line);
+}
+
+.eg-sheet-head h2 {
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+}
+
+.eg-close {
+  width: 44px;
+  height: 44px;
+  border: 0;
+  background: none;
+  font-size: 26px;
+  line-height: 1;
+}
+
+.eg-sheet-body {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 18px;
+  overflow-y: auto;
+}
+
+.eg-doc-page {
+  flex: 1;
+  min-height: 0;
+  overflow: auto;
+  background: #0a0706;
+}
+
+.eg-zoom {
+  display: block;
+  width: 100%;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: zoom-in;
+}
+
+.eg-zoom img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* 画面いっぱいの拡大表示 */
+
+.eg-lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 30;
+  display: flex;
+  flex-direction: column;
+  background: rgba(0, 0, 0, 0.94);
+  animation: eg-scene-in 0.15s ease-out both;
+}
+
+.eg-lightbox-scroll {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  overflow: auto;
+  cursor: zoom-out;
+  scrollbar-width: none;
+}
+
+.eg-lightbox-scroll::-webkit-scrollbar {
+  display: none;
+}
+
+.eg-lightbox-scroll img {
+  /* 横長の画面では全体が収まる大きさ、縦長の画面では高さを優先して横に動かして読む */
+  flex: none;
+  width: auto;
+  max-width: none;
+  height: max(70vh, min(100vh - 44px, 100vw / 1.41));
+  margin: auto;
+  user-select: none;
+}
+
+.eg-lightbox-note {
+  flex: none;
+  height: 44px;
+  font-size: 13px;
+  line-height: 44px;
+  text-align: center;
+  color: var(--eg-dim);
+  pointer-events: none;
+}
+
+.eg-doc-foot {
+  flex: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 10px 12px;
+  border-top: 1px solid var(--eg-line);
+}
+
+.eg-doc-count {
+  font-size: 13px;
+  font-variant-numeric: tabular-nums;
+  color: var(--eg-dim);
+}
+
+.eg-doc-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.eg-dial {
+  display: flex;
+  justify-content: center;
+  gap: 14px;
+}
+
+.eg-dial.is-wrong {
+  animation: eg-shake 0.35s;
+}
+
+@keyframes eg-shake {
+  25% {
+    transform: translateX(-6px);
+  }
+  50% {
+    transform: translateX(6px);
+  }
+  75% {
+    transform: translateX(-3px);
+  }
+}
+
+.eg-dial-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+
+.eg-dial-col button {
+  width: 58px;
+  height: 40px;
+  border: 1px solid var(--eg-line);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.06);
+  font-size: 14px;
+}
+
+.eg-root .eg-dial-col button {
+  color: var(--eg-gold-light);
+}
+
+.eg-dial-col output {
+  display: grid;
+  place-items: center;
+  width: 58px;
+  height: 68px;
+  border-radius: 8px;
+  background: #f3ead8;
+  color: #1c130e;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 36px;
+  font-weight: 700;
+  box-shadow: inset 0 0 12px rgba(0, 0, 0, 0.35);
+}
+
+.eg-dial-msg {
+  font-size: 13px;
+  text-align: center;
+  color: #ff9d94;
+}
+
+.eg-item-sheet {
+  align-items: center;
+  text-align: center;
+}
+
+.eg-item-big {
+  width: 96px;
+  height: 96px;
+  padding: 10px;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.07);
+}
+
+.eg-hint-count {
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  color: var(--eg-gold-light);
+}
+
+.eg-hint-text {
+  min-height: 7.5em;
+  padding: 14px 16px;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.eg-hint-nav {
+  display: flex;
+  gap: 8px;
+}
+
+.eg-hint-nav .eg-btn {
+  flex: 1;
+  padding: 8px;
+  font-size: 14px;
+}
+
+.eg-hint-giveup {
+  align-self: center;
+  padding: 6px 8px;
+  border: 0;
+  background: none;
+  font-size: 12px;
+  text-decoration: underline;
+}
+
+.eg-root .eg-hint-giveup {
+  color: var(--eg-dim);
+}
+
+.eg-hint-confirm {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  text-align: center;
+}
+
+.eg-hint-answer {
+  padding: 12px 16px;
+  border: 1px solid rgba(232, 56, 46, 0.6);
+  border-radius: 8px;
+}
+
+.eg-hint-answer b {
+  display: block;
+  font-size: 12px;
+  color: #ff9d94;
+}
+
+/* エンディング一覧 */
+
+.eg-ending-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.eg-ending-list li {
+  border: 1px solid var(--eg-line);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.eg-ending-list li.is-locked {
+  padding: 12px 14px;
+  letter-spacing: 0.2em;
+  color: var(--eg-dim);
+  opacity: 0.6;
+}
+
+.eg-ending-list summary {
+  display: flex;
+  flex-direction: column;
+  padding: 10px 14px;
+  cursor: pointer;
+}
+
+.eg-ending-list summary b {
+  font-family: var(--eg-serif);
+  font-size: 17px;
+  letter-spacing: 0.06em;
+}
+
+.eg-ending-list summary span {
+  font-size: 12px;
+  color: var(--eg-dim);
+}
+
+.eg-ending-list .is-bad b {
+  color: #e8463c;
+}
+
+.eg-ending-list .is-normal b {
+  color: #f0c95a;
+}
+
+.eg-ending-list .is-true b {
+  color: #8fe0a4;
+}
+
+.eg-ending-list details p {
+  display: flex;
+  flex-direction: column;
+  padding: 4px 14px 14px;
+  font-family: var(--eg-serif);
+  font-size: 14px;
+  line-height: 1.9;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .eg-root *,
+  .eg-root *::before {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}
