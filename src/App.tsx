@@ -7,7 +7,9 @@ import HomePage from "./pages/HomePage";
 const PuzzleListPage = lazy(() => import("./pages/PuzzleListPage"));
 const MadamisListPage = lazy(() => import("./pages/MadamisListPage"));
 const ContactPage = lazy(() => import("./pages/ContactPage"));
-const TreasureBoxPage = lazy(() => import("./pages/TreasureBoxPage"));
+const TreasureBoxPage = lazy(
+  () => import("./pages/treasure-box/TreasureBoxPage"),
+);
 const EscapeGamePage = lazy(() => import("./pages/escape/EscapeGamePage"));
 const CafeInterior = lazy(() => import("./pages/cafe/CafeInterior"));
 const CafeMenu = lazy(() => import("./pages/cafe/CafeMenu"));
