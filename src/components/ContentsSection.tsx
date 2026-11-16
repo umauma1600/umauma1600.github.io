@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import ArtworkCard from "./ArtworkCard";
 
 export default function ContentsSection() {
   const [keyRotated, setKeyRotated] = useState(false);
@@ -125,141 +125,27 @@ export default function ContentsSection() {
 
         {/* 作品カードグリッド */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {/* 謎解き - 逆転の宝箱 */}
-          <Link to="/nazo/treasure-box" className="artwork-card group">
-            <div className="artwork-frame">
-              <div className="artwork-shine" />
-              <div className="artwork-image">
-                <img
-                  src="/assets/images/treasure-box-thumbnail.webp"
-                  alt="逆転の宝箱"
-                  className="w-full h-full object-cover"
-                  loading="lazy"
-                />
-                <div className="sparkles">
-                  <span className="sparkle sparkle-1">✦</span>
-                  <span className="sparkle sparkle-2">✧</span>
-                  <span className="sparkle sparkle-3">✦</span>
-                </div>
-              </div>
-              <div className="artwork-content">
-                <div className="flex items-center gap-2 mb-2">
-                  <span className="genre-badge genre-badge-nazo">謎解き</span>
-                  <span className="difficulty-badge">初心者向け</span>
-                </div>
-                <h3 className="artwork-title">逆転の宝箱</h3>
-                <p className="artwork-description">
-                  4桁のダイヤル錠がかかった古びた宝箱。常識にとらわれていませんか？
-                </p>
-                <div className="artwork-meta">
-                  <span className="meta-item">
-                    <svg
-                      className="meta-icon"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth="2"
-                        d="M13 10V3L4 14h7v7l9-11h-7z"
-                      />
-                    </svg>
-                    ★☆☆☆☆
-                  </span>
-                  <span className="meta-item">
-                    <svg
-                      className="meta-icon"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth="2"
-                        d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
-                      />
-                    </svg>
-                    約10分
-                  </span>
-                </div>
-                <div className="artwork-cta artwork-cta-nazo">
-                  <span className="cta-text">挑戦する</span>
-                  <svg
-                    className="cta-arrow"
-                    width="20"
-                    height="20"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth="2"
-                      d="M17 8l4 4m0 0l-4 4m4-4H3"
-                    />
-                  </svg>
-                </div>
-              </div>
-            </div>
-          </Link>
-
-          {/* マダミス - 煙の向こうで */}
-          <a
+          <ArtworkCard
+            to="/nazo/treasure-box"
+            image="/assets/images/treasure-box-thumbnail.webp"
+            title="逆転の宝箱"
+            description="4桁のダイヤル錠がかかった古びた宝箱。常識にとらわれていませんか？"
+            genre="謎解き"
+            difficulty="初心者向け"
+            stars="★☆☆☆☆"
+            duration="約10分"
+            ctaLabel="挑戦する"
+            tall
+          />
+          <ArtworkCard
             href="https://umauma1600.booth.pm/items/5403959"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="artwork-card group"
-          >
-            <div className="artwork-frame artwork-frame-madamis">
-              <div className="artwork-shine" />
-              <div className="artwork-image">
-                <img
-                  src="/assets/images/kemurinomukoude.webp"
-                  alt="煙の向こうで"
-                  className="w-full h-full object-cover"
-                  loading="lazy"
-                />
-                <div className="sparkles sparkles-madamis">
-                  <span className="sparkle sparkle-1">✦</span>
-                  <span className="sparkle sparkle-2">✧</span>
-                  <span className="sparkle sparkle-3">✦</span>
-                </div>
-              </div>
-              <div className="artwork-content">
-                <div className="flex items-center gap-2 mb-2">
-                  <span className="genre-badge genre-badge-madamis">
-                    マダミス
-                  </span>
-                </div>
-                <h3 className="artwork-title">煙の向こうで</h3>
-                <p className="artwork-description">
-                  Boothで詳細をご確認ください。
-                </p>
-                <div className="artwork-cta artwork-cta-madamis">
-                  <span className="cta-text">Boothで見る</span>
-                  <svg
-                    className="cta-arrow"
-                    width="20"
-                    height="20"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth="2"
-                      d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
-                    />
-                  </svg>
-                </div>
-              </div>
-            </div>
-          </a>
+            image="/assets/images/kemurinomukoude.webp"
+            title="煙の向こうで"
+            description="Boothで詳細をご確認ください。"
+            genre="マダミス"
+            ctaLabel="Boothで見る"
+            tall
+          />
         </div>
       </div>
 
@@ -304,230 +190,8 @@ export default function ContentsSection() {
           transform: scale(0.95);
         }
 
-        /* 作品カード */
-        .artwork-card {
-          display: block;
-          text-decoration: none;
-          transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-          cursor: pointer;
-        }
-
-        .artwork-card:hover {
-          transform: translateY(-8px);
-        }
-
-        /* 額縁フレーム */
-        .artwork-frame {
-          position: relative;
-          background: linear-gradient(145deg, #fff 0%, #f8f6f3 100%);
-          border-radius: 12px;
-          overflow: hidden;
-          box-shadow:
-            0 4px 6px rgba(0, 0, 0, 0.05),
-            0 10px 20px rgba(0, 0, 0, 0.05),
-            inset 0 1px 0 rgba(255, 255, 255, 0.8);
-          border: 3px solid transparent;
-          background-clip: padding-box;
-        }
-
-        .artwork-frame::before {
-          content: '';
-          position: absolute;
-          inset: -3px;
-          background: linear-gradient(135deg, #d4a574 0%, #c69c6d 50%, #b8956a 100%);
-          border-radius: 14px;
-          z-index: -1;
-        }
-
-        .artwork-frame-madamis::before {
-          background: linear-gradient(135deg, #d4a574 0%, #c69c6d 50%, #b8956a 100%);
-        }
-
-        .artwork-card:hover .artwork-frame {
-          box-shadow:
-            0 8px 16px rgba(198, 156, 109, 0.15),
-            0 20px 40px rgba(0, 0, 0, 0.1),
-            inset 0 1px 0 rgba(255, 255, 255, 0.8);
-        }
-
-        .artwork-card:hover .artwork-frame-madamis {
-          box-shadow:
-            0 8px 16px rgba(198, 156, 109, 0.15),
-            0 20px 40px rgba(0, 0, 0, 0.1),
-            inset 0 1px 0 rgba(255, 255, 255, 0.8);
-        }
-
-        /* 光のエフェクト */
-        .artwork-shine {
-          position: absolute;
-          top: 0;
-          left: -100%;
-          width: 60%;
-          height: 100%;
-          background: linear-gradient(
-            90deg,
-            transparent 0%,
-            rgba(255, 255, 255, 0.4) 50%,
-            transparent 100%
-          );
-          transform: skewX(-20deg);
-          z-index: 10;
-          pointer-events: none;
-          transition: left 0.6s ease;
-        }
-
-        .artwork-card:hover .artwork-shine {
-          left: 150%;
-        }
-
-        /* サムネイル画像 */
-        .artwork-image {
-          position: relative;
-          height: 220px;
-          overflow: hidden;
-          background: linear-gradient(135deg, #e8e0d5 0%, #d4cbb8 100%);
-        }
-
-        .artwork-image img {
-          transition: transform 0.4s ease;
-        }
-
-        .artwork-card:hover .artwork-image img {
-          transform: scale(1.05);
-        }
-
-        /* キラキラエフェクト */
-        .sparkles {
-          position: absolute;
-          inset: 0;
-          pointer-events: none;
-          opacity: 0;
-          transition: opacity 0.3s ease;
-        }
-
-        .artwork-card:hover .sparkles {
-          opacity: 1;
-        }
-
-        .sparkle {
-          position: absolute;
-          color: #ffd700;
-          font-size: 1rem;
-          animation: sparkle 1.5s ease-in-out infinite;
-        }
-
-        .sparkles-madamis .sparkle {
-          color: #ffd700;
-        }
-
-        .sparkle-1 { top: 20%; left: 15%; animation-delay: 0s; }
-        .sparkle-2 { top: 40%; right: 20%; animation-delay: 0.3s; }
-        .sparkle-3 { bottom: 25%; left: 30%; animation-delay: 0.6s; }
-
-        @keyframes sparkle {
-          0%, 100% { opacity: 0; transform: scale(0.5); }
-          50% { opacity: 1; transform: scale(1.2); }
-        }
-
-        /* コンテンツ部分 */
-        .artwork-content {
-          padding: 1.25rem;
-        }
-
-        /* ジャンルバッジ */
-        .genre-badge {
-          display: inline-block;
-          padding: 0.25rem 0.75rem;
-          border-radius: 9999px;
-          font-size: 0.75rem;
-          font-weight: 600;
-        }
-
-        .genre-badge-nazo {
-          background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
-          color: #92400e;
-        }
-
-        .genre-badge-madamis {
-          background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
-          color: #92400e;
-        }
-
-        .difficulty-badge {
-          display: inline-block;
-          padding: 0.25rem 0.75rem;
-          background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
-          color: #065f46;
-          border-radius: 9999px;
-          font-size: 0.75rem;
-          font-weight: 600;
-        }
-
-        .artwork-title {
-          font-size: 1.25rem;
-          font-weight: 700;
-          color: var(--color-primary);
-          margin-bottom: 0.5rem;
-        }
-
-        .artwork-description {
-          font-size: 0.875rem;
-          color: var(--color-text);
-          line-height: 1.6;
-          margin-bottom: 1rem;
-        }
-
-        .artwork-meta {
-          display: flex;
-          gap: 1rem;
-          margin-bottom: 1rem;
-        }
-
-        .meta-item {
-          display: flex;
-          align-items: center;
-          gap: 0.375rem;
-          font-size: 0.8rem;
-          color: var(--color-text);
-        }
-
-        .meta-icon {
-          width: 1rem;
-          height: 1rem;
-          color: var(--color-accent);
-        }
-
-        /* CTAボタン風 */
-        .artwork-cta {
-          display: flex;
-          align-items: center;
-          gap: 0.5rem;
-          font-weight: 600;
-          font-size: 0.9rem;
-        }
-
-        .artwork-cta-nazo {
-          color: var(--color-accent);
-        }
-
-        .artwork-cta-madamis {
-          color: var(--color-accent);
-        }
-
-        .cta-arrow {
-          transition: transform 0.3s ease;
-        }
-
-        .artwork-card:hover .cta-arrow {
-          transform: translateX(4px);
-        }
-
         /* レスポンシブ */
         @media (max-width: 768px) {
-          .artwork-image {
-            height: 180px;
-          }
-
           .floating-key {
             display: none;
           }
