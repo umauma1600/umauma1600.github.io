@@ -1362,21 +1362,29 @@ export default function TreasureBoxPage() {
           flex: 1;
           display: flex;
           flex-direction: column;
+          width: 100%;
           min-height: 0;
         }
 
-        /* ゲームエリア */
+        /* ゲームエリア - 机のサイズ計算の基準（cqw / cqh）にする */
         .game-area {
           flex: 1;
           min-height: 0;
           position: relative;
+          container-type: size;
         }
 
         /* テーブルコンテナ - テーブルとすべてのオブジェクトを含む */
         .table-container {
+          /* 机の上にはみ出す宝箱・封筒・メモのぶんの余白 */
+          --table-top-space: 56px;
           position: relative;
-          width: 60%;
-          max-width: 700px;
+          /* 高さが足りない画面では、枠に収まるよう机ごと縮める（872/540 は机画像の縦横比） */
+          width: min(
+            90cqw,
+            700px,
+            (100cqh - var(--table-top-space)) * 872 / 540
+          );
           margin: 0 auto;
         }
 
@@ -1545,14 +1553,18 @@ export default function TreasureBoxPage() {
         /* レスポンシブ対応 - PC版 */
         @media (min-width: 769px) {
           .game-main {
-            height: calc(100vh - 80px - 80px); /* ナビとフッターを除く */
-            height: calc(100dvh - 80px - 80px); /* 動的ビューポート高さ */
+            /* フッターを除く（ナビのぶんは padding-top で確保済み） */
+            height: calc(100vh - 72px);
+            height: calc(100dvh - 72px); /* 動的ビューポート高さ */
             padding-bottom: 0;
           }
 
           .table-container {
-            width: 70%;
-            max-width: 800px;
+            width: min(
+              70cqw,
+              560px,
+              (100cqh - var(--table-top-space)) * 872 / 540
+            );
           }
 
           .table-object-left {
@@ -1567,14 +1579,11 @@ export default function TreasureBoxPage() {
         /* レスポンシブ対応 - モバイル版 */
         @media (max-width: 768px) {
           .game-main {
-            height: calc(100vh - 64px - 80px); /* ナビとフッターを除く */
-            height: calc(100dvh - 64px - 80px); /* 動的ビューポート高さ（iOS Safari対応） */
+            /* フッターを除く（ナビのぶんは padding-top で確保済み） */
+            height: calc(100vh - 64px);
+            height: calc(100dvh - 64px); /* 動的ビューポート高さ（iOS Safari対応） */
             padding-bottom: 0;
             box-sizing: border-box;
-          }
-
-          .table-container {
-            width: 90%;
           }
 
           .table-object-left {
