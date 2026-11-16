@@ -1,7 +1,11 @@
 name: Deploy to GitHub Pages
 
 on:
+  # 自動デプロイは main への push のみ。
+  # 他のブランチを確認したいときは、下の手動実行（workflow_dispatch）でブランチを指定する。
   push:
+    branches:
+      - main
   workflow_dispatch:
     inputs:
       branch:
