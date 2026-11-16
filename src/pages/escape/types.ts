@@ -98,23 +98,13 @@ export type GameStatus =
   | "normal_end" // NORMAL END - 生還
   | "true_end"; // TRUE END - クリア
 
-// 錠剤効果の種類
-export type PillEffectType =
-  | "purple"
-  | "white"
-  | "red"
-  | "yellow"
-  | "blue"
-  | null;
-
 // ゲーム全体の状態
 export interface GameState {
   status: GameStatus;
   currentArea: AreaType;
   items: Record<ItemType, ItemState>;
   flags: GameFlags;
-  activePillEffects: PillEffect[];
-  activePillEffect: PillEffectType; // 現在有効な錠剤効果（コンピューテッド）
+  activePillEffects: PillEffect[]; // 有効中の錠剤効果（複数同時に有効になりうる）
   timerStartTime: number | null; // タイマー開始時刻
   remainingTime: number; // 残り時間（秒）
   selectedItem: ItemType | null; // 選択中のアイテム
@@ -227,7 +217,6 @@ export const initialGameState: GameState = {
   items: initialItems,
   flags: initialFlags,
   activePillEffects: [],
-  activePillEffect: null,
   timerStartTime: null,
   remainingTime: 60 * 60, // 60分 = 3600秒
   selectedItem: null,

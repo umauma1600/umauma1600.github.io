@@ -10,11 +10,19 @@ export default function DoorArea() {
     }
   };
 
+  // 鍵の所持はアイテム状態で判定する
+  // （flags.keyObtained は鍵の入手時に更新されないため、常に false になっていた）
+  const hasKey = state.items.key.obtained;
+
+  const handleUseKey = () => {
+    dispatch({ type: "USE_KEY" });
+  };
+
   const handleDoor = () => {
     if (state.selectedItem === "key") {
       // 鍵を使ってドアを開ける
-      dispatch({ type: "USE_KEY" });
-    } else if (state.flags.keyObtained) {
+      handleUseKey();
+    } else if (hasKey) {
       showDialog("ドアには鍵がかかっている。\n鍵を使えば開けられそうだ。");
     } else {
       showDialog(
@@ -49,9 +57,7 @@ export default function DoorArea() {
             {/* ホバー時のテキスト */}
             <div className="absolute inset-0 flex items-center justify-center bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity rounded-t">
               <span className="text-white font-bold">
-                {state.flags.keyObtained
-                  ? "🔑 鍵を使う"
-                  : "🔒 鍵がかかっている"}
+                {hasKey ? "🔑 鍵を使う" : "🔒 鍵がかかっている"}
               </span>
             </div>
           </button>
@@ -80,10 +86,10 @@ export default function DoorArea() {
       </div>
 
       {/* 脱出ボタン */}
-      {state.flags.keyObtained && (
+      {hasKey && (
         <div className="mt-4">
           <button
-            onClick={handleDoor}
+            onClick={handleUseKey}
             className="px-8 py-4 bg-green-600 hover:bg-green-500 text-white font-bold text-xl rounded-lg transition-all transform hover:scale-105 animate-pulse"
           >
             🔑 鍵を使ってドアを開ける

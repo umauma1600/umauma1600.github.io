@@ -3,10 +3,14 @@ import { useGame } from "../GameContext";
 export default function TankArea() {
   const { state, dispatch, pressButton, showDialog, hasPillEffect } = useGame();
 
+  const handleFillWater = () => {
+    dispatch({ type: "FILL_WATER" });
+    showDialog("調理器具で水槽から水を汲んだ！");
+  };
+
   const handleTank = () => {
     if (state.selectedItem === "cooking_tools" && !state.flags.waterInPot) {
-      dispatch({ type: "FILL_WATER" });
-      showDialog("調理器具で水槽から水を汲んだ！");
+      handleFillWater();
       return;
     }
     showDialog("高さ150センチ程度の水槽。中に入ることができる。");
@@ -76,7 +80,7 @@ export default function TankArea() {
         <div className="mt-4 flex gap-4 justify-center">
           {state.items.cooking_tools.obtained && !state.flags.waterInPot && (
             <button
-              onClick={handleTank}
+              onClick={handleFillWater}
               className="px-4 py-2 bg-blue-600 hover:bg-blue-500 text-white rounded-lg transition-colors flex items-center gap-2"
             >
               <span>🍳</span>

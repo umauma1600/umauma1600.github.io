@@ -1,4 +1,4 @@
-@import 'tailwindcss';
+@import "tailwindcss";
 
 /* CSS変数定義 */
 :root {
@@ -7,15 +7,11 @@
   --color-accent: #c69c6d; /* ゴールデンベージュ - アクセント */
   --color-text: #4a5568; /* グレー - ボディテキスト */
   --color-bg: #faf8f5; /* アイボリー - 背景 */
-
-  /* レイアウト */
-  --sidebar-width: 280px;
-  --transition-duration: 0.3s;
 }
 
 /* 基本スタイル */
 body {
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
   background-color: var(--color-bg);
   color: var(--color-text);
   margin: 0;
@@ -44,7 +40,7 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: 'Space Grotesk', sans-serif;
+  font-family: "Space Grotesk", sans-serif;
 }
 
 /* ポップアップアニメーション */

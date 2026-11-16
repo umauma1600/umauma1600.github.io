@@ -81,7 +81,8 @@ export function useKeyDragDrop(
       y: touch.clientY - dragOffsetRef.current.y,
     });
     setIsDragging(true);
-    e.preventDefault();
+    // ReactのtouchstartはpassiveなのでpreventDefaultは効かない（警告になるだけ）。
+    // スクロール抑止は要素側の touch-none で行っている。
   }, []);
 
   // ドラッグ中の処理

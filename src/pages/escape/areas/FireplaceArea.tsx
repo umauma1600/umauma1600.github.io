@@ -3,26 +3,24 @@ import { useGame } from "../GameContext";
 export default function FireplaceArea() {
   const { state, dispatch, pressButton, showDialog, hasPillEffect } = useGame();
 
+  // 火がついている状態でのみ呼ばれる
   const handleFireplace = () => {
-    if (!state.flags.fireExtinguished) {
-      // 火がついている状態
-      if (state.selectedItem === "cooking_tools" && state.flags.waterInPot) {
-        // 水を入れた調理器具を使う
-        dispatch({ type: "EXTINGUISH_FIRE" });
-        showDialog(
-          "水をかけて火を消した！\n暖炉の奥にボタンがあることに気づいた。",
-        );
-      } else if (hasPillEffect("pill_red")) {
-        // 赤い錠剤の効果中（ただしTRUE ENDに行けなくなる）
-        dispatch({ type: "EXTINGUISH_FIRE" });
-        showDialog(
-          "熱さ耐性があるので、直接火を消すことができた。\n暖炉の奥にボタンがある。",
-        );
-      } else {
-        showDialog(
-          "暖炉で炎が燃えている。もちろん熱い。\n炎の後ろに何かがあるようだが、このままでは近づけない。",
-        );
-      }
+    if (state.selectedItem === "cooking_tools" && state.flags.waterInPot) {
+      // 水を入れた調理器具を使う
+      dispatch({ type: "EXTINGUISH_FIRE" });
+      showDialog(
+        "水をかけて火を消した！\n暖炉の奥にボタンがあることに気づいた。",
+      );
+    } else if (hasPillEffect("pill_red")) {
+      // 赤い錠剤の効果中（ただしTRUE ENDに行けなくなる）
+      dispatch({ type: "EXTINGUISH_FIRE" });
+      showDialog(
+        "熱さ耐性があるので、直接火を消すことができた。\n暖炉の奥にボタンがある。",
+      );
+    } else {
+      showDialog(
+        "暖炉で炎が燃えている。もちろん熱い。\n炎の後ろに何かがあるようだが、このままでは近づけない。",
+      );
     }
   };
 
@@ -44,20 +42,14 @@ export default function FireplaceArea() {
           {/* 上部の装飾 */}
           <div className="h-8 bg-amber-300 rounded-t mb-2" />
 
-          {/* 暖炉の開口部 */}
-          <button
-            onClick={handleFireplace}
-            className="w-full h-48 bg-gray-800 rounded flex items-center justify-center relative overflow-hidden transition-all hover:opacity-90"
-          >
-            {state.flags.fireExtinguished ? (
-              // 火が消えた状態
+          {/* 暖炉の開口部（button の中に button を入れないよう、状態で出し分ける） */}
+          {state.flags.fireExtinguished ? (
+            // 火が消えた状態
+            <div className="w-full h-48 bg-gray-800 rounded flex items-center justify-center relative overflow-hidden">
               <div className="text-center">
                 <p className="text-gray-400 mb-2">火は消えている</p>
                 <button
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    handleButton();
-                  }}
+                  onClick={handleButton}
                   className={`px-6 py-3 rounded-lg font-bold transition-all ${
                     state.flags.button1Pressed
                       ? "bg-green-600 text-white"
@@ -67,15 +59,20 @@ export default function FireplaceArea() {
                   {state.flags.button1Pressed ? "✓ ボタン①" : "ON ボタン①"}
                 </button>
               </div>
-            ) : (
-              // 火がついている状態
+            </div>
+          ) : (
+            // 火がついている状態
+            <button
+              onClick={handleFireplace}
+              className="w-full h-48 bg-gray-800 rounded flex items-center justify-center relative overflow-hidden transition-all hover:opacity-90"
+            >
               <div className="text-center">
                 <div className="text-6xl animate-pulse">🔥</div>
                 <p className="text-orange-300 mt-2">炎が燃えている</p>
                 <p className="text-gray-500 text-sm mt-1">クリックして調べる</p>
               </div>
-            )}
-          </button>
+            </button>
+          )}
 
           {/* 下部 */}
           <div className="h-4 bg-amber-700 rounded-b mt-2" />

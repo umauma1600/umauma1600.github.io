@@ -1,9 +1,9 @@
 import { useGame } from "../GameContext";
 
 export default function LowerFloorArea() {
-  const { state, obtainItem, dispatch, showDialog } = useGame();
+  const { state, obtainItem, dispatch, showDialog, hasPillEffect } = useGame();
 
-  const hasAntidote = state.activePillEffect === "blue";
+  const hasAntidote = hasPillEffect("pill_blue");
   const pathCleared = state.flags.dickiaPathCleared;
 
   const handleDickia = () => {

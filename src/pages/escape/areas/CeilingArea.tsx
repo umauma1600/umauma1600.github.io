@@ -1,9 +1,9 @@
 import { useGame } from "../GameContext";
 
 export default function CeilingArea() {
-  const { state, dispatch, showDialog } = useGame();
+  const { state, dispatch, showDialog, hasPillEffect } = useGame();
 
-  const canFly = state.activePillEffect === "yellow";
+  const canFly = hasPillEffect("pill_yellow");
   const hasHole = state.flags.ceilingHoleOpened;
 
   const handleCeiling = () => {

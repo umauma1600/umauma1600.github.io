@@ -210,11 +210,6 @@ export default function ContactPage() {
             border-radius: 1rem;
           }
 
-          .form-icon {
-            width: 56px;
-            height: 56px;
-          }
-
           .form-title {
             font-size: 1.25rem;
           }

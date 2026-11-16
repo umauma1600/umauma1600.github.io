@@ -16,8 +16,14 @@ const getInitialProgress = (): CafeProgress => {
   try {
     const saved = localStorage.getItem(STORAGE_KEY);
     if (saved) {
-      const parsed = JSON.parse(saved) as CafeProgress;
-      return parsed;
+      const parsed = JSON.parse(saved) as Partial<CafeProgress> | null;
+      // 形が壊れた保存データでクラッシュしないように検証する
+      if (parsed && Array.isArray(parsed.clearedPuzzles)) {
+        return {
+          clearedPuzzles: parsed.clearedPuzzles,
+          lastVisited: parsed.lastVisited ?? null,
+        };
+      }
     }
   } catch {
     // LocalStorageが使用できない場合は初期値を返す

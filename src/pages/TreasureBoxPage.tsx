@@ -7,7 +7,6 @@ const CONSTANTS = {
   PAPER_SHOW_THRESHOLD: 50,
   FALL_DURATION_BASE: 0.3,
   FALL_DURATION_MAX: 0.6,
-  MODAL_FADE_DELAY: 300,
   CONFETTI_COUNT: 100,
   CONFETTI_INTERVAL: 30,
   CONFETTI_DURATION: 5000,
@@ -88,7 +87,7 @@ export default function TreasureBoxPage() {
   const [dialValues, setDialValues] = useState([0, 0, 0, 0]);
   const [isBottomDropped, setIsBottomDropped] = useState(false);
   const [isCleared, setIsCleared] = useState(false);
-  const [startTime] = useState(Date.now());
+  const [startTime] = useState(() => Date.now());
   const [currentHintStep, setCurrentHintStep] = useState(0);
   const [currentClueStep, setCurrentClueStep] = useState(0);
   const [timerDisplay, setTimerDisplay] = useState("00:00");
@@ -444,12 +443,9 @@ export default function TreasureBoxPage() {
 
   // Xシェア
   const shareOnX = () => {
-    const elapsed = Math.floor((Date.now() - startTime) / 1000);
-    const minutes = Math.floor(elapsed / 60);
-    const seconds = elapsed % 60;
-    const timeString = `${String(minutes).padStart(2, "0")}:${String(seconds).padStart(2, "0")}`;
-
-    const text = `「逆転の宝箱」をクリアしました！⏱️ ${timeString}\n固定観念を逆転させる謎解きに挑戦しよう！\n#ひみつ箱のアトリエ`;
+    // クリア画面に表示中のタイムをそのまま共有する
+    // （ボタンを押した時刻で再計算すると、表示より長いタイムになってしまう）
+    const text = `「逆転の宝箱」をクリアしました！⏱️ ${timerDisplay}\n固定観念を逆転させる謎解きに挑戦しよう！\n#ひみつ箱のアトリエ`;
     const url = window.location.href;
     const tweetUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(url)}`;
 

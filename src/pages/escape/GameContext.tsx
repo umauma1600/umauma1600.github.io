@@ -4,7 +4,6 @@ import {
   useReducer,
   useEffect,
   useCallback,
-  useMemo,
   type ReactNode,
 } from "react";
 import {
@@ -12,7 +11,6 @@ import {
   type GameAction,
   type ItemType,
   type AreaType,
-  type PillEffectType,
   initialGameState,
   initialItems,
   initialFlags,
@@ -110,10 +108,6 @@ function gameReducer(state: GameState, action: GameAction): GameState {
             ...state.activePillEffects,
             { type: pillType, name: "", description: "", expiresAt },
           ],
-          flags: {
-            ...newState.flags,
-            [`${pillType.replace("pill_", "pill")}Used`]: true,
-          } as typeof newState.flags,
         };
 
         // 黄色い錠剤 → 上の階へ行ける
@@ -266,23 +260,6 @@ const GameContext = createContext<GameContextType | null>(null);
 export function GameProvider({ children }: { children: ReactNode }) {
   const [state, dispatch] = useReducer(gameReducer, initialGameState);
 
-  // 現在有効な錠剤効果を計算
-  const activePillEffect = useMemo<PillEffectType>(() => {
-    const now = Date.now();
-    const activeEffect = state.activePillEffects.find(
-      (effect) => effect.expiresAt !== null && effect.expiresAt > now,
-    );
-    if (!activeEffect) return null;
-    // pill_purple -> purple
-    return activeEffect.type.replace("pill_", "") as PillEffectType;
-  }, [state.activePillEffects]);
-
-  // 計算済みプロパティを含んだ拡張ステート
-  const enhancedState = useMemo<GameState>(
-    () => ({ ...state, activePillEffect }),
-    [state, activePillEffect],
-  );
-
   // タイマーの更新
   useEffect(() => {
     if (state.status !== "playing" || !state.timerStartTime) return;
@@ -357,7 +334,7 @@ export function GameProvider({ children }: { children: ReactNode }) {
   }, [state.flags.lowerFloorAccessible]);
 
   const value: GameContextType = {
-    state: enhancedState,
+    state,
     dispatch,
     startGame,
     changeArea,

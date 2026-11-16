@@ -3,11 +3,7 @@ import { Link, useLocation } from "react-router-dom";
 import { useKeyDragDrop } from "../hooks/useKeyDragDrop";
 import UnlockOverlay from "./UnlockOverlay";
 
-interface MobileHeaderProps {
-  activeSection: string;
-}
-
-export default function MobileHeader({ activeSection }: MobileHeaderProps) {
+export default function MobileHeader() {
   const location = useLocation();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
@@ -38,40 +34,7 @@ export default function MobileHeader({ activeSection }: MobileHeaderProps) {
     setIsMenuOpen(!isMenuOpen);
   };
 
-  const handleClick = (
-    e: React.MouseEvent<HTMLAnchorElement>,
-    href: string,
-    type: string,
-  ) => {
-    closeMenu();
-    if (type === "hash") {
-      e.preventDefault();
-      const targetId = href.substring(1);
-      const targetElement = document.getElementById(targetId);
-      if (targetElement) {
-        const offset = 80;
-        const targetPosition =
-          targetElement.getBoundingClientRect().top + window.scrollY - offset;
-        window.scrollTo({
-          top: targetPosition,
-          behavior: "smooth",
-        });
-      }
-    }
-  };
-
-  const isActive = (href: string, type: string) => {
-    if (type === "route") {
-      return (
-        location.pathname === href ||
-        activeSection === href ||
-        (href === "/" && activeSection === "#home")
-      );
-    } else if (type === "hash") {
-      return activeSection === href;
-    }
-    return false;
-  };
+  const isActive = (href: string) => location.pathname === href;
 
   // bodyのスクロールを制御
   useEffect(() => {
@@ -113,9 +76,12 @@ export default function MobileHeader({ activeSection }: MobileHeaderProps) {
             ひみつ箱のアトリエ
           </div>
         </Link>
-        <div
-          className={`w-7 h-5 relative cursor-pointer ${isMenuOpen ? "active" : ""}`}
+        <button
+          type="button"
+          className="w-7 h-5 relative cursor-pointer bg-transparent border-none p-0"
           onClick={toggleMenu}
+          aria-label={isMenuOpen ? "メニューを閉じる" : "メニューを開く"}
+          aria-expanded={isMenuOpen}
         >
           <span
             className={`block absolute h-0.5 w-full rounded transition-all duration-[250ms] ease-in-out ${
@@ -135,7 +101,7 @@ export default function MobileHeader({ activeSection }: MobileHeaderProps) {
             }`}
             style={{ background: "var(--color-primary)" }}
           />
-        </div>
+        </button>
       </header>
 
       {/* モバイルメニュー */}
@@ -182,7 +148,7 @@ export default function MobileHeader({ activeSection }: MobileHeaderProps) {
             );
           }
 
-          const active = isActive(link.href, link.type);
+          const active = isActive(link.href);
           const indent = "indent" in link && link.indent;
           const className = `block py-[14px] px-5 mb-2 rounded-lg font-medium transition-all duration-200 ${
             active
@@ -193,33 +159,17 @@ export default function MobileHeader({ activeSection }: MobileHeaderProps) {
             color: active ? "var(--color-primary)" : "var(--color-text)",
           };
 
-          if (link.type === "route") {
-            return (
-              <Link
-                key={link.href}
-                to={link.href}
-                onClick={closeMenu}
-                className={className}
-                style={style}
-              >
-                {link.label}
-              </Link>
-            );
-          } else {
-            return (
-              <a
-                key={link.href}
-                href={link.href}
-                onClick={(e) => {
-                  handleClick(e, link.href, link.type);
-                }}
-                className={className}
-                style={style}
-              >
-                {link.label}
-              </a>
-            );
-          }
+          return (
+            <Link
+              key={link.href}
+              to={link.href}
+              onClick={closeMenu}
+              className={className}
+              style={style}
+            >
+              {link.label}
+            </Link>
+          );
         })}
 
         {/* 鍵穴アイコン */}

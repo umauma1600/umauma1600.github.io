@@ -2,11 +2,7 @@ import { Link, useLocation } from "react-router-dom";
 import { useKeyDragDrop } from "../hooks/useKeyDragDrop";
 import UnlockOverlay from "./UnlockOverlay";
 
-interface SidebarProps {
-  activeSection: string;
-}
-
-export default function Sidebar({ activeSection }: SidebarProps) {
+export default function Sidebar() {
   const location = useLocation();
 
   const {
@@ -27,33 +23,7 @@ export default function Sidebar({ activeSection }: SidebarProps) {
     { href: "/contact", label: "お問い合わせ", type: "route" },
   ];
 
-  const handleClick = (
-    e: React.MouseEvent<HTMLAnchorElement>,
-    href: string,
-    type: string,
-  ) => {
-    if (type === "hash") {
-      e.preventDefault();
-      const targetId = href.substring(1);
-      const targetElement = document.getElementById(targetId);
-      if (targetElement) {
-        targetElement.scrollIntoView({ behavior: "smooth" });
-      }
-    }
-  };
-
-  const isActive = (href: string, type: string) => {
-    if (type === "route") {
-      return (
-        location.pathname === href ||
-        activeSection === href ||
-        (href === "/" && activeSection === "#home")
-      );
-    } else if (type === "hash") {
-      return activeSection === href;
-    }
-    return false;
-  };
+  const isActive = (href: string) => location.pathname === href;
 
   return (
     <aside
@@ -112,7 +82,7 @@ export default function Sidebar({ activeSection }: SidebarProps) {
             );
           }
 
-          const active = isActive(link.href, link.type);
+          const active = isActive(link.href);
           const indent = "indent" in link && link.indent;
           const className = `block py-[14px] px-5 mb-2 rounded-lg font-medium transition-all duration-200 ${
             active
@@ -123,32 +93,16 @@ export default function Sidebar({ activeSection }: SidebarProps) {
             color: active ? "var(--color-primary)" : "var(--color-text)",
           };
 
-          if (link.type === "route") {
-            return (
-              <Link
-                key={link.href}
-                to={link.href}
-                className={className}
-                style={style}
-              >
-                {link.label}
-              </Link>
-            );
-          } else {
-            return (
-              <a
-                key={link.href}
-                href={link.href}
-                onClick={(e) => {
-                  handleClick(e, link.href, link.type);
-                }}
-                className={className}
-                style={style}
-              >
-                {link.label}
-              </a>
-            );
-          }
+          return (
+            <Link
+              key={link.href}
+              to={link.href}
+              className={className}
+              style={style}
+            >
+              {link.label}
+            </Link>
+          );
         })}
       </nav>
 

@@ -1,10 +1,10 @@
 import { useGame } from "../GameContext";
 
 export default function UpperFloorArea() {
-  const { state, obtainItem, dispatch, showDialog } = useGame();
+  const { state, obtainItem, dispatch, showDialog, hasPillEffect } = useGame();
 
-  const hasFireResistance = state.activePillEffect === "red";
-  const canFly = state.activePillEffect === "yellow";
+  const hasFireResistance = hasPillEffect("pill_red");
+  const canFly = hasPillEffect("pill_yellow");
 
   const handleBoilingTank = () => {
     if (state.flags.bombDisarmed) {
