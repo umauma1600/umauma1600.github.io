@@ -70,7 +70,7 @@ export default function DoorArea() {
               <span className="text-gray-400 text-xs">取得済</span>
             ) : (
               <img
-                src="/assets/escape/pill-icon-triangle.png"
+                src="/assets/escape/pill-icon-triangle.webp"
                 alt="紫の錠剤"
                 className="w-12 h-16 object-contain"
               />

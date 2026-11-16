@@ -5,21 +5,21 @@ import { pillInfo } from "../types";
 
 // アイテムの画像パス（存在するもののみ）
 const itemImages: Partial<Record<ItemType, { src: string; alt: string }>> = {
-  message: { src: "/assets/escape/message.png", alt: "メッセージ" },
+  message: { src: "/assets/escape/message.webp", alt: "メッセージ" },
   pill_purple: {
-    src: "/assets/escape/pill-icon-triangle.png",
+    src: "/assets/escape/pill-icon-triangle.webp",
     alt: "紫の錠剤",
   },
   pill_white: {
-    src: "/assets/escape/pill-icon-circle.png",
+    src: "/assets/escape/pill-icon-circle.webp",
     alt: "白い錠剤",
   },
-  pill_red: { src: "/assets/escape/pill-icon-heart.png", alt: "赤い錠剤" },
+  pill_red: { src: "/assets/escape/pill-icon-heart.webp", alt: "赤い錠剤" },
   pill_yellow: {
-    src: "/assets/escape/pill-icon-star.png",
+    src: "/assets/escape/pill-icon-star.webp",
     alt: "黄色い錠剤",
   },
-  pill_blue: { src: "/assets/escape/pill-icon-cloud.png", alt: "青い錠剤" },
+  pill_blue: { src: "/assets/escape/pill-icon-cloud.webp", alt: "青い錠剤" },
 };
 
 // 画像がないアイテム用の絵文字フォールバック
@@ -54,32 +54,32 @@ const itemDescriptions: Record<ItemType, string> = {
 const boxContentPages = [
   {
     label: "一覧表",
-    src: "/assets/escape/pill-chart.png",
+    src: "/assets/escape/pill-chart.webp",
     alt: "錠剤の効果一覧",
   },
   {
     label: "ドクガアール",
-    src: "/assets/escape/pill-dokugaaru.png",
+    src: "/assets/escape/pill-dokugaaru.webp",
     alt: "ドクガアール",
   },
   {
     label: "アツクナーイ",
-    src: "/assets/escape/pill-atsukunai.png",
+    src: "/assets/escape/pill-atsukunai.webp",
     alt: "アツクナーイ",
   },
   {
     label: "タカクトーブ",
-    src: "/assets/escape/pill-takakutobu.png",
+    src: "/assets/escape/pill-takakutobu.webp",
     alt: "タカクトーブ",
   },
   {
     label: "オボレナーイ",
-    src: "/assets/escape/pill-oborenai.png",
+    src: "/assets/escape/pill-oborenai.webp",
     alt: "オボレナーイ",
   },
   {
     label: "チカラモーチ",
-    src: "/assets/escape/pill-chikaramochi.png",
+    src: "/assets/escape/pill-chikaramochi.webp",
     alt: "チカラモーチ",
   },
 ];
@@ -149,7 +149,7 @@ export default function ItemPopup({ itemId, onClose }: ItemPopupProps) {
   const renderMessageContent = () => (
     <div className="mt-4">
       <img
-        src="/assets/escape/message.png"
+        src="/assets/escape/message.webp"
         alt="やまーたからのメッセージ"
         className="w-full rounded-lg border border-gray-600"
       />

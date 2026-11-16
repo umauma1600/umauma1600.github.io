@@ -93,7 +93,7 @@ export default function OpeningScreen() {
           {/* メッセージ画像 */}
           <div className="relative">
             <img
-              src="/assets/escape/message.png"
+              src="/assets/escape/message.webp"
               alt="脅迫文"
               className="w-full rounded-lg shadow-2xl"
             />

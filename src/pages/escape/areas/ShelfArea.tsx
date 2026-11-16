@@ -5,32 +5,32 @@ import { useGame } from "../GameContext";
 const boxContentPages = [
   {
     label: "一覧表",
-    src: "/assets/escape/pill-chart.png",
+    src: "/assets/escape/pill-chart.webp",
     alt: "錠剤の効果一覧",
   },
   {
     label: "ドクガアール",
-    src: "/assets/escape/pill-dokugaaru.png",
+    src: "/assets/escape/pill-dokugaaru.webp",
     alt: "ドクガアール",
   },
   {
     label: "アツクナーイ",
-    src: "/assets/escape/pill-atsukunai.png",
+    src: "/assets/escape/pill-atsukunai.webp",
     alt: "アツクナーイ",
   },
   {
     label: "タカクトーブ",
-    src: "/assets/escape/pill-takakutobu.png",
+    src: "/assets/escape/pill-takakutobu.webp",
     alt: "タカクトーブ",
   },
   {
     label: "オボレナーイ",
-    src: "/assets/escape/pill-oborenai.png",
+    src: "/assets/escape/pill-oborenai.webp",
     alt: "オボレナーイ",
   },
   {
     label: "チカラモーチ",
-    src: "/assets/escape/pill-chikaramochi.png",
+    src: "/assets/escape/pill-chikaramochi.webp",
     alt: "チカラモーチ",
   },
 ];
@@ -152,7 +152,7 @@ export default function ShelfArea() {
                 <span className="text-gray-400 text-xs">取得済</span>
               ) : (
                 <img
-                  src="/assets/escape/pill-icon-heart.png"
+                  src="/assets/escape/pill-icon-heart.webp"
                   alt="赤い錠剤"
                   className="w-12 h-14 object-contain"
                 />
@@ -173,7 +173,7 @@ export default function ShelfArea() {
                 <span className="text-gray-400 text-xs">取得済</span>
               ) : (
                 <img
-                  src="/assets/escape/pill-icon-star.png"
+                  src="/assets/escape/pill-icon-star.webp"
                   alt="黄色い錠剤"
                   className="w-12 h-14 object-contain"
                 />

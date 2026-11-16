@@ -7,7 +7,7 @@ const plantBookPages = [
     content: (
       <div className="flex justify-center">
         <img
-          src="/assets/escape/plant-ginreika.png"
+          src="/assets/escape/plant-ginreika.webp"
           alt="銀鈴花"
           className="max-w-full max-h-[480px] object-contain"
         />
@@ -18,7 +18,7 @@ const plantBookPages = [
     content: (
       <div className="flex justify-center">
         <img
-          src="/assets/escape/plant-yubaesou.png"
+          src="/assets/escape/plant-yubaesou.webp"
           alt="夕映草"
           className="max-w-full max-h-[480px] object-contain"
         />
@@ -29,7 +29,7 @@ const plantBookPages = [
     content: (
       <div className="flex justify-center">
         <img
-          src="/assets/escape/plant-yourinka.png"
+          src="/assets/escape/plant-yourinka.webp"
           alt="陽輪花"
           className="max-w-full max-h-[480px] object-contain"
         />
@@ -40,7 +40,7 @@ const plantBookPages = [
     content: (
       <div className="flex justify-center">
         <img
-          src="/assets/escape/plant-shokugokuka.png"
+          src="/assets/escape/plant-shokugokuka.webp"
           alt="喰獄花"
           className="max-w-full max-h-[480px] object-contain"
         />
@@ -51,7 +51,7 @@ const plantBookPages = [
     content: (
       <div className="flex justify-center">
         <img
-          src="/assets/escape/plant-tekkyokuju.png"
+          src="/assets/escape/plant-tekkyokuju.webp"
           alt="鉄棘樹"
           className="max-w-full max-h-[480px] object-contain"
         />
@@ -66,7 +66,7 @@ const manualBookPages = [
     content: (
       <div className="flex justify-center">
         <img
-          src="/assets/escape/manual-bakudan.png"
+          src="/assets/escape/manual-bakudan.webp"
           alt="時限爆弾"
           className="max-w-full max-h-[480px] object-contain"
         />
@@ -77,7 +77,7 @@ const manualBookPages = [
     content: (
       <div className="flex justify-center">
         <img
-          src="/assets/escape/manual-zyouzai.png"
+          src="/assets/escape/manual-zyouzai.webp"
           alt="錠剤"
           className="max-w-full max-h-[480px] object-contain"
         />
@@ -93,7 +93,7 @@ const mysteryBookPages = [
     content: (
       <div className="flex justify-center">
         <img
-          src="/assets/escape/mystery-a.png"
+          src="/assets/escape/mystery-a.webp"
           alt="謎A"
           className="max-w-full max-h-[480px] object-contain"
         />
@@ -105,7 +105,7 @@ const mysteryBookPages = [
     content: (
       <div className="flex justify-center">
         <img
-          src="/assets/escape/mystery-b.png"
+          src="/assets/escape/mystery-b.webp"
           alt="謎B"
           className="max-w-full max-h-[480px] object-contain"
         />
@@ -117,7 +117,7 @@ const mysteryBookPages = [
     content: (
       <div className="flex justify-center">
         <img
-          src="/assets/escape/mystery-c.png"
+          src="/assets/escape/mystery-c.webp"
           alt="謎C"
           className="max-w-full max-h-[480px] object-contain"
         />
@@ -129,7 +129,7 @@ const mysteryBookPages = [
     content: (
       <div className="flex justify-center">
         <img
-          src="/assets/escape/mystery-d.png"
+          src="/assets/escape/mystery-d.webp"
           alt="謎D"
           className="max-w-full max-h-[480px] object-contain"
         />
@@ -141,7 +141,7 @@ const mysteryBookPages = [
     content: (
       <div className="flex justify-center">
         <img
-          src="/assets/escape/mystery-e.png"
+          src="/assets/escape/mystery-e.webp"
           alt="謎E"
           className="max-w-full max-h-[480px] object-contain"
         />
@@ -152,7 +152,7 @@ const mysteryBookPages = [
     content: (
       <div className="flex justify-center">
         <img
-          src="/assets/escape/mystery-f.png"
+          src="/assets/escape/mystery-f.webp"
           alt="謎6"
           className="max-w-full max-h-[480px] object-contain"
         />

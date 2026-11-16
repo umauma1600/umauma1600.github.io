@@ -78,7 +78,7 @@ export default function LattePuzzle() {
         {/* 謎の画像 */}
         <div className="bg-white rounded-xl shadow-lg overflow-hidden mb-8">
           <img
-            src="/assets/cafe/cafe-latte.png"
+            src="/assets/cafe/cafe-latte.webp"
             alt="カフェラテの謎"
             className="w-full h-auto"
           />

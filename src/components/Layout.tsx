@@ -83,7 +83,7 @@ export default function Layout() {
               aria-label="やまーた"
             >
               <img
-                src="/assets/images/yama-taosuwari.png"
+                src="/assets/images/yama-taosuwari.webp"
                 alt=""
                 className="w-full h-auto"
               />

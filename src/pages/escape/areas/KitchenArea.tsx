@@ -38,7 +38,7 @@ export default function KitchenArea() {
       {/* キッチンのビジュアル（画像ベース） */}
       <div className="relative w-full max-w-md">
         <img
-          src="/assets/escape/kitchen-bg.png"
+          src="/assets/escape/kitchen-bg.webp"
           alt="キッチン"
           className="w-full rounded-lg"
         />
@@ -74,7 +74,7 @@ export default function KitchenArea() {
             aria-label="白い錠剤を調べる"
           >
             <img
-              src="/assets/escape/pill-icon-circle.png"
+              src="/assets/escape/pill-icon-circle.webp"
               alt="白い錠剤"
               className="w-full h-full object-contain drop-shadow-lg"
             />

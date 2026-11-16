@@ -65,7 +65,7 @@ export default function StatueArea() {
               <span className="text-gray-400 text-xs">取得済</span>
             ) : (
               <img
-                src="/assets/escape/pill-icon-cloud.png"
+                src="/assets/escape/pill-icon-cloud.webp"
                 alt="青い錠剤"
                 className="w-12 h-16 object-contain"
               />
