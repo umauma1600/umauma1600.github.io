@@ -44,12 +44,5 @@ export default tseslint.config(
       ],
     },
   },
-  {
-    files: ["**/*.test.{ts,tsx}"],
-    rules: {
-      "@typescript-eslint/no-non-null-assertion": "off",
-      "@typescript-eslint/no-empty-function": "off",
-    },
-  },
   prettier,
 );
