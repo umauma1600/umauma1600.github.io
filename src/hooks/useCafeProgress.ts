@@ -66,21 +66,8 @@ export function useCafeProgress() {
     [progress.clearedPuzzles],
   );
 
-  // 進捗をリセット
-  const resetProgress = useCallback(() => {
-    setProgress({ clearedPuzzles: [], lastVisited: null });
-  }, []);
-
-  // クリア済み謎の数を取得
-  const getClearedCount = useCallback(() => {
-    return progress.clearedPuzzles.length;
-  }, [progress.clearedPuzzles]);
-
   return {
-    clearedPuzzles: progress.clearedPuzzles,
     markAsCleared,
     isCleared,
-    resetProgress,
-    getClearedCount,
   };
 }
