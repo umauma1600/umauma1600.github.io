@@ -74,7 +74,7 @@ export default function Layout() {
         <footer className="py-6 bg-[var(--color-primary)]/5">
           <div className="relative max-w-4xl mx-auto px-4 text-center">
             <p className="text-[var(--color-primary)]/50 text-xs">
-              © やまーたの謎解きアトリエ
+              © ひみつ箱のアトリエ
             </p>
             {/* 隠しやまーた */}
             <button

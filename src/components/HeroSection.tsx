@@ -30,9 +30,9 @@ export default function HeroSection() {
                 "2px 2px 4px rgba(255, 255, 255, 0.8), -1px -1px 2px rgba(255, 255, 255, 0.6)",
             }}
           >
-            やまーたの
+            ひみつ箱の
             <br />
-            謎解きアトリエ
+            アトリエ
           </h1>
         </div>
       </div>

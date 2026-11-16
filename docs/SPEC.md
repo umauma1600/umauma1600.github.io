@@ -273,7 +273,7 @@ function showClearAnimation() {
 
 // シェア機能
 function shareOnX() {
-  const text = encodeURIComponent('逆転の宝箱をクリアしました！ #やまーたの謎解きアトリエ');
+  const text = encodeURIComponent('逆転の宝箱をクリアしました！ #ひみつ箱のアトリエ');
   const url = encodeURIComponent(window.location.href);
   window.open(`https://twitter.com/intent/tweet?text=${text}&url=${url}`, '_blank');
 }
@@ -466,5 +466,5 @@ contents/treasure-box/
 ---
 
 **作成者**: Claude AI
-**プロジェクト**: やまーたの謎解きアトリエ
+**プロジェクト**: ひみつ箱のアトリエ
 **サイトURL**: https://umauma1600.github.io

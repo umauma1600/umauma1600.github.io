@@ -374,7 +374,7 @@ export default function CafeInterior() {
       <footer className="mt-auto py-6 bg-amber-900/10">
         <div className="max-w-4xl mx-auto px-4 text-center">
           <p className="text-amber-600/60 text-xs">
-            © Café ひみつの鍵 - やまーたの謎解きアトリエ
+            © Café ひみつの鍵 - ひみつ箱のアトリエ
           </p>
         </div>
       </footer>

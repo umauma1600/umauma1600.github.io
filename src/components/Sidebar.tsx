@@ -72,9 +72,9 @@ export default function Sidebar({ activeSection }: SidebarProps) {
             fontFamily: "'Space Grotesk', sans-serif",
           }}
         >
-          やまーたの
+          ひみつ箱の
           <br />
-          謎解きアトリエ
+          アトリエ
         </div>
       </Link>
       <nav>

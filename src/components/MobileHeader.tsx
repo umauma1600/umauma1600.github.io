@@ -110,7 +110,7 @@ export default function MobileHeader({ activeSection }: MobileHeaderProps) {
               fontFamily: "'Space Grotesk', sans-serif",
             }}
           >
-            やまーたの謎解きアトリエ
+            ひみつ箱のアトリエ
           </div>
         </Link>
         <div
