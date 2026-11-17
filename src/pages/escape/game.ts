@@ -2,9 +2,9 @@
 // 画面に依存しない純粋な状態遷移だけをここに置く
 
 /** 爆弾が爆発するまでの時間 */
-export const BOMB_MS = 60 * 60 * 1000;
+export const BOMB_MS = 20 * 60 * 1000;
 /** 爆弾を処理しても、密室の空気が尽きる時間 */
-export const AIR_MS = 75 * 60 * 1000;
+export const AIR_MS = 25 * 60 * 1000;
 /** 錠剤の効果時間 */
 export const PILL_MS = 60 * 1000;
 /** 棚の箱の3桁錠 */
@@ -15,7 +15,13 @@ export type View = Wall | "center" | "ceiling" | "basement" | "attic";
 export type PillId = "red" | "yellow" | "white" | "blue" | "purple";
 export type ItemId = "letter" | "pot" | "key" | "bomb" | PillId;
 export type DocId = "plant" | "manual" | "mystery" | "pills";
-export type Ending = "explosion" | "suffocation" | "thorn" | "normal" | "true";
+export type Ending =
+  | "explosion"
+  | "suffocation"
+  | "thorn"
+  | "poison"
+  | "normal"
+  | "true";
 export type Phase = "title" | "opening" | "playing" | "ending";
 
 /** 場面の中でタップできるもの */
@@ -45,7 +51,7 @@ export type Target =
   | "boiler"
   | "ladder-down";
 
-export type ChoiceId = "dive" | "thorn" | "leave" | "cancel";
+export type ChoiceId = "dive" | "thorn" | "leave" | "wait" | "cancel";
 
 export interface Choice {
   id: ChoiceId;
@@ -108,6 +114,7 @@ export type Action =
   | { type: "readDoc"; doc: DocId }
   | { type: "openBox" }
   | { type: "closeDialog" }
+  | { type: "askWait" }
   | { type: "retry" }
   | { type: "reset" };
 
@@ -412,7 +419,7 @@ function tapTree(state: GameState): GameState {
   if (selected === "letter") {
     return say(
       setFlags(lose(state, "letter"), { treeDead: true }),
-      "手紙を近づけた瞬間、葉が紙に巻きつき、あっという間に取り込んだ。\n\n……やがて、白いインクのにじんだ葉から、みるみる茶色く枯れていく。\n奥の壁の鍵に、手が届きそうだ。",
+      "手紙を近づけた瞬間、葉が紙に巻きつき、あっという間に取り込んだ。\n\n……やがて、手紙を取り込んだあたりの葉から、みるみる茶色く枯れていく。\n紙に染みていた白いインクの毒が、回ったのだろうか。\n\n奥の壁の鍵に、手が届きそうだ。",
     );
   }
   if (selected === "pot") {
@@ -579,16 +586,21 @@ function choose(state: GameState, id: ChoiceId): GameState {
       );
     case "thorn":
       return { ...end(state, "thorn"), checkpoint: closed };
+    case "wait":
+      // 何もせずに、時間切れまで待つ
+      return tick(
+        closed,
+        (state.flags.bombDisposed ? AIR_MS : BOMB_MS) - state.elapsed,
+      );
     case "leave":
       return end(state, "normal");
   }
 }
 
-const DRINK_TEXT: Record<PillId, string> = {
+/** 飲むと効果が出る錠剤の、飲んだときの感覚（白い錠剤は毒薬なので、ここには無い） */
+const DRINK_TEXT: Record<Exclude<PillId, "white">, string> = {
   red: "体の芯がひんやりとして、暖炉の熱気を感じなくなった。",
   yellow: "体が羽のように軽くなった。どこまでも跳べそうな気がする。",
-  white:
-    "舌がしびれ、指先がうっすらと紫色に染まった。\n……体が毒を帯びたようだ。",
   blue: "胸がすうっと楽になった。息を止めていても、少しも苦しくない。",
   purple: "体の奥から力がわいてくる。何でも持ち上げられそうだ。",
 };
@@ -655,6 +667,13 @@ export function reducer(state: GameState, action: Action): GameState {
     case "drink": {
       const { pill } = action;
       if (!has(state, pill)) return state;
+      // 白い錠剤（ドクガアール）はただの毒薬。飲んだ時点で命はない
+      if (pill === "white") {
+        return {
+          ...end(lose(state, pill), "poison"),
+          checkpoint: { ...state, dialog: null },
+        };
+      }
       return say(
         {
           ...lose(state, pill),
@@ -673,6 +692,19 @@ export function reducer(state: GameState, action: Action): GameState {
           ? state
           : { ...state, docs: [...state.docs, "pills"] },
         { boxOpen: true },
+      );
+    case "askWait":
+      return say(
+        state,
+        state.flags.bombDisposed
+          ? "爆弾はもう処理した。\nこのまま何もせず、空気が尽きるまで待つこともできる。"
+          : "このまま何もせず、タイムリミットが来るまで待つこともできる。",
+        {
+          choices: [
+            { id: "wait", label: "時間が過ぎるのを待つ", danger: true },
+            cancel,
+          ],
+        },
       );
     case "closeDialog":
       // 選択肢つきのダイアログは、選ぶまで閉じない
@@ -728,6 +760,7 @@ export const ENDING_ORDER: readonly Ending[] = [
   "explosion",
   "suffocation",
   "thorn",
+  "poison",
 ];
 
 export function loadEndings(): Ending[] {
@@ -842,7 +875,7 @@ export function getHint(state: GameState): Hint {
       topic: "tree",
       steps: [
         "床の扉から下の階へ。鍵の前をふさぐ植物は、植物図鑑に載っている。触れてはいけない。",
-        "図鑑によれば、駆除には毒物が必要だ。ただし錠剤を飲めるのは「自力で行動可能な生物」だけ。そして、葉に触れた生物は助からない。",
+        "図鑑によれば、駆除には毒物が必要だ。ただし箱の中の紙にある毒の錠剤は、飲んだ者が命を落とすだけ。それに、錠剤を飲めるのは「自力で行動可能な生物」に限られる。",
         "毒は錠剤だけとは限らない。図鑑には、毒をもつ花がもうひとつ載っている。その花は、何の原料になる？",
         "鉄棘樹は、葉に触れた「もの」を取り込む。生き物でなくてもいい。白いインクで書かれたものを、最初から持っていないだろうか。",
       ],

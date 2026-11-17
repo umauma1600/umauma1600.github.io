@@ -561,6 +561,7 @@ export function EndingList({
       <div className="eg-sheet-body">
         <p className="eg-note">
           {seen.length} / {ENDING_ORDER.length} 種類のエンディングを見ました。
+          探索中に右上のタイマーをタップすると、時間が過ぎるのを待つこともできます。
         </p>
         <ul className="eg-ending-list">
           {ENDING_ORDER.map((ending) => {
@@ -568,7 +569,8 @@ export function EndingList({
             if (!seen.includes(ending)) {
               return (
                 <li key={ending} className="is-locked">
-                  ？？？
+                  <b>？？？</b>
+                  <span>{data.clue}</span>
                 </li>
               );
             }

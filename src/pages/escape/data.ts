@@ -23,7 +23,7 @@ export const LETTER_DOC: Doc = {
   pages: [
     {
       src: LETTER_IMAGE,
-      alt: "この部屋のとある場所に時限爆弾をしかけた。タイムリミットは君がこの手紙を読んでから60分だ。",
+      alt: "この部屋のとある場所に時限爆弾をしかけた。タイムリミットは君がこの手紙を読んでから20分だ。",
     },
   ],
 };
@@ -117,6 +117,8 @@ export interface EndingData {
   tone: "bad" | "normal" | "true";
   /** X で共有するときの一言 */
   share: string;
+  /** まだ見ていない人に向けた、ほのめかす程度の手がかり（エンディング一覧に出す） */
+  clue: string;
   lines: string[];
 }
 
@@ -126,6 +128,7 @@ export const ENDINGS: Record<Ending, EndingData> = {
     subtitle: "〜時間切れ〜",
     tone: "bad",
     share: "プレイしました",
+    clue: "時間は、待ってくれない。",
     lines: [
       "ドッカーン！！！",
       "",
@@ -141,6 +144,7 @@ export const ENDINGS: Record<Ending, EndingData> = {
     subtitle: "〜酸素切れ〜",
     tone: "bad",
     share: "プレイしました",
+    clue: "憂いは断った。けれど、この部屋には……。",
     lines: [
       "朦朧とする意識。",
       "爆弾を解除し、あとは部屋を出るだけ。",
@@ -157,6 +161,7 @@ export const ENDINGS: Record<Ending, EndingData> = {
     subtitle: "〜鉄の棘〜",
     tone: "bad",
     share: "プレイしました",
+    clue: "触れてはいけないものに、手を伸ばす。",
     lines: [
       "葉に触れた、その瞬間だった。",
       "",
@@ -168,11 +173,28 @@ export const ENDINGS: Record<Ending, EndingData> = {
       "「あぁ…失敗したんだな…」と。",
     ],
   },
+  poison: {
+    label: "BAD END④",
+    subtitle: "〜毒〜",
+    tone: "bad",
+    share: "プレイしました",
+    clue: "口にしてはいけないものを、口にする。",
+    lines: [
+      "錠剤を飲み込んだ、その直後だった。",
+      "",
+      "舌がしびれ、喉が焼け、指先から力が抜けていく。",
+      "立っていることもできず、あなたは床に崩れ落ちた。",
+      "",
+      "薄れる意識の中であなたは悟った。",
+      "「あぁ…失敗したんだな…」と。",
+    ],
+  },
   normal: {
     label: "NORMAL END",
     subtitle: "〜生還おめでとうございます〜",
     tone: "normal",
     share: "NORMAL ENDでクリアしました",
+    clue: "自分だけは、助かる。",
     lines: [
       "あなたは扉の鍵を開け外に出ることに成功した。",
       "扉の先は暗い廊下になっており、そのまま進むと階段があった。",
@@ -195,6 +217,7 @@ export const ENDINGS: Record<Ending, EndingData> = {
     subtitle: "〜「やまーたからの挑戦状」クリアおめでとうございます！〜",
     tone: "true",
     share: "TRUE ENDでクリアしました",
+    clue: "すべての憂いを断って、扉を開ける。",
     lines: [
       "あなたは扉の鍵を開け外に出ることに成功した。",
       "扉の先は暗い廊下になっており、そのまま進むと階段があった。",

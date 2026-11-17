@@ -86,7 +86,7 @@ function TitleScreen({ dispatch }: ScreenProps) {
         <p className="eg-lead">
           目を覚ますと、見知らぬ部屋。
           <br />
-          残された時間は、60分。
+          残された時間は、20分。
         </p>
         <div className="eg-actions">
           {saved && (
@@ -139,7 +139,7 @@ function TitleScreen({ dispatch }: ScreenProps) {
           ネタバレは禁止ですが、プレイ後の感想は大歓迎です。<b>#やま謎</b>{" "}
           でお待ちしています。
         </li>
-        <li>制作：やまーた ／ 想定プレイ時間：30〜60分</li>
+        <li>制作：やまーた ／ 制限時間：20分</li>
       </ul>
     </div>
   );
@@ -170,7 +170,7 @@ function OpeningScreen({ dispatch }: ScreenProps) {
             探索を開始する
           </button>
           <p className="eg-note">
-            ボタンを押すと、60分のタイマーが動き出します。
+            ボタンを押すと、20分のタイマーが動き出します。
           </p>
         </div>
       ) : (
@@ -203,20 +203,20 @@ function TimerBadge({ state }: { state: GameState }) {
   if (!flags.bombDisposed) {
     const left = BOMB_MS - elapsed;
     const level =
-      left < 60_000 ? " is-critical" : left < 600_000 ? " is-low" : "";
+      left < 60_000 ? " is-critical" : left < 300_000 ? " is-low" : "";
     return (
-      <p className={`eg-timer${level}`} aria-label="爆発までの残り時間">
+      <span className={`eg-timer${level}`} aria-label="爆発までの残り時間">
         {formatClock(left)}
-      </p>
+      </span>
     );
   }
   if (elapsed < BOMB_MS) {
-    return <p className="eg-timer is-safe">爆弾処理済</p>;
+    return <span className="eg-timer is-safe">爆弾処理済</span>;
   }
   return (
-    <p className="eg-timer is-critical" aria-label="空気が尽きるまでの時間">
+    <span className="eg-timer is-critical" aria-label="空気が尽きるまでの時間">
       空気 {formatClock(AIR_MS - elapsed)}
-    </p>
+    </span>
   );
 }
 
@@ -398,6 +398,8 @@ function PlayScreen({ state, dispatch }: ScreenProps) {
   };
 
   const hint = getHint(state);
+  // 一度でもエンディングを見た人は、タイマーから時間切れまで待てる（エンディング集め用）
+  const [canWait] = useState(() => loadEndings().length > 0);
   const active = PILLS.filter((pill) => isActive(state, pill));
 
   return (
@@ -407,7 +409,25 @@ function PlayScreen({ state, dispatch }: ScreenProps) {
           ← 中断
         </Link>
         <h1>{VIEW_NAMES[state.view]}</h1>
-        <TimerBadge state={state} />
+        {canWait ? (
+          <button
+            type="button"
+            className="eg-timer-wrap"
+            title="時間が過ぎるのを待つ"
+            onClick={() => {
+              dispatch({ type: "askWait" });
+            }}
+          >
+            <TimerBadge state={state} />
+            <span className="eg-timer-skip" aria-hidden="true">
+              ▸▸
+            </span>
+          </button>
+        ) : (
+          <span className="eg-timer-wrap">
+            <TimerBadge state={state} />
+          </span>
+        )}
       </header>
 
       <div className="eg-stage">
